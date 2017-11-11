@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Brief
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9.
@@ -26,7 +25,3 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-=======
-# brief
-Calculate bondage index with user's info to launch bussines proposal
->>>>>>> b4ade7de060cbb3c306be9c8f9d55d62c05c50ef
