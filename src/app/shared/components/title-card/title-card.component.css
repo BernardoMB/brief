@@ -1,0 +1,42 @@
+.panel-custom {margin: 15px;
+    border: 0px;
+    border-radius: 0px;
+}
+
+.panel-body-custom {
+    background-color: #344a54;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.title {
+    color: white;
+    margin-top: 0px; 
+    margin-bottom: 0px;
+}
+
+.subtitle {
+    color: white;
+    margin-top: 0px; 
+    margin-bottom: 0px;
+    font-size: 10px;
+}
+
+.description {
+    color: #344a54;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: justify;
+}
+
+.chingadera {
+    background-color: #d9ecf8 !important;
+    padding: 15px !important;
+    padding-top: 0px !important;
+}
+
+.explanation-custom {
+    margin: 0px;
+    color: rgb(81, 171, 255);
+    text-align: justify;
+}
