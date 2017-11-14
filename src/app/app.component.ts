@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie';

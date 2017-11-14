@@ -116,4 +116,5 @@ export class CoverageComponent implements OnInit {
       this.isSalePoint = true;
     }
   }
+
 }

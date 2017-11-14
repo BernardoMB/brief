@@ -13,8 +13,7 @@ const routes: Routes = [{
       { path: 'activity', loadChildren: 'app/activity/activity.module#ActivityModule' },
       { path: 'address', loadChildren: 'app/address/address.module#AddressModule' },
       { path: 'coverage', loadChildren: 'app/coverage/coverage.module#CoverageModule' },
-      { path: 'products', loadChildren: 'app/products/products.module#ProductsModule' },
-      /* { path: '', loadChildren: 'app/activity/admin.module#AdminModule' }, */
+      { path: 'products', loadChildren: 'app/products/products.module#ProductsModule' }
     ]
   }
 ];
