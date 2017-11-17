@@ -2,30 +2,20 @@
 import { IProfession } from '../../shared/models/IProfession';
 import { Action } from '@ngrx/store';
 
-export const SOME_ACTION1 = 'SOME_ACTION1';
-
-export class SomeAction1 implements Action {
-    readonly type = SOME_ACTION1;
-    constructor(public payload?: any) { }
-}
-
 //#region Professions
     export const GET_ALL_PROFESSIONS_ACTION = 'GET_ALL_PROFESSIONS_ACTION';
-
     export class GetAllProfessionsAction implements Action {
         readonly type = GET_ALL_PROFESSIONS_ACTION;
         constructor(public payload?: any) { }
     }
 
     export const GETTING_ALL_PROFESSIONS_ACTION = 'GETTING_ALL_PROFESSIONS_ACTION';
-
     export class GettingAllProfessionsAction implements Action {
         readonly type = GETTING_ALL_PROFESSIONS_ACTION;
         constructor(public payload?: any) { }
     }
 
     export const UPDATE_ALL_PROFESSIOS_ACTION = 'UPDATE_ALL_PROFESSIOS_ACTION';
-
     export class UpdateAllProfessionsAction implements Action {
         readonly type = UPDATE_ALL_PROFESSIOS_ACTION;
         constructor(public payload: Array<IProfession>) { }
@@ -48,7 +38,7 @@ export class ErrorOcurredAction implements Action {
 }
 //#endregion
 
-export type StoreActions = SomeAction1
+export type StoreActions =
     | GetAllProfessionsAction
     | UpdateAllProfessionsAction;
 

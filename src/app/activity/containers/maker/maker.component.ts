@@ -2,7 +2,7 @@ import { IApplicationState } from '../../../store/models/app-state';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

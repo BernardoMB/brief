@@ -10,7 +10,6 @@ import { ActivityRoutingModule } from './activity-routing.module';
     import { ServiceComponent } from './containers/service/service.component';
     import { ProfessionalComponent } from './containers/professional/professional.component';
     import { GenericComponent } from './containers/generic/generic.component';
-    import { RoleComponent } from './containers/role/role.component';
     import { CoverageComponent } from './containers/coverage/coverage.component';
 //#endregion
 
@@ -21,6 +20,12 @@ import { ActivityRoutingModule } from './activity-routing.module';
     SharedModule,
     FormsModule,
   ],
-  declarations: [MakerComponent, ServiceComponent, ProfessionalComponent, GenericComponent, RoleComponent, CoverageComponent]
+  declarations: [
+    MakerComponent,
+    ServiceComponent,
+    ProfessionalComponent,
+    GenericComponent,
+    CoverageComponent
+  ]
 })
 export class ActivityModule { }
