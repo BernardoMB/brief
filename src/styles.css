@@ -78,6 +78,24 @@ body {
     height: 56px;
     cursor: pointer;
   }
+
+  #map_canvas .centerMarker.focused {
+    position: absolute;
+    /*url of the marker*/
+    background: rgba(0,0,0,0);
+    /*center the marker*/
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    /*fix offset when needed*/
+    margin-left: -20px;
+    margin-top: -56px;
+    opacity: 0.9; 
+    /*size of the image*/
+    width: 40px;
+    height: 56px;
+    cursor: pointer;
+  }
   
   a[href^="http://maps.google.com/maps"]{display:none !important}
   a[href^="https://maps.google.com/maps"]{display:none !important}

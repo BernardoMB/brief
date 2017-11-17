@@ -35,7 +35,10 @@ export class MapComponent implements OnInit, OnDestroy {
     this.subtitle = 'Indica la ubicación de tu negocio';
     this.explanation = 'Ayudanos a determinar la ubicación tu negocio para lograr mejores resultados.';
 
+    // Declare Google Map
     let map;
+
+    // Get browser location
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -52,6 +55,29 @@ export class MapComponent implements OnInit, OnDestroy {
       console.warn(`ERROR(${error.code}): ${error.message}`);
       map = this.initMap();
     }, options);
+
+    // Disable center marker when searching an address
+    $('#pac-input').focus(function() {
+      const results = document.querySelectorAll('.centerMarker');
+      for (const result of <any>results) {
+        result.classList.add('focused');
+      }
+    });
+
+    // Enable center marker when finished searching an address
+    $('#pac-input').blur(function() {
+      const results = document.querySelectorAll('.centerMarker');
+      for (const result of <any>results) {
+        result.classList.remove('focused');
+      }
+    });
+
+    // Deselect the text field when pressed enter key
+    document.getElementById('pac-input').addEventListener('keyup', function(e) {
+      if (e.which === 13 || e.keyCode === 13) {
+        this.blur();
+      }
+    }, false);
   }
 
   public ngOnDestroy(): void {
@@ -115,9 +141,11 @@ export class MapComponent implements OnInit, OnDestroy {
         center,
         zoom,
         streetViewControl: false,
+        fullscreenControl: false,
         mapTypeControlOptions: {
           // mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'light_koomkin', 'dark_koomkin']
-          mapTypeIds: ['light_koomkin', 'dark_koomkin']
+          mapTypeIds: ['light_koomkin', 'dark_koomkin'],
+          position: google.maps.ControlPosition.LEFT_BOTTOM
         },
         tilt: 45,
       };
@@ -125,6 +153,39 @@ export class MapComponent implements OnInit, OnDestroy {
       map.mapTypes.set('light_koomkin', styledLight);
       map.mapTypes.set('dark_koomkin', styledDark);
       map.setMapTypeId('light_koomkin');
+
+      //#region Search Address box
+        // Create the map search box and link it to the UI element.
+        const input = document.getElementById('pac-input');
+        const searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          const places = searchBox.getPlaces();
+
+          if (places.length === 0) {
+            return;
+          }
+
+          // For each place, get the icon, name and location.
+          const bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log('Returned place contains no geometry');
+              return;
+            }
+            map.setZoom(14);
+            map.setCenter(place.geometry.location);
+          });
+        });
+      //#endregion
 
       // Get center after click event
       google.maps.event.addListener(map, 'click', function(event) {
