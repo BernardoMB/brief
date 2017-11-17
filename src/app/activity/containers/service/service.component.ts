@@ -1,8 +1,7 @@
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,8 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./service.component.css']
 })
 export class ServiceComponent implements OnInit {
-
-  public isLoading$: Observable<boolean>;
+  
   public title: String;
   public subtitle: String;
   public explanation: String;
@@ -29,19 +27,10 @@ export class ServiceComponent implements OnInit {
   ];
 
   constructor(private router: Router,
-              private slimLoadingBarService: SlimLoadingBarService,
               private store: Store<IApplicationState>) {
-    this.isLoading$ = this.store.select(state => state.uiState.isLoading);
   }
 
   ngOnInit() {
-    this.isLoading$.subscribe(isLoading => {
-      if (isLoading) {
-        this.startLoading();
-      } else {
-        this.completeLoading();
-      }
-    });
     this.title = 'Ofreces un servicio';
     this.subtitle = '';
     this.explanation = 'Si no ofreces algún tipo de servicio, entonces marca la'
@@ -63,20 +52,6 @@ export class ServiceComponent implements OnInit {
         this.selectedOption = optionId;
       }
     }
-  //#endregion
-
-  //#region Loading bar
-      public startLoading(): void {
-          this.slimLoadingBarService.start(() => {
-              // Callback cuando se termina la carga
-          });
-      }
-      public stopLoading(): void {
-          this.slimLoadingBarService.stop();
-      }
-      public completeLoading(): void {
-          this.slimLoadingBarService.complete();
-      }
   //#endregion
 
   public continue(): void {

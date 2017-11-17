@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,26 +12,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  public isLoading$: Observable<boolean>;
-
   public title: String;
   public subtitle: String;
   public explanation: String;
 
   constructor(private router: Router,
               private slimLoadingBarService: SlimLoadingBarService,
-              private store: Store<IApplicationState>) {
-    this.isLoading$ = this.store.select(state => state.uiState.isLoading);
-  }
+              private store: Store<IApplicationState>) { }
 
   ngOnInit() {
-    this.isLoading$.subscribe(isLoading => {
-      if (isLoading) {
-        this.startLoading();
-      } else {
-        this.completeLoading();
-      }
-    });
     this.title = '¿Qué vendes?';
     this.subtitle = null;
     this.explanation = 'Describe brevemente los productos que vendes.'

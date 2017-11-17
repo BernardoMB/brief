@@ -47,7 +47,7 @@
   }
 
   #pac-input:focus {
-    border-color: #4d90fe;
+    border-color: #21bcbd;
   }
 
   .pac-container {
@@ -56,7 +56,7 @@
 
   #type-selector {
     color: #fff;
-    background-color: #4d90fe;
+    background-color: #21bcbd;
     padding: 5px 11px 0px 11px;
   }
 

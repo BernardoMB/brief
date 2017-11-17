@@ -1,8 +1,7 @@
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 declare var google: any;
 declare var jquery: any;
@@ -15,22 +14,15 @@ declare var $: any;
 })
 export class MapComponent implements OnInit, OnDestroy {
 
-  private isLoadingSubscription: Subscription;
   public title: String;
   public subtitle: String;
   public explanation: String;
 
   public location: { lat: number, lng: number };
 
-  constructor(private router: Router,
-              private slimLoadingBarService: SlimLoadingBarService,
-              private store: Store<IApplicationState>) {
-  }
+  constructor(private router: Router, private store: Store<IApplicationState>) { }
 
   ngOnInit() {
-    this.isLoadingSubscription = this.store.select(state => state.uiState.isLoading)
-    .subscribe(isLoading => isLoading ? this.startLoading() : this.completeLoading());
-
     this.title = '¿Tu negocio está aquí?';
     this.subtitle = 'Indica la ubicación de tu negocio';
     this.explanation = 'Ayudanos a determinar la ubicación tu negocio para lograr mejores resultados.';
@@ -80,9 +72,7 @@ export class MapComponent implements OnInit, OnDestroy {
     }, false);
   }
 
-  public ngOnDestroy(): void {
-    this.isLoadingSubscription.unsubscribe();
-  }
+  public ngOnDestroy(): void { }
 
   //#region Map functions
     public initMap(): any {
@@ -249,20 +239,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
       return map;
     }
-  //#endregion
-
-  //#region Loading bar
-      public startLoading(): void {
-          this.slimLoadingBarService.start(() => {
-              // Callback cuando se termina la carga
-          });
-      }
-      public stopLoading(): void {
-          this.slimLoadingBarService.stop();
-      }
-      public completeLoading(): void {
-          this.slimLoadingBarService.complete();
-      }
   //#endregion
 
   public continue(): void {

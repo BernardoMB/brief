@@ -33,7 +33,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.isLoadingSubscription = this.store.select(state => state.uiState.isLoading)
-    .subscribe(isLoading => isLoading ? this.startLoading() : this.completeLoading());
+        .subscribe(isLoading => isLoading ? this.startLoading() : this.completeLoading());
 
     this.store.dispatch(new GetAllProfessionsAction());
 

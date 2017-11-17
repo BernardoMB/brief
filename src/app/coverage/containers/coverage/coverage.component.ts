@@ -1,8 +1,7 @@
 import { IApplicationState } from '../../../store/models/app-state';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,8 +10,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coverage.component.css']
 })
 export class CoverageComponent implements OnInit {
-
-  public isLoading$: Observable<boolean>;
 
   public title: String;
   public subtitle: String;
@@ -40,19 +37,9 @@ export class CoverageComponent implements OnInit {
   ];
 
   constructor(private router: Router,
-              private slimLoadingBarService: SlimLoadingBarService,
-              private store: Store<IApplicationState>) {
-    this.isLoading$ = this.store.select(state => state.uiState.isLoading);
-  }
+              private store: Store<IApplicationState>) { }
 
   ngOnInit() {
-    this.isLoading$.subscribe(isLoading => {
-      if (isLoading) {
-        this.startLoading();
-      } else {
-        this.completeLoading();
-      }
-    });
     this.title = '¿Cuál es tu cobertura?';
     this.explanation = 'Ayudanos a determinar en dónde ofreces tus servicios'
     + ' para lograr mejores resultados. Selecciona una opción y presiona en continuar.';
@@ -75,34 +62,20 @@ export class CoverageComponent implements OnInit {
   }
 //#endregion
 
-//#region Loading bar
-    public startLoading(): void {
-        this.slimLoadingBarService.start(() => {
-            // Callback cuando se termina la carga
-        });
-    }
-    public stopLoading(): void {
-        this.slimLoadingBarService.stop();
-    }
-    public completeLoading(): void {
-        this.slimLoadingBarService.complete();
-    }
-//#endregion
+  /**
+   * This function updates the App state and redirects the user to the
+   * next view based on the selectedOption propperty.
+   * @memberof MakerComponent
+   */
+  public continue(): void {
 
-/**
- * This function updates the App state and redirects the user to the
- * next view based on the selectedOption propperty.
- * @memberof MakerComponent
- */
-public continue(): void {
-
-  switch (this.selectedOption) {
-    case 0:
-      alert('Selecciona una opcion para continuar.');
-      break;
-    default:
-      this.router.navigate(['/../products']);
+    switch (this.selectedOption) {
+      case 0:
+        alert('Selecciona una opcion para continuar.');
+        break;
+      default:
+        this.router.navigate(['/../products']);
+    }
   }
-}
 
 }

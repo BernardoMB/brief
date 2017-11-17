@@ -1,7 +1,6 @@
 import { IApplicationState } from '../../../store/models/app-state';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,8 +10,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./maker.component.css']
 })
 export class MakerComponent implements OnInit {
-
-  public isLoading$: Observable<boolean>;
 
   public title: String;
   public subtitle: String;
@@ -40,19 +37,10 @@ export class MakerComponent implements OnInit {
   ];
 
   constructor(private router: Router,
-              private slimLoadingBarService: SlimLoadingBarService,
               private store: Store<IApplicationState>) {
-    this.isLoading$ = this.store.select(state => state.uiState.isLoading);
   }
 
   ngOnInit() {
-    this.isLoading$.subscribe(isLoading => {
-      if (isLoading) {
-        this.startLoading();
-      } else {
-        this.completeLoading();
-      }
-    });
     this.title = '¿Qué tipo de fabricante eres?';
     this.subtitle = 'Selecciona la mejor opción para tu negocio';
     this.explanation = 'Ayúdanos a determinar el tipo de fabricante que'
@@ -75,20 +63,6 @@ export class MakerComponent implements OnInit {
         this.selectedOption = optionId;
       }
     }
-  //#endregion
-
-  //#region Loading bar
-      public startLoading(): void {
-          this.slimLoadingBarService.start(() => {
-              // Callback cuando se termina la carga
-          });
-      }
-      public stopLoading(): void {
-          this.slimLoadingBarService.stop();
-      }
-      public completeLoading(): void {
-          this.slimLoadingBarService.complete();
-      }
   //#endregion
 
   /**

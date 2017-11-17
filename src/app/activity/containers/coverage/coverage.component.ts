@@ -2,19 +2,10 @@ import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-//#region Services
-  import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-//#endregion
-//#region Interfaces
-  import { IApplicationState } from '../../../store/models/app-state';
-  import { IProfession } from '../../../../shared/models/IProfession';
-//#endregion
-//#region Actions
-  import { GetAllProfessionsAction } from '../../../store/actions';
-//#endregion
-//#region Mappers
-  import { mapStateToProfessions } from '../../../store/mappers/mapStateToProfessions';
-//#endregion
+import { IApplicationState } from '../../../store/models/app-state';
+import { IProfession } from '../../../../shared/models/IProfession';
+import { GetAllProfessionsAction } from '../../../store/actions';
+import { mapStateToProfessions } from '../../../store/mappers/mapStateToProfessions';
 
 @Component({
   selector: 'app-coverage',
@@ -23,7 +14,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoverageComponent implements OnInit {
 
-  public isLoading$: Observable<boolean>;
   public professions$: Observable<Array<IProfession>>;
   public selectedProfession;
   public title: String;
@@ -36,20 +26,11 @@ export class CoverageComponent implements OnInit {
   public isSalePoint: Boolean;
 
   constructor(private router: Router,
-              private slimLoadingBarService: SlimLoadingBarService,
               private store: Store<IApplicationState>) {
-    this.isLoading$ = this.store.select(state => state.uiState.isLoading);
     this.professions$ = this.store.select(state => mapStateToProfessions(state));
   }
 
   ngOnInit() {
-    this.isLoading$.subscribe(isLoading => {
-      if (isLoading) {
-        this.startLoading();
-      } else {
-        this.completeLoading();
-      }
-    });
     this.title = '¿Cúal es tu cobertura?';
     this.subtitle = '';
     this.explanation = 'Ayudanos a determinar si ofreces tus servicios como un'
@@ -93,20 +74,6 @@ export class CoverageComponent implements OnInit {
         this.isSalePoint = false;
       }
     }
-  //#endregion
-
-  //#region Loading bar
-      public startLoading(): void {
-          this.slimLoadingBarService.start(() => {
-              // Callback cuando se termina la carga
-          });
-      }
-      public stopLoading(): void {
-          this.slimLoadingBarService.stop();
-      }
-      public completeLoading(): void {
-          this.slimLoadingBarService.complete();
-      }
   //#endregion
 
   public doSomething(): void {
