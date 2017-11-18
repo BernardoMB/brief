@@ -3,6 +3,7 @@ import { IApplicationState } from '../../../store/models/app-state';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/';
 import { Component, OnInit } from '@angular/core';
+import { SetActivityAction } from '../../../store/actions';
 
 @Component({
   selector: 'app-professional',
@@ -19,7 +20,7 @@ export class ProfessionalComponent implements OnInit {
 
   public options: any[] = [
     {
-      optionId: 1,
+      optionId: 0,
       imgUrl: './../../../assets/cards/pais.svg',
       cardTitle: 'Otra actividad',
       selected: false
@@ -35,7 +36,6 @@ export class ProfessionalComponent implements OnInit {
     this.subtitle = '';
     this.explanation = 'Si no ofreces servicios professionales o algún oficio, entonces marca la'
     + ' casilla \'Otra actividad\' y haz presiona en continuar.';
-    this.selectedOption = 0;
   }
 
   //#region Cards
@@ -57,12 +57,14 @@ export class ProfessionalComponent implements OnInit {
   public continue(): void {
     switch (this.selectedOption) {
       case 0:
-        this.router.navigate(['/../address']);
-        break;
-      case 1:
         this.router.navigate(['/activity/generic']);
         break;
+      case undefined:
+        this.store.dispatch(new SetActivityAction(this.selectedOption));
+        this.router.navigate(['/../address']);
+        break;
       default:
+        this.store.dispatch(new SetActivityAction(this.selectedOption));
         this.router.navigate(['/../address']);
     }
   }

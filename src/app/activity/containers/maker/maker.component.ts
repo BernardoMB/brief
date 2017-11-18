@@ -1,8 +1,9 @@
 import { IApplicationState } from '../../../store/models/app-state';
 import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
+import { SetActivityAction } from '../../../store/actions';
 
 @Component({
   selector: 'app-maker',
@@ -29,7 +30,7 @@ export class MakerComponent implements OnInit {
       cardTitle: 'Vende producto al menudeo',
       selected: false
     }, {
-      optionId: 3,
+      optionId: 0,
       imgUrl: './../../../assets/cards/pais.svg',
       cardTitle: 'Otra actividad',
       selected: false
@@ -37,7 +38,8 @@ export class MakerComponent implements OnInit {
   ];
 
   constructor(private router: Router,
-              private store: Store<IApplicationState>) {
+              private store: Store<IApplicationState>,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -46,7 +48,9 @@ export class MakerComponent implements OnInit {
     this.explanation = 'Ayúdanos a determinar el tipo de fabricante que'
     + ' eres para lograr mejores resultados. Si no eres fabricante, entonces'
     + ' marca la casilla \'Otra actividad\' y presiona en continuar.';
-    this.selectedOption = 0;
+    this.activatedRoute.params.subscribe((params: Params) => {
+      console.log(params);
+    });
   }
 
   //#region Cards
@@ -73,13 +77,14 @@ export class MakerComponent implements OnInit {
   public continue(): void {
 
     switch (this.selectedOption) {
-      case 0:
+      case undefined:
         alert('Selecciona una opcion para continuar.');
         break;
-      case 3:
+      case 0:
         this.router.navigate(['/activity/generic']);
         break;
       default:
+        this.store.dispatch(new SetActivityAction(this.selectedOption));
         this.router.navigate(['/../address']);
     }
   }

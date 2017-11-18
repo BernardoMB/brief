@@ -1,12 +1,18 @@
 import { IProfession } from '../../../shared/models/IProfession';
 import { IActivity } from '../../../shared/models/IActivity';
+import { IUser } from '../../../shared/models/IUser';
+import { ILocation } from '../../../shared/models/ILocation';
 
 export interface IStoreData {
     professions: {[key: string]: IProfession};
-    activity: IActivity;
+    activity: number;
+    user: IUser;
+    location: ILocation;
 }
 
 export const INITIAL_STORE_DATA: IStoreData = {
     professions: {},
-    activity: undefined
+    activity: undefined,
+    user: undefined,
+    location: undefined
 };

@@ -1,23 +1,14 @@
 import { go } from '@ngrx/router-store';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { Action, Store } from '@ngrx/store';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-//#region Sockets Support
-  import * as io from 'socket.io-client';
-//#endregion
-//#region Services
-  import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-//#endregion
-//#region Interfaces
-  import { IApplicationState } from '../../../store/models/app-state';
-  import { IProfession } from '../../../../shared/models/IProfession';
-//#endregion
-//#region Actions
-  import { ErrorOcurredAction, GetAllProfessionsAction } from '../../../store/actions';
-//#endregion
-//#region Mappers
-  import { mapStateToProfessions } from '../../../store/mappers/mapStateToProfessions';
-//#endregion
+import * as io from 'socket.io-client';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+import { IApplicationState } from '../../../store/models/app-state';
+import { IProfession } from '../../../../shared/models/IProfession';
+import { ErrorOcurredAction, GetAllProfessionsAction } from '../../../store/actions';
+import { mapStateToProfessions } from '../../../store/mappers/mapStateToProfessions';
 
 @Component({
   selector: 'app-main',
@@ -40,6 +31,7 @@ export class MainComponent implements OnInit, OnDestroy {
     // SocketIO configuration
     const socket = io({ path: '/socket' });
     socket.on('UPDATE_STATE', action => {
+      console.log('Client recived action:', action);
       this.store.dispatch(action);
     });
     socket.on('connect_timeout', event => this.store.dispatch(new ErrorOcurredAction(event)));

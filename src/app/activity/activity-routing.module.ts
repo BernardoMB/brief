@@ -9,7 +9,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: GenericComponent },
-  { path: 'maker', component: MakerComponent },
+  // TODO: Cambiar los parametros de las rutas
+  { path: 'maker/:userId/:pene', component: MakerComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'professional', component: ProfessionalComponent },
   { path: 'generic', component: GenericComponent },

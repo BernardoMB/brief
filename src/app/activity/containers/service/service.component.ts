@@ -3,6 +3,7 @@ import { IApplicationState } from '../../../store/models/app-state';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
+import { SetActivityAction } from '../../../store/actions';
 
 @Component({
   selector: 'app-service',
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./service.component.css']
 })
 export class ServiceComponent implements OnInit {
-  
+
   public title: String;
   public subtitle: String;
   public explanation: String;
@@ -19,7 +20,7 @@ export class ServiceComponent implements OnInit {
 
   public options: any[] = [
     {
-      optionId: 1,
+      optionId: 0,
       imgUrl: './../../../assets/cards/pais.svg',
       cardTitle: 'Otra actividad',
       selected: false
@@ -35,7 +36,6 @@ export class ServiceComponent implements OnInit {
     this.subtitle = '';
     this.explanation = 'Si no ofreces algún tipo de servicio, entonces marca la'
     + ' casilla \'Otra actividad\' y haz presiona en continuar.';
-    this.selectedOption = 0;
   }
 
   //#region Cards
@@ -57,12 +57,14 @@ export class ServiceComponent implements OnInit {
   public continue(): void {
     switch (this.selectedOption) {
       case 0:
-        this.router.navigate(['/../address']);
-        break;
-      case 1:
         this.router.navigate(['/activity/generic']);
         break;
+      case undefined:
+        this.store.dispatch(new SetActivityAction(this.selectedOption));
+        this.router.navigate(['/../address']);
+        break;
       default:
+        this.store.dispatch(new SetActivityAction(this.selectedOption));
         this.router.navigate(['/../address']);
     }
   }

@@ -1,6 +1,7 @@
 // import { SomeInterface } from '../../shared/models/SomeInterface';
 import { IProfession } from '../../shared/models/IProfession';
 import { Action } from '@ngrx/store';
+import { ILocation } from '../../shared/models/ILocation';
 
 //#region Professions
     export const GET_ALL_PROFESSIONS_ACTION = 'GET_ALL_PROFESSIONS_ACTION';
@@ -22,25 +23,43 @@ import { Action } from '@ngrx/store';
     }
 //#endregion
 
+//#region Activiy
+    export const SET_ACTIVITY_ACTION = 'SET_ACTIVITY_ACTION';
+    export class SetActivityAction implements Action {
+        readonly type = SET_ACTIVITY_ACTION;
+        constructor(public payload: number) { }
+    }
+//#endregion
+
+//#region Location
+    export const SET_LOCATION_ACTION = 'SET_LOCATION_ACTION';
+    export class SetLocationAction implements Action {
+        readonly type = SET_LOCATION_ACTION;
+        constructor(public payload: ILocation) { }
+    }
+//#endregion
+
 //#region Error
-export const ERROR_OCURRED_ACTION = 'ERROR_OCURRED_ACTION';
-/**
- * UiState Action
- * This action is emitted whenever an unexpected error is encountered.
- *
- * @export
- * @class ErrorOcurredAction
- * @implements {Action}
- */
-export class ErrorOcurredAction implements Action {
-    readonly type = ERROR_OCURRED_ACTION;
-    constructor(public payload?: any) { }
-}
+    export const ERROR_OCURRED_ACTION = 'ERROR_OCURRED_ACTION';
+    /**
+     * UiState Action
+     * This action is emitted whenever an unexpected error is encountered.
+     *
+     * @export
+     * @class ErrorOcurredAction
+     * @implements {Action}
+     */
+    export class ErrorOcurredAction implements Action {
+        readonly type = ERROR_OCURRED_ACTION;
+        constructor(public payload?: any) { }
+    }
 //#endregion
 
 export type StoreActions =
     | GetAllProfessionsAction
-    | UpdateAllProfessionsAction;
+    | UpdateAllProfessionsAction
+    | SetActivityAction
+    | SetLocationAction;
 
 export type UIActions = StoreActions
     | GettingAllProfessionsAction

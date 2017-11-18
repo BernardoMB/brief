@@ -5,17 +5,13 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { ToastyService, ToastyConfig, ToastData } from 'ng2-toasty';
 import * as moment from 'moment';
-//#region Sockets Support
-    import * as io from 'socket.io-client';
-//#endregion
-//#region Actions
-    import {
+import * as io from 'socket.io-client';
+import {
     GET_ALL_PROFESSIONS_ACTION,
     GetAllProfessionsAction,
     UPDATE_ALL_PROFESSIOS_ACTION,
     UpdateAllProfessionsAction,
 } from './../actions';
-//#endregion
 
 @Injectable()
 export class ProfessionEffectService {
@@ -27,13 +23,13 @@ export class ProfessionEffectService {
         .ofType(GET_ALL_PROFESSIONS_ACTION)
         .debug('Getting all professions')
         .do((action: GetAllProfessionsAction) => {
+            this.socket.emit('clientGetAllProfessions', action.payload);
             this.toastyService.info({
                 title: 'Obteniendo todas las profesiones disponibles.',
                 msg: `${moment().locale('es').calendar()}`,
                 showClose: true,
                 timeout: 2500
             });
-            this.socket.emit('clientGetAllProfessions', action.payload);
         });
 
     @Effect({dispatch: false})

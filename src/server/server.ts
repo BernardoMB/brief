@@ -64,23 +64,27 @@ io.on('connection', (socket) => {
 
     //#region Professions
         socket.on('clientGetAllProfessions', () => {
-            io.emit('UPDATE_STATE', new GettingAllProfessionsAction());
-            const professions: Array<IProfession> = [
-                { id: '1', name: 'Carpintero', type: 0 },
-                { id: '2', name: 'Albañil', type: 0 },
-                { id: '3', name: 'Arquitecto', type: 1 },
-                { id: '4', name: 'Actuario', type: 1 },
-                { id: '5', name: 'Matematico', type: 1 }
-            ];
-            for (let i = 0; i <= 50; i++) {
-                professions.push({
-                    id: 6 + i + '',
-                    name: 'Profesion' + i,
-                    type: 0
-                });
-            }
             setTimeout(function() {
-                io.emit('UPDATE_STATE', new UpdateAllProfessionsAction(professions));
+                io.emit('UPDATE_STATE', new GettingAllProfessionsAction());
+
+                const professions: Array<IProfession> = [
+                    { id: '1', name: 'Carpintero', type: 0 },
+                    { id: '2', name: 'Albañil', type: 0 },
+                    { id: '3', name: 'Arquitecto', type: 1 },
+                    { id: '4', name: 'Actuario', type: 1 },
+                    { id: '5', name: 'Matematico', type: 1 }
+                ];
+                for (let i = 0; i <= 5; i++) {
+                    professions.push({
+                        id: 6 + i + '',
+                        name: 'Profesion' + i,
+                        type: 0
+                    });
+                }
+                setTimeout(function() {
+                    io.emit('UPDATE_STATE', new UpdateAllProfessionsAction(professions));
+                }, 2000);
+
             }, 2000);
         });
     //#endregion

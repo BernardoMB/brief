@@ -1,3 +1,5 @@
+import { SetLocationAction } from '../../../store/actions';
+import { ILocation } from '../../../../shared/models/ILocation';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
 import { Router } from '@angular/router';
@@ -242,6 +244,7 @@ export class MapComponent implements OnInit, OnDestroy {
   //#endregion
 
   public continue(): void {
+    this.store.dispatch(new SetLocationAction(this.location));
     this.router.navigate(['/../coverage']);
   }
 }

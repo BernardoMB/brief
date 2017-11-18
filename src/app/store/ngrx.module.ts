@@ -4,9 +4,9 @@ import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { reducer } from './reducers/app-reducer';
-//#region Effects Services
-    import { ProfessionEffectService } from './effects/profession-effect.service';
-//#endregion
+import { ProfessionEffectService } from './effects/profession-effect.service';
+import { ActivityEffectService } from './effects/activity-effect.service';
+import { LocationEffectService } from './effects/location-effect.service';
 
 @NgModule({
     declarations: [ ],
@@ -14,7 +14,9 @@ import { reducer } from './reducers/app-reducer';
         StoreModule.provideStore(reducer),
         RouterStoreModule.connectRouter(),
         StoreDevtoolsModule.instrumentOnlyWithExtension(),
-        EffectsModule.run(ProfessionEffectService)
+        EffectsModule.run(ProfessionEffectService),
+        EffectsModule.run(ActivityEffectService),
+        EffectsModule.run(LocationEffectService)
     ],
     providers: [],
     exports: [
