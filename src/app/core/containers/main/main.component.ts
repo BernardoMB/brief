@@ -31,7 +31,6 @@ export class MainComponent implements OnInit, OnDestroy {
     // SocketIO configuration
     const socket = io({ path: '/socket' });
     socket.on('UPDATE_STATE', action => {
-      console.log('Client recived action:', action);
       this.store.dispatch(action);
     });
     socket.on('connect_timeout', event => this.store.dispatch(new ErrorOcurredAction(event)));

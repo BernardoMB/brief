@@ -45,7 +45,7 @@ body {
 
 @keyframes clipMe {0%,100%{clip: rect(0,220px,2px,0)}25%{clip:rect(0,2px,220px,0)}50%{clip:rect(218px,220px,220px,0)}75%{clip:rect(0,220px,220px,218px)}}
 
-/* My clases */
+/* My clases Open */
 .card-custom {
     background-color: white;
     margin-left: 15px;
@@ -53,7 +53,7 @@ body {
     margin-bottom: 15px;
     width: 100%;
 }
-/* My clases C */
+/* My clases Close */
 
 #map_canvas {
     margin: 15px;

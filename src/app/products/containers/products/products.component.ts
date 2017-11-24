@@ -1,6 +1,5 @@
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
@@ -11,13 +10,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+    public title: String;
+    public subtitle: String;
+    public explanation: String;
 
-  public title: String;
-  public subtitle: String;
-  public explanation: String;
+    public relatedProducts$: any[] = [
+        {
+          id: 1,
+          name: 'Pisos de madera'
+        }, {
+          id: 2,
+          name: 'Persianas'
+        }
+      ];
 
-  constructor(private router: Router,
-              private slimLoadingBarService: SlimLoadingBarService,
+    constructor(private router: Router,
               private store: Store<IApplicationState>) { }
 
   ngOnInit() {
@@ -27,19 +34,9 @@ export class ProductsComponent implements OnInit {
     + ' Ayudanos a determinar las caracteristicas de tus productos para lograr mejores resultados';
   }
 
-  //#region Loading bar
-      public startLoading(): void {
-          this.slimLoadingBarService.start(() => {
-              // Callback cuando se termina la carga
-          });
-      }
-      public stopLoading(): void {
-          this.slimLoadingBarService.stop();
-      }
-      public completeLoading(): void {
-          this.slimLoadingBarService.complete();
-      }
-  //#endregion
+  public onSwitchChange(event$, productId): void {
+    console.log(event$, productId);
+  }
 
   /**
    * This function updates the App state and redirects the user to the

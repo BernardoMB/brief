@@ -3,12 +3,8 @@ import { Store } from '@ngrx/store';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie';
 import { Observable } from 'rxjs/Observable';
-//#region SocketsSupport
-  import * as io from 'socket.io-client';
-//#endregion
-//#region Interfaces
-  import { IApplicationState } from './store/models/app-state';
-//#endregion
+import * as io from 'socket.io-client';
+import { IApplicationState } from './store/models/app-state';
 
 @Component({
   selector: 'app-root',

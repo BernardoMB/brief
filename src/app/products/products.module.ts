@@ -3,11 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
-// Routing module
 import { ProductsRoutingModule } from './products-routing.module';
-//#region Components
-    import { ProductsComponent } from './containers/products/products.component';
-//#endregion
+import { ProductsComponent } from './containers/products/products.component';
+import { UiSwitchModule } from 'ngx-ui-switch';
 
 @NgModule({
   imports: [
@@ -15,6 +13,7 @@ import { ProductsRoutingModule } from './products-routing.module';
     ProductsRoutingModule,
     SharedModule,
     FormsModule,
+    UiSwitchModule
   ],
   declarations: [ProductsComponent]
 })

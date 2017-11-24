@@ -8,11 +8,14 @@ export interface IStoreData {
     activity: number;
     user: IUser;
     location: ILocation;
+    // TODO: Ver que pedo con los productos relacionados que se mostraran despues de procesar cosas en el server.
+    relatedProducts: {[key: string]: string};
 }
 
 export const INITIAL_STORE_DATA: IStoreData = {
     professions: {},
     activity: undefined,
     user: undefined,
-    location: undefined
+    location: undefined,
+    relatedProducts: undefined
 };

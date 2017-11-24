@@ -39,6 +39,7 @@ export class MapComponent implements OnInit, OnDestroy {
       maximumAge: 0
     };
     navigator.geolocation.getCurrentPosition(position => {
+      alert('todo chido');
       const coords = position.coords;
       this.location = {
         lat: coords.latitude,
@@ -46,6 +47,7 @@ export class MapComponent implements OnInit, OnDestroy {
       };
       map = this.initMap();
     }, error => {
+      alert(error.code);
       console.warn(`ERROR(${error.code}): ${error.message}`);
       map = this.initMap();
     }, options);

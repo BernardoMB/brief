@@ -5,12 +5,12 @@
   "scripts": {
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -n \"Brief Documentation\" -s",
     "ng": "ng",
-    "start": "ng serve --proxy proxy.conf.json",
+    "start": "ng serve --ssl --proxy proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serve-devices": "ng serve --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
+    "serve-devices": "ng serve --ssl --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
     "server": "./node_modules/.bin/ts-node ./src/server/server.ts",
     "server-watch": "./node_modules/.bin/nodemon --watch \"./src/server/server.ts\" --ext \".ts\" --exec \"npm run server\""
   },
@@ -53,6 +53,7 @@
     "ngx-bootstrap": "^1.6.6",
     "ngx-chips": "^1.5.3",
     "ngx-cookie": "^1.0.0",
+    "ngx-ui-switch": "^1.4.4",
     "rxjs": "^5.1.0",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3",
