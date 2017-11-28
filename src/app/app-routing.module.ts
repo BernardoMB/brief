@@ -5,6 +5,7 @@ import { LoadChildren, RouterModule, Routes } from '@angular/router';
     import { LaunchpadComponent } from './core/containers/launchpad/launchpad.component';
 //#endregion
 
+// TODO: Establecer rutas correctamente.
 const routes: Routes = [{
     path: '',
     component: MainComponent,
