@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastyModule } from 'ng2-toasty';
 import { TitleCardComponent } from './components/title-card/title-card.component';
 import { ImgCardComponent } from './components/img-card/img-card.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
     imports: [
@@ -22,13 +23,15 @@ import { ImgCardComponent } from './components/img-card/img-card.component';
     ],
     declarations: [
     TitleCardComponent,
-    ImgCardComponent],
+    ImgCardComponent,
+    ConfirmationModalComponent],
     exports: [
         TooltipModule,
         ToastyModule,
         ModalModule,
         TitleCardComponent,
-        ImgCardComponent
+        ImgCardComponent,
+        ConfirmationModalComponent
     ],
     providers : []
 })

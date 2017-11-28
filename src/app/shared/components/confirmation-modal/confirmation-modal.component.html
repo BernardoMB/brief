@@ -1,0 +1,27 @@
+<div bsModal #confirmationModal="bs-modal" class="modal fade" role="dialog" [config]="{backdrop: 'static'}">
+  <div class="modal-dialog">
+      <div class="modal-content modal-content-custom">
+        <!-- MODAL HEADER -->
+        <div class="modal-header">
+          <span>{{greeting}}</span>
+        </div>
+        <!-- MODAL BODY -->
+        <div class="modal-body text-center">
+            <app-img-card [imgUrl]="imgUrl" [cardTitle]="question"></app-img-card>
+        </div>
+        <!-- MODAL FOOTER -->
+        <div class="modal-footer d-flex justify-content-between">
+            <div class="panel-custom">
+              <div class="panel-body-custom" (click)="onResult(true)">
+                <h4 class="title" align="center">Sí</h4>
+              </div>
+            </div>
+            <div class="panel-custom">
+              <div class="panel-body-custom" (click)="onResult(false)">
+                <h4 class="title" align="center">No</h4>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

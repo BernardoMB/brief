@@ -5,6 +5,7 @@ import { CoreModule } from './core/core.module';
 import { NgRxModule } from './store/ngrx.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,7 +14,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     CoreModule.forRoot(),
     NgbModule.forRoot(),
-    NgRxModule
+    NgRxModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

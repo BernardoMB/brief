@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { LoadChildren, RouterModule, Routes } from '@angular/router';
-//#region Components
-    import { MainComponent } from './core/containers/main/main.component';
-    import { LaunchpadComponent } from './core/containers/launchpad/launchpad.component';
-//#endregion
+import { MainComponent } from './core/containers/main/main.component';
+import { LaunchpadComponent } from './core/containers/launchpad/launchpad.component';
 
-// TODO: Establecer rutas correctamente.
 const routes: Routes = [{
-    path: '',
-    component: MainComponent,
+    // Opcion 1
+    /* path: ':source/:userData/:campaignId', component: MainComponent, */
+    // Opcion 2
+    path: '', component: MainComponent,
     children: [
       { path: '', component: LaunchpadComponent},
       { path: 'activity', loadChildren: 'app/activity/activity.module#ActivityModule' },

@@ -16,7 +16,7 @@ export class ActivityEffectService {
     @Effect({dispatch: false})
     onSetActivity$: Observable<Action> = this.action$
         .ofType(SET_ACTIVITY_ACTION)
-        .debug('Getting all professions')
+        .debug('Setting activity')
         .do((action: SetActivityAction) => {
             this.toastyService.success({
                 title: 'Actividad fijada.',
