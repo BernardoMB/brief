@@ -19,6 +19,7 @@ const routes: Routes = [
   // Service
   { path: 'service', component: ServiceComponent },
   { path: 'service/:source/:userdata/:campaignid', component: ServiceComponent },
+  /* { path: 'service/serviceType/:serviceId', component: ServiceTypeComponent }, */
   // Professional
   { path: 'professional', component: ProfessionalComponent },
   { path: 'professional/:source/:userdata/:campaignid', component: ProfessionalComponent },
