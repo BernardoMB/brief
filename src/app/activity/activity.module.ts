@@ -7,10 +7,12 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ActivityRoutingModule } from './activity-routing.module';
 //#region Components
     import { MakerComponent } from './containers/maker/maker.component';
+    import { ProductComponent } from './containers/product/product.component';
     import { ServiceComponent } from './containers/service/service.component';
     import { ProfessionalComponent } from './containers/professional/professional.component';
     import { GenericComponent } from './containers/generic/generic.component';
     import { CoverageComponent } from './containers/coverage/coverage.component';
+import { ProductTypeComponent } from './containers/product-type/product-type.component';
 //#endregion
 
 @NgModule({
@@ -22,10 +24,12 @@ import { ActivityRoutingModule } from './activity-routing.module';
   ],
   declarations: [
     MakerComponent,
+    ProductComponent,
     ServiceComponent,
     ProfessionalComponent,
     GenericComponent,
-    CoverageComponent
+    CoverageComponent,
+    ProductTypeComponent
   ]
 })
 export class ActivityModule { }

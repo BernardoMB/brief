@@ -3867,6 +3867,10 @@ ngx-cookie@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ngx-cookie/-/ngx-cookie-1.0.1.tgz#87d9fa023fdab2c476d99f8a131d1b8a169c005e"
 
+ngx-ui-switch@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/ngx-ui-switch/-/ngx-ui-switch-1.4.4.tgz#1ffcdeab6f773730dbe3a607f5fad619d69fbe4e"
+
 no-case@^2.2.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"
@@ -5719,6 +5723,10 @@ svgo@^0.7.0:
     mkdirp "~0.5.1"
     sax "~1.2.1"
     whet.extend "~0.9.9"
+
+sweetalert2@^7.0.6:
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.0.6.tgz#30cee8c8b3de671c27ee30f74dced6c0b959667e"
 
 symbol-observable@^1.0.1:
   version "1.0.4"

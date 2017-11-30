@@ -8,9 +8,16 @@ import {
     SET_ACTIVITY_ACTION,
     SetActivityAction,
     SET_LOCATION_ACTION,
-    SetLocationAction
+    SetLocationAction,
+    SET_LEAD_DATA_INFO_ACTION,
+    SetLeadDataInfoAction,
+    SET_ACTIVITY_TYPE_ACTION,
+    SetActivityTypeAction,
+    SET_PRODUCT_ACTION,
+    SetProductAction
 } from './../actions';
 import { ILocation } from '../../../shared/models/ILocation';
+import { ILead } from '../../../shared/models/ILead';
 
 export function storeData(state: IStoreData = INITIAL_STORE_DATA, action: StoreActions): IStoreData {
     switch (action.type) {
@@ -18,8 +25,14 @@ export function storeData(state: IStoreData = INITIAL_STORE_DATA, action: StoreA
             return handleUpdateProfessionsAction(state, action);
         case SET_ACTIVITY_ACTION:
             return handleSetActivityAction(state, action);
+        case SET_ACTIVITY_TYPE_ACTION:
+            return handleSetActivityTypeAction(state, action);
+        case SET_PRODUCT_ACTION:
+            return handleSetProductAction(state, action);
         case SET_LOCATION_ACTION:
             return handleSetLocationAction(state, action);
+        case SET_LEAD_DATA_INFO_ACTION:
+            return handleSetLeadDataInfoAction(state, action);
         default:
             return state;
     }
@@ -40,9 +53,30 @@ function handleSetActivityAction(state: IStoreData, action: SetActivityAction): 
     return newStoreData;
 }
 
+function handleSetActivityTypeAction(state: IStoreData, action: SetActivityTypeAction): IStoreData {
+    const newStoreData = Object.assign({}, state);
+    const activityType: number = action.payload;
+    newStoreData.activityType = activityType;
+    return newStoreData;
+}
+
+function handleSetProductAction(state: IStoreData, action: SetProductAction): IStoreData {
+    const newStoreData = Object.assign({}, state);
+    const product: number = action.payload;
+    newStoreData.product = product;
+    return newStoreData;
+}
+
 function handleSetLocationAction(state: IStoreData, action: SetLocationAction): IStoreData {
     const newStoreData = Object.assign({}, state);
     const location: ILocation = action.payload;
     newStoreData.location = location;
+    return newStoreData;
+}
+
+function handleSetLeadDataInfoAction(state: IStoreData, action: SetLeadDataInfoAction): IStoreData {
+    const newStoreData = Object.assign({}, state);
+    const lead: ILead = action.payload;
+    newStoreData.lead = lead;
     return newStoreData;
 }

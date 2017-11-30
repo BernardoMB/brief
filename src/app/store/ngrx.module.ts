@@ -7,6 +7,7 @@ import { reducer } from './reducers/app-reducer';
 import { ProfessionEffectService } from './effects/profession-effect.service';
 import { ActivityEffectService } from './effects/activity-effect.service';
 import { LocationEffectService } from './effects/location-effect.service';
+import { ProductEffectService } from './effects/product-effect.service';
 
 @NgModule({
     declarations: [ ],
@@ -16,7 +17,8 @@ import { LocationEffectService } from './effects/location-effect.service';
         StoreDevtoolsModule.instrumentOnlyWithExtension(),
         EffectsModule.run(ProfessionEffectService),
         EffectsModule.run(ActivityEffectService),
-        EffectsModule.run(LocationEffectService)
+        EffectsModule.run(LocationEffectService),
+        EffectsModule.run(ProductEffectService)
     ],
     providers: [],
     exports: [

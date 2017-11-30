@@ -55,6 +55,24 @@ body {
 }
 /* My clases Close */
 
+/* Swal classes A */
+.select-one-option-alert {
+    border-radius: 0px !important;
+    margin: 4px !important;
+}
+
+.hecho-button {
+    color: white;
+    font-weight:bold;
+    font-size: 25px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 0px;
+    background-color: #344a54;
+}
+/* Swal classes B */
+
 #map_canvas {
     margin: 15px;
     margin-top: 0px;

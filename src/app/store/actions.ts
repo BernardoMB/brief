@@ -2,6 +2,7 @@
 import { IProfession } from '../../shared/models/IProfession';
 import { Action } from '@ngrx/store';
 import { ILocation } from '../../shared/models/ILocation';
+import { ILead } from '../../shared/models/ILead';
 
 //#region Professions
     export const GET_ALL_PROFESSIONS_ACTION = 'GET_ALL_PROFESSIONS_ACTION';
@@ -23,10 +24,31 @@ import { ILocation } from '../../shared/models/ILocation';
     }
 //#endregion
 
+//#region Lead
+    export const SET_LEAD_DATA_INFO_ACTION = 'SET_LEAD_DATA_INFO';
+    export class SetLeadDataInfoAction implements Action {
+        readonly type = SET_LEAD_DATA_INFO_ACTION;
+        constructor(public payload: ILead) { }
+    }
+//#endregion
+
 //#region Activiy
     export const SET_ACTIVITY_ACTION = 'SET_ACTIVITY_ACTION';
     export class SetActivityAction implements Action {
         readonly type = SET_ACTIVITY_ACTION;
+        constructor(public payload: number) { }
+    }
+    export const SET_ACTIVITY_TYPE_ACTION = 'SET_ACTIVITY_TYPE_ACTION';
+    export class SetActivityTypeAction implements Action {
+        readonly type = SET_ACTIVITY_TYPE_ACTION;
+        constructor(public payload: number) { }
+    }
+//#endregion
+
+//#region Product
+    export const SET_PRODUCT_ACTION = 'SET_PRODUCT_ACTION';
+    export class SetProductAction implements Action {
+        readonly type = SET_PRODUCT_ACTION;
         constructor(public payload: number) { }
     }
 //#endregion
@@ -59,7 +81,10 @@ export type StoreActions =
     | GetAllProfessionsAction
     | UpdateAllProfessionsAction
     | SetActivityAction
-    | SetLocationAction;
+    | SetActivityTypeAction
+    | SetProductAction
+    | SetLocationAction
+    | SetLeadDataInfoAction;
 
 export type UIActions = StoreActions
     | GettingAllProfessionsAction

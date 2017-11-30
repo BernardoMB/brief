@@ -4,27 +4,21 @@ import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SetActivityAction, SetLeadDataInfoAction } from '../../../store/actions';
+import { SetActivityAction, SetLeadDataInfoAction, SetActivityTypeAction } from '../../../store/actions';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-maker',
-  templateUrl: './maker.component.html',
-  styleUrls: ['./maker.component.css']
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css']
 })
-export class MakerComponent implements OnInit, OnDestroy {
+export class ProductComponent implements OnInit, OnDestroy {
   @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;
 
   // Route params
-  // Option 1
-  /* public url: Observable<string>;
-  public source: Observable<number>;
-  public userData: Observable<string>;
-  public campaignId: Observable<number>; */
-  // Option 2
   public source: number;
   public userData: string;
   public campaignId: number;
@@ -45,13 +39,33 @@ export class MakerComponent implements OnInit, OnDestroy {
   public options: any[] = [
     {
       optionId: 1,
-      imgUrl: './../../../assets/cards/mayoreo.svg',
-      cardTitle: 'Vende producto al mayoreo',
+      imgUrl: './../../../assets/cards/consumidor.svg',
+      cardTitle: 'Fabrica el producto',
       selected: false
     }, {
       optionId: 2,
+      imgUrl: './../../../assets/cards/mayoreo.svg',
+      cardTitle: 'Fabrica y distribuye el producto al mayoreo',
+      selected: false
+    }, {
+      optionId: 3,
       imgUrl: './../../../assets/cards/consumidor.svg',
-      cardTitle: 'Vende producto al menudeo',
+      cardTitle: 'Fabrica y distribuye el producto al menudeo',
+      selected: false
+    }, {
+      optionId: 4,
+      imgUrl: './../../../assets/cards/consumidor.svg',
+      cardTitle: 'Fabrica y distribuye el producto al menudeo',
+      selected: false
+    }, {
+      optionId: 5,
+      imgUrl: './../../../assets/cards/consumidor.svg',
+      cardTitle: 'Distribuye el producto al menudeo',
+      selected: false
+    }, {
+      optionId: 6,
+      imgUrl: './../../../assets/cards/consumidor.svg',
+      cardTitle: 'Distribuye el producto al menudeo',
       selected: false
     }, {
       optionId: 0,
@@ -66,42 +80,6 @@ export class MakerComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    // Option 1
-    /* // Get information from route params.
-    this.activatedRoute.params.subscribe((params: Params) => {
-      // console.log(params);
-      // this.store.dispatch(new GetCampaignInfo(params.campaignId));
-      // this.store.dispatch(new SetUserDataInfo(params.userData));
-      // this.store.dispatch(new SetSource(params.source));
-    });
-    this.url = this.activatedRoute.url.map(segments => segments.join(''));
-    this.source = this.activatedRoute.params.map(p => p.source);
-    this.userData = this.activatedRoute.params.map(p => p.userdata);
-    this.campaignId = this.activatedRoute.params.map(p => p.campaignid);
-    // Do something with the values of the url params.
-    this.source.subscribe(value => {
-      if (value) {
-        console.log('Source', value);
-      } else {
-        console.log('No sorce specified in url params');
-      }
-    });
-    this.userData.subscribe(value => {
-      if (value) {
-        console.log('User data', JSON.parse(value));
-        this.name = JSON.parse(value).fullName;
-      } else {
-        console.log('No user data specified in url params.');
-      }
-    });
-    this.campaignId.subscribe(value => {
-      if (value) {
-        console.log('Campaign id', value);
-      } else {
-        console.log('No campaign id specified in url params.');
-      }
-    }); */
-    // Option 2 (Best practice)
     // Get information from route params.
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
@@ -126,14 +104,14 @@ export class MakerComponent implements OnInit, OnDestroy {
       this.campaignId = params['campaignid'];
     });
 
-    this.question = '¿Eres fabricante?';
+    this.question = '¿Vendes un producto?';
     this.imgUrl = './../../../assets/cards/CuentasConUnEstablecimiento.svg';
 
-    this.title = '¿Qué tipo de fabricante eres?';
+    this.title = '¿Que haces con el producto?';
     this.subtitle = 'Selecciona la mejor opción para tu negocio';
-    this.explanation = 'Ayúdanos a determinar el tipo de fabricante que'
-    + ' eres para lograr mejores resultados. Si no eres fabricante, entonces'
-    + ' marca la casilla \'Otra actividad\' y presiona en continuar.';
+    this.explanation = 'Ayúdanos a determinar el tipo de actividad'
+    + ' que desempeñas con el producto para lograr mejores resultados. Si no vendes un producto, entonces'
+    + ' marca la casilla \'Otra actividad\' y presiona en "Siguiente".';
 
     setTimeout(() => {
       this.confirmationModal.showModal();
@@ -175,6 +153,8 @@ export class MakerComponent implements OnInit, OnDestroy {
           title: 'Selecciona una opción',
           showCloseButton: false,
           confirmButtonText: 'Hecho',
+          buttonsStyling: false,
+          confirmButtonClass: 'hecho-button'
         });
         break;
       case 0:
@@ -182,8 +162,8 @@ export class MakerComponent implements OnInit, OnDestroy {
         this.router.navigate(['/activity/generic']);
         break;
       default:
-        // this.store.dispatch(new SetActivityTypeAction(this.selectedOption));
-        this.router.navigate(['/../address']);
+        this.store.dispatch(new SetActivityTypeAction(this.selectedOption));
+        this.router.navigate(['/activity/product/productType']);
     }
   }
 
