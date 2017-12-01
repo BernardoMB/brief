@@ -14,7 +14,9 @@ import {
     SET_ACTIVITY_TYPE_ACTION,
     SetActivityTypeAction,
     SET_PRODUCT_ACTION,
-    SetProductAction
+    SetProductAction,
+    SET_SERVICE_ACTION,
+    SetServiceAction
 } from './../actions';
 import { ILocation } from '../../../shared/models/ILocation';
 import { ILead } from '../../../shared/models/ILead';
@@ -29,6 +31,8 @@ export function storeData(state: IStoreData = INITIAL_STORE_DATA, action: StoreA
             return handleSetActivityTypeAction(state, action);
         case SET_PRODUCT_ACTION:
             return handleSetProductAction(state, action);
+        case SET_SERVICE_ACTION:
+            return handleSetServiceAction(state, action);
         case SET_LOCATION_ACTION:
             return handleSetLocationAction(state, action);
         case SET_LEAD_DATA_INFO_ACTION:
@@ -64,6 +68,13 @@ function handleSetProductAction(state: IStoreData, action: SetProductAction): IS
     const newStoreData = Object.assign({}, state);
     const product: number = action.payload;
     newStoreData.product = product;
+    return newStoreData;
+}
+
+function handleSetServiceAction(state: IStoreData, action: SetServiceAction): IStoreData {
+    const newStoreData = Object.assign({}, state);
+    const service: number = action.payload;
+    newStoreData.service = service;
     return newStoreData;
 }
 

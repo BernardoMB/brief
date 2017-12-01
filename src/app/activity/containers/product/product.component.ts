@@ -152,6 +152,7 @@ export class ProductComponent implements OnInit, OnDestroy {
           type: 'warning',
           title: 'Selecciona una opción',
           showCloseButton: false,
+          focusConfirm: false,
           confirmButtonText: 'Hecho',
           buttonsStyling: false,
           confirmButtonClass: 'hecho-button'

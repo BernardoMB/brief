@@ -9,6 +9,7 @@ export interface IStoreData {
     activity: number;
     activityType: number;
     product: number;
+    service: number;
     user: IUser;
     lead: ILead;
     location: ILocation;
@@ -21,6 +22,7 @@ export const INITIAL_STORE_DATA: IStoreData = {
     activity: undefined,
     activityType: undefined,
     product: undefined,
+    service: undefined,
     user: undefined,
     lead: undefined,
     location: undefined,

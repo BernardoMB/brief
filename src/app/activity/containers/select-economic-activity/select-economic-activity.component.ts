@@ -1,21 +1,19 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { SetActivityAction, SetLeadDataInfoAction, SetActivityTypeAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import swal from 'sweetalert2';
-import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
-  selector: 'app-service',
-  templateUrl: './service.component.html',
-  styleUrls: ['./service.component.css']
+  selector: 'app-select-economic-activity',
+  templateUrl: './select-economic-activity.component.html',
+  styleUrls: ['./select-economic-activity.component.css']
 })
-export class ServiceComponent implements OnInit, OnDestroy {
+export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
   @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;
 
   // Route params
@@ -38,6 +36,36 @@ export class ServiceComponent implements OnInit, OnDestroy {
 
   public options: any[] = [
     {
+      optionId: 1,
+      imgUrl: './../../../assets/cards/consumidor.svg',
+      cardTitle: 'Fabrica el producto',
+      selected: false
+    }, {
+      optionId: 2,
+      imgUrl: './../../../assets/cards/mayoreo.svg',
+      cardTitle: 'Fabrica y distribuye el producto al mayoreo',
+      selected: false
+    }, {
+      optionId: 3,
+      imgUrl: './../../../assets/cards/consumidor.svg',
+      cardTitle: 'Fabrica y distribuye el producto al menudeo',
+      selected: false
+    }, {
+      optionId: 4,
+      imgUrl: './../../../assets/cards/consumidor.svg',
+      cardTitle: 'Fabrica y distribuye el producto al menudeo',
+      selected: false
+    }, {
+      optionId: 5,
+      imgUrl: './../../../assets/cards/consumidor.svg',
+      cardTitle: 'Distribuye el producto al menudeo',
+      selected: false
+    }, {
+      optionId: 6,
+      imgUrl: './../../../assets/cards/consumidor.svg',
+      cardTitle: 'Distribuye el producto al menudeo',
+      selected: false
+    }, {
       optionId: 0,
       imgUrl: './../../../assets/cards/pais.svg',
       cardTitle: 'Otra actividad',
@@ -46,26 +74,17 @@ export class ServiceComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private router: Router,
-    private store: Store<IApplicationState>,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    // Get information from route params.
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
     if (this.userData) {
       const userDataObject: ILead = JSON.parse(this.userData);
       this.name = userDataObject.fullName;
-      this.store.dispatch(new SetLeadDataInfoAction(userDataObject));
     }
     this.campaignId = this.activatedRoute.snapshot.params['campaignid'];
-    // The object this.route.params returns an observable on which we can subscribe.
-    // I need to subscribe to this object to execute some code every time the value passed to the observable changes.
-    // I dont need to subscribe to anything because once this component is loaded,
-    // the url params wont change while being inside of this component.
-    // This ubscription will always live on memory. and that is why we want to implement onDestroy to end up the subscription.
     this.paramsSubscription = this.activatedRoute.params.subscribe((params: Params) => {
-      // This code will get executed every time the value passed to the observable params change.
       this.source = params['source'];
       this.userData = params['userdata'];
       if (this.userData) {
@@ -74,13 +93,14 @@ export class ServiceComponent implements OnInit, OnDestroy {
       this.campaignId = params['campaignid'];
     });
 
-    this.question = '¿Ofreces un servicio?';
-    this.imgUrl = './../../../assets/cards/servicios.svg';
+    this.question = '¿Vendes un producto?';
+    this.imgUrl = './../../../assets/cards/mayoreo.svg';
 
-    this.title = 'Selecciona el tipo de servicio';
-    this.subtitle = '';
-    this.explanation = 'Si no ofreces algún tipo de servicio, entonces marca la'
-    + ' casilla \'Otra actividad\' y haz presiona en continuar.';
+    this.title = '¿Que haces con el producto?';
+    this.subtitle = 'Selecciona la mejor opción para tu negocio';
+    this.explanation = 'Ayúdanos a determinar el tipo de actividad'
+    + ' que desempeñas con el producto para lograr mejores resultados. Si no vendes un producto, entonces'
+    + ' marca la casilla \'Otra actividad\' y presiona en "Siguiente".';
 
     setTimeout(() => {
       this.confirmationModal.showModal();
@@ -107,31 +127,6 @@ export class ServiceComponent implements OnInit, OnDestroy {
     }
   //#endregion
 
-  public continue(): void {
-    this.selectedOption = 420;
-    switch (this.selectedOption) {
-      case undefined:
-        /* alert('Selecciona una opcion para continuar.'); */
-        swal({
-          customClass: 'select-one-option-alert',
-          type: 'warning',
-          title: 'Selecciona una opción',
-          showCloseButton: false,
-          confirmButtonText: 'Hecho',
-          buttonsStyling: false,
-          confirmButtonClass: 'hecho-button'
-        });
-        break;
-      case 0:
-        this.store.dispatch(new SetActivityAction(undefined));
-        this.router.navigate(['/activity/generic']);
-        break;
-      default:
-        this.store.dispatch(new SetActivityTypeAction(this.selectedOption));
-        this.router.navigate([`/activity/service/serviceType/${this.selectedOption}`]);
-    }
-  }
-
   //#region Confirmation Modal event binding
     /**
      * This function gets executed when the user confirmed.
@@ -140,12 +135,39 @@ export class ServiceComponent implements OnInit, OnDestroy {
      */
     public onUserConfirmed(event): void {
       if (event) {
-        // Set activity
-        this.store.dispatch(new SetActivityAction(1));
+        // Execute some code.
       } else {
         // Redirect user to generic campaign
         this.router.navigate(['/activity/generic']);
       }
     }
   //#endregion
+
+  /**
+   * This function updates the App state and redirects the user to the
+   * next view based on the selectedOption propperty.
+   * @memberof MakerComponent
+   */
+  public continue(): void {
+    switch (this.selectedOption) {
+      case undefined:
+        swal({
+          customClass: 'select-one-option-alert',
+          type: 'warning',
+          title: 'Selecciona una opción',
+          showCloseButton: false,
+          focusConfirm: false,
+          confirmButtonText: 'Hecho',
+          buttonsStyling: false,
+          confirmButtonClass: 'hecho-button'
+        });
+        break;
+      case 0:
+        this.router.navigate(['/activity/generic']);
+        break;
+      default:
+        // TODO: Escribir en el store.
+        this.router.navigate(['/../address']);
+    }
+  }
 }

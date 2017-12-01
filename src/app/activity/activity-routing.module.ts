@@ -1,28 +1,37 @@
-import { ProductTypeComponent } from './containers/product-type/product-type.component';
-import { ProductComponent } from './containers/product/product.component';
 import { MakerComponent } from './containers/maker/maker.component';
-import { ServiceComponent } from './containers/service/service.component';
-import { ProfessionalComponent } from './containers/professional/professional.component';
 import { GenericComponent } from './containers/generic/generic.component';
 import { CoverageComponent } from './containers/coverage/coverage.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SelectProductComponent } from './containers/select-product/select-product.component';
+import { SelectEconomicActivityComponent } from './containers/select-economic-activity/select-economic-activity.component';
 
 const routes: Routes = [
   { path: '', component: GenericComponent },
   { path: 'maker', component: MakerComponent },
   { path: 'maker/:source/:userdata/:campaignid', component: MakerComponent },
-  // Product
-  { path: 'product', component: ProductComponent },
-  { path: 'product/:source/:userdata/:campaignid', component: ProductComponent },
-  { path: 'product/productType', component: ProductTypeComponent },
-  // Service
-  { path: 'service', component: ServiceComponent },
-  { path: 'service/:source/:userdata/:campaignid', component: ServiceComponent },
-  /* { path: 'service/serviceType/:serviceId', component: ServiceTypeComponent }, */
-  // Professional
-  { path: 'professional', component: ProfessionalComponent },
-  { path: 'professional/:source/:userdata/:campaignid', component: ProfessionalComponent },
+
+  // Product (1)
+  { path: 'product/:source/:userdata/:campaignid', component: SelectProductComponent },
+  { path: 'product/eactivity/:source/:userdata/:campaignid/:productid', component: SelectEconomicActivityComponent },
+  // SelectProductComponent : ProductTypeComponent
+  // SelectEconomicActivity : ProductComponent
+  // Service (2)
+  /* { path: 'service/industry/:source/:userdata/:campaignid', component: SelectIndustryComponent },
+  { path: 'service/:source/:userdata/:campaignid/:indistryid', component: SelectServiceComponent }, */
+  // SelectIndustryComponent: ServiceComponent
+  // SelectServiceComponent : ServiceTypeComponent
+  // Profession (3)
+  /* { path: 'profession/:source/:userdata/:campaignid', component: SelectProfessionComponent },
+  { path: 'profession/specialty/:source/:userdata/:campaignid/:professionid', component: SelectSpecialtyComponent }, */
+  // SelectProfessionComponent : ProfessionalComponent
+  // SelectSpecialty : ProfessionalTypeComponent
+  // Stablishment (4)
+  /* { path: 'establishment/:source/:userdata/:campaignid/:eid', component: SelectEstablishmentTypeComponent },
+  { path: 'establishment/starts/:source/:userdata/:campaignid/:eid/:etypeid', component: SelectStarsComponent }, */
+  
+  
+  
   // Generic
   { path: 'generic', component: GenericComponent },
   { path: 'generic/:source/:userdata/:campaignid', component: GenericComponent },

@@ -20,7 +20,7 @@ export class ProductTypeComponent implements OnInit {
     private store: Store<IApplicationState>) { }
 
   ngOnInit() {
-    this.title = '¿Que haces con el producto?';
+    this.title = '¿Qué haces con el producto?';
     this.subtitle = 'Selecciona la mejor opción para tu negocio';
     this.explanation = 'Ayúdanos a determinar el tipo de actividad'
     + ' que desempeñas con el producto para lograr mejores resultados. Si no vendes un producto, entonces'

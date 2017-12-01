@@ -53,6 +53,22 @@ import { ILead } from '../../shared/models/ILead';
     }
 //#endregion
 
+//#region Service
+    export const SET_SERVICE_ACTION = 'SET_SERVICE_ACTION';
+    export class SetServiceAction implements Action {
+        readonly type = SET_SERVICE_ACTION;
+        constructor(public payload: number) { }
+    }
+//#endregion
+
+//#region Professional
+    export const SET_SPECIALTY_ACTION = 'SET_SPECIALTY_ACTION';
+    export class SetSpecialtyAction implements Action {
+        readonly type = SET_SPECIALTY_ACTION;
+        constructor(public payload: number) { }
+    }
+//#endregion
+
 //#region Location
     export const SET_LOCATION_ACTION = 'SET_LOCATION_ACTION';
     export class SetLocationAction implements Action {
@@ -83,6 +99,8 @@ export type StoreActions =
     | SetActivityAction
     | SetActivityTypeAction
     | SetProductAction
+    | SetServiceAction
+    | SetSpecialtyAction
     | SetLocationAction
     | SetLeadDataInfoAction;
 
