@@ -12,8 +12,10 @@ const routes: Routes = [
   { path: 'maker/:source/:userdata/:campaignid', component: MakerComponent },
 
   // Product (1)
+  { path: 'product', component: SelectProductComponent },
   { path: 'product/:source/:userdata/:campaignid', component: SelectProductComponent },
   { path: 'product/eactivity/:source/:userdata/:campaignid/:productid', component: SelectEconomicActivityComponent },
+  { path: 'product/eactivity', component: SelectEconomicActivityComponent },
   // SelectProductComponent : ProductTypeComponent
   // SelectEconomicActivity : ProductComponent
   // Service (2)

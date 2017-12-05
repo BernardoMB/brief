@@ -9,6 +9,7 @@ import { GenericComponent } from './containers/generic/generic.component';
 import { CoverageComponent } from './containers/coverage/coverage.component';
 import { SelectProductComponent } from './containers/select-product/select-product.component';
 import { SelectEconomicActivityComponent } from './containers/select-economic-activity/select-economic-activity.component';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { SelectEconomicActivityComponent } from './containers/select-economic-ac
     ActivityRoutingModule,
     SharedModule,
     FormsModule,
+    NguiAutoCompleteModule
   ],
   declarations: [
     MakerComponent,

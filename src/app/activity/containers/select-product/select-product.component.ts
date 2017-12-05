@@ -35,6 +35,13 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   // Slected product
   public productId: number;
 
+  // Catalogo de productos
+  public productsArray: Array<string> = [
+    'Pisos de madera',
+    'Cubetas de plástico'
+  ];
+  public myData;
+
   public selectedOption: number;
 
   public options: any[] = [
@@ -123,6 +130,8 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   //#endregion
 
   public continue(): void {
+    this.selectedOption = 2;
+    this.productId = 1;
     switch (this.selectedOption) {
       case undefined:
         swal({
@@ -153,5 +162,10 @@ export class SelectProductComponent implements OnInit, OnDestroy {
           });
         }
     }
+  }
+
+  public myCallback($event): void {
+    console.log('My data event passed to myCallback function', $event);
+    console.log('My data printing myData ngModel', this.myData);
   }
 }
