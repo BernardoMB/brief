@@ -1,13 +1,20 @@
 <app-title-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-title-card>
 
 <div class="search-auto-complete-custom">
-  <input ngui-auto-complete
+  <input id="product-input"
+  ngui-auto-complete
   class="omono"
-  [(ngModel)]="myData"
+  [(ngModel)]="selectedProduct"
   [source]="productsArray"
   placeholder="Buscar producto..."
   no-match-found-text="Sin resultados"
-  (ngModelChange)="myCallback($event)"/>
+  (valueChanged)="selectProduct($event)"
+  [open-on-focus]="false"
+  [accept-user-input]="false"
+  [select-on-blur]="true"
+  value-formatter="name"
+  list-formatter="name"
+  />
 </div>
 <!-- visit https://github.com/ng2-ui/auto-complete -->
 

@@ -55,10 +55,10 @@ body {
 }
 /* My clases Close */
 
-/* Swal classes A */
+/* Swal (Sweet Alert) classes A */
 .select-one-option-alert {
     border-radius: 0px !important;
-    margin: 4px !important;
+    margin: 5px !important;
 }
 
 .hecho-button {
@@ -70,6 +70,10 @@ body {
     padding-right: 20px;
     border: 0px;
     background-color: #344a54;
+}
+
+.hecho-button:focus {
+    outline: none;
 }
 /* Swal classes B */
 
@@ -111,6 +115,13 @@ body {
   .gmnoprint div {
       /* background:none !important; */
   }
+
+/* Auto complete search bar A */
+  ngui-auto-complete {
+    max-height: 170px;
+    overflow-y: auto;
+}
+/* Auto complete search bar B */
 
 /* Material icons */
 @font-face {

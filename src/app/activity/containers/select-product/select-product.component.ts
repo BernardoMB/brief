@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import swal from 'sweetalert2';
+import { LandedService } from '../../../core/services/landed.service';
+declare var $: any;
 
 @Component({
   selector: 'app-select-product',
@@ -31,18 +33,37 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   public title: string;
   public subtitle: string;
   public explanation: string;
-
-  // Slected product
-  public productId: number;
+  public autoCompleteInputElement: HTMLElement;
 
   // Catalogo de productos
-  public productsArray: Array<string> = [
-    'Pisos de madera',
-    'Cubetas de plástico'
+  public productsArray: Array<any> = [
+    {
+      id: 11,
+      key: 1,
+      name: 'Pisos de madera 1'
+    }, {
+      id: 12,
+      key: 2,
+      name: 'Pisos de madera 2'
+    }, {
+      id: 13,
+      key: 3,
+      name: 'Pisos de madera 3'
+    }, {
+      id: 14,
+      key: 4,
+      name: 'Pisos de madera 4'
+    }, {
+      id: 15,
+      key: 5,
+      name: 'Pisos de madera 5'
+    }, {
+      id: 16,
+      key: 6,
+      name: 'Pisos de madera 6'
+    }
   ];
-  public myData;
-
-  public selectedOption: number;
+  public selectedProduct: any;
 
   public options: any[] = [
     {
@@ -52,9 +73,11 @@ export class SelectProductComponent implements OnInit, OnDestroy {
       selected: false
     }
   ];
+  public selectedOption: number;
 
   constructor(private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private landedService: LandedService) { }
 
   ngOnInit() {
     // Get information from route params.
@@ -88,7 +111,32 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     this.explanation = 'Ayúdanos a determinar el producto que vendes para lograr mejores resultados. Si no vendes un producto, entonces'
     + ' marca la casilla "Otra actividad" y presiona en "Siguiente".';
 
+    this.autoCompleteInputElement = document.getElementById('product-input');
+    let isUserClick = false;
+    $('#product-input').on('mousedown', function(event) {
+      isUserClick = true;
+    });
+    $('#product-input').on('focus', function(event) {
+      if (!isUserClick) {
+        this.blur();
+      }
+      isUserClick = false;
+    });
+    // Disable auto-complete-search text field when pressing enter key.
+    this.autoCompleteInputElement.addEventListener('keyup', function(e) {
+      if (e.which === 13 || e.keyCode === 13) {
+        this.blur();
+      }
+    }, false);
+
     setTimeout(() => {
+      /* this.landedService.landed
+      .subscribe(landed => {
+        console.log(landed);
+        if (landed) {
+          this.confirmationModal.showModal();
+        }
+      }); */
       this.confirmationModal.showModal();
     }, 0);
   }
@@ -113,6 +161,13 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     }
   //#endregion
 
+  public selectProduct($event): void {
+    this.selectedOption = undefined;
+    this.selectedProduct = $event;
+    console.log(this.selectedProduct);
+    document.getElementById('product-input').blur();
+  }
+
   //#region Cards
     public getBoxShadowForCard(roleId: number): String {
       if (this.selectedOption === roleId) {
@@ -121,6 +176,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
       return null;
     }
     public assignRole(optionId: number): void {
+      this.selectedProduct = undefined;
       if (this.selectedOption === optionId) {
         this.selectedOption = 0;
       } else {
@@ -130,42 +186,22 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   //#endregion
 
   public continue(): void {
-    this.selectedOption = 2;
-    this.productId = 1;
-    switch (this.selectedOption) {
-      case undefined:
-        swal({
-          customClass: 'select-one-option-alert',
-          type: 'warning',
-          title: 'Selecciona una opción',
-          showCloseButton: false,
-          confirmButtonText: 'Hecho',
-          buttonsStyling: false,
-          confirmButtonClass: 'hecho-button'
-        });
-        break;
-      case 0:
-        this.router.navigate(['/activity/generic']);
-        break;
-      default:
-        if (this.productId) {
-          this.router.navigate([`/activity/product/${this.source}/${this.userData}/${this.campaignId}/${this.productId}`]);
-        } else {
-          swal({
-            customClass: 'select-one-option-alert',
-            type: 'warning',
-            title: 'Selecciona un producto para continuar o marca la casilla "Otra actividad".',
-            showCloseButton: false,
-            confirmButtonText: 'Hecho',
-            buttonsStyling: false,
-            confirmButtonClass: 'hecho-button'
-          });
-        }
+    console.log(this.selectedOption);
+    console.log(this.selectedProduct);
+    if (this.selectedOption === undefined && this.selectedProduct === undefined) {
+      swal({
+        customClass: 'select-one-option-alert',
+        type: 'warning',
+        title: 'Selecciona un producto o haz click en "Otra actividad".',
+        showCloseButton: false,
+        confirmButtonText: 'Hecho',
+        buttonsStyling: false,
+        confirmButtonClass: 'hecho-button'
+      });
+    } else if (this.selectedOption === undefined && this.selectedProduct) {
+      this.router.navigate([`/activity/product/eactivity/${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`]);
+    } else if (this.selectedOption === 0 && this.selectedProduct === undefined) {
+      this.router.navigate(['/activity/generic']);
     }
-  }
-
-  public myCallback($event): void {
-    console.log('My data event passed to myCallback function', $event);
-    console.log('My data printing myData ngModel', this.myData);
   }
 }
