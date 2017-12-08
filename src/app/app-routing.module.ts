@@ -4,9 +4,6 @@ import { MainComponent } from './core/containers/main/main.component';
 import { LaunchpadComponent } from './core/containers/launchpad/launchpad.component';
 
 const routes: Routes = [{
-    // Opcion 1
-    /* path: ':source/:userData/:campaignId', component: MainComponent, */
-    // Opcion 2
     path: '', component: MainComponent,
     children: [
       { path: '', component: LaunchpadComponent},

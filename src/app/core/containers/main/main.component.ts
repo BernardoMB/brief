@@ -9,6 +9,7 @@ import { IApplicationState } from '../../../store/models/app-state';
 import { IProfession } from '../../../../shared/models/IProfession';
 import { ErrorOcurredAction, GetAllProfessionsAction } from '../../../store/actions';
 import { mapStateToProfessions } from '../../../store/mappers/mapStateToProfessions';
+import { mapStateToHeaderTitle } from '../../../store/mappers/mapStateToHeaderTitle';
 /* import { Router, ActivatedRoute, Params } from '@angular/router'; */
 /* import { ILead } from '../../../../shared/models/ILead'; */
 
@@ -20,6 +21,7 @@ import { mapStateToProfessions } from '../../../store/mappers/mapStateToProfessi
 export class MainComponent implements OnInit, OnDestroy {
 
   private isLoadingSubscription: Subscription;
+  public title$: Observable<string>;
 
   // Route elements
   /* public url: Observable<string>;
@@ -28,12 +30,8 @@ export class MainComponent implements OnInit, OnDestroy {
   public campaignId: Observable<number>; */
 
   constructor(private slimLoadingBarService: SlimLoadingBarService,
-    private store: Store<IApplicationState>,
-    /* private activatedRoute: ActivatedRoute */) {
-      /* this.url = activatedRoute.url.map(segments => segments.join(''));
-      this.source = activatedRoute.params.map(p => p.source);
-      this.userData = activatedRoute.params.map(p => p.userData);
-      this.campaignId = activatedRoute.params.map(p => p.campaignId); */
+    private store: Store<IApplicationState>) {
+      this.title$ = this.store.select(state => mapStateToHeaderTitle(state));
     }
 
   public ngOnInit(): void {

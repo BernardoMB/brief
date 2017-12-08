@@ -7,6 +7,7 @@ import { IApplicationState } from '../../../store/models/app-state';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import swal from 'sweetalert2';
+import { SetHeaderTitleAction } from '../../../store/actions';
 
 @Component({
   selector: 'app-select-economic-activity',
@@ -73,10 +74,15 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     }
   ];
 
+  // To know confirmation modal need to be showed when the components get initialized.
+  public confirmed: Subscription;
+
   constructor(private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private store: Store<IApplicationState>) { }
 
   ngOnInit() {
+    this.store.dispatch(new SetHeaderTitleAction('¿Qué haces con el producto?'));
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
     if (this.userData) {
@@ -102,9 +108,15 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     + ' que desempeñas con el producto para lograr mejores resultados. Si no vendes un producto, entonces'
     + ' marca la casilla \'Otra actividad\' y presiona en "Siguiente".';
 
-    setTimeout(() => {
-      this.confirmationModal.showModal();
-    }, 0);
+    // Get confirmed variable from the store to know if I should show the confirmation modal.
+    this.confirmed = this.store.select(state => state.storeData.confirmed)
+    .subscribe(value => {
+      if (!value) {
+        setTimeout(() => {
+          this.confirmationModal.showModal();
+        }, 0);
+      }
+    });
   }
 
   ngOnDestroy() {

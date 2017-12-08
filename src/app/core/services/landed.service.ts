@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/Subject';
 export class LandedService {
 
   /**
-   * Este subject es para saber si el usuario tiene misiones.
+   * Este subject es para saber si el usuario ya contesto la pregunta inicial.
    * @type {Subject<boolean>}
    * @memberof LandedService
    */

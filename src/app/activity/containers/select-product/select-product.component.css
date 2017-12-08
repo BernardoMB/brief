@@ -24,6 +24,7 @@
 
 .omono {
     width: 100%;
+    border: 2px solid rgb(243, 146, 0);
 }
 
 .omono:focus {

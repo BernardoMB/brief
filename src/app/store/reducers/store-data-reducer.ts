@@ -2,21 +2,25 @@ import { IProfession } from '../../../shared/models/IProfession';
 import { INITIAL_STORE_DATA, IStoreData } from './../models/store-data';
 import * as _ from 'lodash';
 import {
+    SET_ACTIVITY_ACTION,
+    SET_ACTIVITY_TYPE_ACTION,
+    SET_LEAD_DATA_INFO_ACTION,
+    SET_LOCATION_ACTION,
+    SET_PRODUCT_ACTION,
+    SET_SERVICE_ACTION,
+    SetActivityAction,
+    SetActivityTypeAction,
+    SetLeadDataInfoAction,
+    SetLocationAction,
+    SetProductAction,
+    SetServiceAction,
     StoreActions,
     UPDATE_ALL_PROFESSIOS_ACTION,
     UpdateAllProfessionsAction,
-    SET_ACTIVITY_ACTION,
-    SetActivityAction,
-    SET_LOCATION_ACTION,
-    SetLocationAction,
-    SET_LEAD_DATA_INFO_ACTION,
-    SetLeadDataInfoAction,
-    SET_ACTIVITY_TYPE_ACTION,
-    SetActivityTypeAction,
-    SET_PRODUCT_ACTION,
-    SetProductAction,
-    SET_SERVICE_ACTION,
-    SetServiceAction
+    USER_CONFIRMED_ACTION,
+    UserConfirmedAction,
+    SET_HEADER_TITLE_ACTION,
+    SetHeaderTitleAction,
 } from './../actions';
 import { ILocation } from '../../../shared/models/ILocation';
 import { ILead } from '../../../shared/models/ILead';
@@ -37,6 +41,10 @@ export function storeData(state: IStoreData = INITIAL_STORE_DATA, action: StoreA
             return handleSetLocationAction(state, action);
         case SET_LEAD_DATA_INFO_ACTION:
             return handleSetLeadDataInfoAction(state, action);
+        case USER_CONFIRMED_ACTION:
+            return handleUserConfirmedAction(state, action);
+        case SET_HEADER_TITLE_ACTION:
+            return handleSetHeaderTitleAction(state, action);
         default:
             return state;
     }
@@ -89,5 +97,17 @@ function handleSetLeadDataInfoAction(state: IStoreData, action: SetLeadDataInfoA
     const newStoreData = Object.assign({}, state);
     const lead: ILead = action.payload;
     newStoreData.lead = lead;
+    return newStoreData;
+}
+
+function handleUserConfirmedAction(state: IStoreData, action: UserConfirmedAction): IStoreData {
+    const newStoreData = Object.assign({}, state);
+    newStoreData.confirmed = true;
+    return newStoreData;
+}
+
+function handleSetHeaderTitleAction(state: IStoreData, action: SetHeaderTitleAction): IStoreData {
+    const newStoreData = Object.assign({}, state);
+    newStoreData.headerTitle = action.payload;
     return newStoreData;
 }

@@ -4,6 +4,12 @@ import { Action } from '@ngrx/store';
 import { ILocation } from '../../shared/models/ILocation';
 import { ILead } from '../../shared/models/ILead';
 
+export const SET_HEADER_TITLE_ACTION = 'SET_HEADER_TITLE_ACTION';
+export class SetHeaderTitleAction implements Action {
+    readonly type = SET_HEADER_TITLE_ACTION;
+    constructor(public payload: string) { }
+}
+
 //#region Professions
     export const GET_ALL_PROFESSIONS_ACTION = 'GET_ALL_PROFESSIONS_ACTION';
     export class GetAllProfessionsAction implements Action {
@@ -77,6 +83,12 @@ import { ILead } from '../../shared/models/ILead';
     }
 //#endregion
 
+export const USER_CONFIRMED_ACTION = 'USER_CONFIRMED_ACTION';
+export class UserConfirmedAction implements Action {
+    readonly type = USER_CONFIRMED_ACTION;
+    constructor(public payload?: any) { }
+}
+
 //#region Error
     export const ERROR_OCURRED_ACTION = 'ERROR_OCURRED_ACTION';
     /**
@@ -102,7 +114,9 @@ export type StoreActions =
     | SetServiceAction
     | SetSpecialtyAction
     | SetLocationAction
-    | SetLeadDataInfoAction;
+    | SetLeadDataInfoAction
+    | UserConfirmedAction
+    | SetHeaderTitleAction;
 
 export type UIActions = StoreActions
     | GettingAllProfessionsAction

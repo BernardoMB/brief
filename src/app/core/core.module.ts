@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LandedService } from './services/landed.service';
+import { Header2Component } from './components/header2/header2.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { LandedService } from './services/landed.service';
   declarations: [
     MainComponent,
     LaunchpadComponent,
-    HeaderComponent
+    HeaderComponent,
+    Header2Component
   ],
   exports: [
     BrowserAnimationsModule,

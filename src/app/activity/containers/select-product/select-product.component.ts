@@ -2,12 +2,13 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction } from '../../../store/actions';
+import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import swal from 'sweetalert2';
 import { LandedService } from '../../../core/services/landed.service';
+import { Observable } from 'rxjs/Observable';
 declare var $: any;
 
 @Component({
@@ -36,6 +37,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   public autoCompleteInputElement: HTMLElement;
 
   // Catalogo de productos
+  // TODO: Esto tiene que ser un observable de los productos que se mandarán pedir al store.
   public productsArray: Array<any> = [
     {
       id: 11,
@@ -75,11 +77,17 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   ];
   public selectedOption: number;
 
+  // To know confirmation modal need to be showed when the components get initialized.
+  public confirmed: Subscription;
+
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private landedService: LandedService) { }
+    private landedService: LandedService,
+    private store: Store<IApplicationState>) { }
 
   ngOnInit() {
+    const headerTitle = 'Selecciona el producto';
+    this.store.dispatch(new SetHeaderTitleAction(headerTitle));
     // Get information from route params.
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
@@ -106,12 +114,13 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     this.question = '¿Vendes algún producto?';
     this.imgUrl = './../../../assets/cards/mayoreo.svg';
 
+    // Initilize view variables.
     this.title = 'Selecciona el producto';
     this.subtitle = null;
     this.explanation = 'Ayúdanos a determinar el producto que vendes para lograr mejores resultados. Si no vendes un producto, entonces'
     + ' marca la casilla "Otra actividad" y presiona en "Siguiente".';
 
-    this.autoCompleteInputElement = document.getElementById('product-input');
+    // Disable auto-complete-search text field when selecting an option.
     let isUserClick = false;
     $('#product-input').on('mousedown', function(event) {
       isUserClick = true;
@@ -122,36 +131,34 @@ export class SelectProductComponent implements OnInit, OnDestroy {
       }
       isUserClick = false;
     });
+
     // Disable auto-complete-search text field when pressing enter key.
+    this.autoCompleteInputElement = document.getElementById('product-input');
     this.autoCompleteInputElement.addEventListener('keyup', function(e) {
       if (e.which === 13 || e.keyCode === 13) {
         this.blur();
       }
     }, false);
 
-    setTimeout(() => {
-      /* this.landedService.landed
-      .subscribe(landed => {
-        console.log(landed);
-        if (landed) {
-          this.confirmationModal.showModal();
+    // Get confirmed variable from the store to know if I should show the confirmation modal.
+    this.confirmed = this.store.select(state => state.storeData.confirmed)
+      .subscribe(value => {
+        if (!value) {
+          setTimeout(() => {
+            this.confirmationModal.showModal();
+          }, 0);
         }
-      }); */
-      this.confirmationModal.showModal();
-    }, 0);
+    });
   }
 
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
+    this.confirmed.unsubscribe();
   }
 
   //#region Confirmation Modal event binding
-    /**
-     * This function gets executed when the user confirmed.
-     * @param {any} event
-     * @memberof MakerComponent
-     */
     public onUserConfirmed(event): void {
+      this.store.dispatch(new UserConfirmedAction());
       if (event) {
         // Execute some code.
       } else {
@@ -186,8 +193,6 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   //#endregion
 
   public continue(): void {
-    console.log(this.selectedOption);
-    console.log(this.selectedProduct);
     if (this.selectedOption === undefined && this.selectedProduct === undefined) {
       swal({
         customClass: 'select-one-option-alert',
@@ -199,7 +204,9 @@ export class SelectProductComponent implements OnInit, OnDestroy {
         confirmButtonClass: 'hecho-button'
       });
     } else if (this.selectedOption === undefined && this.selectedProduct) {
-      this.router.navigate([`/activity/product/eactivity/${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`]);
+      const route = `/activity/product/eactivity/`
+      + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
+      this.router.navigate([route]);
     } else if (this.selectedOption === 0 && this.selectedProduct === undefined) {
       this.router.navigate(['/activity/generic']);
     }

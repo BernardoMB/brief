@@ -5,6 +5,7 @@ import { IUser } from '../../../shared/models/IUser';
 import { ILocation } from '../../../shared/models/ILocation';
 
 export interface IStoreData {
+    headerTitle: string;
     professions: {[key: string]: IProfession};
     activity: number;
     activityType: number;
@@ -15,9 +16,11 @@ export interface IStoreData {
     location: ILocation;
     // TODO: Ver que pedo con los productos relacionados que se mostraran despues de procesar cosas en el server.
     relatedProducts: {[key: string]: string};
+    confirmed: boolean;
 }
 
 export const INITIAL_STORE_DATA: IStoreData = {
+    headerTitle: '',
     professions: {},
     activity: undefined,
     activityType: undefined,
@@ -26,5 +29,6 @@ export const INITIAL_STORE_DATA: IStoreData = {
     user: undefined,
     lead: undefined,
     location: undefined,
-    relatedProducts: undefined
+    relatedProducts: undefined,
+    confirmed: false
 };

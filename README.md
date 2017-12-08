@@ -28,7 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Test URL
 
-http://localhost:4200/1/%7B%22fullName%22:%22John%20Doe%22,%22phoneNumber%22:1122334455,%22email%22:%22johnDoe@example.com%22,%22city%22:%22La%20Chingada%22,%22state%22:%22Oaxaca%22,%22companyName%22:%22Pisos%20De%20Madera%20SA%20de%20CV%22%7D/408
-
-- Maker
-http://localhost:4200/activity/maker/1/%7B%22fullName%22:%22John%20Doe%22,%22phoneNumber%22:1122334455,%22email%22:%22johnDoe@example.com%22,%22city%22:%22La%20Chingada%22,%22state%22:%22Oaxaca%22,%22companyName%22:%22Pisos%20De%20Madera%20SA%20de%20CV%22%7D/420
+http://localhost:4200/activity/product/1/%7B%22fullName%22:%22John%20Doe%22%7D/420
