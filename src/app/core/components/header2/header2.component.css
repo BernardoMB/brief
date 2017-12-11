@@ -1,93 +1,33 @@
-.navbar {
-    cursor: pointer;
-    margin : 0;
-}
-
-.navbar-card {
-    background:url('/assets/cards/consumidor.svg') no-repeat center left;
-    background-size: cover;
-    padding: 0px;
-}
-
-.card-block{
+.opacity {
     width: 100%;
     transition : background-color 250ms ease-in-out;
-    background-color : rgba(7, 135, 135, 0.6);
+    background-color : rgba(0, 135, 135, 0.5);
 }
 
-.navbar-light-custom {
-    text-align: center;
+.non-collapse {
     height: 150px;
+    text-align: center;
     padding: 15px;
-    z-index: 0;
+}
+
+.logo {
+    margin-top: 10px; 
+    width: 150px;
+    height: 30px;
 }
 
 .title-container {
     color: white;
     font-size: 26px;
-    font-family: "Times New Roman", Times, serif;
+    font-family: Roboto Slab;
     text-align: center;
     margin-top:30px;
     position: absolute !important;
-    margin-left: 15px;
 }
 
-
-
-
-/* @media only screen and (max-width : 768px) {
-    .example-8 .navbar-brand {
-        padding: 0px;
-        -webkit-transform: translateX(-50%);
-        transform: translateX(-50%);
-        left: 50%;
-        position: absolute;
-    }
-    .example-8 .navbar-brand>img {
-        height: 100%;
-        width: auto;
-        padding: 7px 14px; 
-    }
+.collapse-content {
+    padding: 1.5rem !important;
+    color: white;
+    border-top: 1px solid white;
+    font-family: Roboto Slab;
 }
-   */
-.navbar-brand {
-    background: url(./../../../../assets/navbarLogo.png) center / contain no-repeat;
-    width: 200px;
-    margin-right: 0px; 
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    left: 50%;
-    position: absolute;
-}
-
-.navigation-bar-custom {
-    background-color: #e5ebe9;
-    border: 0px;
-    margin-bottom: 0px;
-}
-
-.bottom-navbar {
-    border-top: solid black 1px;
-    border-color: black;
-    background-color: #d9ecf8;
-}
-
-.navbar-button {
-    position: absolute !important;
-    margin-right: 10px;
-    right: 0;
-}
-
-
-
-
-
-
-.bottom-button {
-    border-color: transparent;
-    background-color: transparent;
-    color: #999999;
-    border-right: solid 1px #999999;
-    cursor: pointer;
-  }
-  

@@ -83,11 +83,12 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private landedService: LandedService,
-    private store: Store<IApplicationState>) { }
+    private store: Store<IApplicationState>) {
+      const headerTitle = 'Selecciona el producto';
+      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+    }
 
   ngOnInit() {
-    const headerTitle = 'Selecciona el producto';
-    this.store.dispatch(new SetHeaderTitleAction(headerTitle));
     // Get information from route params.
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
