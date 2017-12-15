@@ -123,6 +123,13 @@ body {
 }
 /* Auto complete search bar B */
 
+/* Confirmation modal styles A */
+.modal-dialog {
+    position: relative !important;
+    top: 24% !important;
+}
+/* Confirmation modal styles B */
+
 /* Material icons */
 @font-face {
     font-family: 'Material Icons';
