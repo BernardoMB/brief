@@ -15,7 +15,7 @@ export class Header2Component implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.backgroundUrl = '/assets/pisos-de-madera.jpg';
+    this.backgroundUrl = '/assets/pisos-de-madera-2.jpg';
   }
 
   setStyle() {

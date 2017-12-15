@@ -79,10 +79,12 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private store: Store<IApplicationState>) { }
+    private store: Store<IApplicationState>) {
+      const headerTitle = '¿Qué haces con el producto?';
+      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+    }
 
   ngOnInit() {
-    this.store.dispatch(new SetHeaderTitleAction('¿Qué haces con el producto?'));
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
     if (this.userData) {
