@@ -2,16 +2,12 @@
   <div class="modal-dialog">
       <div class="modal-content modal-content-custom">
 
-
-        <!-- MODAL HEADER -->
-        <div class="modal-header">
+        <!-- <div class="modal-header">
           <span>{{greeting}}</span>
         </div>
-        <!-- MODAL BODY -->
         <div class="modal-body text-center">
             <app-img-card [imgUrl]="imgUrl" [cardTitle]="question"></app-img-card>
         </div>
-        <!-- MODAL FOOTER -->
         <div class="modal-footer d-flex justify-content-between">
             <div class="panel-custom">
               <div class="panel-body-custom" (click)="onResult(true)">
@@ -23,15 +19,23 @@
                 <h4 class="title" align="center">No</h4>
               </div>
             </div>
-        </div>
-
+        </div> -->
 
         <div>
-          <!-- TODO: En este div del modal porner la imagen relacionada con la pregunta que se le hace al usuario en el modal -->
-          <span>Me la pelas</span>
+          <!-- TODO: Modificar que la imagen sea dinámica. -->
+          <img class="img" [src]="imgUrl"/>
         </div>
-
-        
+        <div style="padding: 15px;">
+          <h5 class="greeting">{{greeting}}</h5>
+        </div>
+        <div style="padding: 15px;">
+          <h4 class="question">{{question}}</h4>
+        </div>
+        <div class="modal-footer d-flex justify-content-between" style="border-top: 0px; margin-bottom: 15px">
+          <button class="btn btn-primary btn-circle" (click)="onResult(true)" style="margin-left: 70px;">Sí</button>
+          <button class="btn btn-primary btn-circle" (click)="onResult(false)" style="margin-right: 70px;">No</button>
+        </div>
       </div>
+
     </div>
 </div>

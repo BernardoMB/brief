@@ -1,0 +1,18 @@
+.description {
+    color: #344a54;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: justify;
+}
+
+.chingadera {
+    /* background-color: #d9ecf8 !important; */
+    padding: 15px !important;
+    padding-top: 0px !important;
+}
+
+.explanation-custom {
+    margin: 0px;
+    color: #32b3aa;
+    text-align: justify;
+}

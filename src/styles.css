@@ -6,7 +6,8 @@ body, html {
 
 body {
     position: relative;
-    background-color: #d9ecf8;
+    /* Old design */
+    /* background-color: #d9ecf8; */
 }
 
 .bb, .bb::after, .bb::before {
@@ -62,14 +63,15 @@ body {
 }
 
 .hecho-button {
-    color: white;
+    color: #344a54;
     font-weight:bold;
     font-size: 25px;
     padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
     border: 0px;
-    background-color: #344a54;
+    width: 100%;
+    background-color: #f9b234;
 }
 
 .hecho-button:focus {
@@ -126,7 +128,7 @@ body {
 /* Confirmation modal styles A */
 .modal-dialog {
     position: relative !important;
-    top: 24% !important;
+    top: 10% !important;
 }
 /* Confirmation modal styles B */
 

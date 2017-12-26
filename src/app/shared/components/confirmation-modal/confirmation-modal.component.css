@@ -22,3 +22,50 @@
     border-radius: 0px;
     margin: 4px;
 }
+
+/* ------------------------------------- */
+
+.img {
+    width: 100%;
+    height: 200px;
+}
+
+.greeting {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: #32b3aa;
+    margin-bottom: 0px;
+}
+
+.question {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: #3c4b53;
+    margin-bottom: 0px;
+}
+
+/* circle buttons */
+
+.btn:focus,.btn:active {
+    /* outline: none !important; */
+    background-color: #32b3aa !important;
+    border-color: #32b3aa !important;
+    /* box-shadow: none; */
+ }
+
+.btn-primary {
+    background-color: #32b3aa;
+    border-color: #32b3aa;
+}
+
+.btn-circle {
+    width: 32px;
+    height: 32px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}

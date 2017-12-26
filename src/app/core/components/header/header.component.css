@@ -28,12 +28,6 @@
     margin-bottom: 0px;
 }
 
-.bottom-navbar {
-    border-top: solid black 1px;
-    border-color: black;
-    background-color: #d9ecf8;
-}
-
 .navbar-button {
     position: absolute !important;
     margin-right: 10px;

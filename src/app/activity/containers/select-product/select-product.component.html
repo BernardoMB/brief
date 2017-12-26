@@ -1,9 +1,10 @@
-<app-title-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-title-card>
+<!-- <app-title-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-title-card> -->
+<app-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-instruction-card>
 
 <div class="search-auto-complete-custom">
   <input id="product-input"
   ngui-auto-complete
-  class="omono"
+  class="search-box"
   [(ngModel)]="selectedProduct"
   [source]="productsArray"
   placeholder="Busca tu producto..."
@@ -18,16 +19,26 @@
 </div>
 <!-- visit https://github.com/ng2-ui/auto-complete -->
 
-<div class="row" style="margin: 0px;" *ngFor="let option of options; let i = index">
+<!-- <div class="row" style="margin: 0px;" *ngFor="let option of options; let i = index">
   <div class="card-custom" [ngStyle]="{'box-shadow': getBoxShadowForCard(option.optionId)}" (click)="assignRole(option.optionId)">
     <app-img-card [imgUrl]="option.imgUrl" [cardTitle]="option.cardTitle"></app-img-card>
   </div>
+</div> -->
+
+<div class="row" style="margin: 0px;">
+  <div class="card-custom">
+    <app-real-img-card [imgUrl]="imgUrl"></app-real-img-card>
+  </div>
 </div>
+
 
 <div class="panel-custom">
   <div class="panel-body-custom" (click)="continue()">
     <h4 class="title" align="center">Siguiente</h4>
   </div>
+</div>
+<div class="omono">
+    <a class="link" (click)="goToGeneric()">Otra actividad</a>
 </div>
 
 <!-- Modal -->
@@ -35,6 +46,6 @@
 #confirmationModal
 [name]="name"
 [question]="question"
-[imgUrl]="imgUrl"
+[imgUrl]="imgUrl2"
 (onAnswer)="onUserConfirmed($event)">
 </app-confirmation-modal>

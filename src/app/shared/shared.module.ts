@@ -10,6 +10,8 @@ import { ToastyModule } from 'ng2-toasty';
 import { TitleCardComponent } from './components/title-card/title-card.component';
 import { ImgCardComponent } from './components/img-card/img-card.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { InstructionCardComponent } from './components/instruction-card/instruction-card.component';
+import { RealImgCardComponent } from './components/real-img-card/real-img-card.component';
 
 @NgModule({
     imports: [
@@ -24,14 +26,18 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     declarations: [
     TitleCardComponent,
     ImgCardComponent,
-    ConfirmationModalComponent],
+    ConfirmationModalComponent,
+    InstructionCardComponent,
+    RealImgCardComponent],
     exports: [
         TooltipModule,
         ToastyModule,
         ModalModule,
         TitleCardComponent,
         ImgCardComponent,
-        ConfirmationModalComponent
+        ConfirmationModalComponent,
+        InstructionCardComponent,
+        RealImgCardComponent
     ],
     providers : []
 })

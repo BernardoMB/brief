@@ -28,7 +28,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   // Modal variables
   public name: string;
   public question: string;
-  public imgUrl: string;
+  public imgUrl2: string;
 
   // View variables
   public title: string;
@@ -38,6 +38,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
 
   // Catalogo de productos
   // TODO: Esto tiene que ser un observable de los productos que se mandarán pedir al store.
+  // Lo tiene que jalar el constructor.
   public productsArray: Array<any> = [
     {
       id: 11,
@@ -67,6 +68,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   ];
   public selectedProduct: any;
 
+  // TODO: Eliminar esto porque ya no es necesario.
   public options: any[] = [
     {
       optionId: 0,
@@ -79,6 +81,8 @@ export class SelectProductComponent implements OnInit, OnDestroy {
 
   // To know confirmation modal need to be showed when the components get initialized.
   public confirmed: Subscription;
+
+  public imgUrl: String;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -113,10 +117,11 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     });
 
     this.question = '¿Vendes algún producto?';
-    this.imgUrl = './../../../assets/cards/mayoreo.svg';
+    this.imgUrl = './../../../assets/real/SelectProduct.jpg';
+    this.imgUrl2 = './../../../assets/real/SelectProductModal.jpg';
 
     // Initilize view variables.
-    this.title = 'Selecciona el producto';
+    this.title = 'Escribe el nombre del producto que ofreces';
     this.subtitle = null;
     this.explanation = 'Ayúdanos a determinar el producto que vendes para lograr mejores resultados. Si no vendes un producto, entonces'
     + ' marca la casilla "Otra actividad" y presiona en "Siguiente".';
@@ -211,5 +216,9 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     } else if (this.selectedOption === 0 && this.selectedProduct === undefined) {
       this.router.navigate(['/activity/generic']);
     }
+  }
+
+  public goToGeneric(): void {
+    this.router.navigate(['/activity/generic']);
   }
 }
