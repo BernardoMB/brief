@@ -26,7 +26,7 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
   // Modal variables
   public name: string;
   public question: string;
-  public imgUrl: string;
+  public imgUrl2: string;
 
   // View variables
   public title: String;
@@ -38,44 +38,41 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
   public options: any[] = [
     {
       optionId: 1,
-      imgUrl: './../../../assets/cards/consumidor.svg',
+      imgUrl: './../../../assets/real/FabricaElProducto.jpg',
       cardTitle: 'Fabrica el producto',
       selected: false
     }, {
       optionId: 2,
-      imgUrl: './../../../assets/cards/mayoreo.svg',
+      imgUrl: './../../../assets/real/FabYDistAlMayoreo.jpeg',
       cardTitle: 'Fabrica y distribuye el producto al mayoreo',
       selected: false
     }, {
       optionId: 3,
-      imgUrl: './../../../assets/cards/consumidor.svg',
+      imgUrl: './../../../assets/real/FabYDistAlMenudeo.jpg',
       cardTitle: 'Fabrica y distribuye el producto al menudeo',
       selected: false
     }, {
       optionId: 4,
-      imgUrl: './../../../assets/cards/consumidor.svg',
-      cardTitle: 'Fabrica y distribuye el producto al menudeo',
+      imgUrl: './../../../assets/real/Mayoreo.jpg',
+      cardTitle: 'Distribuye el producto al mayoreo',
       selected: false
     }, {
       optionId: 5,
-      imgUrl: './../../../assets/cards/consumidor.svg',
+      imgUrl: './../../../assets/real/Menudeo.jpg',
       cardTitle: 'Distribuye el producto al menudeo',
       selected: false
-    }, {
-      optionId: 6,
-      imgUrl: './../../../assets/cards/consumidor.svg',
-      cardTitle: 'Distribuye el producto al menudeo',
-      selected: false
-    }, {
+    } /* {
       optionId: 0,
       imgUrl: './../../../assets/cards/pais.svg',
       cardTitle: 'Otra actividad',
       selected: false
-    }
+    } */
   ];
 
   // To know confirmation modal need to be showed when the components get initialized.
   public confirmed: Subscription;
+
+  public imgUrl: string;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -102,10 +99,12 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     });
 
     this.question = '¿Vendes un producto?';
+    this.imgUrl2 = './../../../assets/real/SelectEActivityModal.jpg';
+
     this.imgUrl = './../../../assets/cards/mayoreo.svg';
 
-    this.title = '¿Que haces con el producto?';
-    this.subtitle = 'Selecciona la mejor opción para tu negocio';
+    this.title = '¿Qué actividad desempeñas con el producto?';
+    this.subtitle = null;
     this.explanation = 'Ayúdanos a determinar el tipo de actividad'
     + ' que desempeñas con el producto para lograr mejores resultados. Si no vendes un producto, entonces'
     + ' marca la casilla \'Otra actividad\' y presiona en "Siguiente".';
@@ -128,7 +127,7 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
   //#region Cards
     public getBoxShadowForCard(roleId: number): String {
       if (this.selectedOption === roleId) {
-        return '0px 0px 0px 10px #21bcbd inset';
+        return '0px 0px 0px 10px #32b3aa inset';
       }
       return null;
     }

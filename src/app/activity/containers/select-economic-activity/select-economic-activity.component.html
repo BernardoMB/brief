@@ -1,8 +1,10 @@
-<app-title-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-title-card>
+<!-- <app-title-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-title-card> -->
+<app-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-instruction-card>
 
 <div class="row" style="margin: 0px;" *ngFor="let option of options; let i = index">
     <div class="card-custom" [ngStyle]="{'box-shadow': getBoxShadowForCard(option.optionId)}" (click)="assignRole(option.optionId)">
-      <app-img-card [imgUrl]="option.imgUrl" [cardTitle]="option.cardTitle"></app-img-card>
+      <!-- <app-img-card [imgUrl]="option.imgUrl" [cardTitle]="option.cardTitle"></app-img-card> -->
+      <app-option-img-card [imgUrl]="option.imgUrl" [cardTitle]="option.cardTitle"></app-option-img-card>
     </div>
 </div>
 
@@ -11,12 +13,15 @@
     <h4 class="title" align="center">Siguiente</h4>
   </div>
 </div>
+<div class="omono">
+    <a class="link" (click)="goToGeneric()">Otra actividad</a>
+</div>
 
 <!-- Modal -->
 <app-confirmation-modal
 #confirmationModal
 [name]="name"
 [question]="question"
-[imgUrl]="imgUrl"
+[imgUrl]="imgUrl2"
 (onAnswer)="onUserConfirmed($event)">
 </app-confirmation-modal>

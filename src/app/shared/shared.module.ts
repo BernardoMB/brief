@@ -12,6 +12,7 @@ import { ImgCardComponent } from './components/img-card/img-card.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { InstructionCardComponent } from './components/instruction-card/instruction-card.component';
 import { RealImgCardComponent } from './components/real-img-card/real-img-card.component';
+import { OptionImgCardComponent } from './components/option-img-card/option-img-card.component';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { RealImgCardComponent } from './components/real-img-card/real-img-card.c
     ImgCardComponent,
     ConfirmationModalComponent,
     InstructionCardComponent,
-    RealImgCardComponent],
+    RealImgCardComponent,
+    OptionImgCardComponent],
     exports: [
         TooltipModule,
         ToastyModule,
@@ -37,7 +39,8 @@ import { RealImgCardComponent } from './components/real-img-card/real-img-card.c
         ImgCardComponent,
         ConfirmationModalComponent,
         InstructionCardComponent,
-        RealImgCardComponent
+        RealImgCardComponent,
+        OptionImgCardComponent
     ],
     providers : []
 })

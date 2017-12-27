@@ -117,8 +117,9 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     });
 
     this.question = '¿Vendes algún producto?';
-    this.imgUrl = './../../../assets/real/SelectProduct.jpg';
     this.imgUrl2 = './../../../assets/real/SelectProductModal.jpg';
+
+    this.imgUrl = './../../../assets/real/SelectProduct.jpg';
 
     // Initilize view variables.
     this.title = 'Escribe el nombre del producto que ofreces';
@@ -154,7 +155,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
             this.confirmationModal.showModal();
           }, 0);
         }
-    });
+      });
   }
 
   ngOnDestroy() {
@@ -210,9 +211,14 @@ export class SelectProductComponent implements OnInit, OnDestroy {
         confirmButtonClass: 'hecho-button'
       });
     } else if (this.selectedOption === undefined && this.selectedProduct) {
-      const route = `/activity/product/eactivity/`
-      + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
-      this.router.navigate([route]);
+      if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
+        const route = '/activity/product/eactivity/';
+        this.router.navigate([route]);
+      } else {
+        const route = `/activity/product/eactivity/`
+        + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
+        this.router.navigate([route]);
+      }
     } else if (this.selectedOption === 0 && this.selectedProduct === undefined) {
       this.router.navigate(['/activity/generic']);
     }
