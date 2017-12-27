@@ -2,14 +2,14 @@
 
 <!-- Automcomplete search box -->
 <div class="search-auto-complete-custom">
-  <input id="product-input"
+  <input id="service-input"
   ngui-auto-complete
   class="search-box"
-  [(ngModel)]="selectedProduct"
-  [source]="productsArray"
-  placeholder="Busca tu producto..."
+  [(ngModel)]="selectedService"
+  [source]="servicesArray"
+  placeholder="Busca tu industria..."
   no-match-found-text="Sin resultados"
-  (valueChanged)="selectProduct($event)"
+  (valueChanged)="selectService($event)"
   [open-on-focus]="false"
   [accept-user-input]="false"
   [select-on-blur]="true"
@@ -35,12 +35,3 @@
 <div class="omono">
     <a class="link" (click)="goToGeneric()">Otra actividad</a>
 </div>
-
-<!-- Modal -->
-<app-confirmation-modal
-#confirmationModal
-[name]="name"
-[question]="question"
-[imgUrl]="imgUrlModal"
-(onAnswer)="onUserConfirmed($event)">
-</app-confirmation-modal>

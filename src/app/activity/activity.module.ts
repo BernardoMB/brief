@@ -10,6 +10,8 @@ import { CoverageComponent } from './containers/coverage/coverage.component';
 import { SelectProductComponent } from './containers/select-product/select-product.component';
 import { SelectEconomicActivityComponent } from './containers/select-economic-activity/select-economic-activity.component';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { SelectIndustryComponent } from './containers/select-industry/select-industry.component';
+import { SelectServiceComponent } from './containers/select-service/select-service.component';
 
 @NgModule({
   imports: [
@@ -24,7 +26,9 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
     GenericComponent,
     CoverageComponent,
     SelectProductComponent,
-    SelectEconomicActivityComponent
+    SelectEconomicActivityComponent,
+    SelectIndustryComponent,
+    SelectServiceComponent
   ]
 })
 export class ActivityModule { }

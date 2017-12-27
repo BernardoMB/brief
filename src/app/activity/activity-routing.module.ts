@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SelectProductComponent } from './containers/select-product/select-product.component';
 import { SelectEconomicActivityComponent } from './containers/select-economic-activity/select-economic-activity.component';
+import { SelectIndustryComponent } from './containers/select-industry/select-industry.component';
+import { SelectServiceComponent } from './containers/select-service/select-service.component';
 
 const routes: Routes = [
   { path: '', component: GenericComponent },
@@ -16,11 +18,12 @@ const routes: Routes = [
   { path: 'product/:source/:userdata/:campaignid', component: SelectProductComponent },
   { path: 'product/eactivity', component: SelectEconomicActivityComponent },
   { path: 'product/eactivity/:source/:userdata/:campaignid/:productid', component: SelectEconomicActivityComponent },
-  // SelectProductComponent : ProductTypeComponent
-  // SelectEconomicActivity : ProductComponent
   // Service (2)
-  /* { path: 'service/industry/:source/:userdata/:campaignid', component: SelectIndustryComponent },
-  { path: 'service/:source/:userdata/:campaignid/:indistryid', component: SelectServiceComponent }, */
+  { path: 'service/industry', component: SelectIndustryComponent },
+  { path: 'service/industry/:source/:userdata/:campaignid', component: SelectIndustryComponent },
+  { path: 'service', component: SelectServiceComponent },
+  { path: 'service/:source/:userdata/:campaignid/:industryId', component: SelectServiceComponent },
+  /* { path: 'service/:source/:userdata/:campaignid/:indistryid', component: SelectServiceComponent }, */
   // SelectIndustryComponent: ServiceComponent
   // SelectServiceComponent : ServiceTypeComponent
   // Profession (3)

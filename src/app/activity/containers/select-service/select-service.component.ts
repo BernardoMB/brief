@@ -1,23 +1,21 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction } from '../../../store/actions';
-import { Subscription } from 'rxjs/Subscription';
+import { SetHeaderTitleAction, SetLeadDataInfoAction, UserConfirmedAction } from '../../../store/actions';
 import { ILead } from '../../../../shared/models/ILead';
-import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import swal from 'sweetalert2';
-import { LandedService } from '../../../core/services/landed.service';
-import { Observable } from 'rxjs/Observable';
 declare var $: any;
 
 @Component({
-  selector: 'app-select-product',
-  templateUrl: './select-product.component.html',
-  styleUrls: ['./select-product.component.css']
+  selector: 'app-select-service',
+  templateUrl: './select-service.component.html',
+  styleUrls: ['./select-service.component.css']
 })
-export class SelectProductComponent implements OnInit, OnDestroy {
-  @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;
+export class SelectServiceComponent implements OnInit, OnDestroy {
 
   // Route params
   public source: number;
@@ -25,10 +23,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   public campaignId: number;
   public paramsSubscription: Subscription;
 
-  // Modal variables
   public name: string;
-  public question: string;
-  public imgUrlModal: string;
 
   // View variables
   public title: string;
@@ -37,46 +32,45 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   public autoCompleteInputElement: HTMLElement;
   public imgUrlFixed: String;
 
-  // Catalogo de productos
-  // TODO: Esto tiene que ser un observable de los productos que se mandarán pedir al store.
+  // Catalogo de industrias
+  // TODO: Esto tiene que ser un observable de las industrias que se mandaran pedir al store.
   // Lo tiene que jalar el constructor.
-  public productsArray: Array<any> = [
+  public servicesArray: Array<any> = [
     {
       id: 11,
       key: 1,
-      name: 'Pisos de madera 1'
+      name: 'Service 1'
     }, {
       id: 12,
       key: 2,
-      name: 'Pisos de madera 2'
+      name: 'Service 2'
     }, {
       id: 13,
       key: 3,
-      name: 'Pisos de madera 3'
+      name: 'Service 3'
     }, {
       id: 14,
       key: 4,
-      name: 'Pisos de madera 4'
+      name: 'Service 4'
     }, {
       id: 15,
       key: 5,
-      name: 'Pisos de madera 5'
+      name: 'Service 5'
     }, {
       id: 16,
       key: 6,
-      name: 'Pisos de madera 6'
+      name: 'Service 6'
     }
   ];
-  public selectedProduct: any;
+  public selectedService: any;
 
   // To know confirmation modal need to be showed when the components get initialized.
   public confirmed: Subscription;
 
   constructor(private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private landedService: LandedService,
-    private store: Store<IApplicationState>) {
-      const headerTitle = 'Selecciona el producto';
+    private store: Store<IApplicationState>,
+    private activatedRoute: ActivatedRoute) {
+      const headerTitle = 'Selecciona el servicio';
       this.store.dispatch(new SetHeaderTitleAction(headerTitle));
     }
 
@@ -87,13 +81,10 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     if (this.userData) {
       const userDataObject: ILead = JSON.parse(this.userData);
       this.name = userDataObject.fullName;
+      this.store.dispatch(new SetLeadDataInfoAction(userDataObject));
     }
     this.campaignId = this.activatedRoute.snapshot.params['campaignid'];
-    // The object this.route.params returns an observable on which we can subscribe.
-    // I need to subscribe to this object to execute some code every time the value passed to the observable changes.
-    // I dont need to subscribe to anything because once this component is loaded,
-    // the url params wont change while being inside of this component.
-    // This ubscription will always live on memory. and that is why we want to implement onDestroy to end up the subscription.
+
     this.paramsSubscription = this.activatedRoute.params.subscribe((params: Params) => {
       // This code will get executed every time the value passed to the observable params change.
       this.source = params['source'];
@@ -104,25 +95,21 @@ export class SelectProductComponent implements OnInit, OnDestroy {
       this.campaignId = params['campaignid'];
     });
 
-    // Initilize modal variables.
-    this.question = '¿Vendes algún producto?';
-    this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-
     this.imgUrlFixed = './../../../assets/real/SelectProduct.jpg';
 
     // Initilize view variables.
-    this.title = 'Escribe el nombre del producto que ofreces';
-    this.subtitle = null;
+    this.title = '¿A qué industria pertenece tu servicio?';
+    this.subtitle = '';
     // TODO: Modificar instruccion.
-    this.explanation = 'Ayúdanos a determinar el producto que vendes para lograr mejores resultados. Si no vendes un producto, entonces'
-    + ' marca la casilla "Otra actividad" y presiona en "Siguiente".';
+    this.explanation = 'Si no ofreces algún tipo de servicio, entonces marca la'
+    + ' casilla "Otra actividad" y haz presiona en continuar.';
 
     // Disable auto-complete-search text field when selecting an option.
     let isUserClick = false;
-    $('#product-input').on('mousedown', function(event) {
+    $('#service-input').on('mousedown', function(event) {
       isUserClick = true;
     });
-    $('#product-input').on('focus', function(event) {
+    $('#service-input').on('focus', function(event) {
       if (!isUserClick) {
         this.blur();
       }
@@ -130,22 +117,12 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     });
 
     // Disable auto-complete-search text field when pressing enter key.
-    this.autoCompleteInputElement = document.getElementById('product-input');
+    this.autoCompleteInputElement = document.getElementById('service-input');
     this.autoCompleteInputElement.addEventListener('keyup', function(e) {
       if (e.which === 13 || e.keyCode === 13) {
         this.blur();
       }
     }, false);
-
-    // Get confirmed variable from the store to know if I should show the confirmation modal.
-    this.confirmed = this.store.select(state => state.storeData.confirmed)
-      .subscribe(value => {
-        if (!value) {
-          setTimeout(() => {
-            this.confirmationModal.showModal();
-          }, 0);
-        }
-      });
   }
 
   ngOnDestroy() {
@@ -165,38 +142,34 @@ export class SelectProductComponent implements OnInit, OnDestroy {
         this.router.navigate(['/activity/generic']);
       }
     }
-  //#endregion
+//#endregion
 
-  /**
-   * Get the selected product from the view.
-   * @param {any} $event
-   * @memberof SelectProductComponent
-   */
-  public selectProduct($event): void {
-    this.selectedProduct = $event;
-    console.log(this.selectedProduct);
+  public selectService($event): void {
+    this.selectedService = $event;
+    console.log(this.selectedService);
     // Blur search box input.
-    document.getElementById('product-input').blur();
+    document.getElementById('service-input').blur();
   }
 
   public continue(): void {
-    if (this.selectedProduct === undefined) {
+    console.log(this.selectedService);
+    if (this.selectedService === undefined) {
       swal({
         customClass: 'select-one-option-alert',
         type: 'warning',
-        title: 'Selecciona un producto o presiona en "Otra actividad"',
+        title: 'Selecciona un servicio o presiona en "Otra actividad"',
         showCloseButton: false,
         confirmButtonText: 'Hecho',
         buttonsStyling: false,
         confirmButtonClass: 'hecho-button'
       });
-    } else if (this.selectedProduct) {
+    } else if (this.selectedService) {
       if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
-        const route = '/activity/product/eactivity/';
+        const route = '/activity/service/';
         this.router.navigate([route]);
       } else {
-        const route = `/activity/product/eactivity/`
-        + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
+        const route = `/activity/service/`
+        + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedService.id}`;
         this.router.navigate([route]);
       }
     }

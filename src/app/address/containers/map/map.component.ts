@@ -1,4 +1,4 @@
-import { SetLocationAction } from '../../../store/actions';
+import { SetLocationAction, SetHeaderTitleAction } from '../../../store/actions';
 import { ILocation } from '../../../../shared/models/ILocation';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
@@ -16,13 +16,18 @@ declare var $: any;
 })
 export class MapComponent implements OnInit, OnDestroy {
 
+  // View variables.
   public title: String;
   public subtitle: String;
   public explanation: String;
 
+  // User location.
   public location: { lat: number, lng: number };
 
-  constructor(private router: Router, private store: Store<IApplicationState>) { }
+  constructor(private router: Router, private store: Store<IApplicationState>) {
+    const headerTitle = '¿Tu negocio está aquí?';
+    this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+  }
 
   ngOnInit() {
     this.title = '¿Tu negocio está aquí?';
@@ -39,7 +44,7 @@ export class MapComponent implements OnInit, OnDestroy {
       maximumAge: 0
     };
     navigator.geolocation.getCurrentPosition(position => {
-      // TODO: hacer que no haya error.
+      // TODO: hacer que no haya error sirviendo lo pagina desde el protocolo https.
       // alert('todo chido');
       const coords = position.coords;
       this.location = {
@@ -138,6 +143,8 @@ export class MapComponent implements OnInit, OnDestroy {
         zoom,
         streetViewControl: false,
         fullscreenControl: false,
+        zoomControl: false,
+        mapTypeControl: false,
         mapTypeControlOptions: {
           // mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'light_koomkin', 'dark_koomkin']
           mapTypeIds: ['light_koomkin', 'dark_koomkin'],
@@ -154,7 +161,8 @@ export class MapComponent implements OnInit, OnDestroy {
         // Create the map search box and link it to the UI element.
         const input = document.getElementById('pac-input');
         const searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        const mamon = document.getElementById('mamon');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(mamon);
 
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
@@ -230,7 +238,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
       // centerMarker class is specified on index.html
       $('<div/>').addClass('centerMarker').appendTo(map.getDiv())
-      // do something onclick
+      // do something when the user clicks the center marker.
       .click(function() {
         const that = $(this);
         if (!that.data('win')) {
@@ -246,6 +254,15 @@ export class MapComponent implements OnInit, OnDestroy {
       return map;
     }
   //#endregion
+
+  public getMapStyle(): any {
+    const bodyHeight = $('#app-body').height();
+    const actualHeight = bodyHeight - 156;
+    return {
+      width: '100%',
+      height: actualHeight + 'px'
+    };
+  }
 
   public continue(): void {
     this.store.dispatch(new SetLocationAction(this.location));

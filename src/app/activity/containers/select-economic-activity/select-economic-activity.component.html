@@ -1,9 +1,7 @@
-<!-- <app-title-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-title-card> -->
 <app-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-instruction-card>
 
 <div class="row" style="margin: 0px;" *ngFor="let option of options; let i = index">
     <div class="card-custom" [ngStyle]="{'box-shadow': getBoxShadowForCard(option.optionId)}" (click)="assignRole(option.optionId)">
-      <!-- <app-img-card [imgUrl]="option.imgUrl" [cardTitle]="option.cardTitle"></app-img-card> -->
       <app-option-img-card [imgUrl]="option.imgUrl" [cardTitle]="option.cardTitle"></app-option-img-card>
     </div>
 </div>
@@ -22,6 +20,6 @@
 #confirmationModal
 [name]="name"
 [question]="question"
-[imgUrl]="imgUrl2"
+[imgUrl]="imgUrlModal"
 (onAnswer)="onUserConfirmed($event)">
 </app-confirmation-modal>

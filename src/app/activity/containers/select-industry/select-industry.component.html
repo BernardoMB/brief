@@ -2,14 +2,14 @@
 
 <!-- Automcomplete search box -->
 <div class="search-auto-complete-custom">
-  <input id="product-input"
+  <input id="industry-input"
   ngui-auto-complete
   class="search-box"
-  [(ngModel)]="selectedProduct"
-  [source]="productsArray"
-  placeholder="Busca tu producto..."
+  [(ngModel)]="selectedIndustry"
+  [source]="industriesArray"
+  placeholder="Busca tu industria..."
   no-match-found-text="Sin resultados"
-  (valueChanged)="selectProduct($event)"
+  (valueChanged)="selectIndustry($event)"
   [open-on-focus]="false"
   [accept-user-input]="false"
   [select-on-blur]="true"

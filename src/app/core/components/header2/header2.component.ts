@@ -18,7 +18,7 @@ export class Header2Component implements OnInit {
     this.backgroundUrl = '/assets/pisos-de-madera-2.jpg';
   }
 
-  setStyle() {
+  public setStyle(): any {
     const clase = {
       background: `url('${this.backgroundUrl}') no-repeat center left`
     };

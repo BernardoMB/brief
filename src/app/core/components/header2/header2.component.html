@@ -1,19 +1,19 @@
 <div [ngStyle]="setStyle()">
-  <div class="opacity"> <!-- Contiene la opacidad verde -->
-
-    <div class="non-collapse">
+  <div class="opacity">
+    <div id="non-collapse" class="non-collapse">
       <div data-toggle="collapse" data-target="#navbarToggleExternalContent">
-          <img class="d-inline-block align-top logo" src="./../../../../assets/navbarLogo-white.png">
+        <img class="d-inline-block align-top logo" src="./../../../../assets/navbarLogo-white.png">
       </div>
       <div class="title-container">{{title}}</div>
     </div>
-
     <div class="collapse" id="navbarToggleExternalContent">
       <div class="collapse-content">
         <h4>Collapsed content</h4>
         <span>Toggleable via the navbar brand.</span>
       </div>
     </div>
-
   </div>
 </div>
+
+
+

@@ -26,14 +26,12 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
   // Modal variables
   public name: string;
   public question: string;
-  public imgUrl2: string;
+  public imgUrlModal: string;
 
   // View variables
   public title: String;
   public subtitle: String;
   public explanation: String;
-
-  public selectedOption: number;
 
   public options: any[] = [
     {
@@ -61,18 +59,12 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
       imgUrl: './../../../assets/real/Menudeo.jpg',
       cardTitle: 'Distribuye el producto al menudeo',
       selected: false
-    } /* {
-      optionId: 0,
-      imgUrl: './../../../assets/cards/pais.svg',
-      cardTitle: 'Otra actividad',
-      selected: false
-    } */
+    }
   ];
+  public selectedOption: number;
 
   // To know confirmation modal need to be showed when the components get initialized.
   public confirmed: Subscription;
-
-  public imgUrl: string;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -99,9 +91,7 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     });
 
     this.question = '¿Vendes un producto?';
-    this.imgUrl2 = './../../../assets/real/SelectEActivityModal.jpg';
-
-    this.imgUrl = './../../../assets/cards/mayoreo.svg';
+    this.imgUrlModal = './../../../assets/real/SelectEActivityModal.jpg';
 
     this.title = '¿Qué actividad desempeñas con el producto?';
     this.subtitle = null;
@@ -167,7 +157,7 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
         swal({
           customClass: 'select-one-option-alert',
           type: 'warning',
-          title: 'Selecciona una opción',
+          title: 'Selecciona una opción o presiona en "Otra actividad"',
           showCloseButton: false,
           focusConfirm: false,
           confirmButtonText: 'Hecho',
@@ -175,12 +165,17 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
           confirmButtonClass: 'hecho-button'
         });
         break;
-      case 0:
-        this.router.navigate(['/activity/generic']);
-        break;
       default:
-        // TODO: Escribir en el store.
+        // TODO: Write to the store with the selected option.
         this.router.navigate(['/../address']);
     }
+  }
+
+  /**
+   * Redirects user to the generic campaing.
+   * @memberof SelectProductComponent
+   */
+  public goToGeneric(): void {
+    this.router.navigate(['/activity/generic']);
   }
 }

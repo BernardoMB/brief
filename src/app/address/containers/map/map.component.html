@@ -1,13 +1,16 @@
-<app-title-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-title-card>
-
-<!-- Google Maps search box -->
-<input id="pac-input" class="controls" type="text" placeholder="Buscar">
-
-<!-- This element style is specified on styles.css -->
-<div id="map_canvas"></div>
-
-<div class="panel-custom">
-    <div class="panel-body-custom" (click)="continue()">
-      <h4 class="title" align="center">Confirmar ubicación</h4>
+<div [ngStyle]="getMapStyle()">
+  <div id="mamon" style="width: 100%; padding: 15px;">
+    <!-- Google Maps search box -->
+    <input id="pac-input" type="text" placeholder="Buscar">
+  </div>
+  
+  <!-- This element style is specified on styles.css -->
+  <div id="map_canvas"></div>
+  <div style="position: absolute; bottom: 0px; width: 100%; padding: 15px;">
+    <div class="panel-custom2">
+      <div class="panel-body-custom" (click)="continue()">
+        <h6 class="title" align="center">Confirmar ubicación</h6>
+      </div>
     </div>
+  </div>
 </div>
