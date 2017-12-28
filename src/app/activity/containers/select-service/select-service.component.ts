@@ -152,6 +152,7 @@ export class SelectServiceComponent implements OnInit, OnDestroy {
   }
 
   public continue(): void {
+    // Ir a direccion
     console.log(this.selectedService);
     if (this.selectedService === undefined) {
       swal({
