@@ -81,6 +81,20 @@ export class MapComponent implements OnInit, OnDestroy {
         this.blur();
       }
     }, false);
+
+    const _originalSize = $(window).width() + $(window).height();
+    $(window).resize(function(){
+      if ($(window).width() + $(window).height() !== _originalSize) {
+        console.log('keyboard show up');
+        alert('keyboard show up');
+        $('.copyright_link').css('position', 'relative');
+      } else {
+        console.log('keyboard closed');
+        alert('keyboard closed');
+        $('#pac-input').blur();
+        $('.copyright_link').css('position', 'fixed');
+      }
+    });
   }
 
   public ngOnDestroy(): void { }
@@ -257,7 +271,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   public getMapStyle(): any {
     const bodyHeight = $('#app-body').height();
-    const actualHeight = bodyHeight - 156;
+    const actualHeight = bodyHeight - 150;
     return {
       width: '100%',
       height: actualHeight + 'px'
