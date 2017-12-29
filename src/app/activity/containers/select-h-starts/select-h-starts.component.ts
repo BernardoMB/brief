@@ -76,8 +76,9 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
     this.title = 'Selecciona las estrellas de tu hotel';
     this.subtitle = null;
     // TODO: Modificar instruccion.
-    this.explanation = 'Ayúdanos a determinar el nivel de tu hotel para lograr mejores resultados. Si tu negocio no es un hotel, entonces'
-    + ' presiona en "Otra actividad".';
+    this.explanation = 'Ayúdanos a determinar el nivel de tu hotel para lograr resultados increíbles. '
+    + 'Selecciona la cantidad de estrellas y presiona en "Siguiente". '
+    + 'Si tu negocio no es un hotel, entonces presiona en "Otra actividad".';
 
     // Get confirmed variable from the store to know if I should show the confirmation modal.
     this.confirmed = this.store.select(state => state.storeData.confirmed)

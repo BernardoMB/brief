@@ -14,10 +14,14 @@
 .explanation-custom {
     margin: 0px;
     color: #32b3aa;
-    text-align: justify;
+    /* text-align: justify; */
 }
  .title {
     color: #32b3aa;
     font-weight: bold; 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+ }
+
+ .fa-color {
+     color: dodgerblue;
  }

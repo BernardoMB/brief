@@ -114,8 +114,9 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
     this.title = 'Escribe la especialidad que tienes';
     this.subtitle = null;
     // TODO: Modificar instruccion.
-    this.explanation = 'Ayúdanos a determinar la especialidad que tienes para lograr mejores resultados. Si no eres profesionista, entonces'
-    + ' presiona en "Otra actividad".';
+    this.explanation = 'Ayúdanos a determinar la especialidad que tienes para lograr mejores resultados. '
+    + 'Busca tu especialidad y presiona en "Siguiente". '
+    + 'Si no eres profesionista, entonces presiona en "Otra actividad".';
 
     // Disable auto-complete-search text field when selecting an option.
     let isUserClick = false;

@@ -76,9 +76,9 @@ export class SelectRStarsComponent implements OnInit, OnDestroy {
     this.title = 'Selecciona las estrellas de tu negocio';
     this.subtitle = null;
     // TODO: Modificar instruccion.
-    this.explanation = 'Ayúdanos a determinar el nivel de tu negocio para lograr mejores resultados.'
-    + ' Si tu negocio no es un restaurante, entonces'
-    + ' presiona en "Otra actividad".';
+    this.explanation = 'Ayúdanos a determinar el nivel de tu restaurante para lograr resultados increíbles. '
+    + 'Selecciona la cantidad de estrellas y presiona en "Siguiente". '
+    + 'Si tu negocio no es un restaurante, entonces presiona en "Otra actividad".';
 
     // Get confirmed variable from the store to know if I should show the confirmation modal.
     this.confirmed = this.store.select(state => state.storeData.confirmed)

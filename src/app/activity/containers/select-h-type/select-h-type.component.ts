@@ -107,8 +107,9 @@ export class SelectHTypeComponent implements OnInit, OnDestroy {
     this.title = 'Escribe el tipo de hotel';
     this.subtitle = null;
     // TODO: Modificar instruccion.
-    this.explanation = 'Ayúdanos a determinar el tipo de hotel para lograr mejores resultados. Si tu negocio no es un hotel, entonces'
-    + ' presiona en "Otra actividad".';
+    this.explanation = 'Ayúdanos a determinar el tipo de hotel para lograr resultados increíbles. '
+    + 'Busca el tipo de hotel y presiona en "Siguiente". '
+    + 'Si tu negocio no es un hotel, entonces presiona en "Otra actividad".';
 
     // Disable auto-complete-search text field when selecting an option.
     let isUserClick = false;

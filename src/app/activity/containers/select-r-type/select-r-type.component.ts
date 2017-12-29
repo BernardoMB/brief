@@ -107,9 +107,9 @@ export class SelectRTypeComponent implements OnInit, OnDestroy {
     this.title = 'Escribe el tipo de comida';
     this.subtitle = null;
     // TODO: Modificar instruccion.
-    this.explanation = 'Ayúdanos a determinar el tipo de comida que sirves para lograr mejores resultados.'
-    + ' Si tu negocio no es un restaurante, entonces'
-    + ' presiona en "Otra actividad".';
+    this.explanation = 'Ayúdanos a determinar el tipo de comida que sirves para lograr resultados increíbles. '
+    + 'Busca el tipo de comida y presiona en "Siguiente". '
+    + 'Si tu negocio no es un restaurante, entonces presiona en "Otra actividad".';
 
     // Disable auto-complete-search text field when selecting an option.
     let isUserClick = false;

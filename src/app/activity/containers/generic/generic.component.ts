@@ -58,7 +58,7 @@ export class GenericComponent implements OnInit {
     this.store.dispatch(new UserConfirmedAction());
     this.title = 'Selecciona la mejor opción para tu negocio';
     this.subtitle = null;
-    this.explanation = 'Ayudanos a determinar el giro de tu negocio para lograr mejores resultados.';
+    this.explanation = 'Ayúdanos a determinar el giro de tu negocio para lograr resultados increíbles.';
   }
 
   //#region Cards

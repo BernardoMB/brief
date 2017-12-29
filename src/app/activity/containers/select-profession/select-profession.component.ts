@@ -107,9 +107,9 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
       this.title = 'Escribe tu profesión';
       this.subtitle = null;
       // TODO: Modificar instruccion.
-      this.explanation = 'Ayúdanos a determinar la profesión que practicas para lograr mejores resultados.'
-      + 'Si no eres profesionista, entonces'
-      + ' presiona en "Otra actividad".';
+      this.explanation = 'Ayúdanos a determinar la profesión que practicas para lograr resultados increíbles. '
+      + 'Busca el nombre de tu profesión y presiona en "Siguiente". '
+      + 'Si no eres profesionista, entonces presiona en "Otra actividad".';
 
       // Disable auto-complete-search text field when selecting an option.
       let isUserClick = false;

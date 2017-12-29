@@ -101,8 +101,9 @@ export class SelectServiceComponent implements OnInit, OnDestroy {
     this.title = '¿A qué industria pertenece tu servicio?';
     this.subtitle = '';
     // TODO: Modificar instruccion.
-    this.explanation = 'Si no ofreces algún tipo de servicio, entonces marca la'
-    + ' casilla "Otra actividad" y haz presiona en continuar.';
+    this.explanation = 'Ayúdanos a determinar el tipo de servicio que ofreces para lograr resultados increíbles. '
+    + 'Busca el nombre del servicio y presiona en "Siguiente". '
+    + 'Si no ofreces algún tipo de servicio, entonces presiona en "Otra actividad".';
 
     // Disable auto-complete-search text field when selecting an option.
     let isUserClick = false;

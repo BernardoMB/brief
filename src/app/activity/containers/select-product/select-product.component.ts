@@ -76,7 +76,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private landedService: LandedService,
     private store: Store<IApplicationState>) {
-      const headerTitle = 'Selecciona el producto';
+      const headerTitle = 'Selecciona tu producto';
       this.store.dispatch(new SetHeaderTitleAction(headerTitle));
     }
 
@@ -111,11 +111,12 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     this.imgUrlFixed = './../../../assets/real/SelectProduct.jpg';
 
     // Initilize view variables.
-    this.title = 'Escribe el nombre del producto que ofreces';
+    this.title = 'Escribe el nombre del producto';
     this.subtitle = null;
     // TODO: Modificar instruccion.
-    this.explanation = 'Ayúdanos a determinar el producto que vendes para lograr mejores resultados. Si no vendes un producto, entonces'
-    + ' marca la casilla "Otra actividad" y presiona en "Siguiente".';
+    this.explanation = 'Ayúdanos a determinar el producto que vendes para lograr resultados increíbles. '
+    + 'Busca el nombre de tu producto y presiona en "Siguiente". '
+    + 'Si no vendes un producto, entonces presiona en "Otra actividad".';
 
     // Disable auto-complete-search text field when selecting an option.
     let isUserClick = false;

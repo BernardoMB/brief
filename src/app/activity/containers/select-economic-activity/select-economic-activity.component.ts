@@ -93,11 +93,11 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     this.question = '¿Vendes un producto?';
     this.imgUrlModal = './../../../assets/real/SelectEActivityModal.jpg';
 
-    this.title = '¿Qué actividad desempeñas con el producto?';
+    this.title = '¿Qué actividad realizas con el producto?';
     this.subtitle = null;
     this.explanation = 'Ayúdanos a determinar el tipo de actividad'
-    + ' que desempeñas con el producto para lograr mejores resultados. Si no vendes un producto, entonces'
-    + ' marca la casilla \'Otra actividad\' y presiona en "Siguiente".';
+    + ' que desempeñas con el producto para lograr resultados increíbles. Si no vendes un producto, entonces'
+    + ' presiona en "Otra actividad".';
 
     // Get confirmed variable from the store to know if I should show the confirmation modal.
     this.confirmed = this.store.select(state => state.storeData.confirmed)
