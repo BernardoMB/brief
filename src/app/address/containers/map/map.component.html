@@ -18,3 +18,12 @@
   </div>
 
 </div>
+
+<!-- Modal -->
+<app-confirmation-modal
+#confirmationModal
+[name]="name"
+[question]="question"
+[imgUrl]="imgUrlModal"
+(onAnswer)="onUserConfirmed($event)">
+</app-confirmation-modal>

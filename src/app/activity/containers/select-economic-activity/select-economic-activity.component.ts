@@ -7,7 +7,7 @@ import { IApplicationState } from '../../../store/models/app-state';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import swal from 'sweetalert2';
-import { SetHeaderTitleAction } from '../../../store/actions';
+import { SetHeaderTitleAction, UserConfirmedAction } from '../../../store/actions';
 
 @Component({
   selector: 'app-select-economic-activity',
@@ -112,6 +112,7 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
+    this.confirmed.unsubscribe();
   }
 
   //#region Cards
@@ -137,6 +138,7 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
      * @memberof MakerComponent
      */
     public onUserConfirmed(event): void {
+      this.store.dispatch(new UserConfirmedAction());
       if (event) {
         // Execute some code.
       } else {

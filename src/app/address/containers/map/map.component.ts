@@ -2,9 +2,12 @@ import { SetLocationAction, SetHeaderTitleAction } from '../../../store/actions'
 import { ILocation } from '../../../../shared/models/ILocation';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+import { Subscription } from 'rxjs';
+import { ILead } from '../../../../shared/models/ILead';
 declare var google: any;
 declare var jquery: any;
 declare var $: any;
@@ -15,24 +18,70 @@ declare var $: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, OnDestroy {
+  @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;
+
+  // Route params
+  public source: number;
+  public userData: string;
+  public campaignId: number;
+  public paramsSubscription: Subscription;
+
+  // Modal variables
+  public name: string;
+  public question: string;
+  public imgUrlModal: string;
 
   // View variables.
   public title: String;
   public subtitle: String;
   public explanation: String;
 
+  // To know confirmation modal need to be showed when the components get initialized.
+  public confirmed: Subscription;
+
   // User location.
   public location: { lat: number, lng: number };
 
-  constructor(private router: Router, private store: Store<IApplicationState>) {
+  constructor(private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private store: Store<IApplicationState>) {
     const headerTitle = '¿Tu negocio está aquí?';
     this.store.dispatch(new SetHeaderTitleAction(headerTitle));
   }
 
   ngOnInit() {
+    this.source = this.activatedRoute.snapshot.params['source'];
+    this.userData = this.activatedRoute.snapshot.params['userdata'];
+    if (this.userData) {
+      const userDataObject: ILead = JSON.parse(this.userData);
+      this.name = userDataObject.fullName;
+    }
+    this.campaignId = this.activatedRoute.snapshot.params['campaignid'];
+    this.paramsSubscription = this.activatedRoute.params.subscribe((params: Params) => {
+      this.source = params['source'];
+      this.userData = params['userdata'];
+      if (this.userData) {
+        this.name = JSON.parse(this.userData).fullName;
+      }
+      this.campaignId = params['campaignid'];
+    });
+
+    this.question = '¿Ofreces el servicio x?';
+    this.imgUrlModal = './../../../assets/real/SelectEActivityModal.jpg';
+
     this.title = '¿Tu negocio está aquí?';
     this.subtitle = 'Indica la ubicación de tu negocio';
     this.explanation = 'Ayudanos a determinar la ubicación tu negocio para lograr mejores resultados.';
+
+    // Get confirmed variable from the store to know if I should show the confirmation modal.
+    this.confirmed = this.store.select(state => state.storeData.confirmed)
+    .subscribe(value => {
+      if (!value) {
+        setTimeout(() => {
+          this.confirmationModal.showModal();
+        }, 0);
+      }
+    });
 
     // Declare Google Map
     let map;
@@ -86,18 +135,36 @@ export class MapComponent implements OnInit, OnDestroy {
     $(window).resize(function(){
       if ($(window).width() + $(window).height() !== _originalSize) {
         console.log('keyboard show up');
-        alert('keyboard show up');
+        // alert('keyboard show up');
         $('.copyright_link').css('position', 'relative');
       } else {
         console.log('keyboard closed');
-        alert('keyboard closed');
+        // alert('keyboard closed');
         $('#pac-input').blur();
         $('.copyright_link').css('position', 'fixed');
       }
     });
   }
 
-  public ngOnDestroy(): void { }
+  public ngOnDestroy(): void {
+    this.paramsSubscription.unsubscribe();
+  }
+
+  //#region Confirmation Modal event binding
+    /**
+     * This function gets executed when the user confirmed.
+     * @param {any} event
+     * @memberof MakerComponent
+     */
+    public onUserConfirmed(event): void {
+      if (event) {
+        // Execute some code.
+      } else {
+        // Redirect user to generic campaign
+        this.router.navigate(['/activity/generic']);
+      }
+    }
+  //#endregion
 
   //#region Map functions
     public initMap(): any {

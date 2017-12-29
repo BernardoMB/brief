@@ -4,7 +4,8 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-import { SetActivityAction } from '../../../store/actions';
+import { SetActivityAction, SetHeaderTitleAction, UserConfirmedAction } from '../../../store/actions';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-generic',
@@ -13,66 +14,50 @@ import { SetActivityAction } from '../../../store/actions';
 })
 export class GenericComponent implements OnInit {
 
+  // View variables
   public title: String;
   public subtitle: String;
   public explanation: String;
 
-  public selectedOption: number;
-
   public options: any[] = [
     {
-      optionId: -1,
-      imgUrl: './../../../assets/cards/fabrica.svg',
-      cardTitle: 'Frabrica, produce o maquila algún producto',
+      optionId: 1,
+      imgUrl: './../../../assets/real/SelectProduct.jpg',
+      cardTitle: 'Farica o vende un producto',
       selected: false
     }, {
-      optionId: -2,
-      imgUrl: './../../../assets/cards/servicios.svg',
+      optionId: 2,
+      imgUrl: './../../../assets/generic/service2.jpg',
       cardTitle: 'Ofrece algún servicio',
       selected: false
     }, {
-      optionId: -3,
-      imgUrl: './../../../assets/cards/Profesionista.svg',
+      optionId: 3,
+      imgUrl: './../../../assets/generic/profession.jpg',
       cardTitle: 'Profesionista u oficio',
       selected: false
     }, {
+      optionId: 4,
+      imgUrl: './../../../assets/generic/hotel.jpg',
+      cardTitle: 'Hotel',
+      selected: false
+    }, {
       optionId: 5,
-      imgUrl: './../../../assets/cards/Distribuye.svg',
-      cardTitle: 'Distribuye productos al mayoreo',
+      imgUrl: './../../../assets/generic/restaurant.jpg',
+      cardTitle: 'Restaurante',
       selected: false
-    }, {
-      optionId: 6,
-      imgUrl: './../../../assets/cards/mayoreo.svg',
-      cardTitle: 'Vende o renta productos al mayoreo',
-      selected: false
-    }, {
-      optionId: 7,
-      imgUrl: './../../../assets/cards/consumidor.svg',
-      cardTitle: 'Vende o renta al público o consumidor final',
-      selected: false
-    }, {
-      optionId: 8,
-      imgUrl: './../../../assets/cards/CuentasConUnEstablecimiento.svg',
-      cardTitle: 'Cuentas con un local para tus clientes',
-      selected: false
-    }, {
-      optionId: 9,
-      imgUrl: './../../../assets/cards/restaurante.svg',
-      cardTitle: 'Es un restaurante',
-      selected: false
-    }, {
-      optionId: 10,
-      imgUrl: './../../../assets/cards/hotel.svg',
-      cardTitle: 'Es un hotel',
-      selected: false
-    },
+    }
   ];
+  public selectedOption: number;
 
-  constructor(private router: Router, private store: Store<IApplicationState>) { }
+  constructor(private router: Router, private store: Store<IApplicationState>) {
+    const headerTitle = '¿Qué hace tu empresa?';
+    this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+  }
 
   ngOnInit() {
-    this.title = '¿Qué hace tu empresa?';
-    this.subtitle = 'Selecciona la mejor opción para tu negocio';
+    this.store.dispatch(new UserConfirmedAction());
+    this.title = 'Selecciona la mejor opción para tu negocio';
+    this.subtitle = null;
     this.explanation = 'Ayudanos a determinar el giro de tu negocio para lograr mejores resultados.';
   }
 
@@ -93,23 +78,39 @@ export class GenericComponent implements OnInit {
   //#endregion
 
   public continue(): void {
-    switch (this.selectedOption) {
-      case undefined:
-        alert('Selecciona una opcion para continuar.');
-        break;
-      case -1:
-        this.router.navigate(['/activity/maker']);
-        break;
-      case -2:
-        this.router.navigate(['/activity/service']);
-        break;
-      case -3:
-        this.router.navigate(['/activity/professional']);
-        break;
-      default:
-        this.store.dispatch(new SetActivityAction(this.selectedOption));
-        this.router.navigate(['/../address']);
+    if (this.selectedOption === undefined) {
+      swal({
+        customClass: 'select-one-option-alert',
+        type: 'warning',
+        title: 'Selecciona una opción paara continuar',
+        showCloseButton: false,
+        focusConfirm: false,
+        confirmButtonText: 'Hecho',
+        buttonsStyling: false,
+        confirmButtonClass: 'hecho-button'
+      });
+    } else {
+      switch (this.selectedOption) {
+        case 1:
+          this.router.navigate(['/activity/product']);
+          break;
+        case 2:
+          this.router.navigate(['/activity/service/industry']);
+          break;
+        case 3:
+          this.router.navigate(['/activity/profession']);
+          break;
+        case 4:
+          this.router.navigate(['/activity/hotel']);
+          break;
+        case 5:
+          this.router.navigate(['/activity/restaurant']);
+          break;
       }
+    }
   }
 
+  public goToGeneric(): void {
+    this.router.navigate(['/activity/generic']);
+  }
 }

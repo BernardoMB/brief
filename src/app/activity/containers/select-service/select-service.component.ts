@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetHeaderTitleAction, SetLeadDataInfoAction, UserConfirmedAction } from '../../../store/actions';
+import { SetHeaderTitleAction, SetLeadDataInfoAction } from '../../../store/actions';
 import { ILead } from '../../../../shared/models/ILead';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import swal from 'sweetalert2';
@@ -127,22 +127,7 @@ export class SelectServiceComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
-    this.confirmed.unsubscribe();
   }
-
-  //#region Confirmation Modal event binding
-    public onUserConfirmed(event): void {
-      // Tell the store that the user has already confirmed
-      // when he first entered the app so the modal wont show again.
-      this.store.dispatch(new UserConfirmedAction());
-      if (event) {
-        // Execute some code.
-      } else {
-        // Redirect user to generic campaign.
-        this.router.navigate(['/activity/generic']);
-      }
-    }
-//#endregion
 
   public selectService($event): void {
     this.selectedService = $event;
@@ -166,10 +151,10 @@ export class SelectServiceComponent implements OnInit, OnDestroy {
       });
     } else if (this.selectedService) {
       if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
-        const route = '/activity/service/';
+        const route = '/../address/';
         this.router.navigate([route]);
       } else {
-        const route = `/activity/service/`
+        const route = `/../address/`
         + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedService.id}`;
         this.router.navigate([route]);
       }

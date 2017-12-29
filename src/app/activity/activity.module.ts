@@ -12,6 +12,13 @@ import { SelectEconomicActivityComponent } from './containers/select-economic-ac
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { SelectIndustryComponent } from './containers/select-industry/select-industry.component';
 import { SelectServiceComponent } from './containers/select-service/select-service.component';
+import { SelectProfessionComponent } from './containers/select-profession/select-profession.component';
+import { SelectSpecialtyComponent } from './containers/select-specialty/select-specialty.component';
+import { SelectHTypeComponent } from './containers/select-h-type/select-h-type.component';
+import { SelectRTypeComponent } from './containers/select-r-type/select-r-type.component';
+import { SelectHStartsComponent } from './containers/select-h-starts/select-h-starts.component';
+import { StarRatingModule } from 'angular-star-rating';
+import { SelectRStarsComponent } from './containers/select-r-stars/select-r-stars.component';
 
 @NgModule({
   imports: [
@@ -19,7 +26,8 @@ import { SelectServiceComponent } from './containers/select-service/select-servi
     ActivityRoutingModule,
     SharedModule,
     FormsModule,
-    NguiAutoCompleteModule
+    NguiAutoCompleteModule.forRoot(),
+    StarRatingModule
   ],
   declarations: [
     MakerComponent,
@@ -28,7 +36,13 @@ import { SelectServiceComponent } from './containers/select-service/select-servi
     SelectProductComponent,
     SelectEconomicActivityComponent,
     SelectIndustryComponent,
-    SelectServiceComponent
+    SelectServiceComponent,
+    SelectProfessionComponent,
+    SelectSpecialtyComponent,
+    SelectHTypeComponent,
+    SelectRTypeComponent,
+    SelectHStartsComponent,
+    SelectRStarsComponent
   ]
 })
 export class ActivityModule { }

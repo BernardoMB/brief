@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: MapComponent }
+  { path: '', component: MapComponent },
+  { path: '/:source/:userdata/:campaignid/:industryid/:serviceid', component: MapComponent }
 ];
 
 @NgModule({
