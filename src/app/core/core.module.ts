@@ -56,7 +56,7 @@ import { Header2Component } from './components/header2/header2.component';
     SlimLoadingBarModule,
     DndModule,
     SharedModule,
-    MainComponent
+    MainComponent,
   ]
 })
 export class CoreModule {
