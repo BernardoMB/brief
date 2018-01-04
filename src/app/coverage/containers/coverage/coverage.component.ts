@@ -76,6 +76,9 @@ export class CoverageComponent implements OnInit {
       case 0:
         alert('Selecciona una opcion para continuar.');
         break;
+      case 2:
+      this.router.navigate(['/coverage/states']);
+        break;
       default:
         this.router.navigate(['/../products']);
     }

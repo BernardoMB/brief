@@ -387,6 +387,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-checklist@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/angular-checklist/-/angular-checklist-1.2.3.tgz#b53f6f9870bc0dd7d34dc0e418dd79942b4487b4"
+
 angular-star-rating@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/angular-star-rating/-/angular-star-rating-3.0.8.tgz#c33ea9bb5b61d7a2f8cf4cc60faa0048716c96b0"

@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CoverageRoutingModule } from './coverage-routing.module';
 import { CoverageComponent } from './containers/coverage/coverage.component';
+import { SelectStatesComponent } from './containers/select-states/select-states.component';
+import { ChecklistModule } from 'angular-checklist';
 
 @NgModule({
   imports: [
@@ -12,7 +14,8 @@ import { CoverageComponent } from './containers/coverage/coverage.component';
     CoverageRoutingModule,
     SharedModule,
     FormsModule,
+    ChecklistModule
   ],
-  declarations: [CoverageComponent]
+  declarations: [CoverageComponent, SelectStatesComponent],
 })
 export class CoverageModule { }
