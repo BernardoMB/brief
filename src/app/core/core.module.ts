@@ -19,6 +19,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LandedService } from './services/landed.service';
 import { Header2Component } from './components/header2/header2.component';
+import { OfferComponent } from './containers/offer/offer.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { Header2Component } from './components/header2/header2.component';
     MainComponent,
     LaunchpadComponent,
     HeaderComponent,
-    Header2Component
+    Header2Component,
+    OfferComponent
   ],
   exports: [
     BrowserAnimationsModule,
