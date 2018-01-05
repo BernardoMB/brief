@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-initial-offer',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InitialOfferComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   public continue(): void {
-    console.log('Function not implemented');
+    this.router.navigate(['/offer/clients/adds']);
   }
 }

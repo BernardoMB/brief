@@ -80,7 +80,7 @@ export class CoverageComponent implements OnInit {
       this.router.navigate(['/coverage/states']);
         break;
       default:
-        this.router.navigate(['/../products']);
+        this.router.navigate(['/../../offer/clients/initial']);
     }
   }
 

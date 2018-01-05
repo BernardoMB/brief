@@ -1,10 +1,10 @@
 <app-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-instruction-card>
 
-<div class="well" style="max-height: 300px; overflow: auto; margin-left: 30px;">
+<div class="well" style="max-height: 300px; overflow: auto; margin-left: 30px; margin-right: 30px;">
   <ul class="list-group checked-list-box">
     <label *ngFor="let state of states; let i = index">
-      <input type="checkbox" [(checklist)]="selectedStates" [checklistValue]="i"/>
-      <span style="color:#344a54">{{state.name}}</span>
+      <input style="width: 20px; height: 20px;" type="checkbox" [(checklist)]="selectedStates" [checklistValue]="i"/>
+      <span style="color:#344a54; font-size: 24px;">{{state.name}}</span>
     </label>
   </ul>
 </div>

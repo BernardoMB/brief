@@ -6,6 +6,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ClientsRoutingModule } from './clients-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { InitialOfferComponent } from './containers/initial-offer/initial-offer.component';
+import { AddExampleComponent } from './containers/add-example/add-example.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { InitialOfferComponent } from './containers/initial-offer/initial-offer.
     SharedModule
   ],
   declarations: [
-  InitialOfferComponent]
+  InitialOfferComponent,
+  AddExampleComponent]
 })
 export class ClientsModule { }

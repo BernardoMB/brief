@@ -14,4 +14,14 @@ export class RealImgCardComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  public setStyle(): any {
+    const clase = {
+      height: '170px',
+      width: '100%',
+      background: `url('${this.imgUrl}') no-repeat center left`,
+      backgroundSize: '100%'
+    };
+    return clase;
+  }
 }

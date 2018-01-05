@@ -17,7 +17,6 @@ const routes: Routes = [
   }, {
     path: 'offer', component: OfferComponent,
     children: [
-      { path: '', component: LaunchpadComponent},
       { path: 'clients', loadChildren: 'app/clients/clients.module#ClientsModule' }
     ]
   }

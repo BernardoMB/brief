@@ -20,7 +20,8 @@ export class Header2Component implements OnInit {
 
   public setStyle(): any {
     const clase = {
-      background: `url('${this.backgroundUrl}') no-repeat center left`
+      background: `url('${this.backgroundUrl}') no-repeat center left`,
+      backgroundSize: '100%'
     };
     return clase;
   }

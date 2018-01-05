@@ -108,7 +108,7 @@ export class SelectStatesComponent implements OnInit {
         confirmButtonClass: 'hecho-button'
       });
     } else {
-      this.router.navigate(['/../products']);
+      this.router.navigate(['/../../offer/clients/initial']);
     }
   }
 
