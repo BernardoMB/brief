@@ -1,5 +1,14 @@
 // Data base configuration
-const { dbConfig } = require('src/server2/config/config');
+const dbConfig = {
+    userName: 'USERKOOMKIN',
+    password: 'Ag0K00M',
+    server: '187.162.208.218',
+    options: {
+        port: 1439,
+        database: 'aaa',
+        fallbackToDefaultDb: true,
+    }
+};
 // Data base driver
 const { Connection, Request } = require('tedious');
 
@@ -16,7 +25,7 @@ const _ = require('lodash');
 const fs = require('fs');
 
 const app: Application = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 // Run the app by serving the static files in the dist directory.
 app.use(express.static(__dirname + 'dist'));
