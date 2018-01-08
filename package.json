@@ -14,7 +14,8 @@
     "serve-devices": "ng serve --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
     "serve-devices-ssl": "ng serve --ssl --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
     "server": "./node_modules/.bin/ts-node ./src/server2/server.ts",
-    "server-watch": "./node_modules/.bin/nodemon --watch \"./src/server2/server.ts\" --ext \".ts\" --exec \"npm run server\""
+    "server-watch": "./node_modules/.bin/nodemon --watch \"./src/server2/server.ts\" --ext \".ts\" --exec \"npm run server\"",
+    "postinstall": "ng build --aot -prod"
   },
   "engines": {
     "node": "8.9.4",
@@ -70,14 +71,14 @@
     "tedious": "^2.1.1",
     "zone.js": "^0.8.14",
     "@angular/cli": "1.6.3",
-    "@angular/compiler-cli": "^5.0.0",
-    "typescript": "~2.4.2",
+    "@angular/compiler-cli": "^4.0.0",
+    "typescript": "~2.3.3",
     "@types/node": "~6.0.60",
     "ts-node": "~3.2.0"
   },
   "devDependencies": {
     "@angular/cli": "1.6.3",
-    "@angular/compiler-cli": "^5.0.0",
+    "@angular/compiler-cli": "^4.0.0",
     "@angular/language-service": "^5.0.0",
     "@types/body-parser": "^1.16.5",
     "@types/express": "^4.0.37",
@@ -103,7 +104,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.4",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
+    "typescript": "~2.3.3"
   },
   "description": "Calculate bondage index with user's info to launch bussines proposal",
   "main": "index.js",
