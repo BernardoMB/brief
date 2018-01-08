@@ -5,21 +5,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ts-node server.ts",
-    "start-ssl": "ng serve --ssl --proxy proxy.conf.json",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -n \"Brief Documentation\" -s",
-    "serve-devices": "ng serve --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
-    "serve-devices-ssl": "ng serve --ssl --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
-    "server": "./node_modules/.bin/ts-node ./src/server2/server.ts",
-    "server-watch": "./node_modules/.bin/nodemon --watch \"./src/server2/server.ts\" --ext \".ts\" --exec \"npm run server\"",
     "postinstall": "ng build --aot -prod"
   },
   "engines": {
-    "node": "8.9.4",
-    "npm": "5.6.0"
+    "node": "8.9.3",
+    "npm": "5.5.1"
   },
   "private": true,
   "dependencies": {
@@ -105,8 +99,5 @@
     "ts-node": "~3.2.4",
     "tslint": "~5.7.0",
     "typescript": "~2.3.3"
-  },
-  "description": "Calculate bondage index with user's info to launch bussines proposal",
-  "main": "index.js",
-  "author": "Bernardo Mondragon Brozon"
+  }
 }

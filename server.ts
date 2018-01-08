@@ -9,6 +9,7 @@ const dbConfig = {
         fallbackToDefaultDb: true,
     }
 };
+
 // Data base driver
 const { Connection, Request } = require('tedious');
 
