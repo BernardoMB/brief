@@ -43,7 +43,10 @@ export class ActivityEffectService {
         private action$: Actions,
         public toastyService: ToastyService,
         public  toastyConfig: ToastyConfig) {
-        this.socket = io({path: '/socket'});
+        // SocketIO configuration
+        this.socket = io();
+        // SocketIO Configuration with proxy
+        // this.socket = io({path: '/socket'});
         this.toastyConfig.theme = 'bootstrap';
         this.toastyConfig.position = 'bottom-center';
     }

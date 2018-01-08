@@ -29,3 +29,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Test URL
 
 http://localhost:4200/activity/product/1/%7B%22fullName%22:%22John%20Doe%22%7D/420
+
+## Scripts
+
+- Alternative script
+    ``` javascript
+    "start": "ng serve --proxy proxy.conf.json",
+    ```

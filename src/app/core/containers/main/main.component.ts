@@ -22,7 +22,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   private isLoadingSubscription: Subscription;
   public title$: Observable<string>;
-
+  public socket;
   // Route elements
   /* public url: Observable<string>;
   public source: Observable<number>;
@@ -31,6 +31,13 @@ export class MainComponent implements OnInit, OnDestroy {
 
   constructor(private slimLoadingBarService: SlimLoadingBarService,
     private store: Store<IApplicationState>) {
+      // SocketIO Configuration
+      this.socket = io();
+      this.socket.on('UPDATE_STATE', action => {
+        this.store.dispatch(action);
+      });
+      this.socket.on('connect_timeout', event => this.store.dispatch(new ErrorOcurredAction(event)));
+      this.socket.on('connect_error', error => this.store.dispatch(new ErrorOcurredAction(error)));
       this.title$ = this.store.select(state => mapStateToHeaderTitle(state));
     }
 
@@ -39,13 +46,13 @@ export class MainComponent implements OnInit, OnDestroy {
     this.isLoadingSubscription = this.store.select(state => state.uiState.isLoading)
         .subscribe(isLoading => isLoading ? this.startLoading() : this.completeLoading());
 
-    // SocketIO configuration
-    const socket = io({ path: '/socket' });
+    // SocketIO configuration with a proxy.
+    /* const socket = io({ path: '/socket' });
     socket.on('UPDATE_STATE', action => {
       this.store.dispatch(action);
     });
     socket.on('connect_timeout', event => this.store.dispatch(new ErrorOcurredAction(event)));
-    socket.on('connect_error', error => this.store.dispatch(new ErrorOcurredAction(error)));
+    socket.on('connect_error', error => this.store.dispatch(new ErrorOcurredAction(error))); */
 
     // Routing
     /* this.activatedRoute.params.subscribe((params: Params) => {

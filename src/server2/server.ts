@@ -1,25 +1,33 @@
-//#region Tedious SQL Server driver
-    const { dbConfig } = require('./config/config');
-    const { Connection, Request } = require('tedious');
-//#endregion
-//#region Sockets support
-    import * as http from 'http';
-    import * as express from 'express';
-    import * as socketIO from 'socket.io';
-    import { Application } from 'express';
-//#endregion
+// Data base configuration
+const { dbConfig } = require('./config/config');
+// Data base driver
+const { Connection, Request } = require('tedious');
+
+import * as express from 'express';
+import * as path from 'path';
+import * as http from 'http';
+import * as socketIO from 'socket.io';
+import { Application } from 'express';
+
 const bodyParser = require('body-parser');
 const _ = require('lodash');
 const fs = require('fs');
-//#region Interfaces
-    import { IProfession } from '../shared/models/IProfession';
-//#endregion
-//#region Actions
-    import { GettingAllProfessionsAction, UpdateAllProfessionsAction } from '../app/store/actions';
-//#endregion
+
+// Interfaces
+import { IProfession } from '../shared/models/IProfession';
+// Actions
+import { GettingAllProfessionsAction, UpdateAllProfessionsAction } from '../app/store/actions';
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
+
+// Run the app by serving the static files in the dist directory.
+app.use(express.static(__dirname + '/../../dist'));
+
+// For all GET requests, send back index.html so that Angular's PathLocationStrategy can be used.
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/../../dist/index.html'));
+});
 
 const connection = new Connection(dbConfig);
 // See http://tediousjs.github.io/tedious/api-connection.html for more info about tedios connection.
@@ -113,6 +121,7 @@ io.on('connection', (socket) => {
 
 });
 
+// Start the app by listening on the default deployment port or local port.
 server.listen(port, () => {
     console.log(`Brief server running on port ${port}`);
 });

@@ -3,18 +3,23 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -n \"Brief Documentation\" -s",
     "ng": "ng",
-    "start": "ng serve --proxy proxy.conf.json",
+    "start": "ts-node src/server2/server.ts",
     "start-ssl": "ng serve --ssl --proxy proxy.conf.json",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -n \"Brief Documentation\" -s",
     "serve-devices": "ng serve --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
     "serve-devices-ssl": "ng serve --ssl --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
-    "server": "./node_modules/.bin/ts-node ./src/server/server.ts",
-    "server-watch": "./node_modules/.bin/nodemon --watch \"./src/server/server.ts\" --ext \".ts\" --exec \"npm run server\""
+    "server": "./node_modules/.bin/ts-node ./src/server2/server.ts",
+    "server-watch": "./node_modules/.bin/nodemon --watch \"./src/server2/server.ts\" --ext \".ts\" --exec \"npm run server\"",
+    "postinstall": "ng build --aot -prod"
+  },
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
   },
   "private": true,
   "dependencies": {
@@ -65,7 +70,12 @@
     "socket.io-client": "^2.0.3",
     "sweetalert2": "^7.0.6",
     "tedious": "^2.1.1",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "@angular/cli": "1.2.6",
+    "@angular/compiler-cli": "^4.0.0",
+    "typescript": "~2.3.3",
+    "@types/node": "~6.0.60",
+    "ts-node": "~3.0.4"
   },
   "devDependencies": {
     "@angular/cli": "1.2.6",
