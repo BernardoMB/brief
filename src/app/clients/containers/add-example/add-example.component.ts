@@ -12,4 +12,11 @@ export class AddExampleComponent implements OnInit {
   ngOnInit() {
   }
 
+  public openModal(): void {
+    // TODO: Implement this function.
+  }
+
+  public continue(): void {
+    // TODO: Implement this function.
+  }
 }
