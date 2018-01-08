@@ -23,11 +23,11 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/cli": "1.6.3",
-    "@angular/compiler-cli": "^5.0.0",
-    "typescript": "~2.4.2",
+    "@angular/cli": "1.2.6",
+    "@angular/compiler-cli": "^4.0.0",
+    "typescript": "~2.3.3",
     "@types/node": "~6.0.60",
-    "ts-node": "~3.2.0",
+    "ts-node": "~3.0.4",
     "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
@@ -78,8 +78,8 @@
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.3",
-    "@angular/compiler-cli": "^5.0.0",
+    "@angular/cli": "1.2.6",
+    "@angular/compiler-cli": "^4.0.0",
     "@angular/language-service": "^5.0.0",
     "@types/body-parser": "^1.16.5",
     "@types/express": "^4.0.37",
@@ -103,9 +103,9 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "nodemon": "^1.12.1",
     "protractor": "~5.1.2",
-    "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
+    "typescript": "~2.3.3",
+    "ts-node": "~3.0.4"
   },
   "description": "Calculate bondage index with user's info to launch bussines proposal",
   "main": "index.js",
