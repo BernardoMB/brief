@@ -5,10 +5,16 @@
   "scripts": {
     "ng": "ng",
     "start": "ts-node server.ts",
+    "start-ssl": "ng serve --ssl --proxy proxy.conf.json",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -n \"Brief Documentation\" -s",
+    "serve-devices": "ng serve --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
+    "serve-devices-ssl": "ng serve --ssl --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
+    "server": "./node_modules/.bin/ts-node ./src/server2/server.ts",
+    "server-watch": "./node_modules/.bin/nodemon --watch \"./src/server2/server.ts\" --ext \".ts\" --exec \"npm run server\"",
     "postinstall": "ng build --aot -prod"
   },
   "engines": {
