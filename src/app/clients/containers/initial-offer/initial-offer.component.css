@@ -1,24 +1,10 @@
 .image {
-    /* height: 100%;
-    background: url(/../../../assets/offer/hand-shake.jpg);
-    background-size: 100% 100%; */
-    
-    
-    /* position: absolute;
-    top: 0px;
-    bottom: 0px;
-    overflow: scroll;
-    padding: 30px;
-    background: linear-gradient(45deg,#33a4bc 30%, #32b3aa 70%); */
-
-
     position: absolute;
     width: 100%;
     top: 0px;
     bottom: 0px;
-    background: url(/../../../assets/offer/hand-shake.jpg);
+    background: url(/../../../assets/offer/hand-shake-b.jpg);
     background-size: 100% 100%;
-
 }
 
 .opacity {

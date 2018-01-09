@@ -13,7 +13,7 @@ import { AddExampleComponent } from './containers/add-example/add-example.compon
     CommonModule,
     FormsModule,
     ClientsRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
   InitialOfferComponent,

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AddExampleModalComponent } from '../../../shared/components/add-example-modal/add-example-modal.component';
 
 @Component({
   selector: 'app-add-example',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-example.component.css']
 })
 export class AddExampleComponent implements OnInit {
+  @ViewChild('addExampleModal') addExampleModal: AddExampleModalComponent;
 
   constructor() { }
 
@@ -13,7 +15,7 @@ export class AddExampleComponent implements OnInit {
   }
 
   public openModal(): void {
-    // TODO: Implement this function.
+    this.addExampleModal.showModal();
   }
 
   public continue(): void {
