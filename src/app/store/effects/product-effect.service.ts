@@ -31,9 +31,9 @@ export class ProductEffectService {
         public toastyService: ToastyService,
         public  toastyConfig: ToastyConfig) {
         // SocketIO configuration
-        this.socket = io();
+        // this.socket = io();
         // SocketIO Configuration with proxy
-        // this.socket = io({path: '/socket'});
+        this.socket = io({path: '/socket'});
         this.toastyConfig.theme = 'bootstrap';
         this.toastyConfig.position = 'bottom-center';
     }

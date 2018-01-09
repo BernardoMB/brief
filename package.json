@@ -13,9 +13,8 @@
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -n \"Brief Documentation\" -s",
     "serve-devices": "ng serve --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
     "serve-devices-ssl": "ng serve --ssl --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
-    "server": "./node_modules/.bin/ts-node ./src/server2/server.ts",
-    "server-out": "./node_modules/.bin/ts-node server.ts",
-    "server-watch": "./node_modules/.bin/nodemon --watch \"./src/server2/server.ts\" --ext \".ts\" --exec \"npm run server\"",
+    "server": "./node_modules/.bin/ts-node ./server.ts",
+    "server-watch": "./node_modules/.bin/nodemon --watch \"./server.ts\" --ext \".ts\" --exec \"npm run server\"",
     "postinstall": "ng build --aot -prod"
   },
   "engines": {

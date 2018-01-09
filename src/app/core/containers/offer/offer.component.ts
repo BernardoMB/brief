@@ -19,7 +19,8 @@ export class OfferComponent implements OnInit {
   constructor(private slimLoadingBarService: SlimLoadingBarService,
     private store: Store<IApplicationState>) {
       // SocketIO Configuration
-      this.socket = io();
+      // this.socket = io();
+      this.socket = io({ path: '/socket' });
       this.socket.on('UPDATE_STATE', action => {
         this.store.dispatch(action);
       });

@@ -36,3 +36,19 @@ http://localhost:4200/activity/product/1/%7B%22fullName%22:%22John%20Doe%22%7D/4
     ``` javascript
     "start": "ng serve --proxy proxy.conf.json",
     ```
+
+## Deployment
+
+Comment the following lines 
+``` javascript
+this.socket = io({path: '/socket'});
+```
+and use the following
+``` javascript
+this.socket = io();
+```
+
+## Debugging
+
+Contraseña pepe 01992
+
