@@ -1,111 +1,116 @@
 <div bsModal #addExampleModal="bs-modal" class="modal fade" role="dialog">
-  <div id="modal-content" [ngStyle]="getStyle()">
+  <div id="modal-content" [ngStyle]="getStyle()" style="margin: 30px; overflow: scroll; background-color: #cfecf7;">
+    <div style="padding: 10px;">
 
-    <div id="gooogle-add" style="margin-bottom: 15px; border-radius: 6px; background-color: white;">
-      <div id="google-logo" style="display: flex; justify-content: space-around; padding: 10px; padding-bottom: 0px;">
-        <img src="./../../../assets/offer/google-logo.png" alt="" style="width: 120px; height: 40px;">
-      </div>
-      <div style="padding: 10px;">
-        <div class="input-group">
+      <div id="gooogle-add" style="margin-bottom: 15px; overflow: auto; border-radius: 6px; background-color: white;">
+        <div id="google-logo" style="margin: 10px; display: flex; justify-content: space-around;">
+          <img src="./../../../assets/offer/google-logo.png" alt="" style="width: 120px; height: 40px;">
+        </div>
+        <div id="search-bar" class="input-group" style="width: auto; margin-left: 10px; margin-right: 10px;">
           <span class="input-group-addon" id="basic-addon1">
             <i class="fa fa-search" aria-hidden="true"></i>
           </span>
           <input type="text" class="form-control" [(ngModel)]="productName" placeholder="Buscar..." aria-describedby="basic-addon1">
         </div>
-      </div>
-      <div style="padding-left: 10px; padding-right: 10px;">
-        <div style="color: #1f8ce8; font-weight: 700; line-height: 1.2;">
+        <div style="margin: 10px; margin-bottom: 0px; color: #1f8ce8; font-weight: 700; line-height: 1.2;">
           {{productName}}, de la mejor calidad
         </div>
-      </div>
-      <div style="padding-left: 10px; padding-right: 10px; margin-top: -5px">
-        <span style="color: #61bf5c; font-size: 14px;">
+        <div style="margin-top: -5px; margin-left: 10px; margin-right: 10px; color: #61bf5c; font-size: 14px;">
           www.{{companyName}}.com
-        </span>
-      </div>
-      <div style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px; margin-top: -3px">
-        <div style="color: #505050; font-size: 14px; line-height: 1.2;">
+        </div>
+        <div style="margin: 10px; margin-top: -3px; color: #505050; font-size: 14px; line-height: 1.2;">
           Somos especialistas en {{productName}}. Contáctanos ahora mismo y compruébalo.
         </div>
       </div>
-    </div>
 
-    <div id="facebook-add" style="margin-bottom: 15px; border-radius: 6px; background-color: white;">
-      <div id="facebook-logo" style="display: flex; justify-content: space-around; padding: 10px; padding-bottom: 0px;">
-        <img src="./../../../assets/offer/facebook-logo.png" alt="" style="width: 120px; height: 23px;">
-      </div>
-      <div style=" margin-top: 10px; display: flex; flex-direction: row; justify-content: space-between;">
-        <div style="display: flex; flex-direction: row;">
-          <div style="width: 40px; height: 40px; margin-left: 10px; padding-top: 5px; border: solid rgb(228, 228, 228) 1px;">
-            <img src="./../../../assets/offer/koomkin-logo.png" alt="" style="width: 100%; height: 50%;">
-          </div>
-          <div style="width: 130px; height: 40px; margin-left: 5px;">
-            <div style="color: #242424; font-weight: 600; line-height: 1.2;">
-              {{companyName}}
+      <div id="facebook-add" style="overflow: auto; border-radius: 6px; background-color: white;">
+        
+        <div id="facebook-logo" style="margin: 10px; display: flex; justify-content: space-around;">
+          <img src="./../../../assets/offer/facebook-logo.png" alt="" style="width: 120px; height: 23px;">
+        </div>
+        
+        <div id="profile" style="margin-left: 10px; margin-right: 10px; display: flex; flex-direction: row; justify-content: space-between;">
+          <div style="display: flex; flex-direction: row;">
+            <div style="width: 40px; height: 40px; margin-left: 10px; padding-top: 5px; border: solid rgb(228, 228, 228) 1px;">
+              <img src="./../../../assets/offer/koomkin-logo.png" alt="" style="width: 100%; height: 50%;">
             </div>
-            <div style="margin-top: 2px; color: #818181; font-weight: 600; font-size: 14px; line-height: 1.2;">
-              Publicidad -
-              <span>
-                <i class="fa fa-globe" aria-hidden="true"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div style="display: flex; flex-direction: row;">
-          <div style="width: 40px; height: 40px; text-align: center; font-size: 22px;">
-            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-          </div>
-          <div style="width: 40px; height: 40px; margin-right: 10px; text-align: center; font-size: 25px;">
-            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px; color: #242424; font-weight: 600; line-height: 1.2;">
-        {{productName}}
-      </div>
-      <div id="img-container" style="padding-left: 10px; padding-right: 10px; padding-top: 5px;">
-        <div style="height: 120px; border: solid gray 1px; text-align: center;">
-          <img [src]="imgUrl" alt="" style="width: 100%; height: 120px;">
-        </div>
-      </div>
-      <div style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px; border-top: 0px; border: solid rgb(189, 189, 189) 1px;">
-        <div style="display: flex; flex-direction: row;">
-          <div style="width: 55%;">
-            <div style="margin-left: 5px; color: #242424; font-size: 13px; line-height: 1.2;">
-              Somos especialistas en {{productName}}
+            <div style="width: 130px; height: 40px; margin-left: 5px;">
+              <div style="color: #242424; font-weight: 600; line-height: 1.2;">
+                {{companyName}}
+              </div>
+              <div style="margin-top: 2px; color: #818181; font-weight: 600; font-size: 14px; line-height: 1.2;">
+                Publicidad -
+                <span>
+                  <i class="fa fa-globe" aria-hidden="true"></i>
+                </span>
+              </div>
             </div>
           </div>
-          <div style="width: 45%; padding: 5px;">
-            <div style="height: 20px; border: solid gray 1px; box-shadow: 1px 2px #888888; text-align: center; color:#242424; font-weight: 600; font-size: 10px; background-color: rgb(245, 245, 245);">
-              <span style="margin-top: 5px;">Más información</span>
+          <div style="display: flex; flex-direction: row;">
+            <div style="width: 40px; height: 40px; text-align: center; font-size: 22px;">
+              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+            </div>
+            <div style="width: 40px; height: 40px; margin-right: 10px; text-align: center; font-size: 25px;">
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
             </div>
           </div>
         </div>
-      </div>
-      <div style="margin-left: 10px; margin-right: 10px;">
-        <i class="fa fa-thumbs-up" style="color:#1f8ce8;" aria-hidden="true"></i>
-        <span style="font-size: 14px; color:#888888;"> Tu mamá y 420 personas más</span>
-      </div>
-      <div style="margin-left: 10px; margin-right: 10px; text-align: right;">
-        <span style="font-size: 14px; color:#888888;"> 1 vez compartido</span>
-      </div>
-      <div style="margin-left: 20px; margin-right: 20px; height: 1px; background-color: rgb(165, 164, 164);"></div>
-      <div style="margin-left: 10px; margin-right: 10px; background-color: rgb(238, 238, 238);">
-        <div style="display: flex; flex-direction: row;">
-          <div style="width: 32%; height: 30px; padding-top: 5px; color:grey; text-align: center; font-size: 12px; font-weight: 700;">
-            <i class="fa fa-thumbs-up" aria-hidden="true"></i> Me gusta</div>
-          <div style="width: 1px; height: 14px; background-color: rgb(121, 121, 121); margin-top: 3px;"></div>
-          <div style="width: 34%; height: 30px; padding-top: 5px; color:grey; text-align: center; font-size: 12px; font-weight: 700;">
-            <i class="fa fa-comment" aria-hidden="true"></i> Comentar</div>
-          <div style="width: 1px; height: 14px; background-color: rgb(121, 121, 121); margin-top: 3px;"></div>
-          <div style="width: 32%; height: 30px; padding-top: 5px; color:grey; text-align: center; font-size: 12px; font-weight: 700;">
-            <i class="fa fa-share" aria-hidden="true"></i> Compartir</div>
+        
+        <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px; color: #242424; font-weight: 600; line-height: 1.2;">
+          {{productName}}
         </div>
-      </div>
-      <div style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
-        <div style="background-color: rgb(224, 224, 224); height: 10px;"></div>
-      </div>
-    </div>
 
+        <div id="img-container" style="padding-left: 10px; padding-right: 10px; padding-top: 5px;">
+          <div style="height: 120px; border: solid gray 1px; text-align: center;">
+            <img [src]="imgUrl" alt="" style="width: 100%; height: 120px;">
+          </div>
+        </div>
+
+        <div style="margin-left: 10px; margin-right: 10px; margin-bottom: 5px; border-top: 0px; border: solid rgb(189, 189, 189) 1px;">
+          <div style="display: flex; flex-direction: row;">
+            <div style="width: 55%;">
+              <div style="margin-left: 5px; color: #242424; font-size: 13px; line-height: 1.2;">
+                Somos especialistas en {{productName}}
+              </div>
+            </div>
+            <div style="width: 45%; padding: 5px;">
+              <div style="height: 20px; border: solid gray 1px; box-shadow: 1px 2px #888888; text-align: center; color:#242424; font-weight: 600; font-size: 10px; background-color: rgb(245, 245, 245);">
+                <span style="margin-top: 5px;">Más información</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-left: 10px; margin-right: 10px;">
+          <i class="fa fa-thumbs-up" style="color:#1f8ce8;" aria-hidden="true"></i>
+          <span style="font-size: 14px; color:#888888;"> Tu mamá y 420 personas más</span>
+        </div>
+
+        <div style="margin-left: 10px; margin-right: 10px; text-align: right;">
+          <span style="font-size: 14px; color:#888888;"> 1 vez compartido</span>
+        </div>
+
+        <div style="margin-left: 20px; margin-right: 20px; height: 1px; background-color: rgb(165, 164, 164);"></div>
+        
+        <div style="margin-left: 10px; margin-right: 10px; background-color: rgb(238, 238, 238);">
+          <div style="display: flex; flex-direction: row;">
+            <div style="width: 32%; height: 30px; padding-top: 5px; color:grey; text-align: center; font-size: 12px; font-weight: 700;">
+              <i class="fa fa-thumbs-up" aria-hidden="true"></i> Me gusta</div>
+            <div style="width: 1px; height: 14px; background-color: rgb(121, 121, 121); margin-top: 3px;"></div>
+            <div style="width: 34%; height: 30px; padding-top: 5px; color:grey; text-align: center; font-size: 12px; font-weight: 700;">
+              <i class="fa fa-comment" aria-hidden="true"></i> Comentar</div>
+            <div style="width: 1px; height: 14px; background-color: rgb(121, 121, 121); margin-top: 3px;"></div>
+            <div style="width: 32%; height: 30px; padding-top: 5px; color:grey; text-align: center; font-size: 12px; font-weight: 700;">
+              <i class="fa fa-share" aria-hidden="true"></i> Compartir</div>
+          </div>
+        </div>
+
+        <div style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
+          <div style="background-color: rgb(224, 224, 224); height: 10px;"></div>
+        </div>
+
+      </div>
+
+    </div>
   </div>
 </div>

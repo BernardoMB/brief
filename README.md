@@ -39,7 +39,41 @@ http://localhost:4200/activity/product/1/%7B%22fullName%22:%22John%20Doe%22%7D/4
 
 ## Deployment
 
-Comment the following lines 
+Configure server to serve static files in dist folder once the proyect is compiled and builded.
+
+Move the following dev-dependencies to dependencies:
+``` javascript
+{
+    "@angular/cli": "1.6.3",
+    "@angular/compiler-cli": "^4.0.0",
+    "typescript": "~2.3.3",
+    "@types/node": "~6.0.60",
+    "ts-node": "~3.2.0"
+}
+```
+Tell Heroku which versions of NodeJS and NPM you are using by adding the following to `package.json`:
+``` javascript
+"engines": {
+    "node": "8.9.3",
+    "npm": "5.5.1"
+}
+```
+Tell Heroku to compile and build the project in production mode after installing all dependencies by adding the following script to `package.json`:
+``` javascript
+"scripts": {
+    [...]
+    "postinstall": "ng build --aot -prod"
+}
+```
+Change start script to run the server
+``` javascript
+"scripts": {
+    [...]
+    "start": "ts-node server.ts"
+    [...]
+}
+```
+Comment the following lines in the client
 ``` javascript
 this.socket = io({path: '/socket'});
 ```

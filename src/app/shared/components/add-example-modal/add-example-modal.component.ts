@@ -34,13 +34,7 @@ export class AddExampleModalComponent implements OnInit {
     const bodyHeight = $('#app-body').height();
     const maximumHeight = bodyHeight - 60;
     const style = {
-      margin: '30px',
-      paddingTop: '15px',
-      paddingLeft: '15px',
-      paddingRight: '15px',
-      maxHeight: maximumHeight + 'px',
-      overflow: 'scroll',
-      backgroundColor: '#cfecf7'
+      maxHeight: maximumHeight + 'px'
     };
     return style;
   }
