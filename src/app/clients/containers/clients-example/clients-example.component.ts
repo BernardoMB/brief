@@ -17,4 +17,8 @@ export class ClientsExampleComponent implements OnInit {
     $('body').css('background-color', '#e8f0f9');
   }
 
+  public continue(): void {
+    // TODO: implment this function
+  }
+
 }

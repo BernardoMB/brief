@@ -1,0 +1,19 @@
+.panel-custom {
+    background-color: hsl(38, 94%, 59%);
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.panel-body-custom {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.title {
+    color: hsl(200, 19%, 28%);
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 0px; 
+    margin-bottom: 0px;
+}
