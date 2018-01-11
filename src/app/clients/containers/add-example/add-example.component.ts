@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddExampleModalComponent } from '../../../shared/components/add-example-modal/add-example-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-example',
@@ -9,7 +10,7 @@ import { AddExampleModalComponent } from '../../../shared/components/add-example
 export class AddExampleComponent implements OnInit {
   @ViewChild('addExampleModal') addExampleModal: AddExampleModalComponent;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -19,6 +20,6 @@ export class AddExampleComponent implements OnInit {
   }
 
   public continue(): void {
-    // TODO: Implement this function.
+    this.router.navigate(['/offer/clients/clients']);
   }
 }

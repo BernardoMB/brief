@@ -7,6 +7,7 @@ import { ClientsRoutingModule } from './clients-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { InitialOfferComponent } from './containers/initial-offer/initial-offer.component';
 import { AddExampleComponent } from './containers/add-example/add-example.component';
+import { ClientsExampleComponent } from './containers/clients-example/clients-example.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { AddExampleComponent } from './containers/add-example/add-example.compon
   ],
   declarations: [
   InitialOfferComponent,
-  AddExampleComponent]
+  AddExampleComponent,
+  ClientsExampleComponent]
 })
 export class ClientsModule { }
