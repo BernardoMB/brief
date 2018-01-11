@@ -10,7 +10,7 @@
           <span class="input-group-addon" id="basic-addon1">
             <i class="fa fa-search" aria-hidden="true"></i>
           </span>
-          <input type="text" class="form-control" [(ngModel)]="productName" placeholder="Buscar..." aria-describedby="basic-addon1">
+          <input id="search-box" disabled type="text" class="form-control search-box" [(ngModel)]="productName" placeholder="Buscar..." aria-describedby="basic-addon1">
         </div>
         <div style="margin: 10px; margin-bottom: 0px; color: #1f8ce8; font-weight: 700; line-height: 1.2;">
           {{productName}}, de la mejor calidad
