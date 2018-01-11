@@ -18,7 +18,7 @@ export class AddExampleModalComponent implements OnInit {
 
   ngOnInit() {
     this.productName = 'Producto';
-    this.companyName = 'Compañia';
+    this.companyName = 'Tu empresa';
     this.imgUrl = './../../../assets/offer/product.jpg';
   }
 
