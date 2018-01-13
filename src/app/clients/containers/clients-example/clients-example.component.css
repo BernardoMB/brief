@@ -1,8 +1,6 @@
 .panel-custom {
+    margin: 15px;
     background-color: hsl(38, 94%, 59%);
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-bottom: 15px;
 }
 
 .panel-body-custom {
@@ -16,4 +14,19 @@
     font-weight: 500;
     margin-top: 0px; 
     margin-bottom: 0px;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-indent: -999px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.active-b {
+    background-color: #32b3aa;
 }
