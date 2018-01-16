@@ -15,6 +15,7 @@ import { CoverageComponent } from './containers/coverage/coverage.component';
 
 const routes: Routes = [
   { path: '', component: GenericComponent },
+
   // Generic (0)
   { path: 'generic', component: GenericComponent },
   { path: 'generic/:source/:userdata/:campaignid', component: GenericComponent },

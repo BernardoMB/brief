@@ -217,8 +217,8 @@
 
 <!-- Carousel indicators -->
 <ol class="carousel-indicators" style="position: static; margin-top: 1rem;">
-  <li id="uno" data-target="#myCarousel" data-slide-to="0" class="active-b"></li>
-  <li id="dos" data-target="#myCarousel" data-slide-to="1"></li>
+  <li id="uno" data-target="#myCarousel" data-slide-to="0" class="indicator active-b"></li>
+  <li id="dos" data-target="#myCarousel" data-slide-to="1" class="indicator"></li>
 </ol>
 
 <div id="continue-button" class="panel-custom">
@@ -226,3 +226,7 @@
     <h4 class="title" align="center">Conoce nuestros planes</h4>
   </div>
 </div>
+
+<app-plans-modal
+#plansModal>
+</app-plans-modal>

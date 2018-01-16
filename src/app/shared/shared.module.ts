@@ -14,6 +14,7 @@ import { InstructionCardComponent } from './components/instruction-card/instruct
 import { RealImgCardComponent } from './components/real-img-card/real-img-card.component';
 import { OptionImgCardComponent } from './components/option-img-card/option-img-card.component';
 import { AddExampleModalComponent } from './components/add-example-modal/add-example-modal.component';
+import { PlansModalComponent } from './components/plans-modal/plans-modal.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { AddExampleModalComponent } from './components/add-example-modal/add-exa
     InstructionCardComponent,
     RealImgCardComponent,
     OptionImgCardComponent,
-    AddExampleModalComponent],
+    AddExampleModalComponent,
+    PlansModalComponent],
     exports: [
         TooltipModule,
         ToastyModule,
@@ -43,7 +45,8 @@ import { AddExampleModalComponent } from './components/add-example-modal/add-exa
         InstructionCardComponent,
         RealImgCardComponent,
         OptionImgCardComponent,
-        AddExampleModalComponent
+        AddExampleModalComponent,
+        PlansModalComponent
     ],
     providers : []
 })

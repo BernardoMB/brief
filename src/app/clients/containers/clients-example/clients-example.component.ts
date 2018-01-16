@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PlansModalComponent } from '../../../shared/components/plans-modal/plans-modal.component';
 declare var $: any;
 
 @Component({
@@ -7,6 +8,8 @@ declare var $: any;
   styleUrls: ['./clients-example.component.css']
 })
 export class ClientsExampleComponent implements OnInit {
+  @ViewChild('plansModal') plansModal: PlansModalComponent;
+
   public companyName: string;
 
   constructor() {
@@ -28,8 +31,12 @@ export class ClientsExampleComponent implements OnInit {
     });
   }
 
+  /**
+   * Esta función abre el modal en donde se especifican los planes disponibles para el usuario.
+   * @memberof ClientsExampleComponent
+   */
   public continue(): void {
-    // TODO: implment this function
+    this.plansModal.showModal();
   }
 
 }

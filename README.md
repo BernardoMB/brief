@@ -84,5 +84,5 @@ this.socket = io();
 
 ## Debugging
 
-Contraseña pepe 01992
+Contraseña pepe 001992
 

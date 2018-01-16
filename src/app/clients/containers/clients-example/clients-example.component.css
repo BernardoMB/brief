@@ -30,3 +30,7 @@
 .active-b {
     background-color: #32b3aa;
 }
+
+.indicator {
+    border: 1px solid #32b3aa;
+}
