@@ -1,5 +1,6 @@
 <div bsModal #addExampleModal="bs-modal" class="modal fade" role="dialog">
   <div id="modal-content" [ngStyle]="getStyle()" style="margin: 30px; overflow: scroll; background-color: #cfecf7;">
+    <i class="fa fa-times" style="margin: 10px; margin-bottom: 0px; color: grey;" aria-hidden="true" (click)="closeModal()"></i>
     <div style="padding: 10px;">
 
       <div id="gooogle-add" style="margin-bottom: 15px; overflow: auto; border-radius: 6px; background-color: white;">

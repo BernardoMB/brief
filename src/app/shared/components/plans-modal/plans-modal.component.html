@@ -1,7 +1,7 @@
 <div bsModal #plansModal="bs-modal" class="modal fade" role="dialog">
   <!-- TODO: add ngIf directive -->
   <div *ngIf="isPpl;" id="modal-content" style="margin: 15px;">
-    <div style="color: white; font-size: 20px;"><i class="fa fa-times" aria-hidden="true" (click)="closeModal()"></i></div>
+    <div style="color: white; font-size: 20px;"><i class="fa fa-times" style="margin: 5px;" aria-hidden="true" (click)="closeModal()"></i></div>
     <div style="margin-bottom: 10px; color: white; text-align: center; font-size: 22px; font-family: Roboto Slab; font-weight: 600;">¿Quieres esos {{pplClientsNumber}} clientes potenciales al mes?</div>
     <div style="padding: 10px; border-radius: 10px; background-color: #17afcb;">
         <div style="margin-bottom: 10px; color: white; text-align: center; font-size: 22px; font-family: Roboto Slab; font-weight: 600;">¡Paga sólo por cada cliente potencial que recibas!</div>

@@ -1,6 +1,11 @@
-<div style="display: flex; justify-content: space-around; background: linear-gradient(45deg,#33a4bc 30%, #32b3aa 70%);">
-  <div style="margin-top: 5px; margin-bottom: 5px; margin-top: 5px; text-align: center; font-size: 25px; font-family: Roboto Slab; color: white;">
-    {{companyName}}
+<div style="background: linear-gradient(45deg,#33a4bc 30%, #32b3aa 70%);">
+  <div style="position: absolute; color: white;">
+    <i class="fa fa-chevron-left" aria-hidden="true" style="margin: 15px;" (click)="goBack()"></i>
+  </div>
+  <div style="display: flex; justify-content: space-around;">
+    <div style="margin-top: 5px; margin-bottom: 5px; margin-top: 5px; text-align: center; font-size: 25px; font-family: Roboto Slab; color: white;">
+      {{companyName}}
+    </div>
   </div>
 </div>
 <div style="margin-top: 15px; margin-bottom: 15px; padding-left: 50px; padding-right: 50px; text-align: center; font-weight: 500; color: #859097">
@@ -100,7 +105,7 @@
 </div> -->
 
 <!-- Carousel -->
-<div id="myCarousel" class="carousel slide" style="height: 65%;" data-ride="carousel">
+<div id="myCarousel" class="carousel slide" style="height: 60%;" data-ride="carousel">
   <!-- Content -->
   <div class="carousel-inner" style="height: 100%; overflow: scroll;">
     <div class="carousel-item active">
@@ -192,11 +197,11 @@
               <div style="margin-top: -5px; font-size: 14px; color: grey;">últimos 12 meses</div>
             </div>
           </div>
-          <div style="padding: 5px;">
+          <div style="padding: 5px; margin-left: 40px; margin-right: 40px;">
               <img style="width: 100%; height: 100%;" src="./../../../assets/offer/graph2.svg" alt="">
           </div>
         </div>
-        <div style="margin-bottom: 15px; background-color: white; border: 1px solid grey;">
+        <div style="margin-bottom: 0px; background-color: white; border: 1px solid grey;">
           <div style="display: flex; flex-direction: row; justify-content: space-between; border-bottom: 1px solid grey;">
             <div style="position: relative; width: 10vw; padding: 5px;">
                 <img style="position: absolute; top: 50%; transform: translateY(-50%); width: 7vw; height: 7vw;" src="./../../../assets/offer/marker.svg" alt="">
@@ -206,7 +211,7 @@
               <div style="margin-top: -5px; font-size: 14px; color: grey;">últimos 12 meses</div>
             </div>
           </div>
-          <div style="padding: 5px;">
+          <div style="padding: 5px; margin-left: 40px; margin-right: 40px;">
               <img style="width: 100%; height: 100%;" src="./../../../assets/offer/map2.svg" alt="">
           </div>
         </div>

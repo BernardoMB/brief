@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
 import { PlansModalComponent } from '../../../shared/components/plans-modal/plans-modal.component';
 declare var $: any;
 
@@ -13,7 +14,7 @@ export class ClientsExampleComponent implements OnInit {
 
   public companyName: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private location: Location) {
     this.companyName = 'Tu empresa';
   }
 
@@ -38,6 +39,10 @@ export class ClientsExampleComponent implements OnInit {
    */
   public showPlans(): void {
     this.plansModal.showModal();
+  }
+
+  public goBack(): void {
+    this.location.back();
   }
 
   public continue(election): void {

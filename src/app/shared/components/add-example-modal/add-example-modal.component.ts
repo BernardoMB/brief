@@ -26,7 +26,7 @@ export class AddExampleModalComponent implements OnInit {
     this.modal.show();
   }
 
-  public hideModal(): void {
+  public closeModal(): void {
     this.modal.hide();
   }
 
