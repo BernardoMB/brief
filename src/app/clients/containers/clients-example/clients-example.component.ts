@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlansModalComponent } from '../../../shared/components/plans-modal/plans-modal.component';
 declare var $: any;
@@ -12,7 +13,7 @@ export class ClientsExampleComponent implements OnInit {
 
   public companyName: string;
 
-  constructor() {
+  constructor(private router: Router) {
     this.companyName = 'Tu empresa';
   }
 
@@ -35,8 +36,13 @@ export class ClientsExampleComponent implements OnInit {
    * Esta función abre el modal en donde se especifican los planes disponibles para el usuario.
    * @memberof ClientsExampleComponent
    */
-  public continue(): void {
+  public showPlans(): void {
     this.plansModal.showModal();
+  }
+
+  public continue(election): void {
+    // TODO: implement this funciton correctly.
+    this.router.navigate(['/offer/clients/payment']);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng-bootstrap/modal';
 
 @Component({
@@ -9,18 +9,19 @@ import { ModalDirective } from 'ng-bootstrap/modal';
 export class PlansModalComponent implements OnInit {
   @ViewChild('plansModal') modal: ModalDirective;
 
-  // TODO: Convert to input
-  public isPpl: boolean;
+  @Input() isPpl: boolean;
   // Jade
-  public pplClientsNumber: number;
-  public pplJadeCost: number;
-  public pplImperialJadeCost: number;
-  public pplJadeClients: number;
-  public pplImperialJadeClients: number;
+  @Input() pplClientsNumber: number;
+  @Input() pplJadeCost: number;
+  @Input() pplImperialJadeCost: number;
+  @Input() pplJadeClients: number;
+  @Input() pplImperialJadeClients: number;
   // Normal
-  public ClientsNumber: number;
-  public jadeCost: number;
-  public imperialJadeCost: number;
+  @Input() ClientsNumber: number;
+  @Input() jadeCost: number;
+  @Input() imperialJadeCost: number;
+
+  @Output() onElection = new EventEmitter<number>();
 
   constructor() { }
 
@@ -42,6 +43,12 @@ export class PlansModalComponent implements OnInit {
 
   public closeModal(): void {
     this.modal.hide();
+  }
+
+  public elect(election): void {
+    console.log(election);
+    this.onElection.emit(election);
+    this.closeModal();
   }
 
 }

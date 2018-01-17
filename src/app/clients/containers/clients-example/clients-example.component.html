@@ -222,11 +222,12 @@
 </ol>
 
 <div id="continue-button" class="panel-custom">
-  <div class="panel-body-custom" (click)="continue()">
+  <div class="panel-body-custom" (click)="showPlans()">
     <h4 class="title" align="center">Conoce nuestros planes</h4>
   </div>
 </div>
 
 <app-plans-modal
-#plansModal>
+#plansModal
+(onElection)="continue($event)">
 </app-plans-modal>

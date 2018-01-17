@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { InitialOfferComponent } from './containers/initial-offer/initial-offer.component';
 import { AddExampleComponent } from './containers/add-example/add-example.component';
 import { ClientsExampleComponent } from './containers/clients-example/clients-example.component';
+import { PaymentComponent } from './containers/payment/payment.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ClientsExampleComponent } from './containers/clients-example/clients-ex
   declarations: [
   InitialOfferComponent,
   AddExampleComponent,
-  ClientsExampleComponent]
+  ClientsExampleComponent,
+  PaymentComponent]
 })
 export class ClientsModule { }

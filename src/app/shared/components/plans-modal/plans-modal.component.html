@@ -11,7 +11,7 @@
             <div style="color: #1fb1cc; text-align: center; font-family: Roboto Slab; font-weight: 900;"><span style="font-size: 20px;">$ </span><span style="font-size: 40px;">{{pplJadeCost}}</span></div>
             <div style="margin-top: 10px; color: white; line-height: 1.1; font-size: 18px; font-family: Roboto Slab; text-align: center; font-weight: 500;">por cliente potencial</div>
             <div style="margin-top: 20px; margin-left: 5px; margin-right: 5px; color: rgb(83, 83, 83); font-size: 12px; line-height: 1.1; text-align: center; font-weight: 600;">Paquete de {{pplJadeClients}} clientes potenciales</div>
-            <div style="margin: 30px; padding: 5px; border-radius: 10px; background-color:#00ff91; text-align: center; font-weight: 700;">Elegir</div>
+            <div style="margin: 30px; padding: 5px; border-radius: 10px; background-color:#00ff91; text-align: center; font-weight: 700;" (click)="elect(1)">Elegir</div>
           </div>
           <div style="width: 5px; background-color: white;"></div>
           <div style="padding: 5px; padding-top: 10px;">
@@ -19,7 +19,7 @@
             <div style="color: #1fb1cc; text-align: center; font-family: Roboto Slab; font-weight: 900;"><span style="font-size: 20px;">$ </span><span style="font-size: 40px;">{{pplImperialJadeCost}}</span></div>
             <div style="margin-top: 10px; color: white; line-height: 1.1; font-size: 18px; font-family: Roboto Slab; text-align: center; font-weight: 500;">por cliente potencial</div>
             <div style="margin-top: 20px; margin-left: 5px; margin-right: 5px; color: rgb(83, 83, 83); font-size: 12px; line-height: 1.1; text-align: center; font-weight: 600;">Paquete de {{pplImperialJadeClients}} clientes potenciales</div>
-            <div style="margin: 30px; padding: 5px; border-radius: 10px; background-color:#00ff91; text-align: center; font-weight: 700;">Elegir</div>
+            <div style="margin: 30px; padding: 5px; border-radius: 10px; background-color:#00ff91; text-align: center; font-weight: 700;" (click)="elect(2)">Elegir</div>
           </div>
         </div>
         <div style="margin-left: 15px; margin-right: 15px; margin-top: 10px; color: white; line-height: 1.2; text-align: center;">Paga sólo $1.°° por suscripción y el resto lo pagas hasta que obtengas los clientes potenciales contratados</div>
@@ -38,7 +38,7 @@
               <div style="color: #1fb1cc; text-align: center; font-family: Roboto Slab; font-weight: 900;"><span style="font-size: 20px;">$ </span><span style="font-size: 40px;">{{jadeCost}}</span></div>
               <div style="margin-top: 10px; color: white; line-height: 1.1; font-size: 18px; font-family: Roboto Slab; text-align: center; font-weight: 500;">mensuales</div>
               <div style="margin-top: 20px; margin-left: 5px; margin-right: 5px; color: rgb(83, 83, 83); font-size: 12px; line-height: 1.1; text-align: center; font-weight: 600;">Paquete contratando un mes de servicio</div>
-              <div style="margin: 30px; padding: 5px; border-radius: 10px; background-color:#00ff91; text-align: center; font-weight: 700;">Elegir</div>
+              <div style="margin: 30px; padding: 5px; border-radius: 10px; background-color:#00ff91; text-align: center; font-weight: 700;" (click)="elect(1)">Elegir</div>
             </div>
             <div style="width: 5px; background-color: white;"></div>
             <div style="padding: 5px; padding-top: 10px;">
@@ -46,7 +46,7 @@
               <div style="color: #1fb1cc; text-align: center; font-family: Roboto Slab; font-weight: 900;"><span style="font-size: 20px;">$ </span><span style="font-size: 40px;">{{imperialJadeCost}}</span></div>
               <div style="margin-top: 10px; color: white; line-height: 1.1; font-size: 18px; font-family: Roboto Slab; text-align: center; font-weight: 500;">3 x 2</div>
               <div style="margin-top: 20px; margin-left: 5px; margin-right: 5px; color: rgb(83, 83, 83); font-size: 12px; line-height: 1.1; text-align: center; font-weight: 600;">Paga dos meses y recibe el tercero gratis</div>
-              <div style="margin: 30px; padding: 5px; border-radius: 10px; background-color:#00ff91; text-align: center; font-weight: 700;">Elegir</div>
+              <div style="margin: 30px; padding: 5px; border-radius: 10px; background-color:#00ff91; text-align: center; font-weight: 700;" (click)="elect(2)">Elegir</div>
             </div>
           </div>
           <div style="margin-left: 40px; margin-right: 40px; margin-top: 10px; color: white; text-align: center; font-size: 10px;">Pago en pesos mexicanos</div>
