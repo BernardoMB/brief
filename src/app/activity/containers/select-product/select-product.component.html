@@ -27,11 +27,8 @@
 </div>
 
 <!-- Siguiente -->
-<div class="panel-custom">
-  <div class="panel-body-custom" (click)="continue()">
-    <h4 class="title" align="center">Siguiente</h4>
-  </div>
-</div>
+<app-next-button [text]="'Siguiente'" (onClicked)="continue()"></app-next-button>
+
 <div class="text-link">
     <a class="link" (click)="goToGeneric()">Otra actividad</a>
 </div>

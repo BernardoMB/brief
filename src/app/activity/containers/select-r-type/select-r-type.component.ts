@@ -14,7 +14,7 @@ declare var $: any;
 @Component({
   selector: 'app-select-r-type',
   templateUrl: './select-r-type.component.html',
-  styleUrls: ['./select-r-type.component.css']
+  styleUrls: ['./select-r-type.component.scss']
 })
 export class SelectRTypeComponent implements OnInit, OnDestroy {
   @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;

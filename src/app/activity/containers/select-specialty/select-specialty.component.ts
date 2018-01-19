@@ -16,7 +16,7 @@ declare var $: any;
 @Component({
   selector: 'app-select-specialty',
   templateUrl: './select-specialty.component.html',
-  styleUrls: ['./select-specialty.component.css']
+  styleUrls: ['./select-specialty.component.scss']
 })
 export class SelectSpecialtyComponent implements OnInit, OnDestroy {
   @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;
