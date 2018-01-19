@@ -22,8 +22,8 @@ export class GenericComponent implements OnInit {
   public options: any[] = [
     {
       optionId: 1,
-      imgUrl: './../../../assets/real/SelectProduct.jpg',
-      cardTitle: 'Farica o vende un producto',
+      imgUrl: './../../../assets/generic/manufacturing.jpg',
+      cardTitle: 'Fabrica o vende un producto',
       selected: false
     }, {
       optionId: 2,
@@ -61,28 +61,17 @@ export class GenericComponent implements OnInit {
     this.explanation = 'Ayúdanos a determinar el giro de tu negocio para lograr resultados increíbles.';
   }
 
-  //#region Cards
-    public getBoxShadowForCard(optionId: number): String {
-      if (this.selectedOption === optionId) {
-        return '0px 0px 0px 10px #32b3aa inset';
-      }
-      return null;
-    }
-    public assignRole(optionId: number): void {
-      if (this.selectedOption === optionId) {
-        this.selectedOption = 0;
-      } else {
-        this.selectedOption = optionId;
-      }
-    }
-  //#endregion
+  public setSelectedOption(option): void {
+    console.log('User selected option', option);
+    this.selectedOption = option;
+  }
 
   public continue(): void {
     if (this.selectedOption === undefined) {
       swal({
         customClass: 'select-one-option-alert',
         type: 'warning',
-        title: 'Selecciona una opción paara continuar',
+        title: 'Selecciona una opción para continuar',
         showCloseButton: false,
         focusConfirm: false,
         confirmButtonText: 'Hecho',

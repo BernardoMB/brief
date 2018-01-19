@@ -1,13 +1,7 @@
 <app-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-instruction-card>
 
-<div class="row" style="margin: 0px;" *ngFor="let option of options; let i = index">
-    <div class="card-custom" [ngStyle]="{'box-shadow': getBoxShadowForCard(option.optionId)}" (click)="assignRole(option.optionId)">
-      <app-option-img-card [imgUrl]="option.imgUrl" [cardTitle]="option.cardTitle"></app-option-img-card>
-    </div>
-</div>
+<app-options-list [options]="options" (onOptionSelected)="setSelectedOption($event)"></app-options-list>
 
-<div class="panel-custom">
-    <div class="panel-body-custom" (click)="continue()">
-      <h4 class="title" align="center">Siguiente</h4>
-    </div>
-  </div>
+<div style="margin-bottom: 15px;">
+  <app-next-button [text]="'Siguiente'" (onClicked)="continue()"></app-next-button>
+</div>

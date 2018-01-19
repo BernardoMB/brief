@@ -1,0 +1,35 @@
+@import '../../../../scss/custom-variables';
+
+.search-auto-complete-custom {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.search-box {
+    width: 100%;
+    font-size: 30px;
+    border: 2px solid $koomkin-green;
+}
+
+.search-box:focus {
+    border:2px solid $koomkin-green !important;
+    outline: none !important;
+    box-shadow: 0 0 10px $koomkin-green !important;
+}
+
+.card-custom {
+    width: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.text-link {
+    position: absolute;
+    right: 0px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    color: $koomkin-blue-hypt;
+}

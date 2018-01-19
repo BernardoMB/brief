@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { SetHeaderTitleAction } from '../../../store/actions';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-coverage',
@@ -74,7 +75,15 @@ export class CoverageComponent implements OnInit {
   public continue(): void {
     switch (this.selectedOption) {
       case 0:
-        alert('Selecciona una opcion para continuar.');
+        swal({
+          customClass: 'select-one-option-alert',
+          type: 'warning',
+          title: 'Selecciona una opción o presiona en "Volver a empezar"',
+          showCloseButton: false,
+          confirmButtonText: 'Hecho',
+          buttonsStyling: false,
+          confirmButtonClass: 'hecho-button'
+        });
         break;
       case 2:
       this.router.navigate(['/coverage/states']);

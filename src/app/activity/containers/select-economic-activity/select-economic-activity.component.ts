@@ -12,7 +12,7 @@ import { SetHeaderTitleAction, UserConfirmedAction } from '../../../store/action
 @Component({
   selector: 'app-select-economic-activity',
   templateUrl: './select-economic-activity.component.html',
-  styleUrls: ['./select-economic-activity.component.css']
+  styleUrls: ['./select-economic-activity.component.scss']
 })
 export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
   @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;
@@ -115,21 +115,9 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     this.confirmed.unsubscribe();
   }
 
-  //#region Cards
-    public getBoxShadowForCard(roleId: number): String {
-      if (this.selectedOption === roleId) {
-        return '0px 0px 0px 10px #32b3aa inset';
-      }
-      return null;
-    }
-    public assignRole(optionId: number): void {
-      if (this.selectedOption === optionId) {
-        this.selectedOption = 0;
-      } else {
-        this.selectedOption = optionId;
-      }
-    }
-  //#endregion
+  public setSelectedOption(option): void {
+    this.selectedOption = option;
+  }
 
   //#region Confirmation Modal event binding
     /**

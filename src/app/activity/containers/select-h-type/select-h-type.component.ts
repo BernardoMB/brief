@@ -14,7 +14,7 @@ declare var $: any;
 @Component({
   selector: 'app-select-h-type',
   templateUrl: './select-h-type.component.html',
-  styleUrls: ['./select-h-type.component.css']
+  styleUrls: ['./select-h-type.component.scss']
 })
 export class SelectHTypeComponent implements OnInit, OnDestroy {
   @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;

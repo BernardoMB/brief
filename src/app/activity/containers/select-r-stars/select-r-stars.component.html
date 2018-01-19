@@ -1,12 +1,7 @@
 <app-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-instruction-card>
 
 <!-- Stars -->
-<div style="position: relative; margin-bottom: 15px;">
-  <div style="position: absolute; width: 100%; height: 10px; background-color: white; top:-5px;"></div>
-  <star-rating-comp [starType]="'svg'" [rating]="0" [size]="'large'" [space]="'around'" (onClick)="onStarClick($event)" ></star-rating-comp>
-  <div style="position: absolute; width: 100%; height: 10px; background-color: white; bottom:-5px;"></div>
-</div>
-<!-- Visit: https://github.com/BioPhoton/angular-star-rating -->
+<app-star-rating (onStarClicked)="onStarClick($event)"></app-star-rating>
 
 <!-- Fixed image -->
 <div class="row" style="margin: 0px;">
@@ -16,11 +11,7 @@
 </div>
 
 <!-- Siguiente -->
-<div class="panel-custom">
-  <div class="panel-body-custom" (click)="continue()">
-    <h4 class="title" align="center">Siguiente</h4>
-  </div>
-</div>
+<app-next-button [text]="'Siguiente'" (onClicked)="continue()"></app-next-button>
 <div class="text-link">
     <a class="link" (click)="goToGeneric()">Otra actividad</a>
 </div>

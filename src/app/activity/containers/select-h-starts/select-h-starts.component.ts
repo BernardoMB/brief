@@ -14,7 +14,7 @@ declare var $: any;
 @Component({
   selector: 'app-select-h-starts',
   templateUrl: './select-h-starts.component.html',
-  styleUrls: ['./select-h-starts.component.css']
+  styleUrls: ['./select-h-starts.component.scss']
 })
 export class SelectHStartsComponent implements OnInit, OnDestroy {
   @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;
@@ -110,8 +110,8 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
     }
   //#endregion
 
-  public onStarClick($event): void {
-    this.rating = $event.rating;
+  public onStarClick(event): void {
+    this.rating = event;
   }
 
   public continue(): void {

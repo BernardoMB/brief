@@ -110,8 +110,8 @@ export class SelectRStarsComponent implements OnInit, OnDestroy {
     }
   //#endregion
 
-  public onStarClick($event): void {
-    this.rating = $event.rating;
+  public onStarClick(event): void {
+    this.rating = event;
   }
 
   public continue(): void {

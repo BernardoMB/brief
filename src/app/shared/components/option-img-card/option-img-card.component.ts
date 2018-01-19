@@ -15,4 +15,13 @@ export class OptionImgCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  public getStyle(): any {
+    return {
+      width: '100%',
+      height: '100%',
+      background: `url('${this.imgUrl}') no-repeat center left`,
+      backgroundSize: '100% 100%'
+    };
+  }
+
 }

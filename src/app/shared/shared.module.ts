@@ -15,6 +15,10 @@ import { RealImgCardComponent } from './components/real-img-card/real-img-card.c
 import { OptionImgCardComponent } from './components/option-img-card/option-img-card.component';
 import { AddExampleModalComponent } from './components/add-example-modal/add-example-modal.component';
 import { PlansModalComponent } from './components/plans-modal/plans-modal.component';
+import { OptionsListComponent } from './components/options-list/options-list.component';
+import { NextButtonComponent } from './components/next-button/next-button.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
     imports: [
@@ -24,7 +28,8 @@ import { PlansModalComponent } from './components/plans-modal/plans-modal.compon
         TooltipModule,
         TagInputModule,
         ToastyModule,
-        ModalModule
+        ModalModule,
+        StarRatingModule
     ],
     declarations: [
     TitleCardComponent,
@@ -34,7 +39,10 @@ import { PlansModalComponent } from './components/plans-modal/plans-modal.compon
     RealImgCardComponent,
     OptionImgCardComponent,
     AddExampleModalComponent,
-    PlansModalComponent],
+    PlansModalComponent,
+    OptionsListComponent,
+    NextButtonComponent,
+    StarRatingComponent],
     exports: [
         TooltipModule,
         ToastyModule,
@@ -46,7 +54,10 @@ import { PlansModalComponent } from './components/plans-modal/plans-modal.compon
         RealImgCardComponent,
         OptionImgCardComponent,
         AddExampleModalComponent,
-        PlansModalComponent
+        PlansModalComponent,
+        OptionsListComponent,
+        NextButtonComponent,
+        StarRatingComponent
     ],
     providers : []
 })

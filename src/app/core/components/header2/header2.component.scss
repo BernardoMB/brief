@@ -1,5 +1,7 @@
+@import '../../../../scss/custom-variables';
+
 .opacity {
-    background-color : rgba(0, 135, 135, 0.5);
+    background-color : rgba($koomkin-green, 0.5);
 }
 
 .non-collapse {
@@ -17,16 +19,16 @@
 }
 
 .logo {
-    margin-top: 10px;
     width: 150px;
     height: 30px;
+    margin-top: 10px;
 }
 
 .title-container {
-    color: white;
-    font-size: 22px;
-    font-family: Roboto Slab;
-    text-align: center;
-    margin-top:30px;
     position: absolute !important;
+    margin-top:30px;
+    font-size: 22px;
+    text-align: center;
+    color: white;
+    font-family: Roboto Slab;
 }
