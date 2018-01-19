@@ -11,7 +11,6 @@ import { SelectHTypeComponent } from './containers/select-h-type/select-h-type.c
 import { SelectHStartsComponent } from './containers/select-h-starts/select-h-starts.component';
 import { SelectRTypeComponent } from './containers/select-r-type/select-r-type.component';
 import { SelectRStarsComponent } from './containers/select-r-stars/select-r-stars.component';
-import { CoverageComponent } from './containers/coverage/coverage.component';
 
 const routes: Routes = [
   { path: '', component: GenericComponent },
@@ -43,10 +42,7 @@ const routes: Routes = [
   { path: 'restaurant', component: SelectRTypeComponent },
   { path: 'restaurant/:source/:userdata/:campaignid', component: SelectRTypeComponent },
   { path: 'restaurant/type', component: SelectRStarsComponent },
-  { path: 'restaurant/type/:source/:userdata/:campaignid/:rtype', component: SelectRStarsComponent },
-
-  // TODO: Should delete this route.
-  { path: 'coverage', component: CoverageComponent },
+  { path: 'restaurant/type/:source/:userdata/:campaignid/:rtype', component: SelectRStarsComponent }
 ];
 
 @NgModule({

@@ -10,7 +10,7 @@ import swal from 'sweetalert2';
 @Component({
   selector: 'app-generic',
   templateUrl: './generic.component.html',
-  styleUrls: ['./generic.component.css']
+  styleUrls: ['./generic.component.scss']
 })
 export class GenericComponent implements OnInit {
 
@@ -64,7 +64,7 @@ export class GenericComponent implements OnInit {
   //#region Cards
     public getBoxShadowForCard(optionId: number): String {
       if (this.selectedOption === optionId) {
-        return '0px 0px 0px 10px #21bcbd inset';
+        return '0px 0px 0px 10px #32b3aa inset';
       }
       return null;
     }

@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // In order to use two way binding
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -13,7 +13,7 @@ import { PaymentComponent } from './containers/payment/payment.component';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule, // In order to use two way binding
     ClientsRoutingModule,
     SharedModule,
   ],

@@ -20,6 +20,12 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;
 
   // Route params
+  // Option 1
+  /* public url: Observable<string>;
+  public source: Observable<number>;
+  public userData: Observable<string>;
+  public campaignId: Observable<number>; */
+  // Option 2 (Best practice)
   public source: number;
   public userData: string;
   public campaignId: number;
@@ -81,6 +87,42 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    // Option 1
+    /* // Get information from route params.
+    this.activatedRoute.params.subscribe((params: Params) => {
+      // console.log(params);
+      // this.store.dispatch(new GetCampaignInfo(params.campaignId));
+      // this.store.dispatch(new SetUserDataInfo(params.userData));
+      // this.store.dispatch(new SetSource(params.source));
+    });
+    this.url = this.activatedRoute.url.map(segments => segments.join(''));
+    this.source = this.activatedRoute.params.map(p => p.source);
+    this.userData = this.activatedRoute.params.map(p => p.userdata);
+    this.campaignId = this.activatedRoute.params.map(p => p.campaignid);
+    // Do something with the values of the url params.
+    this.source.subscribe(value => {
+      if (value) {
+        console.log('Source', value);
+      } else {
+        console.log('No sorce specified in url params');
+      }
+    });
+    this.userData.subscribe(value => {
+      if (value) {
+        console.log('User data', JSON.parse(value));
+        this.name = JSON.parse(value).fullName;
+      } else {
+        console.log('No user data specified in url params.');
+      }
+    });
+    this.campaignId.subscribe(value => {
+      if (value) {
+        console.log('Campaign id', value);
+      } else {
+        console.log('No campaign id specified in url params.');
+      }
+    }); */
+    // Option 2 (Best practice)
     // Get information from route params.
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];

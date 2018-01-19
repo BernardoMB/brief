@@ -2,7 +2,7 @@ import { ModalModule } from 'ng-bootstrap/modal';
 import { LOCALE_ID, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // In order to use two way binding
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './containers/main/main.component';
@@ -25,7 +25,7 @@ import { OfferComponent } from './containers/offer/offer.component';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
+    FormsModule, // In order to use two way binding
     BrowserAnimationsModule,
     SharedModule,
     ClickOutsideModule,
@@ -48,7 +48,7 @@ import { OfferComponent } from './containers/offer/offer.component';
   ],
   exports: [
     BrowserAnimationsModule,
-    FormsModule,
+    FormsModule, // In order to use two way binding
     CookieModule,
     ButtonsModule,
     TooltipModule,

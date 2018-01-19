@@ -1,17 +1,13 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // In order to use two way binding
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { StarRatingModule } from 'angular-star-rating';
-
 import { ActivityRoutingModule } from './activity-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
-import { MakerComponent } from './containers/maker/maker.component';
 import { GenericComponent } from './containers/generic/generic.component';
-import { CoverageComponent } from './containers/coverage/coverage.component';
-
 import { SelectProductComponent } from './containers/select-product/select-product.component';
 import { SelectEconomicActivityComponent } from './containers/select-economic-activity/select-economic-activity.component';
 import { SelectIndustryComponent } from './containers/select-industry/select-industry.component';
@@ -26,16 +22,14 @@ import { SelectRStarsComponent } from './containers/select-r-stars/select-r-star
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule, // In order to use two way binding
     ActivityRoutingModule,
     NguiAutoCompleteModule.forRoot(),
     StarRatingModule,
     SharedModule
   ],
   declarations: [
-    MakerComponent,
     GenericComponent,
-    CoverageComponent,
     SelectProductComponent,
     SelectEconomicActivityComponent,
     SelectIndustryComponent,

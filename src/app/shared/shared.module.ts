@@ -5,7 +5,7 @@ import { TabsModule } from 'ng-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgModule, Provider} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // In order to use two way binding
 import { ToastyModule } from 'ng2-toasty';
 import { TitleCardComponent } from './components/title-card/title-card.component';
 import { ImgCardComponent } from './components/img-card/img-card.component';
@@ -20,7 +20,7 @@ import { PlansModalComponent } from './components/plans-modal/plans-modal.compon
     imports: [
         CommonModule,
         RouterModule,
-        FormsModule,
+        FormsModule, // In order to use two way binding
         TooltipModule,
         TagInputModule,
         ToastyModule,

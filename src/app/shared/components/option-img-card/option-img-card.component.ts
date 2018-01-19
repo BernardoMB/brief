@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-option-img-card',
   templateUrl: './option-img-card.component.html',
-  styleUrls: ['./option-img-card.component.css']
+  styleUrls: ['./option-img-card.component.scss']
 })
 export class OptionImgCardComponent implements OnInit {
 
