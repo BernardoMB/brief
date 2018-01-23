@@ -26,4 +26,12 @@ export class Header2Component implements OnInit {
     return clase;
   }
 
+  public redirect(event): void {
+    if (event === 1) {
+      this.router.navigate(['/']);
+      return;
+    }
+    this.router.navigate(['/activity/generic']);
+  }
+
 }
