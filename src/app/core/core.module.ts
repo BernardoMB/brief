@@ -17,7 +17,6 @@ import { DndModule } from 'ng2-dnd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LandedService } from './services/landed.service';
 import { Header2Component } from './components/header2/header2.component';
 import { OfferComponent } from './containers/offer/offer.component';
 
@@ -71,7 +70,7 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [{provide: LOCALE_ID, useValue : 'es-MX'}, TooltipConfig, LandedService]
+      providers: [{provide: LOCALE_ID, useValue : 'es-MX'}, TooltipConfig]
     };
   }
  }

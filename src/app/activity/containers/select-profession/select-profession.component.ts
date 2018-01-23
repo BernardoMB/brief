@@ -4,7 +4,6 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { LandedService } from '../../../core/services/landed.service';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
 import { SetHeaderTitleAction, UserConfirmedAction } from '../../../store/actions';
@@ -74,7 +73,6 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private landedService: LandedService,
     private store: Store<IApplicationState>) {
       const headerTitle = 'Selecciona tu profesión';
       this.store.dispatch(new SetHeaderTitleAction(headerTitle));

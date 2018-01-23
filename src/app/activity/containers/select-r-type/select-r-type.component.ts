@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import swal from 'sweetalert2';
-import { LandedService } from '../../../core/services/landed.service';
 import { Observable } from 'rxjs/Observable';
 declare var $: any;
 
@@ -74,7 +73,6 @@ export class SelectRTypeComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private landedService: LandedService,
     private store: Store<IApplicationState>) {
       const headerTitle = 'Selecciona el tipo de comida';
       this.store.dispatch(new SetHeaderTitleAction(headerTitle));

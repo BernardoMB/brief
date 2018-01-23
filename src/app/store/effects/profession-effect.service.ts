@@ -12,7 +12,6 @@ import {
     UPDATE_ALL_PROFESSIOS_ACTION,
     UpdateAllProfessionsAction,
 } from './../actions';
-import { LandedService } from '../../core/services/landed.service';
 
 @Injectable()
 export class ProfessionEffectService {

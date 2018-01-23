@@ -1,5 +1,13 @@
 @import '../../../../scss/custom-variables';
 
+.text-link {
+    color: $koomkin-blue-hypt;
+    position: absolute;
+    margin-right: 15px;
+    right: 0px;
+    margin-bottom: 15px;
+}
+
 .search-auto-complete-custom {
     margin-bottom: 15px;
     margin-left: 15px;

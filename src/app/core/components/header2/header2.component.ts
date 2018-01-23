@@ -2,6 +2,7 @@ import * as url from 'url';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+declare var $: any;
 
 @Component({
   selector: 'app-header2',
@@ -27,6 +28,7 @@ export class Header2Component implements OnInit {
   }
 
   public redirect(event): void {
+    $('#navbarToggleExternalContent').toggleClass('collapse show collapse');
     if (event === 1) {
       this.router.navigate(['/']);
       return;
