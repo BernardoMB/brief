@@ -339,7 +339,7 @@ export class MapComponent implements OnInit, OnDestroy {
   public getMapStyle(): any {
     const bodyHeight = $('#app-body').height();
     const headerHeight = $('#non-collapse').height();
-    const actualHeight = bodyHeight - headerHeight;
+    const actualHeight = bodyHeight - 136;
     return {
       height: actualHeight + 'px'
     };
