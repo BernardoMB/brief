@@ -15,7 +15,7 @@ declare var $: any;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('confirmationModal') confirmationModal: ConfirmationModalComponent;
@@ -338,9 +338,9 @@ export class MapComponent implements OnInit, OnDestroy {
 
   public getMapStyle(): any {
     const bodyHeight = $('#app-body').height();
-    const actualHeight = bodyHeight - 150;
+    const headerHeight = $('#non-collapse').height();
+    const actualHeight = bodyHeight - headerHeight;
     return {
-      width: '100%',
       height: actualHeight + 'px'
     };
   }

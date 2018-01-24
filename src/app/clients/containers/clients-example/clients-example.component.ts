@@ -42,10 +42,12 @@ export class ClientsExampleComponent implements OnInit {
   }
 
   public goBack(): void {
+    $('body').css('background-color', '#ffffff');
     this.location.back();
   }
 
   public continue(election): void {
+    $('body').css('background-color', '#ffffff');
     // TODO: implement this funciton correctly.
     this.router.navigate(['/offer/clients/payment']);
   }

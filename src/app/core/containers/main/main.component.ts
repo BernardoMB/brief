@@ -10,8 +10,7 @@ import { IProfession } from '../../../../shared/models/IProfession';
 import { ErrorOcurredAction, GetAllProfessionsAction } from '../../../store/actions';
 import { mapStateToProfessions } from '../../../store/mappers/mapStateToProfessions';
 import { mapStateToHeaderTitle } from '../../../store/mappers/mapStateToHeaderTitle';
-/* import { Router, ActivatedRoute, Params } from '@angular/router'; */
-/* import { ILead } from '../../../../shared/models/ILead'; */
+declare var $: any;
 
 @Component({
   selector: 'app-main',
@@ -78,6 +77,12 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.isLoadingSubscription.unsubscribe();
+  }
+
+  public getTop(): any {
+    return {
+      top: $('#non-collapse').height()
+    };
   }
 
   //#region Loading bar

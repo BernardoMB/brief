@@ -1,14 +1,27 @@
-<nav class="navbar-light" style="text-align:center; padding: 0.5rem 1rem; background-color: #e5ebe9; z-index: 0;">
-    <a class="navbar-brand" href="#" style="margin-right: 0px; padding: 0px;">
-      <img src="./../../../../assets/navbarLogo.png" width="150" height="40" class="d-inline-block align-top" alt="">
-    </a>
-    <button type="button" class="navbar-toggler navbar-button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</nav>
-<div class="collapse" id="navbarToggleExternalContent">
-  <div class="bg-dark p-4" style="background-color: #e5ebe9 !important; border-top: 1px solid black">
-    <h4 class="text-black">Collapsed content</h4>
-    <span class="text-muted">Toggleable via the navbar brand.</span>
+<div [ngStyle]="setStyle()">
+  <div class="opacity">
+
+    <div id="non-collapse" class="non-collapse">
+      <div style="padding-bottom: 15px;">
+        <img class="logo" src="./../../../../assets/navbarLogo-white.png" (click)="redirect(1)">
+        <div data-toggle="collapse" data-target="#external-content" style="position: absolute; top: 15px; right: 15px; margin-top: 10px; font-size: 30px; line-height: 1px; color: white;">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div style="padding-top: 15px; font-size: 24px; font-family: Roboto Slab; color: white;">
+          {{title}}
+      </div>
+    </div>
+
+    <div id="external-content" class="collapse">
+      <div class="collapse-content" style="padding: 15px !important;">
+        <h4 (click)="redirect(1)">Inicio</h4>
+        <span (click)="redirect(2)">Campaña genérica</span>
+      </div>
+    </div>
+
   </div>
 </div>
+
+
+

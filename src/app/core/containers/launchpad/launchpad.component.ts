@@ -60,6 +60,8 @@ export class LaunchpadComponent implements OnInit {
   }
 
   public goToGeneric(): void {
+    $('#external-content').removeClass('show collapse');
+    $('#external-content').addClass('collapse');
     this.router.navigate(['/activity/generic']);
   }
 }

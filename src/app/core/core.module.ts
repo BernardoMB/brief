@@ -17,7 +17,6 @@ import { DndModule } from 'ng2-dnd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Header2Component } from './components/header2/header2.component';
 import { OfferComponent } from './containers/offer/offer.component';
 
 @NgModule({
@@ -42,7 +41,6 @@ import { OfferComponent } from './containers/offer/offer.component';
     MainComponent,
     LaunchpadComponent,
     HeaderComponent,
-    Header2Component,
     OfferComponent
   ],
   exports: [
