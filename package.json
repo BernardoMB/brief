@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node server.ts",
+    "start": "ts-node ./src/server/server.ts",
     "start-ssl": "ng serve --ssl --proxy proxy.conf.json",
     "start-local": "ng serve --proxy proxy.conf.json",
     "build": "ng build --prod",
@@ -53,6 +53,7 @@
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.19.1",
+    "mongoose": "^5.0.2",
     "mssql": "^4.1.0",
     "ng-bootstrap": "^1.6.3",
     "ng-click-outside": "^2.4.1",

@@ -10,6 +10,12 @@ export class SetHeaderTitleAction implements Action {
     constructor(public payload: string) { }
 }
 
+export const SET_HEADER_IMAGE_ACTION = 'SET_HEADER_IMAGE_ACTION';
+export class SetHeaderImageAction implements Action {
+    readonly type = SET_HEADER_IMAGE_ACTION;
+    constructor(public payload: string) { }
+}
+
 //#region Professions
     export const GET_ALL_PROFESSIONS_ACTION = 'GET_ALL_PROFESSIONS_ACTION';
     export class GetAllProfessionsAction implements Action {
@@ -116,7 +122,8 @@ export type StoreActions =
     | SetLocationAction
     | SetLeadDataInfoAction
     | UserConfirmedAction
-    | SetHeaderTitleAction;
+    | SetHeaderTitleAction
+    | SetHeaderImageAction;
 
 export type UIActions = StoreActions
     | GettingAllProfessionsAction

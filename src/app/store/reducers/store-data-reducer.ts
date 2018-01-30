@@ -21,6 +21,8 @@ import {
     UserConfirmedAction,
     SET_HEADER_TITLE_ACTION,
     SetHeaderTitleAction,
+    SET_HEADER_IMAGE_ACTION,
+    SetHeaderImageAction,
 } from './../actions';
 import { ILocation } from '../../../shared/models/ILocation';
 import { ILead } from '../../../shared/models/ILead';
@@ -45,6 +47,8 @@ export function storeData(state: IStoreData = INITIAL_STORE_DATA, action: StoreA
             return handleUserConfirmedAction(state, action);
         case SET_HEADER_TITLE_ACTION:
             return handleSetHeaderTitleAction(state, action);
+        case SET_HEADER_IMAGE_ACTION:
+            return handleSetHeaderImageAction(state, action);
         default:
             return state;
     }
@@ -109,5 +113,11 @@ function handleUserConfirmedAction(state: IStoreData, action: UserConfirmedActio
 function handleSetHeaderTitleAction(state: IStoreData, action: SetHeaderTitleAction): IStoreData {
     const newStoreData = Object.assign({}, state);
     newStoreData.headerTitle = action.payload;
+    return newStoreData;
+}
+
+function handleSetHeaderImageAction(state: IStoreData, action: SetHeaderImageAction): IStoreData {
+    const newStoreData = Object.assign({}, state);
+    newStoreData.headerImgUrl = action.payload;
     return newStoreData;
 }

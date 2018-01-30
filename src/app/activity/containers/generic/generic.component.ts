@@ -98,8 +98,4 @@ export class GenericComponent implements OnInit {
       }
     }
   }
-
-  public goToGeneric(): void {
-    this.router.navigate(['/activity/generic']);
-  }
 }

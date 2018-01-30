@@ -6,6 +6,7 @@ import { ILocation } from '../../../shared/models/ILocation';
 
 export interface IStoreData {
     headerTitle: string;
+    headerImgUrl: string;
     professions: {[key: string]: IProfession};
     activity: number;
     activityType: number;
@@ -21,6 +22,7 @@ export interface IStoreData {
 
 export const INITIAL_STORE_DATA: IStoreData = {
     headerTitle: '',
+    headerImgUrl: '',
     professions: {},
     activity: undefined,
     activityType: undefined,

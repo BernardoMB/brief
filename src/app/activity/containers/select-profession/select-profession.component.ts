@@ -81,18 +81,20 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
     ngOnInit() {
       this.source = this.activatedRoute.snapshot.params['source'];
       this.userData = this.activatedRoute.snapshot.params['userdata'];
+      this.campaignId = this.activatedRoute.snapshot.params['campaignid'];
       if (this.userData) {
         const userDataObject: ILead = JSON.parse(this.userData);
         this.name = userDataObject.fullName;
       }
-      this.campaignId = this.activatedRoute.snapshot.params['campaignid'];
+
       this.paramsSubscription = this.activatedRoute.params.subscribe((params: Params) => {
         this.source = params['source'];
         this.userData = params['userdata'];
-        if (this.userData) {
-          this.name = JSON.parse(this.userData).fullName;
-        }
         this.campaignId = params['campaignid'];
+        if (this.userData) {
+          const userDataObject: ILead = JSON.parse(this.userData);
+          this.name = userDataObject.fullName;
+        }
       });
 
       // Initilize modal variables.

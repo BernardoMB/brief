@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetHeaderTitleAction } from '../../../store/actions';
+import { SetHeaderTitleAction, SetHeaderImageAction } from '../../../store/actions';
 import { Router } from '@angular/router';
 declare var $: any;
 
@@ -15,6 +15,8 @@ export class LaunchpadComponent implements OnInit {
   constructor(private router: Router, private store: Store<IApplicationState>) {
     const headerTitle = '¡Bienvenido!';
     this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+    const headerImgUrl = '../../../../assets/headerImages/office.jpg';
+    this.store.dispatch(new SetHeaderImageAction(headerImgUrl));
   }
 
   ngOnInit() {

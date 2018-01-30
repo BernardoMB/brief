@@ -1,23 +1,18 @@
+// MongoDB Config /*
+// Set environment variables.
 const env = process.env.NODE_ENV || 'development';
-
 if (env === 'development' || env === 'test') {
-    // Load in a separate json that store the development and test configuration of the project.
-    const config = {
-        test: {
-            PORT: 3000
-        },
-        development: {
-            PORT: 3000
-        }
-    };
+    const config = require('./server/config/config.json');
     const envConfig = config[env];
-    // Object.keys() function returns an array with all the keys of the object provided.
     Object.keys(envConfig).forEach((key) => {
         process.env[key] = envConfig[key];
     });
 }
+const { mongoose } = require('./server/db/config');
+import Campaign from './server/models/campaign';
+// MongoDB Config */
 
-// Data base configuration
+// SQL Server data base configuration /*
 const dbConfig = {
     userName: 'USERKOOMKIN',
     password: 'Ag0K00M',
@@ -30,6 +25,7 @@ const dbConfig = {
 };
 // Data base driver
 const { Connection, Request } = require('tedious');
+// SQL Server data base configuration */
 
 import * as express from 'express';
 import * as path from 'path';
@@ -92,6 +88,31 @@ const log = (message: string) => {
 // Listen for connectino event.
 io.on('connection', (socket) => {
     console.log('Client connected');
+
+    const campaign = new Campaign({
+        facebook_campaign_id: '1',
+
+        company_type: 1, // Producto
+        activity_type: 2, // Distribuye al mayoreo
+        category: 1, // Pisos de madera
+
+        header_image: 'https://www.poshflooring.co.uk/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/s/s/ssr300001a.jpg',
+        wellcome_modal_image: 'http://www.actualizatuperfil.com.mx/wp-content/uploads/2017/09/DSCN2165-e1449772366767.jpg',
+        facebook_add_image: 'https://5.imimg.com/data5/BD/HM/MY-15634948/wooden-flooring-250x250.jpg',
+
+        client_example_1_company: 'PARTICULAR',
+        client_example_2_company: 'ITAM',
+        client_example_3_company: 'PGR',
+
+        client_example_1_phrase: 'Hola quiero cotizar diferentes pisos de madera para un desarrollo en la colonia...',
+        client_example_2_phrase: 'Necesitamos pisos de madera para diversas salas de conferencias. Se tiene las siguientes...',
+        client_example_3_phrase: 'Hola, queremos cotizar la colocacion de sus pisos en tres de nuestras plantas.'
+    });
+    campaign.save().then((doc) => {
+        console.log(doc);
+    }, (err) => {
+        console.log(err);
+    });
 
     socket.on('disconnect', () => {
         log('Client disconnected');

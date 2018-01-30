@@ -10,6 +10,7 @@ import { IProfession } from '../../../../shared/models/IProfession';
 import { ErrorOcurredAction, GetAllProfessionsAction } from '../../../store/actions';
 import { mapStateToProfessions } from '../../../store/mappers/mapStateToProfessions';
 import { mapStateToHeaderTitle } from '../../../store/mappers/mapStateToHeaderTitle';
+import { mapStateToHeaderImgUrl } from '../../../store/mappers/mapStateToHeaderImgUrl';
 declare var $: any;
 
 @Component({
@@ -21,12 +22,8 @@ export class MainComponent implements OnInit, OnDestroy {
 
   private isLoadingSubscription: Subscription;
   public title$: Observable<string>;
+  public imgUrl$: Observable<string>;
   public socket;
-  // Route elements
-  /* public url: Observable<string>;
-  public source: Observable<number>;
-  public userData: Observable<ILead>;
-  public campaignId: Observable<number>; */
 
   constructor(private slimLoadingBarService: SlimLoadingBarService,
     private store: Store<IApplicationState>) {
@@ -39,6 +36,7 @@ export class MainComponent implements OnInit, OnDestroy {
       this.socket.on('connect_timeout', event => this.store.dispatch(new ErrorOcurredAction(event)));
       this.socket.on('connect_error', error => this.store.dispatch(new ErrorOcurredAction(error)));
       this.title$ = this.store.select(state => mapStateToHeaderTitle(state));
+      this.imgUrl$ = this.store.select(state => mapStateToHeaderImgUrl(state));
     }
 
   public ngOnInit(): void {

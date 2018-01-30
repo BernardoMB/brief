@@ -124,11 +124,11 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     // Get information from route params.
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
+    this.campaignId = this.activatedRoute.snapshot.params['campaignid'];
     if (this.userData) {
       const userDataObject: ILead = JSON.parse(this.userData);
       this.name = userDataObject.fullName;
     }
-    this.campaignId = this.activatedRoute.snapshot.params['campaignid'];
     // The object this.route.params returns an observable on which we can subscribe.
     // I need to subscribe to this object to execute some code every time the value passed to the observable changes.
     // I dont need to subscribe to anything because once this component is loaded,
@@ -138,10 +138,11 @@ export class SelectProductComponent implements OnInit, OnDestroy {
       // This code will get executed every time the value passed to the observable params change.
       this.source = params['source'];
       this.userData = params['userdata'];
-      if (this.userData) {
-        this.name = JSON.parse(this.userData).fullName;
-      }
       this.campaignId = params['campaignid'];
+      if (this.userData) {
+        const userDataObject: ILead = JSON.parse(this.userData);
+        this.name = userDataObject.fullName;
+      }
     });
 
     // Initilize modal variables.

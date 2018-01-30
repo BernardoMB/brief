@@ -11,17 +11,15 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
   @Input() title: string;
-  @Input() backgroundUrl: string;
+  @Input() imgUrl: string;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.backgroundUrl = '/assets/pisos-de-madera-2.jpg';
-  }
+  ngOnInit() { }
 
   public setStyle(): any {
     const clase = {
-      background: `url('${this.backgroundUrl}') no-repeat center left`,
+      background: `url('${this.imgUrl}') no-repeat center left`,
       backgroundSize: '100%'
     };
     return clase;
