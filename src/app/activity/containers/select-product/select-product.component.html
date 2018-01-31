@@ -2,19 +2,20 @@
 
 <!-- Automcomplete search box -->
 <div class="search-auto-complete-custom">
-  <input id="product-input"
+  <input id="product-input" class="search-box"
   ngui-auto-complete
-  class="search-box"
-  [(ngModel)]="selectedProduct"
   [source]="productsArray"
-  placeholder="Busca tu producto..."
+  [(ngModel)]="selectedProduct"
+  laceholder="Busca tu producto..."
+  value-formatter="name"
+  list-formatter="name"
+  [match-formatted]="true"
+
   no-match-found-text="Sin resultados"
   (valueChanged)="selectProduct($event)"
   [open-on-focus]="false"
-  [accept-user-input]="false"
+  [accept-user-input]="true"
   [select-on-blur]="true"
-  value-formatter="name"
-  list-formatter="name"
   />
 </div>
 <!-- visit https://github.com/ng2-ui/auto-complete -->

@@ -23,14 +23,19 @@ import {
     SetHeaderTitleAction,
     SET_HEADER_IMAGE_ACTION,
     SetHeaderImageAction,
+    UPDATE_ALL_PRODUCTS_ACTION,
+    UpdateAllProductsAction,
 } from './../actions';
 import { ILocation } from '../../../shared/models/ILocation';
 import { ILead } from '../../../shared/models/ILead';
+import { IProduct } from '../../shared/models/IProduct';
 
 export function storeData(state: IStoreData = INITIAL_STORE_DATA, action: StoreActions): IStoreData {
     switch (action.type) {
         case UPDATE_ALL_PROFESSIOS_ACTION:
-            return handleUpdateProfessionsAction(state, action);
+            return handleUpdateAllProfessionsAction(state, action);
+        case UPDATE_ALL_PRODUCTS_ACTION:
+            return handleUpdateAllProductsAction(state, action);
         case SET_ACTIVITY_ACTION:
             return handleSetActivityAction(state, action);
         case SET_ACTIVITY_TYPE_ACTION:
@@ -54,11 +59,21 @@ export function storeData(state: IStoreData = INITIAL_STORE_DATA, action: StoreA
     }
 }
 
-function handleUpdateProfessionsAction(state: IStoreData, action: UpdateAllProfessionsAction): IStoreData {
+function handleUpdateAllProfessionsAction(state: IStoreData, action: UpdateAllProfessionsAction): IStoreData {
     const newStoreData = Object.assign({}, state);
     const newProfessions: {[key: string]: IProfession} = {};
     action.payload.forEach(profession => newProfessions[profession.id] = profession);
     newStoreData.professions = Object.assign({}, newProfessions);
+    return newStoreData;
+}
+
+function handleUpdateAllProductsAction(state: IStoreData, action: UpdateAllProductsAction): IStoreData {
+    const newStoreData = Object.assign({}, state);
+    const newProducts: {[key: string]: IProduct} = {};
+    action.payload.forEach((product: any) => {
+        newProducts[product._id] = product;
+    });
+    newStoreData.products = Object.assign({}, newProducts);
     return newStoreData;
 }
 

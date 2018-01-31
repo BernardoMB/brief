@@ -2,12 +2,14 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction } from '../../../store/actions';
+import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction, GetAllProductsAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import swal from 'sweetalert2';
 import { Observable } from 'rxjs/Observable';
+import { IProduct } from '../../../shared/models/IProduct';
+import { mapStateToProductsInfo } from '../../../store/mappers/mapStateToProductsInfo';
 declare var $: any;
 
 @Component({
@@ -45,6 +47,9 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   // Catalogo de productos
   // TODO: Esto tiene que ser un observable de los productos que se mandarán pedir al store.
   // Lo tiene que jalar el constructor.
+
+  public products$: Observable<Array<IProduct>>;
+  public productsub: Subscription;
   public productsArray: Array<any> = [
     {
       id: 11,
@@ -82,6 +87,12 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     private store: Store<IApplicationState>) {
       const headerTitle = 'Selecciona tu producto';
       this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+      this.store.dispatch(new GetAllProductsAction());
+      this.products$ = this.store.select(state => mapStateToProductsInfo(state));
+      this.productsub = this.products$.subscribe(value => {
+        // TODO: ir aqui
+        /* this.productsArray = value; */
+      });
     }
 
   ngOnInit() {

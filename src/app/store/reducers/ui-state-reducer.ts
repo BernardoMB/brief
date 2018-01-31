@@ -2,14 +2,20 @@ import { INITIAL_APPLICATION_STATE } from '../models/app-state';
 import { INITIAL_UI_STATE, IUIState } from './../models/ui-state';
 import { Action } from '@ngrx/store';
 //#region Actions
-    import { UIActions, GETTING_ALL_PROFESSIONS_ACTION, UPDATE_ALL_PROFESSIOS_ACTION } from './../actions';
+    import { UIActions,
+        GETTING_ALL_PROFESSIONS_ACTION,
+        UPDATE_ALL_PROFESSIOS_ACTION,
+        GETTING_ALL_PRODUCTS_ACTION,
+        UPDATE_ALL_PRODUCTS_ACTION } from './../actions';
 //#endregion
 
 export function uiState(state: IUIState = INITIAL_UI_STATE, action: UIActions): IUIState {
     switch (action.type) {
+        case GETTING_ALL_PRODUCTS_ACTION:
         case GETTING_ALL_PROFESSIONS_ACTION:
             return handleLoadDataAction(state, action);
         case UPDATE_ALL_PROFESSIOS_ACTION:
+        case UPDATE_ALL_PRODUCTS_ACTION:
             return handleLoadedDataAction(state, action);
         default:
             return state;

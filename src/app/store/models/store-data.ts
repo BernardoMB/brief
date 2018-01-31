@@ -3,11 +3,13 @@ import { IProfession } from '../../../shared/models/IProfession';
 import { IActivity } from '../../../shared/models/IActivity';
 import { IUser } from '../../../shared/models/IUser';
 import { ILocation } from '../../../shared/models/ILocation';
+import { IProduct } from '../../shared/models/IProduct';
 
 export interface IStoreData {
     headerTitle: string;
     headerImgUrl: string;
     professions: {[key: string]: IProfession};
+    products: {[key: string]: IProduct};
     activity: number;
     activityType: number;
     product: number;
@@ -24,6 +26,7 @@ export const INITIAL_STORE_DATA: IStoreData = {
     headerTitle: '',
     headerImgUrl: '',
     professions: {},
+    products: {},
     activity: undefined,
     activityType: undefined,
     product: undefined,

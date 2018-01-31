@@ -11,6 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -n \"Brief Documentation\" -s",
+    "db-test-script": "ts-node ./server/db/test-script.ts",
     "serve-devices": "ng serve --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
     "serve-devices-ssl": "ng serve --ssl --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
     "server": "./node_modules/.bin/ts-node ./server.ts",
@@ -74,6 +75,7 @@
     "socket.io-client": "^2.0.3",
     "sweetalert2": "^7.0.6",
     "tedious": "^2.1.1",
+    "tedious-promises": "^0.4.1",
     "ts-node": "~3.2.0",
     "typescript": "~2.3.3",
     "zone.js": "^0.8.14"

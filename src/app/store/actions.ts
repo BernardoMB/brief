@@ -3,6 +3,7 @@ import { IProfession } from '../../shared/models/IProfession';
 import { Action } from '@ngrx/store';
 import { ILocation } from '../../shared/models/ILocation';
 import { ILead } from '../../shared/models/ILead';
+import { IProduct } from '../shared/models/IProduct';
 
 export const SET_HEADER_TITLE_ACTION = 'SET_HEADER_TITLE_ACTION';
 export class SetHeaderTitleAction implements Action {
@@ -58,6 +59,24 @@ export class SetHeaderImageAction implements Action {
 //#endregion
 
 //#region Product
+    export const GET_ALL_PRODUCTS_ACTION = 'GET_ALL_PRODUCTS_ACTION';
+    export class GetAllProductsAction implements Action {
+        readonly type = GET_ALL_PRODUCTS_ACTION;
+        constructor(public payload?: any) { }
+    }
+
+    export const GETTING_ALL_PRODUCTS_ACTION = 'GETTING_ALL_PRODUCTS_ACTION';
+    export class GettingAllProductsAction implements Action {
+        readonly type = GETTING_ALL_PRODUCTS_ACTION;
+        constructor(public payload?: any) { }
+    }
+
+    export const UPDATE_ALL_PRODUCTS_ACTION = 'UPDATE_ALL_PRODUCTS_ACTION';
+    export class UpdateAllProductsAction implements Action {
+        readonly type = UPDATE_ALL_PRODUCTS_ACTION;
+        constructor(public payload: Array<IProduct>) { }
+    }
+
     export const SET_PRODUCT_ACTION = 'SET_PRODUCT_ACTION';
     export class SetProductAction implements Action {
         readonly type = SET_PRODUCT_ACTION;
@@ -112,8 +131,10 @@ export class UserConfirmedAction implements Action {
 //#endregion
 
 export type StoreActions =
+    | GetAllProductsAction
     | GetAllProfessionsAction
     | UpdateAllProfessionsAction
+    | UpdateAllProductsAction
     | SetActivityAction
     | SetActivityTypeAction
     | SetProductAction
@@ -127,4 +148,5 @@ export type StoreActions =
 
 export type UIActions = StoreActions
     | GettingAllProfessionsAction
+    | GettingAllProductsAction
     | ErrorOcurredAction;
