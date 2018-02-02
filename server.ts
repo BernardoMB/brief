@@ -98,7 +98,7 @@ io.on('connection', (socket) => {
     //#region Products
         socket.on('clientGetAllProducts', () => {
             io.emit('UPDATE_STATE', new GettingAllProductsAction());
-            const q = Product.find({}).limit(10);
+            const q = Product.find({});
             q.exec(function(err, docs) {
                 if (err) {
                     console.log(err);

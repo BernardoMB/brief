@@ -50,33 +50,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
 
   public products$: Observable<Array<IProduct>>;
   public productsub: Subscription;
-  public productsArray: Array<any> = [
-    {
-      id: 11,
-      key: 1,
-      name: 'Pisos de madera 1'
-    }, {
-      id: 12,
-      key: 2,
-      name: 'Pisos de madera 2'
-    }, {
-      id: 13,
-      key: 3,
-      name: 'Pisos de madera 3'
-    }, {
-      id: 14,
-      key: 4,
-      name: 'Pisos de madera 4'
-    }, {
-      id: 15,
-      key: 5,
-      name: 'Pisos de madera 5'
-    }, {
-      id: 16,
-      key: 6,
-      name: 'Pisos de madera 6'
-    }
-  ];
+  public productsArray: Array<any>;
   public selectedProduct: any;
 
   // To know confirmation modal need to be showed when the components get initialized.
@@ -89,9 +63,14 @@ export class SelectProductComponent implements OnInit, OnDestroy {
       this.store.dispatch(new SetHeaderTitleAction(headerTitle));
       this.store.dispatch(new GetAllProductsAction());
       this.products$ = this.store.select(state => mapStateToProductsInfo(state));
-      this.productsub = this.products$.subscribe(value => {
-        // TODO: ir aqui
-        /* this.productsArray = value; */
+      this.productsub = this.products$.subscribe(products => {
+        this.productsArray = [];
+        products.forEach((product: any) => {
+          this.productsArray.push({
+            id: product._id,
+            name: product.name
+          });
+        });
       });
     }
 
@@ -225,9 +204,9 @@ export class SelectProductComponent implements OnInit, OnDestroy {
    * @param {any} $event
    * @memberof SelectProductComponent
    */
-  public selectProduct($event): void {
-    this.selectedProduct = $event;
-    console.log(this.selectedProduct);
+  public selectProduct(event): void {
+    this.selectedProduct = event;
+    console.log(this.selectedProduct.name);
     // Blur search box input.
     document.getElementById('product-input').blur();
   }
