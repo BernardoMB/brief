@@ -59,6 +59,7 @@
     "ng-bootstrap": "^1.6.3",
     "ng-click-outside": "^2.4.1",
     "ng2-charts": "^1.6.0",
+    "ng2-completer": "^1.6.3",
     "ng2-dnd": "^4.2.0",
     "ng2-nouislider": "^1.6.2",
     "ng2-signalr": "^2.1.0",

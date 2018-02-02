@@ -18,6 +18,7 @@ import { SelectHTypeComponent } from './containers/select-h-type/select-h-type.c
 import { SelectHStartsComponent } from './containers/select-h-starts/select-h-starts.component';
 import { SelectRTypeComponent } from './containers/select-r-type/select-r-type.component';
 import { SelectRStarsComponent } from './containers/select-r-stars/select-r-stars.component';
+import { Ng2CompleterModule } from 'ng2-completer';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { SelectRStarsComponent } from './containers/select-r-stars/select-r-star
     ActivityRoutingModule,
     NguiAutoCompleteModule.forRoot(),
     StarRatingModule,
-    SharedModule
+    SharedModule,
+    Ng2CompleterModule
   ],
   declarations: [
     GenericComponent,

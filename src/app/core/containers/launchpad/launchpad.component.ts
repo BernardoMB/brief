@@ -24,7 +24,6 @@ export class LaunchpadComponent implements OnInit {
       pause: 'hover'
     });
     $('#carousel').on('slide.bs.carousel', (e) => {
-      console.log(e.to);
       switch (e.to) {
         case 0:
           $('#one').css({'background-color': '#32b3aa'});

@@ -98,13 +98,37 @@ io.on('connection', (socket) => {
     //#region Products
         socket.on('clientGetAllProducts', () => {
             io.emit('UPDATE_STATE', new GettingAllProductsAction());
-            const q = Product.find({});
+            const q = Product.find({}, 'name').limit(20);
             q.exec(function(err, docs) {
                 if (err) {
                     console.log(err);
                 } else {
                     console.log(docs);
                     io.emit('UPDATE_STATE', new UpdateAllProductsAction(docs));
+                }
+            });
+        });
+
+        socket.on('clientGetProductsSugestions', (event) => {
+            const q = Product.find({'name': { $regex: `${event}`}}, 'name');
+            q.exec(function(err, docs) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(docs);
+                    io.emit('serverSugestions', docs);
+                }
+            });
+        });
+
+        socket.on('clientGetProductsSugestions3', (event) => {
+            const q = Product.find({'name': { $regex: `${event}`}}, 'name');
+            q.exec(function(err, docs) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(docs);
+                    io.emit('serverSugestions3', docs);
                 }
             });
         });

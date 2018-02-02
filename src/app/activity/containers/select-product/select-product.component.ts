@@ -11,6 +11,8 @@ import { Observable } from 'rxjs/Observable';
 import { IProduct } from '../../../shared/models/IProduct';
 import { mapStateToProductsInfo } from '../../../store/mappers/mapStateToProductsInfo';
 declare var $: any;
+import * as io from 'socket.io-client';
+import { CompleterData, CompleterService } from 'ng2-completer';
 
 @Component({
   selector: 'app-select-product',
@@ -48,17 +50,36 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   // TODO: Esto tiene que ser un observable de los productos que se mandarán pedir al store.
   // Lo tiene que jalar el constructor.
 
+  // To know confirmation modal need to be showed when the components get initialized.
+  public confirmed: Subscription;
+
+  // Solucion 1
   public products$: Observable<Array<IProduct>>;
   public productsub: Subscription;
   public productsArray: Array<any>;
   public selectedProduct: any;
 
-  // To know confirmation modal need to be showed when the components get initialized.
-  public confirmed: Subscription;
+  // Solucion son sockets
+  public socket;
+  public sugestions: Array<any>;
+  public selectedProduct2: any;
+
+  // Solucion 3
+  protected dataService: CompleterData;
+  protected searchData = [
+    { name: 'omonopineme', value: '#f00' },
+    { name: 'babanamasana', value: '#0f0' },
+    { name: 'polipastos', value: '#00f' },
+    { name: 'ermenegildo', value: '#0ff' },
+    { name: 'omoplato', value: '#f0f' },
+    { name: 'cocamonga', value: '#ff0' }
+  ];
+  public selectedProduct3: any;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private store: Store<IApplicationState>) {
+    private store: Store<IApplicationState>,
+    private completerService: CompleterService) {
       const headerTitle = 'Selecciona tu producto';
       this.store.dispatch(new SetHeaderTitleAction(headerTitle));
       this.store.dispatch(new GetAllProductsAction());
@@ -71,6 +92,22 @@ export class SelectProductComponent implements OnInit, OnDestroy {
             name: product.name
           });
         });
+      });
+
+      // Solucion son sockets
+      this.sugestions = [];
+      this.socket = io();
+      this.socket.on('serverSugestions', sugestions => {
+        console.log(sugestions);
+        this.sugestions = sugestions;
+      });
+
+      // Solucion 3
+      this.dataService = completerService.local([], 'name', 'name');
+      this.socket.on('serverSugestions3', sugestions => {
+        console.log(sugestions);
+        // Solucion 3
+        this.dataService = completerService.local(sugestions, 'name', 'name');
       });
     }
 
@@ -185,6 +222,20 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     this.confirmed.unsubscribe();
   }
 
+  // Solucion son sockets
+  public inputChange(event): void {
+    if (event.length > 2) {
+      this.socket.emit('clientGetProductsSugestions', event);
+    }
+  }
+
+  // Solucion 3
+  public inputChange3(event): void {
+    if (event.length > 2) {
+      this.socket.emit('clientGetProductsSugestions3', event);
+    }
+  }
+
   //#region Confirmation Modal event binding
     public onUserConfirmed(event): void {
       // Tell the store that the user has already confirmed
@@ -199,11 +250,6 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     }
   //#endregion
 
-  /**
-   * Get the selected product from the view.
-   * @param {any} $event
-   * @memberof SelectProductComponent
-   */
   public selectProduct(event): void {
     this.selectedProduct = event;
     console.log(this.selectedProduct.name);
@@ -234,10 +280,6 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Redirects user to the generic campaing.
-   * @memberof SelectProductComponent
-   */
   public goToGeneric(): void {
     this.router.navigate(['/activity/generic']);
   }

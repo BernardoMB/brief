@@ -82,7 +82,7 @@ tp.sql(queryString).execute().then(function(results) {
     console.log(err);
 }); */
 
-const queryString2 = 'SELECT * FROM [CATPRODUCTO];';
+/* const queryString2 = 'SELECT * FROM [CATPRODUCTO];';
 tp.sql(queryString2).execute().then(function(results) {
     console.log(typeof(results));
     results.forEach(element => {
@@ -101,12 +101,11 @@ tp.sql(queryString2).execute().then(function(results) {
     });
 }).fail(function(err) {
     console.log(err);
-});
+}); */
 
-/*
 Product.find({}, (err, docs) => {
     console.log(typeof(docs));
     console.log(docs[0]);
-}); */
+});
 
 

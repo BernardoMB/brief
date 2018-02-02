@@ -1,16 +1,16 @@
 <app-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-instruction-card>
 
 <!-- Automcomplete search box -->
+<!-- visit https://github.com/ng2-ui/auto-complete -->
 <div class="search-auto-complete-custom">
   <input id="product-input" class="search-box"
   ngui-auto-complete
   [source]="productsArray"
   [(ngModel)]="selectedProduct"
-  laceholder="Busca tu producto..."
+  placeholder="Busca tu producto..."
   value-formatter="name"
   list-formatter="name"
   [match-formatted]="true"
-
   no-match-found-text="Sin resultados"
   (valueChanged)="selectProduct($event)"
   [open-on-focus]="false"
@@ -18,7 +18,30 @@
   [select-on-blur]="true"
   />
 </div>
-<!-- visit https://github.com/ng2-ui/auto-complete -->
+{{selectedProduct}}
+<div class="search-auto-complete-custom">
+  <input id="product-input" class="search-box"
+  ngui-auto-complete
+  [source]="sugestions"
+  [(ngModel)]="selectedProduct2"
+  placeholder="Busca tu producto..."
+  value-formatter="name"
+  list-formatter="name"
+  [match-formatted]="true"
+  no-match-found-text="Sin resultados"
+  (valueChanged)="selectProduct($event)"
+  [open-on-focus]="false"
+  [accept-user-input]="true"
+  [select-on-blur]="true"
+  (ngModelChange)="inputChange($event)"
+  />
+</div>
+{{selectedProduct2}}
+<!-- visit https://github.com/oferh/ng2-completer -->
+<div class="search-auto-complete-custom">
+  <ng2-completer (ngModelChange)="inputChange3($event)" [(ngModel)]="selectedProduct3" [datasource]="dataService" [minSearchLength]="0"></ng2-completer>
+</div>
+{{selectedProduct3}}
 
 <!-- Fixed image -->
 <div class="row" style="margin: 0px;">
