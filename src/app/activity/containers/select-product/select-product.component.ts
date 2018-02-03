@@ -65,8 +65,8 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   public selectedProduct2: any;
 
   // Solucion 3
-  protected dataService: CompleterData;
-  protected searchData = [
+  public dataService: CompleterData;
+  public searchData = [
     { name: 'omonopineme', value: '#f00' },
     { name: 'babanamasana', value: '#0f0' },
     { name: 'polipastos', value: '#00f' },
@@ -98,14 +98,12 @@ export class SelectProductComponent implements OnInit, OnDestroy {
       this.sugestions = [];
       this.socket = io();
       this.socket.on('serverSugestions', sugestions => {
-        console.log(sugestions);
         this.sugestions = sugestions;
       });
 
       // Solucion 3
       this.dataService = completerService.local([], 'name', 'name');
       this.socket.on('serverSugestions3', sugestions => {
-        console.log(sugestions);
         // Solucion 3
         this.dataService = completerService.local(sugestions, 'name', 'name');
       });
@@ -214,6 +212,29 @@ export class SelectProductComponent implements OnInit, OnDestroy {
             this.confirmationModal.showModal();
           }, 0);
         }
+      });
+
+      $('#omonopineme').find('input').attr('id', 'omono');
+      $('#omono').css({
+        'width': '100%',
+        'border': '2px solid #32b3aa',
+        'font-size': '30px'
+      });
+      $('#omono').on('focus', function() {
+        $(this).css({
+          'outline': 'none',
+          'border': '2px solid #32b3aa',
+          'boxShadow': '0 0 10px #32b3aa'
+        });
+      });
+      $('#omono').on('blur', function() {
+        $(this).css({
+          'width': '100%',
+          'border': '2px solid #32b3aa',
+          'font-size': '30px',
+          'boxShadow': '0 0 0px #32b3aa',
+          'outline': 'medium invert none',
+        });
       });
   }
 

@@ -34,7 +34,10 @@ import * as path from 'path';
 import * as http from 'http';
 import * as socketIO from 'socket.io';
 import { Application } from 'express';
-import { GettingAllProfessionsAction, UpdateAllProfessionsAction, GettingAllProductsAction, UpdateAllProductsAction } from './src/app/store/actions';
+import { GettingAllProfessionsAction,
+    UpdateAllProfessionsAction,
+    GettingAllProductsAction,
+    UpdateAllProductsAction } from './src/app/store/actions';
 import { IProfession } from './src/shared/models/IProfession';
 
 const bodyParser = require('body-parser');
@@ -98,36 +101,36 @@ io.on('connection', (socket) => {
     //#region Products
         socket.on('clientGetAllProducts', () => {
             io.emit('UPDATE_STATE', new GettingAllProductsAction());
-            const q = Product.find({}, 'name').limit(20);
+            const q = Product.find({}, 'name');
             q.exec(function(err, docs) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(docs);
                     io.emit('UPDATE_STATE', new UpdateAllProductsAction(docs));
                 }
             });
         });
 
         socket.on('clientGetProductsSugestions', (event) => {
-            const q = Product.find({'name': { $regex: `${event}`}}, 'name');
+            const q = Product.find({'name': { $regex: `${event}`}}, 'name').limit(5);
             q.exec(function(err, docs) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(docs);
+                    console.log('El que no jala', docs);
                     io.emit('serverSugestions', docs);
                 }
             });
         });
 
         socket.on('clientGetProductsSugestions3', (event) => {
-            const q = Product.find({'name': { $regex: `${event}`}}, 'name');
+            const q = Product.find({'name': { $regex: `${event}`}}, 'name').limit(5);
+            // Probar solo son polipastos. escribir "pol"
             q.exec(function(err, docs) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(docs);
+                    console.log('El que jala', docs);
                     io.emit('serverSugestions3', docs);
                 }
             });
