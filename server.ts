@@ -112,20 +112,7 @@ io.on('connection', (socket) => {
         });
 
         socket.on('clientGetProductsSugestions', (event) => {
-            const q = Product.find({'name': { $regex: `${event}`}}, 'name').limit(5);
-            q.exec(function(err, docs) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log('El que no jala', docs);
-                    io.emit('serverSugestions', docs);
-                }
-            });
-        });
-
-        socket.on('clientGetProductsSugestions3', (event) => {
-            const q = Product.find({'name': { $regex: `${event}`}}, 'name').limit(5);
-            // Probar solo son polipastos. escribir "pol"
+            const q = Product.find({'name': { $regex: `${event}`}}, 'name');
             q.exec(function(err, docs) {
                 if (err) {
                     console.log(err);

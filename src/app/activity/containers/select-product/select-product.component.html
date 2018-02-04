@@ -1,9 +1,9 @@
 <app-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-instruction-card>
 
 <!-- Automcomplete search box -->
-<!-- visit https://github.com/ng2-ui/auto-complete -->
 <!-- Modo lento -->
-<div class="search-auto-complete-container">
+<!-- visit https://github.com/ng2-ui/auto-complete -->
+<!-- <div class="search-auto-complete-container">
   <input id="product-input" class="search-box"
   ngui-auto-complete
   [source]="productsArray"
@@ -18,31 +18,17 @@
   [accept-user-input]="true"
   [select-on-blur]="true"
   />
-</div>
-<!-- Solucion 2 que no se actualiza el json dentro del elemento -->
-<div class="search-auto-complete-container">
-  <input id="product-input" class="search-box"
-  ngui-auto-complete
-  [source]="sugestions"
-  [(ngModel)]="selectedProduct2"
-  placeholder="Busca tu producto..."
-  value-formatter="name"
-  list-formatter="name"
-  [match-formatted]="true"
-  no-match-found-text="Sin resultados"
-  (valueChanged)="selectProduct($event)"
-  [open-on-focus]="false"
-  [accept-user-input]="true"
-  [select-on-blur]="true"
-  (ngModelChange)="inputChange($event)"
-  />
-</div>
+</div> -->
+<!-- Modo eficiente -->
 <!-- visit https://github.com/oferh/ng2-completer -->
 <div class="search-auto-complete-container">
-  <ng2-completer id="omonopineme"
+  <ng2-completer id="completer"
+    inputId="product-input"
     placeholder="Busca tu producto..."
+    textNoResults="Sin resultados"
+    textSearching="Buscando"
     (ngModelChange)="inputChange3($event)" 
-    [(ngModel)]="selectedProduct3" 
+    [(ngModel)]="selectedProduct" 
     [datasource]="dataService" 
     [minSearchLength]="0">
   </ng2-completer>

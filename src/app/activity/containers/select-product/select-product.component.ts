@@ -46,42 +46,23 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   public autoCompleteInputElement: HTMLElement;
   public imgUrlFixed: String;
 
-  // Catalogo de productos
-  // TODO: Esto tiene que ser un observable de los productos que se mandarán pedir al store.
-  // Lo tiene que jalar el constructor.
-
   // To know confirmation modal need to be showed when the components get initialized.
   public confirmed: Subscription;
 
-  // Solucion 1
-  public products$: Observable<Array<IProduct>>;
+  /* public products$: Observable<Array<IProduct>>;
   public productsub: Subscription;
-  public productsArray: Array<any>;
-  public selectedProduct: any;
-
-  // Solucion son sockets
+  public productsArray: Array<any>; */
   public socket;
-  public sugestions: Array<any>;
-  public selectedProduct2: any;
-
-  // Solucion 3
   public dataService: CompleterData;
-  public searchData = [
-    { name: 'omonopineme', value: '#f00' },
-    { name: 'babanamasana', value: '#0f0' },
-    { name: 'polipastos', value: '#00f' },
-    { name: 'ermenegildo', value: '#0ff' },
-    { name: 'omoplato', value: '#f0f' },
-    { name: 'cocamonga', value: '#ff0' }
-  ];
-  public selectedProduct3: any;
+  public selectedProduct: any;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<IApplicationState>,
     private completerService: CompleterService) {
       const headerTitle = 'Selecciona tu producto';
-      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+
+      /* this.store.dispatch(new SetHeaderTitleAction(headerTitle));
       this.store.dispatch(new GetAllProductsAction());
       this.products$ = this.store.select(state => mapStateToProductsInfo(state));
       this.productsub = this.products$.subscribe(products => {
@@ -92,19 +73,10 @@ export class SelectProductComponent implements OnInit, OnDestroy {
             name: product.name
           });
         });
-      });
-
-      // Solucion son sockets
-      this.sugestions = [];
+      }); */
       this.socket = io();
-      this.socket.on('serverSugestions', sugestions => {
-        this.sugestions = sugestions;
-      });
-
-      // Solucion 3
       this.dataService = completerService.local([], 'name', 'name');
       this.socket.on('serverSugestions3', sugestions => {
-        // Solucion 3
         this.dataService = completerService.local(sugestions, 'name', 'name');
       });
     }
@@ -185,6 +157,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     + 'Si no vendes un producto, entonces presiona en "Otra actividad".';
 
     // Disable auto-complete-search text field when selecting an option.
+    $('#completer').find('input').attr('id', 'product-input');
     let isUserClick = false;
     $('#product-input').on('mousedown', function(event) {
       isUserClick = true;
@@ -213,29 +186,6 @@ export class SelectProductComponent implements OnInit, OnDestroy {
           }, 0);
         }
       });
-
-      $('#omonopineme').find('input').attr('id', 'omono');
-      $('#omono').css({
-        'width': '100%',
-        'border': '2px solid #32b3aa',
-        'font-size': '30px'
-      });
-      $('#omono').on('focus', function() {
-        $(this).css({
-          'outline': 'none',
-          'border': '2px solid #32b3aa',
-          'boxShadow': '0 0 10px #32b3aa'
-        });
-      });
-      $('#omono').on('blur', function() {
-        $(this).css({
-          'width': '100%',
-          'border': '2px solid #32b3aa',
-          'font-size': '30px',
-          'boxShadow': '0 0 0px #32b3aa',
-          'outline': 'medium invert none',
-        });
-      });
   }
 
   ngOnDestroy() {
@@ -243,17 +193,9 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     this.confirmed.unsubscribe();
   }
 
-  // Solucion son sockets
-  public inputChange(event): void {
-    if (event.length > 2) {
-      this.socket.emit('clientGetProductsSugestions', event);
-    }
-  }
-
-  // Solucion 3
   public inputChange3(event): void {
     if (event.length > 2) {
-      this.socket.emit('clientGetProductsSugestions3', event);
+      this.socket.emit('clientGetProductsSugestions', event);
     }
   }
 

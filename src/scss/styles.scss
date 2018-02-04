@@ -61,7 +61,7 @@ body {
 
 @keyframes clipMe {0%,100%{clip: rect(0,220px,2px,0)}25%{clip:rect(0,2px,220px,0)}50%{clip:rect(218px,220px,220px,0)}75%{clip:rect(0,220px,220px,218px)}}
 
-/* My clases Open */
+// My clases /*
 .card-custom {
     background-color: white;
     margin-left: 15px;
@@ -69,9 +69,39 @@ body {
     margin-bottom: 15px;
     width: 100%;
 }
-/* My clases Close */
+// My classes */
 
-/* Swal (Sweet Alert) classes A */
+// Ng2 Completer /*
+.completer-holder {
+    width: 100%;
+}
+
+.completer-input {
+    width: inherit !important;
+    border: 2px solid #32b3aa;
+    font-size: 30px;
+}
+
+.completer-input:focus {
+    outline: none;
+    border: 2px solid #32b3aa;
+    box-shadow: 0 0 10px #32b3aa;   
+}
+
+.completer-dropdown-holder {
+    width: 100% !important;
+}
+
+.completer-dropdown {
+    width: unset !important;
+    margin-right: 15px !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 192px;
+}
+// Ng2 Completer */
+
+// Swal (Sweet Alert) /*
 .select-one-option-alert {
     border-radius: 0px !important;
     margin: 5px !important;
@@ -92,8 +122,9 @@ body {
 .hecho-button:focus {
     outline: none;
 }
-/* Swal classes B */
+// Swal (Sweet Alert) */
 
+// Google maps /*
 #map_canvas {
     width: 100%;
     height: 100%;
@@ -115,25 +146,26 @@ body {
     width: 40px;
     height: 56px;
     cursor: pointer;
-  }
+}
 
-  #map_canvas .centerMarker.focused {
+#map_canvas .centerMarker.focused {
     background: rgba(0,0,0,0);
-  }
-  
-  a[href^="http://maps.google.com/maps"]{display:none !important}
-  a[href^="https://maps.google.com/maps"]{display:none !important}
+}
 
-  .gmnoprint a, .gmnoprint span , .gm-style-cc {
-      display:none;
-  }
-  
-  .gmnoprint div {
-      /* background:none !important; */
-  }
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span , .gm-style-cc {
+    display:none;
+}
+
+.gmnoprint div {
+    /* background:none !important; */
+}
+// Google Maps */
 
 /* Auto complete search bar A */
-  ngui-auto-complete {
+ngui-auto-complete {
     max-height: 170px;
     overflow-y: auto;
 }
@@ -146,7 +178,7 @@ body {
 }
 /* Confirmation modal styles B */
 
-/* Material icons */
+// Material icons /*
 @font-face {
     font-family: 'Material Icons';
     font-style: normal;
@@ -168,9 +200,9 @@ body {
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
+// Material icons */
 
-/* Roboto font */
-
+// Roboto font /*
 /* cyrillic-ext */
 @font-face {
     font-family: 'Roboto';
@@ -235,8 +267,9 @@ body {
 }
 
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,latin-ext');
+// Roboto font */
 
-/* Star rating A */
+// Star rating /*
 /*VARIABLES
 ====================================================*/
 /*Range*/
@@ -290,23 +323,23 @@ Star element
     -ms-flex-pack: center;
     justify-content: center;
     /*
-  Fill states
-  ==================================================================*/
+    Fill states
+    ==================================================================*/
     /*
-  Colors
-  ==================================================================*/
+    Colors
+    ==================================================================*/
     /*
-  Icon Types
-  ==================================================================*/
+    Icon Types
+    ==================================================================*/
     /*
-  Star Size
-  ===================================================================*/
+    Star Size
+    ===================================================================*/
     /*
-Disabled
-=================================================*/
+    Disabled
+    =================================================*/
     /*
-  Direction
-  =================================================*/
+    Direction
+    =================================================*/
 }
 
 .star svg, .star i {
@@ -505,11 +538,11 @@ Label Element
     font-size: 18px;
     line-height: 18px;
     /*
-  Sizes
-  =================================================================*/
+    Sizes
+    =================================================================*/
     /*
-  Disabled
-  =================================================*/
+    Disabled
+    =================================================*/
 }
 
 .label-value.small, .rating.small .label-value {
@@ -1121,4 +1154,4 @@ Rating Component
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
 }
-/* Star rating B */
+// Star rating */
