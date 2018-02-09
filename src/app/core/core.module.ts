@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OfferComponent } from './containers/offer/offer.component';
+import { AuthService } from './services/auth0.service';
+import { Launchpad2Component } from './containers/launchpad2/launchpad2.component';
 
 @NgModule({
   imports: [
@@ -41,7 +43,8 @@ import { OfferComponent } from './containers/offer/offer.component';
     MainComponent,
     LaunchpadComponent,
     HeaderComponent,
-    OfferComponent
+    OfferComponent,
+    Launchpad2Component
   ],
   exports: [
     BrowserAnimationsModule,
@@ -68,7 +71,7 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [{provide: LOCALE_ID, useValue : 'es-MX'}, TooltipConfig]
+      providers: [{provide: LOCALE_ID, useValue : 'es-MX'}, TooltipConfig, AuthService]
     };
   }
  }

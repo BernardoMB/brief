@@ -1,9 +1,15 @@
-import * as process from 'process';
+// Mongoose
 const mongoose = require('mongoose');
-const { Connection, Request } = require('tedious');
 
-const tp = require('tedious-promises');
+// Tedious
+const { Connection, Request } = require('tedious');
 const TYPES = require('tedious').TYPES;
+// Tedious promises
+const tp = require('tedious-promises');
+
+// Google Firebase
+const admin = require('firebase-admin');
+const serviceAccount = require('../config/serviceAccountKey.json');
 
 import Product from '../models/product';
 
@@ -29,6 +35,7 @@ const dbConfig = {
     }
 };
 
+// Using Tedious to connect to data base providing db configuration object.
 /* const connectToSqlServerDatabase = () => {
     return new Promise((resolve, reject) => {
         const sqlServerConnection = new Connection(dbConfig);
@@ -72,9 +79,10 @@ connectToSqlServerDatabase().then((connection: any) => {
     console.log('Unable to connect to SQL Server database.', err);
 }); */
 
-// Using Tedious promises
+// Using Tedious promises to connect to data base providing db configuration object.
 tp.setConnectionConfig(dbConfig);
 
+// Bring all rows from TBL_CATALOGOTIPOEMPRESA.
 /* const queryString = 'SELECT * FROM [TBL_CATALOGOTIPOEMPRESA];';
 tp.sql(queryString).execute().then(function(results) {
     console.log(results);
@@ -82,6 +90,7 @@ tp.sql(queryString).execute().then(function(results) {
     console.log(err);
 }); */
 
+// Migrate all info from CATPRODUCTO to product collection in Mongo.
 /* const queryString2 = 'SELECT * FROM [CATPRODUCTO];';
 tp.sql(queryString2).execute().then(function(results) {
     console.log(typeof(results));
@@ -103,9 +112,15 @@ tp.sql(queryString2).execute().then(function(results) {
     console.log(err);
 }); */
 
-Product.find({}, (err, docs) => {
+// Mongoose query.
+/* Product.find({}, (err, docs) => {
     console.log(typeof(docs));
     console.log(docs[0]);
-});
+}); */
 
+// Initilize Firebase app.
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: 'https://brief-1515621617853.firebaseio.com'
+});
 

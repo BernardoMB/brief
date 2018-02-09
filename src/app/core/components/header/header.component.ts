@@ -12,6 +12,7 @@ declare var $: any;
 export class HeaderComponent implements OnInit {
   @Input() title: string;
   @Input() imgUrl: string;
+  @Input() opacity: boolean;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -23,6 +24,20 @@ export class HeaderComponent implements OnInit {
       backgroundSize: '100%'
     };
     return clase;
+  }
+
+  public setOpacity(): any {
+    if (this.opacity) {
+      const clase = {
+        backgroundColor: 'rgba(#32b3aa, 0.5)'
+      };
+      return clase;
+    } else {
+      const clase = {
+        background: 'linear-gradient(270deg,#33a4bc 20%, #32b3aa 80%)'
+      };
+      return clase;
+    }
   }
 
   public redirect(event): void {

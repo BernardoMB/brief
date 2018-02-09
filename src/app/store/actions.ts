@@ -17,6 +17,12 @@ export class SetHeaderImageAction implements Action {
     constructor(public payload: string) { }
 }
 
+export const SET_HEADER_OPACITY_ACTION = 'SET_HEADER_OPACITY_ACTION';
+export class SetHeaderOpacityAction implements Action {
+    readonly type = SET_HEADER_OPACITY_ACTION;
+    constructor(public payload: boolean) { }
+}
+
 //#region Professions
     export const GET_ALL_PROFESSIONS_ACTION = 'GET_ALL_PROFESSIONS_ACTION';
     export class GetAllProfessionsAction implements Action {
@@ -144,6 +150,7 @@ export type StoreActions =
     | SetLeadDataInfoAction
     | UserConfirmedAction
     | SetHeaderTitleAction
+    | SetHeaderOpacityAction
     | SetHeaderImageAction;
 
 export type UIActions = StoreActions

@@ -64,6 +64,9 @@ export class GenericComponent implements OnInit {
   public setSelectedOption(option): void {
     console.log('User selected option', option);
     this.selectedOption = option;
+    setTimeout(() => {
+      this.continue();
+    }, 100);
   }
 
   public continue(): void {

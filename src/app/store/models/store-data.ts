@@ -8,6 +8,7 @@ import { IProduct } from '../../shared/models/IProduct';
 export interface IStoreData {
     headerTitle: string;
     headerImgUrl: string;
+    headerOpacity: boolean;
     professions: {[key: string]: IProfession};
     products: {[key: string]: IProduct};
     activity: number;
@@ -25,6 +26,7 @@ export interface IStoreData {
 export const INITIAL_STORE_DATA: IStoreData = {
     headerTitle: '',
     headerImgUrl: '',
+    headerOpacity: null,
     professions: {},
     products: {},
     activity: undefined,

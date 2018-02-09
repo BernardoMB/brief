@@ -61,9 +61,8 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     private store: Store<IApplicationState>,
     private completerService: CompleterService) {
       const headerTitle = 'Selecciona tu producto';
-
-      /* this.store.dispatch(new SetHeaderTitleAction(headerTitle));
-      this.store.dispatch(new GetAllProductsAction());
+      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+      /* this.store.dispatch(new GetAllProductsAction());
       this.products$ = this.store.select(state => mapStateToProductsInfo(state));
       this.productsub = this.products$.subscribe(products => {
         this.productsArray = [];

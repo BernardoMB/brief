@@ -25,6 +25,8 @@ import {
     SetHeaderImageAction,
     UPDATE_ALL_PRODUCTS_ACTION,
     UpdateAllProductsAction,
+    SET_HEADER_OPACITY_ACTION,
+    SetHeaderOpacityAction,
 } from './../actions';
 import { ILocation } from '../../../shared/models/ILocation';
 import { ILead } from '../../../shared/models/ILead';
@@ -54,6 +56,8 @@ export function storeData(state: IStoreData = INITIAL_STORE_DATA, action: StoreA
             return handleSetHeaderTitleAction(state, action);
         case SET_HEADER_IMAGE_ACTION:
             return handleSetHeaderImageAction(state, action);
+        case SET_HEADER_OPACITY_ACTION:
+            return handleSetHeaderOpacityAction(state, action);
         default:
             return state;
     }
@@ -134,5 +138,11 @@ function handleSetHeaderTitleAction(state: IStoreData, action: SetHeaderTitleAct
 function handleSetHeaderImageAction(state: IStoreData, action: SetHeaderImageAction): IStoreData {
     const newStoreData = Object.assign({}, state);
     newStoreData.headerImgUrl = action.payload;
+    return newStoreData;
+}
+
+function handleSetHeaderOpacityAction(state: IStoreData, action: SetHeaderOpacityAction): IStoreData {
+    const newStoreData = Object.assign({}, state);
+    newStoreData.headerOpacity = action.payload;
     return newStoreData;
 }

@@ -11,6 +11,7 @@ import { ErrorOcurredAction, GetAllProfessionsAction } from '../../../store/acti
 import { mapStateToProfessions } from '../../../store/mappers/mapStateToProfessions';
 import { mapStateToHeaderTitle } from '../../../store/mappers/mapStateToHeaderTitle';
 import { mapStateToHeaderImgUrl } from '../../../store/mappers/mapStateToHeaderImgUrl';
+import { mapStateToHeaderOpacity } from '../../../store/mappers/mapStateToHeaderOpacity';
 declare var $: any;
 
 @Component({
@@ -23,6 +24,7 @@ export class MainComponent implements OnInit, OnDestroy {
   private isLoadingSubscription: Subscription;
   public title$: Observable<string>;
   public imgUrl$: Observable<string>;
+  public opacity$: Observable<boolean>;
   public socket;
 
   constructor(private slimLoadingBarService: SlimLoadingBarService,
@@ -37,6 +39,7 @@ export class MainComponent implements OnInit, OnDestroy {
       this.socket.on('connect_error', error => this.store.dispatch(new ErrorOcurredAction(error)));
       this.title$ = this.store.select(state => mapStateToHeaderTitle(state));
       this.imgUrl$ = this.store.select(state => mapStateToHeaderImgUrl(state));
+      this.opacity$ = this.store.select(state => mapStateToHeaderOpacity(state));
     }
 
   public ngOnInit(): void {

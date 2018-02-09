@@ -3,7 +3,9 @@ import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
 import { SetHeaderTitleAction, SetHeaderImageAction } from '../../../store/actions';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth0.service';
 declare var $: any;
+import * as auth0 from 'auth0-js';
 
 @Component({
   selector: 'app-launchpad',
@@ -12,7 +14,12 @@ declare var $: any;
 })
 export class LaunchpadComponent implements OnInit {
 
-  constructor(private router: Router, private store: Store<IApplicationState>) {
+  public webAuth = new auth0.WebAuth({
+    domain:       'bernardomb.auth0.com',
+    clientID:     '25gB3nmB44C6FG9lAPA8REuBcnnCen0A'
+  });
+
+  constructor(private router: Router, private store: Store<IApplicationState>, public auth: AuthService) {
     const headerTitle = '¡Bienvenido!';
     this.store.dispatch(new SetHeaderTitleAction(headerTitle));
     const headerImgUrl = '../../../../assets/headerImages/office.jpg';
