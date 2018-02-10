@@ -52,8 +52,7 @@ export class GenericComponent implements OnInit {
   public selectedOption: number;
 
   constructor(private router: Router, private store: Store<IApplicationState>) {
-    const headerTitle = '¿Qué hace tu empresa?';
-    this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+    this.store.dispatch(new SetHeaderTitleAction('¿Qué hace tu empresa?'));
   }
 
   ngOnInit() {
@@ -65,43 +64,39 @@ export class GenericComponent implements OnInit {
   }
 
   public setSelectedOption(option): void {
-    console.log('User selected option', option);
     this.selectedOption = option;
+    // TODO: Emitir accion al store de la accion selecionada.
     setTimeout(() => {
-      this.continue();
-    }, 100);
-  }
-
-  public continue(): void {
-    if (this.selectedOption === undefined) {
-      swal({
-        customClass: 'select-one-option-alert',
-        type: 'warning',
-        title: 'Selecciona una opción para continuar',
-        showCloseButton: false,
-        focusConfirm: false,
-        confirmButtonText: 'Hecho',
-        buttonsStyling: false,
-        confirmButtonClass: 'hecho-button'
-      });
-    } else {
-      switch (this.selectedOption) {
-        case 1:
-          this.router.navigate(['/activity/product']);
-          break;
-        case 2:
-          this.router.navigate(['/activity/service/industry']);
-          break;
-        case 3:
-          this.router.navigate(['/activity/profession']);
-          break;
-        case 4:
-          this.router.navigate(['/activity/hotel']);
-          break;
-        case 5:
-          this.router.navigate(['/activity/restaurant']);
-          break;
+      if (this.selectedOption === undefined) {
+        swal({
+          customClass: 'select-one-option-alert',
+          type: 'warning',
+          title: 'Selecciona una opción para continuar',
+          showCloseButton: false,
+          focusConfirm: false,
+          confirmButtonText: 'Hecho',
+          buttonsStyling: false,
+          confirmButtonClass: 'hecho-button'
+        });
+      } else {
+        switch (this.selectedOption) {
+          case 1:
+            this.router.navigate(['/activity/product']);
+            break;
+          case 2:
+            this.router.navigate(['/activity/service/industry']);
+            break;
+          case 3:
+            this.router.navigate(['/activity/profession']);
+            break;
+          case 4:
+            this.router.navigate(['/activity/hotel']);
+            break;
+          case 5:
+            this.router.navigate(['/activity/restaurant']);
+            break;
+        }
       }
-    }
+    }, 100);
   }
 }

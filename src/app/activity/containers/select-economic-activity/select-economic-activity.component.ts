@@ -69,8 +69,7 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<IApplicationState>) {
-      const headerTitle = '¿Qué haces con el producto?';
-      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+      this.store.dispatch(new SetHeaderTitleAction('¿Qué haces con el producto?'));
     }
 
   ngOnInit() {
@@ -90,21 +89,22 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
       this.campaignId = params['campaignid'];
     });
 
-    this.question = '¿Vendes un producto?';
-    this.imgUrlModal = './../../../assets/real/SelectEActivityModal.jpg';
-
     this.title = '¿Qué actividad realizas con el producto?';
     this.subtitle = null;
     this.explanation = 'Ayúdanos a determinar el tipo de actividad'
     + ' que desempeñas con el producto para lograr resultados increíbles. Si no vendes un producto, entonces'
     + ' presiona en "Otra actividad".';
 
+    // Modal logic
+    this.question = '¿Vendes un producto?';
+    this.imgUrlModal = './../../../assets/real/SelectEActivityModal.jpg';
     // Get confirmed variable from the store to know if I should show the confirmation modal.
     this.confirmed = this.store.select(state => state.storeData.confirmed)
     .subscribe(value => {
       if (!value) {
         setTimeout(() => {
           this.confirmationModal.showModal();
+          this.store.dispatch(new UserConfirmedAction());
         }, 0);
       }
     });
@@ -115,7 +115,16 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     this.confirmed.unsubscribe();
   }
 
-  // TODO: Quitar boton siguinete.
+  public onUserConfirmed(event): void {
+    if (!event) {
+      this.router.navigate(['/activity/generic']);
+    }
+  }
+
+  public goToGeneric(): void {
+    this.router.navigate(['/activity/generic']);
+  }
+
   public setSelectedOption(option): void {
     this.selectedOption = option;
     setTimeout(() => {
@@ -123,28 +132,6 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
-  //#region Confirmation Modal event binding
-    /**
-     * This function gets executed when the user confirmed.
-     * @param {any} event
-     * @memberof MakerComponent
-     */
-    public onUserConfirmed(event): void {
-      this.store.dispatch(new UserConfirmedAction());
-      if (event) {
-        // Execute some code.
-      } else {
-        // Redirect user to generic campaign
-        this.router.navigate(['/activity/generic']);
-      }
-    }
-  //#endregion
-
-  /**
-   * This function updates the App state and redirects the user to the
-   * next view based on the selectedOption propperty.
-   * @memberof MakerComponent
-   */
   public continue(): void {
     switch (this.selectedOption) {
       case undefined:
@@ -160,16 +147,9 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
         });
         break;
       default:
-        // TODO: Write to the store with the selected option.
+        // TODO: Store the selected option in the store.
         this.router.navigate(['/../address']);
     }
   }
 
-  /**
-   * Redirects user to the generic campaing.
-   * @memberof SelectProductComponent
-   */
-  public goToGeneric(): void {
-    this.router.navigate(['/activity/generic']);
-  }
 }

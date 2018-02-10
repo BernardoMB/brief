@@ -69,7 +69,7 @@ export class CoverageComponent implements OnInit {
         this.selectedOption = optionId;
         setTimeout(() => {
           this.continue();
-        }, 200);
+        }, 100);
       }
     }
   //#endregion
