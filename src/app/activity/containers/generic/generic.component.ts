@@ -8,6 +8,7 @@ import { SetActivityAction, SetHeaderTitleAction, UserConfirmedAction } from '..
 import swal from 'sweetalert2';
 declare var $: any;
 
+// TODO: Quitar boton siguinete.
 @Component({
   selector: 'app-generic',
   templateUrl: './generic.component.html',

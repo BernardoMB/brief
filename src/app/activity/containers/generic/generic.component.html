@@ -1,7 +1,3 @@
 <app-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></app-instruction-card>
 
 <app-options-list [options]="options" (onOptionSelected)="setSelectedOption($event)"></app-options-list>
-
-<div style="margin-bottom: 15px;">
-  <app-next-button [text]="'Siguiente'" (onClicked)="continue()"></app-next-button>
-</div>
