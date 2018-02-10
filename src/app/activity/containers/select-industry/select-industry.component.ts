@@ -167,11 +167,15 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
     }
 //#endregion
 
+// TODO: Quitar boton siguinete.
   public selectIndustry($event): void {
     this.selectedIndustry = $event;
     console.log(this.selectedIndustry);
     // Blur search box input.
     document.getElementById('industry-input').blur();
+    setTimeout(() => {
+      this.continue();
+    }, 100);
   }
 
   public continue(): void {

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { SetActivityAction, SetHeaderTitleAction, UserConfirmedAction } from '../../../store/actions';
 import swal from 'sweetalert2';
+declare var $: any;
 
 @Component({
   selector: 'app-generic',
@@ -55,6 +56,7 @@ export class GenericComponent implements OnInit {
   }
 
   ngOnInit() {
+    $('body').css('background', 'white');
     this.store.dispatch(new UserConfirmedAction());
     this.title = 'Selecciona la mejor opción para tu negocio';
     this.subtitle = null;

@@ -51,6 +51,7 @@ export class CoverageComponent implements OnInit {
     this.selectedOption = 0;
   }
 
+  // TODO: Quitar boton siguinete.
   //#region Cards
     public getBoxShadowForCard(roleId: number): String {
       if (this.selectedOption === roleId) {
@@ -61,8 +62,14 @@ export class CoverageComponent implements OnInit {
     public assignRole(optionId: number): void {
       if (this.selectedOption === optionId) {
         this.selectedOption = 0;
+        setTimeout(() => {
+          this.continue();
+        }, 200);
       } else {
         this.selectedOption = optionId;
+        setTimeout(() => {
+          this.continue();
+        }, 200);
       }
     }
   //#endregion

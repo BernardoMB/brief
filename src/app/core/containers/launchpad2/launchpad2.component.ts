@@ -26,7 +26,6 @@ export class Launchpad2Component implements OnInit {
     $('#external-content').removeClass('show collapse');
     $('#external-content').addClass('collapse');
     this.router.navigate(['/activity/generic']);
-    $('body').css('background', 'white');
   }
 
 }

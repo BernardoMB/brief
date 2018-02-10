@@ -115,8 +115,12 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     this.confirmed.unsubscribe();
   }
 
+  // TODO: Quitar boton siguinete.
   public setSelectedOption(option): void {
     this.selectedOption = option;
+    setTimeout(() => {
+      this.continue();
+    }, 100);
   }
 
   //#region Confirmation Modal event binding
