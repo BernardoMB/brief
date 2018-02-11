@@ -4,7 +4,7 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-import { SetActivityAction, SetHeaderTitleAction, UserConfirmedAction } from '../../../store/actions';
+import { SetActivityAction, SetHeaderTitleAction, UserConfirmedAction, TurnOffIsLoadingAction } from '../../../store/actions';
 import swal from 'sweetalert2';
 declare var $: any;
 
@@ -24,27 +24,32 @@ export class GenericComponent implements OnInit {
   public options: any[] = [
     {
       optionId: 1,
-      imgUrl: './../../../assets/generic/manufacturing.jpg',
+      imgUrl: './../../../assets/svg/generic/product.svg',
+      // imgUrl: '',
       cardTitle: 'Fabrica o vende un producto',
       selected: false
     }, {
       optionId: 2,
-      imgUrl: './../../../assets/generic/service2.jpg',
+      imgUrl: './../../../assets/svg/generic/service.svg',
+      // imgUrl: '',
       cardTitle: 'Ofrece algún servicio',
       selected: false
     }, {
       optionId: 3,
-      imgUrl: './../../../assets/generic/profession.jpg',
+      imgUrl: './../../../assets/svg/generic/profession.svg',
+      // imgUrl: '',
       cardTitle: 'Profesionista u oficio',
       selected: false
     }, {
       optionId: 4,
-      imgUrl: './../../../assets/generic/hotel.jpg',
+      imgUrl: './../../../assets/svg/generic/hotel.svg',
+      // imgUrl: '',
       cardTitle: 'Hotel',
       selected: false
     }, {
       optionId: 5,
-      imgUrl: './../../../assets/generic/restaurant.jpg',
+      imgUrl: './../../../assets/svg/generic/restaurant.svg',
+      // imgUrl: '',
       cardTitle: 'Restaurante',
       selected: false
     }
@@ -57,6 +62,7 @@ export class GenericComponent implements OnInit {
 
   ngOnInit() {
     $('body').css('background', 'white');
+    this.store.dispatch(new TurnOffIsLoadingAction());
     this.store.dispatch(new UserConfirmedAction());
     this.title = 'Selecciona la mejor opción para tu negocio';
     this.subtitle = null;

@@ -97,14 +97,14 @@ export class SelectHTypeComponent implements OnInit, OnDestroy {
 
     // Initilize modal variables.
     this.question = '¿Tu negocio es un hotel?';
-    this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-
-    this.imgUrlFixed = './../../../assets/generic/hotel.jpg';
+    // this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
+    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
 
     // Initilize view variables.
     this.title = 'Escribe el tipo de hotel';
     this.subtitle = null;
-    // TODO: Modificar instruccion.
+    // this.imgUrlFixed = './../../../assets/generic/hotel.jpg';
+    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
     this.explanation = 'Ayúdanos a determinar el tipo de hotel para lograr resultados increíbles. '
     + 'Busca el tipo de hotel y presiona en "Siguiente". '
     + 'Si tu negocio no es un hotel, entonces presiona en "Otra actividad".';
@@ -135,6 +135,9 @@ export class SelectHTypeComponent implements OnInit, OnDestroy {
         if (!value) {
           setTimeout(() => {
             this.confirmationModal.showModal();
+            // Tell the store that the user has already confirmed
+            // when he first entered the app so the modal wont show again.
+            this.store.dispatch(new UserConfirmedAction());
           }, 0);
         }
       });
@@ -145,28 +148,14 @@ export class SelectHTypeComponent implements OnInit, OnDestroy {
     this.confirmed.unsubscribe();
   }
 
-  //#region Confirmation Modal event binding
-    public onUserConfirmed(event): void {
-      // Tell the store that the user has already confirmed
-      // when he first entered the app so the modal wont show again.
-      this.store.dispatch(new UserConfirmedAction());
-      if (event) {
-        // Execute some code.
-      } else {
-        // Redirect user to generic campaign.
-        this.router.navigate(['/activity/generic']);
-      }
+  public onUserConfirmed(event): void {
+    if (!event) {
+      this.router.navigate(['/activity/generic']);
     }
-  //#endregion
+  }
 
-  /**
-   * Get the selected product from the view.
-   * @param {any} $event
-   * @memberof SelectProductComponent
-   */
   public selectType($event): void {
     this.selectedType = $event;
-    console.log(this.selectedType);
     // Blur search box input.
     document.getElementById('type-input').blur();
   }
@@ -194,10 +183,6 @@ export class SelectHTypeComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Redirects user to the generic campaing.
-   * @memberof SelectProductComponent
-   */
   public goToGeneric(): void {
     this.router.navigate(['/activity/generic']);
   }

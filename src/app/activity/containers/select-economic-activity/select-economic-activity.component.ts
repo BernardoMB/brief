@@ -36,27 +36,27 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
   public options: any[] = [
     {
       optionId: 1,
-      imgUrl: './../../../assets/real/FabricaElProducto.jpg',
+      imgUrl: './../../../assets/svg/economic-activity/manufacture.svg',
       cardTitle: 'Fabrica el producto',
       selected: false
     }, {
       optionId: 2,
-      imgUrl: './../../../assets/real/FabYDistAlMayoreo.jpeg',
+      imgUrl: './../../../assets/svg/economic-activity/distribute.svg',
       cardTitle: 'Fabrica y distribuye el producto al mayoreo',
       selected: false
     }, {
       optionId: 3,
-      imgUrl: './../../../assets/real/FabYDistAlMenudeo.jpg',
+      imgUrl: './../../../assets/svg/economic-activity/retail.svg',
       cardTitle: 'Fabrica y distribuye el producto al menudeo',
       selected: false
     }, {
       optionId: 4,
-      imgUrl: './../../../assets/real/Mayoreo.jpg',
+      imgUrl: './../../../assets/svg/economic-activity/distribute-minor.svg',
       cardTitle: 'Distribuye el producto al mayoreo',
       selected: false
     }, {
       optionId: 5,
-      imgUrl: './../../../assets/real/Menudeo.jpg',
+      imgUrl: './../../../assets/svg/economic-activity/shop.svg',
       cardTitle: 'Distribuye el producto al menudeo',
       selected: false
     }
@@ -121,10 +121,6 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     }
   }
 
-  public goToGeneric(): void {
-    this.router.navigate(['/activity/generic']);
-  }
-
   public setSelectedOption(option): void {
     this.selectedOption = option;
     setTimeout(() => {
@@ -135,21 +131,24 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
   public continue(): void {
     switch (this.selectedOption) {
       case undefined:
-        swal({
-          customClass: 'select-one-option-alert',
-          type: 'warning',
-          title: 'Selecciona una opción o presiona en "Otra actividad"',
-          showCloseButton: false,
-          focusConfirm: false,
-          confirmButtonText: 'Hecho',
-          buttonsStyling: false,
-          confirmButtonClass: 'hecho-button'
-        });
-        break;
+      swal({
+        customClass: 'select-one-option-alert',
+        type: 'warning',
+        title: 'Selecciona una opción o presiona en "Otra actividad"',
+        showCloseButton: false,
+        focusConfirm: false,
+        confirmButtonText: 'Hecho',
+        buttonsStyling: false,
+        confirmButtonClass: 'hecho-button'
+      });
+      break;
       default:
-        // TODO: Store the selected option in the store.
-        this.router.navigate(['/../address']);
+      // TODO: Store the selected option in the store.
+      this.router.navigate(['/../address']);
     }
   }
 
+  public goToGeneric(): void {
+    this.router.navigate(['/activity/generic']);
+  }
 }

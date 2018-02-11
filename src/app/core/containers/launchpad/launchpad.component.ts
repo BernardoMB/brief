@@ -20,8 +20,7 @@ export class LaunchpadComponent implements OnInit {
   });
 
   constructor(private router: Router, private store: Store<IApplicationState>, public auth: AuthService) {
-    const headerTitle = '¡Bienvenido!';
-    this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+    this.store.dispatch(new SetHeaderTitleAction('¡Bienvenido!'));
     const headerImgUrl = '../../../../assets/headerImages/office.jpg';
     this.store.dispatch(new SetHeaderImageAction(headerImgUrl));
   }

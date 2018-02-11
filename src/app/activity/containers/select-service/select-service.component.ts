@@ -70,8 +70,7 @@ export class SelectServiceComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
     private store: Store<IApplicationState>,
     private activatedRoute: ActivatedRoute) {
-      const headerTitle = 'Selecciona el servicio';
-      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+      this.store.dispatch(new SetHeaderTitleAction('Selecciona el servicio'));
     }
 
   ngOnInit() {
@@ -95,10 +94,10 @@ export class SelectServiceComponent implements OnInit, OnDestroy {
       this.campaignId = params['campaignid'];
     });
 
-    this.imgUrlFixed = './../../../assets/real/SelectProduct.jpg';
+    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
 
     // Initilize view variables.
-    this.title = '¿A qué industria pertenece tu servicio?';
+    this.title = '¿Cuál es el servicio que ofreces?';
     this.subtitle = '';
     // TODO: Modificar instruccion.
     this.explanation = 'Ayúdanos a determinar el tipo de servicio que ofreces para lograr resultados increíbles. '
@@ -132,7 +131,6 @@ export class SelectServiceComponent implements OnInit, OnDestroy {
 
   public selectService($event): void {
     this.selectedService = $event;
-    console.log(this.selectedService);
     // Blur search box input.
     document.getElementById('service-input').blur();
   }
@@ -162,10 +160,6 @@ export class SelectServiceComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Redirects user to the generic campaing.
-   * @memberof SelectProductComponent
-   */
   public goToGeneric(): void {
     this.router.navigate(['/activity/generic']);
   }

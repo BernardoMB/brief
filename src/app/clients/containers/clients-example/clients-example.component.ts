@@ -7,7 +7,7 @@ declare var $: any;
 @Component({
   selector: 'app-clients-example',
   templateUrl: './clients-example.component.html',
-  styleUrls: ['./clients-example.component.css']
+  styleUrls: ['./clients-example.component.scss']
 })
 export class ClientsExampleComponent implements OnInit {
   @ViewChild('plansModal') plansModal: PlansModalComponent;

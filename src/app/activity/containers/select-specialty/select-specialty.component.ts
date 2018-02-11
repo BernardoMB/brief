@@ -81,8 +81,7 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<IApplicationState>) {
-      const headerTitle = 'Selecciona tu especialidad';
-      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+      this.store.dispatch(new SetHeaderTitleAction('Selecciona tu especialidad'));
     }
 
   ngOnInit() {
@@ -104,14 +103,12 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
 
     // Initilize modal variables.
     this.question = '¿Practicas x profesión?';
-    this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-
-    this.imgUrlFixed = './../../../assets/real/SelectProduct.jpg';
+    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
 
     // Initilize view variables.
     this.title = 'Escribe la especialidad que tienes';
     this.subtitle = null;
-    // TODO: Modificar instruccion.
+    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
     this.explanation = 'Ayúdanos a determinar la especialidad que tienes para lograr mejores resultados. '
     + 'Busca tu especialidad y presiona en "Siguiente". '
     + 'Si no eres profesionista, entonces presiona en "Otra actividad".';
@@ -142,6 +139,9 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
         if (!value) {
           setTimeout(() => {
             this.confirmationModal.showModal();
+            // Tell the store that the user has already confirmed
+            // when he first entered the app so the modal wont show again.
+            this.store.dispatch(new UserConfirmedAction());
           }, 0);
         }
       });
@@ -152,28 +152,14 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
     this.confirmed.unsubscribe();
   }
 
-  //#region Confirmation Modal event binding
-    public onUserConfirmed(event): void {
-      // Tell the store that the user has already confirmed
-      // when he first entered the app so the modal wont show again.
-      this.store.dispatch(new UserConfirmedAction());
-      if (event) {
-        // Execute some code.
-      } else {
-        // Redirect user to generic campaign.
-        this.router.navigate(['/activity/generic']);
-      }
+  public onUserConfirmed(event): void {
+    if (event) {
+      this.router.navigate(['/activity/generic']);
     }
-  //#endregion
+  }
 
-  /**
-   * Get the selected specialty from the view.
-   * @param {any} $event
-   * @memberof SelectProductComponent
-   */
   public selectSpecialty($event): void {
     this.selectedSpecialty = $event;
-    console.log(this.selectedSpecialty);
     // Blur search box input.
     document.getElementById('specialty-input').blur();
   }
@@ -201,12 +187,7 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Redirects user to the generic campaing.
-   * @memberof SelectProductComponent
-   */
   public goToGeneric(): void {
     this.router.navigate(['/activity/generic']);
   }
-
 }

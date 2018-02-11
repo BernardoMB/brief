@@ -60,8 +60,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private store: Store<IApplicationState>,
     private completerService: CompleterService) {
-      const headerTitle = 'Selecciona tu producto';
-      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+      this.store.dispatch(new SetHeaderTitleAction('Selecciona tu producto'));
       /* this.store.dispatch(new GetAllProductsAction());
       this.products$ = this.store.select(state => mapStateToProductsInfo(state));
       this.productsub = this.products$.subscribe(products => {
@@ -143,14 +142,12 @@ export class SelectProductComponent implements OnInit, OnDestroy {
 
     // Initilize modal variables.
     this.question = '¿Vendes algún producto?';
-    this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-
-    this.imgUrlFixed = './../../../assets/real/SelectProduct.jpg';
+    this.imgUrlModal = './../../../assets/svg/generic/product.svg';
 
     // Initilize view variables.
     this.title = 'Escribe el nombre del producto';
     this.subtitle = null;
-    // TODO: Modificar instruccion.
+    this.imgUrlFixed = './../../../assets/svg/generic/product.svg';
     this.explanation = 'Ayúdanos a determinar el producto que vendes para lograr resultados increíbles. '
     + 'Busca el nombre de tu producto y presiona en "Siguiente". '
     + 'Si no vendes un producto, entonces presiona en "Otra actividad".';
@@ -182,6 +179,9 @@ export class SelectProductComponent implements OnInit, OnDestroy {
         if (!value) {
           setTimeout(() => {
             this.confirmationModal.showModal();
+            // Tell the store that the user has already confirmed
+            // when he first entered the app so the modal wont show again.
+            this.store.dispatch(new UserConfirmedAction());
           }, 0);
         }
       });
@@ -198,23 +198,14 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     }
   }
 
-  //#region Confirmation Modal event binding
-    public onUserConfirmed(event): void {
-      // Tell the store that the user has already confirmed
-      // when he first entered the app so the modal wont show again.
-      this.store.dispatch(new UserConfirmedAction());
-      if (event) {
-        // Execute some code.
-      } else {
-        // Redirect user to generic campaign.
-        this.router.navigate(['/activity/generic']);
-      }
+  public onUserConfirmed(event): void {
+    if (!event) {
+      this.router.navigate(['/activity/generic']);
     }
-  //#endregion
+  }
 
   public selectProduct(event): void {
     this.selectedProduct = event;
-    console.log(this.selectedProduct.name);
     // Blur search box input.
     document.getElementById('product-input').blur();
   }

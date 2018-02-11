@@ -6,16 +6,20 @@ import { Action } from '@ngrx/store';
         GETTING_ALL_PROFESSIONS_ACTION,
         UPDATE_ALL_PROFESSIOS_ACTION,
         GETTING_ALL_PRODUCTS_ACTION,
-        UPDATE_ALL_PRODUCTS_ACTION } from './../actions';
+        UPDATE_ALL_PRODUCTS_ACTION, 
+        TURN_ON_IS_LOADING_ACTION,
+        TURN_OFF_IS_LOADING_ACTION} from './../actions';
 //#endregion
 
 export function uiState(state: IUIState = INITIAL_UI_STATE, action: UIActions): IUIState {
     switch (action.type) {
         case GETTING_ALL_PRODUCTS_ACTION:
         case GETTING_ALL_PROFESSIONS_ACTION:
+        case TURN_ON_IS_LOADING_ACTION:
             return handleLoadDataAction(state, action);
         case UPDATE_ALL_PROFESSIOS_ACTION:
         case UPDATE_ALL_PRODUCTS_ACTION:
+        case TURN_OFF_IS_LOADING_ACTION:
             return handleLoadedDataAction(state, action);
         default:
             return state;

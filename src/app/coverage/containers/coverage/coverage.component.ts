@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { SetHeaderTitleAction } from '../../../store/actions';
 import swal from 'sweetalert2';
+declare var $: any;
 
 @Component({
   selector: 'app-coverage',
@@ -43,6 +44,7 @@ export class CoverageComponent implements OnInit {
   }
 
   ngOnInit() {
+    $('body').css('background', 'white');
     this.title = 'Selecciona la cobertura de tu negocio';
     this.subtitle = null;
     this.explanation = 'Ayúdanos a determinar en dónde ofreces tus productos o servicios'
@@ -64,7 +66,7 @@ export class CoverageComponent implements OnInit {
         this.selectedOption = 0;
         setTimeout(() => {
           this.continue();
-        }, 200);
+        }, 100);
       } else {
         this.selectedOption = optionId;
         setTimeout(() => {

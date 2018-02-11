@@ -74,8 +74,7 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<IApplicationState>) {
-      const headerTitle = 'Selecciona tu profesión';
-      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+      this.store.dispatch(new SetHeaderTitleAction('Selecciona tu profesión'));
     }
 
     ngOnInit() {
@@ -99,14 +98,12 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
 
       // Initilize modal variables.
       this.question = '¿Eres profesionista?';
-      this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-
-      this.imgUrlFixed = './../../../assets/generic/profession.jpg';
+      this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
 
       // Initilize view variables.
       this.title = 'Escribe tu profesión';
       this.subtitle = null;
-      // TODO: Modificar instruccion.
+      this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
       this.explanation = 'Ayúdanos a determinar la profesión que practicas para lograr resultados increíbles. '
       + 'Busca el nombre de tu profesión y presiona en "Siguiente". '
       + 'Si no eres profesionista, entonces presiona en "Otra actividad".';
@@ -133,10 +130,13 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
 
       // Get confirmed variable from the store to know if I should show the confirmation modal.
       this.confirmed = this.store.select(state => state.storeData.confirmed)
-        .subscribe(value => {
-          if (!value) {
-            setTimeout(() => {
-              this.confirmationModal.showModal();
+      .subscribe(value => {
+        if (!value) {
+          setTimeout(() => {
+            this.confirmationModal.showModal();
+            // Tell the store that the user has already confirmed
+            // when he first entered the app so the modal wont show again.
+            this.store.dispatch(new UserConfirmedAction());
             }, 0);
           }
         });
@@ -147,28 +147,14 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
       this.confirmed.unsubscribe();
     }
 
-    //#region Confirmation Modal event binding
-      public onUserConfirmed(event): void {
-        // Tell the store that the user has already confirmed
-        // when he first entered the app so the modal wont show again.
-        this.store.dispatch(new UserConfirmedAction());
-        if (event) {
-          // Execute some code.
-        } else {
-          // Redirect user to generic campaign.
-          this.router.navigate(['/activity/generic']);
-        }
+    public onUserConfirmed(event): void {
+      if (!event) {
+        this.router.navigate(['/activity/generic']);
       }
-    //#endregion
+    }
 
-    /**
-     * Get the selected product from the view.
-     * @param {any} $event
-     * @memberof SelectProductComponent
-     */
     public selectProfession($event): void {
       this.selectedProfession = $event;
-      console.log(this.selectedProfession);
       // Blur search box input.
       document.getElementById('profession-input').blur();
     }
@@ -196,12 +182,7 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
       }
     }
 
-    /**
-     * Redirects user to the generic campaing.
-     * @memberof SelectProductComponent
-     */
     public goToGeneric(): void {
       this.router.navigate(['/activity/generic']);
     }
-
 }

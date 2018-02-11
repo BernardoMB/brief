@@ -78,8 +78,7 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
     private store: Store<IApplicationState>,
     private activatedRoute: ActivatedRoute) {
-      const headerTitle = 'Selecciona tu industria';
-      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+      this.store.dispatch(new SetHeaderTitleAction('Selecciona tu industria'));
     }
 
   ngOnInit() {
@@ -105,14 +104,12 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
 
     // Initilize modal variables.
     this.question = '¿Ofreces un servicio?';
-    this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-
-    this.imgUrlFixed = './../../../assets/real/SelectProduct.jpg';
+    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
 
     // Initilize view variables.
     this.title = '¿A qué industria pertenece tu servicio?';
     this.subtitle = '';
-    // TODO: Modificar instruccion.
+    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
     this.explanation = 'Ayúdanos a determinar el tipo de servicio que ofreces'
     + ' para lograr resultados increibles. Si no ofreces algún tipo de servicio, entonces'
     + ' presiona en "Otra actividad".';
@@ -143,6 +140,9 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
         if (!value) {
           setTimeout(() => {
             this.confirmationModal.showModal();
+            // Tell the store that the user has already confirmed
+            // when he first entered the app so the modal wont show again.
+            this.store.dispatch(new UserConfirmedAction());
           }, 0);
         }
       });
@@ -153,33 +153,19 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
     this.confirmed.unsubscribe();
   }
 
-  //#region Confirmation Modal event binding
-    public onUserConfirmed(event): void {
-      // Tell the store that the user has already confirmed
-      // when he first entered the app so the modal wont show again.
-      this.store.dispatch(new UserConfirmedAction());
-      if (event) {
-        // Execute some code.
-      } else {
-        // Redirect user to generic campaign.
-        this.router.navigate(['/activity/generic']);
-      }
+  public onUserConfirmed(event): void {
+    if (!event) {
+      this.router.navigate(['/activity/generic']);
     }
-//#endregion
+  }
 
-// TODO: Quitar boton siguinete.
   public selectIndustry($event): void {
     this.selectedIndustry = $event;
-    console.log(this.selectedIndustry);
     // Blur search box input.
     document.getElementById('industry-input').blur();
-    setTimeout(() => {
-      this.continue();
-    }, 100);
   }
 
   public continue(): void {
-    console.log(this.selectedIndustry);
     if (this.selectedIndustry === undefined) {
       swal({
         customClass: 'select-one-option-alert',
@@ -202,10 +188,6 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Redirects user to the generic campaing.
-   * @memberof SelectProductComponent
-   */
   public goToGeneric(): void {
     this.router.navigate(['/activity/generic']);
   }

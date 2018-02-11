@@ -34,7 +34,6 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
   public subtitle: string;
   public explanation: string;
   public imgUrlFixed: String;
-
   public rating: any;
 
   // To know confirmation modal need to be showed when the components get initialized.
@@ -43,8 +42,7 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<IApplicationState>) {
-      const headerTitle = 'Selecciona tus estrellas';
-      this.store.dispatch(new SetHeaderTitleAction(headerTitle));
+      this.store.dispatch(new SetHeaderTitleAction('Selecciona tus estrellas'));
     }
 
   ngOnInit() {
@@ -66,14 +64,14 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
 
     // Initilize modal variables.
     this.question = '¿Tu negocio es un hotel de paso x?';
-    this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-
-    this.imgUrlFixed = './../../../assets/real/SelectProduct.jpg';
+    // this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
+    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
 
     // Initilize view variables.
     this.title = 'Selecciona las estrellas de tu hotel';
     this.subtitle = null;
-    // TODO: Modificar instruccion.
+    // this.imgUrlFixed = './../../../assets/real/SelectProduct.jpg';
+    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
     this.explanation = 'Ayúdanos a determinar el nivel de tu hotel para lograr resultados increíbles. '
     + 'Selecciona la cantidad de estrellas y presiona en "Siguiente". '
     + 'Si tu negocio no es un hotel, entonces presiona en "Otra actividad".';
@@ -84,6 +82,7 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
         if (!value) {
           setTimeout(() => {
             this.confirmationModal.showModal();
+            this.store.dispatch(new UserConfirmedAction());
           }, 0);
         }
       });
@@ -94,19 +93,11 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
     this.confirmed.unsubscribe();
   }
 
-  //#region Confirmation Modal event binding
-    public onUserConfirmed(event): void {
-      // Tell the store that the user has already confirmed
-      // when he first entered the app so the modal wont show again.
-      this.store.dispatch(new UserConfirmedAction());
-      if (event) {
-        // Execute some code.
-      } else {
-        // Redirect user to generic campaign.
-        this.router.navigate(['/activity/generic']);
-      }
+  public onUserConfirmed(event): void {
+    if (!event) {
+      this.router.navigate(['/activity/generic']);
     }
-  //#endregion
+  }
 
   public onStarClick(event): void {
     this.rating = event;
@@ -135,10 +126,6 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Redirects user to the generic campaing.
-   * @memberof SelectProductComponent
-   */
   public goToGeneric(): void {
     this.router.navigate(['/activity/generic']);
   }

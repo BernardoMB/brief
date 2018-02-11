@@ -23,6 +23,18 @@ export class SetHeaderOpacityAction implements Action {
     constructor(public payload: boolean) { }
 }
 
+export const TURN_ON_IS_LOADING_ACTION = 'TURN_ON_IS_LOADING_ACTION';
+export class TurnOnIsLoadingAction implements Action {
+    readonly type = TURN_ON_IS_LOADING_ACTION;
+    constructor(public payload?: any) { }
+}
+
+export const TURN_OFF_IS_LOADING_ACTION = 'TURN_OFF_IS_LOADING_ACTION';
+export class TurnOffIsLoadingAction implements Action {
+    readonly type = TURN_OFF_IS_LOADING_ACTION;
+    constructor(public payload?: any) { }
+}
+
 //#region Professions
     export const GET_ALL_PROFESSIONS_ACTION = 'GET_ALL_PROFESSIONS_ACTION';
     export class GetAllProfessionsAction implements Action {
@@ -154,6 +166,8 @@ export type StoreActions =
     | SetHeaderImageAction;
 
 export type UIActions = StoreActions
+    | TurnOnIsLoadingAction
+    | TurnOffIsLoadingAction
     | GettingAllProfessionsAction
     | GettingAllProductsAction
     | ErrorOcurredAction;

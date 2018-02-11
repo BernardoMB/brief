@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '', component: MainComponent,
     children: [
-      //{ path: '', component: LaunchpadComponent},
+      // { path: '', component: LaunchpadComponent},
       { path: '', component: Launchpad2Component},
       { path: 'activity', loadChildren: 'app/activity/activity.module#ActivityModule' },
       { path: 'address', loadChildren: 'app/address/address.module#AddressModule' },
@@ -20,12 +20,7 @@ const routes: Routes = [
     children: [
       { path: 'clients', loadChildren: 'app/clients/clients.module#ClientsModule' }
     ]
-  }/* , {
-    path: 'payment', component: PaymentComponent,
-    children: [
-      { path: 'clients', loadChildren: 'app/clients/clients.module#ClientsModule' }
-    ]
-  } */
+  }
 ];
 
 @NgModule({
