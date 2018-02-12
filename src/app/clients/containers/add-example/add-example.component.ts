@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
 import { TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
+declare var $: any;
 
 @Component({
   selector: 'app-add-example',
@@ -17,6 +18,7 @@ export class AddExampleComponent implements OnInit {
   constructor(private router: Router, private location: Location, private store: Store<IApplicationState>) { }
 
   ngOnInit() {
+    $('body').css('background', 'linear-gradient(45deg, #33a4bc 20%, #32b3aa 80%)');
     this.store.dispatch(new TurnOffIsLoadingAction());
   }
 

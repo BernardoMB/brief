@@ -9,7 +9,7 @@ declare var $: any;
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
   public numberOfLeads: number;
@@ -35,16 +35,6 @@ export class PaymentComponent implements OnInit {
     this.koomkinSubscriptionCost = this.totalCost * (1 - 0.16);
     this.iva = 0.16;
     this.smallLetters = `Paga solo $${this.price}.°° (MNX) por cada cliente potencial, el costo de inscripción es de $${this.totalCost}.°° (MNX) y el cargo se cobra hasta el momento en que recibas ${this.numberOfLeads} prospectos, sin importar el tiempo que se necesite para cumplir esa meta.`;
-  }
-
-  public getContentStyle(): any {
-    const bodyHeight = $('#app-body').height();
-    const headerHeight = $('#header').height();
-    const contentHeight = bodyHeight - headerHeight;
-    const style = {
-      height: contentHeight + 'px'
-    };
-    return style;
   }
 
   public goBack(): void {
