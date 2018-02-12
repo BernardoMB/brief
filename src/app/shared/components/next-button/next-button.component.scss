@@ -18,3 +18,12 @@
     text-align: center;
     color: $koomkin-grey-dark;
 }
+
+.cont {
+    width: 100%;
+    background-color: $koomkin-yellow;
+}
+
+.cont:active {
+    background-color: #cf942c;
+}

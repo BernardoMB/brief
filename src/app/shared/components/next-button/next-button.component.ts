@@ -15,7 +15,9 @@ export class NextButtonComponent implements OnInit {
   }
 
   public continue(): void {
-    this.onClicked.emit(true);
+    setTimeout(() => {
+      this.onClicked.emit(true);
+    }, 0);
   }
 
 }
