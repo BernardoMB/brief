@@ -18,7 +18,7 @@ export class AddExampleComponent implements OnInit {
   constructor(private router: Router, private location: Location, private store: Store<IApplicationState>) { }
 
   ngOnInit() {
-    $('body').css('background', 'linear-gradient(45deg, #33a4bc 20%, #32b3aa 80%)');
+    $('body').css('background', '-webkit-gradient(linear, left bottom, right top, from(#33a4bc), to(#32b3aa)) fixed');
     this.store.dispatch(new TurnOffIsLoadingAction());
   }
 

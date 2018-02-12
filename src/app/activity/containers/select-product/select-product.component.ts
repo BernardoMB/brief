@@ -212,19 +212,19 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   }
 
   public continue(): void {
-    this.store.dispatch(new TurnOnIsLoadingAction());
-    setTimeout(() => {
-      if (this.selectedProduct === undefined) {
-        swal({
-          customClass: 'select-one-option-alert',
-          type: 'warning',
-          title: 'Selecciona un producto o presiona en "Otra actividad"',
-          showCloseButton: false,
-          confirmButtonText: 'Hecho',
-          buttonsStyling: false,
-          confirmButtonClass: 'hecho-button'
-        });
-      } else if (this.selectedProduct) {
+    if (this.selectedProduct === undefined) {
+      swal({
+        customClass: 'select-one-option-alert',
+        type: 'warning',
+        title: 'Selecciona un producto o presiona en "Otra actividad"',
+        showCloseButton: false,
+        confirmButtonText: 'Hecho',
+        buttonsStyling: false,
+        confirmButtonClass: 'hecho-button'
+      });
+    } else if (this.selectedProduct) {
+      this.store.dispatch(new TurnOnIsLoadingAction());
+      setTimeout(() => {
         if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
           const route = '/activity/product/eactivity/';
           this.router.navigate([route]);
@@ -233,8 +233,8 @@ export class SelectProductComponent implements OnInit, OnDestroy {
           + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
           this.router.navigate([route]);
         }
-      }
-    }, 100);
+      }, 100);
+    }
   }
 
   public goToGeneric(): void {

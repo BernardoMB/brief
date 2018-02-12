@@ -21,8 +21,7 @@ body, html {
 
 body {
     position: relative;
-    /* Old design */
-    /* background-color: #d9ecf8; */
+    background-repeat: no-repeat !important;
 }
 
 .bb, .bb::after, .bb::before {

@@ -19,7 +19,7 @@ export class Launchpad2Component implements OnInit {
   }
 
   ngOnInit() {
-    $('body').css('background', 'linear-gradient(270deg, #33a4bc 20%, #32b3aa 80%)');
+    $('body').css('background', '-webkit-gradient(linear, left top, right top, from(#32b3aa), to(#33a4bc)) fixed');
   }
 
   public goToGeneric(): void {
