@@ -4,7 +4,11 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-import { SetActivityAction, SetHeaderTitleAction, UserConfirmedAction, TurnOffIsLoadingAction } from '../../../store/actions';
+import { SetActivityAction,
+  SetHeaderTitleAction,
+  UserConfirmedAction,
+  TurnOffIsLoadingAction,
+  TurnOnIsLoadingAction } from '../../../store/actions';
 import swal from 'sweetalert2';
 declare var $: any;
 
@@ -72,6 +76,7 @@ export class GenericComponent implements OnInit {
   public setSelectedOption(option): void {
     this.selectedOption = option;
     // TODO: Emitir accion al store de la accion selecionada.
+    this.store.dispatch(new TurnOnIsLoadingAction());
     setTimeout(() => {
       if (this.selectedOption === undefined) {
         swal({

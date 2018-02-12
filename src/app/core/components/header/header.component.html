@@ -2,9 +2,9 @@
   <div [ngStyle]="setOpacity()">
 
     <div id="non-collapse" class="non-collapse">
-      <div style="padding-bottom: 15px;">
+      <div style="padding-bottom: 15px; z-index: -1;">
         <img class="logo" src="./../../../../assets/navbarLogo-white.png" (click)="redirect(1)">
-        <div data-toggle="collapse" data-target="#external-content" style="position: absolute; top: 15px; right: 15px; margin-top: 10px; font-size: 30px; line-height: 1px; color: white;">
+        <div data-toggle="collapse" data-target="#external-content" class="bars">
           <i class="fa fa-bars" aria-hidden="true"></i>
         </div>
       </div>

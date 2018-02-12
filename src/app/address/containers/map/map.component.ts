@@ -1,4 +1,4 @@
-import { SetLocationAction, SetHeaderTitleAction } from '../../../store/actions';
+import { SetLocationAction, SetHeaderTitleAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
 import { ILocation } from '../../../../shared/models/ILocation';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
@@ -50,6 +50,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
     if (this.userData) {
@@ -339,14 +340,17 @@ export class MapComponent implements OnInit, OnDestroy {
   public getMapStyle(): any {
     const bodyHeight = $('#app-body').height();
     const headerHeight = $('#non-collapse').height();
-    const actualHeight = bodyHeight - 136;
+    const actualHeight = bodyHeight - headerHeight;
     return {
       height: actualHeight + 'px'
     };
   }
 
   public continue(): void {
+    this.store.dispatch(new TurnOnIsLoadingAction());
     this.store.dispatch(new SetLocationAction(this.location));
-    this.router.navigate(['/../coverage']);
+    setTimeout(() => {
+      this.router.navigate(['/../coverage']);
+    }, 100);
   }
 }

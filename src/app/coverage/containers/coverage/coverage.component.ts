@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-import { SetHeaderTitleAction } from '../../../store/actions';
+import { SetHeaderTitleAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
 import swal from 'sweetalert2';
 declare var $: any;
 
@@ -44,6 +44,7 @@ export class CoverageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     $('body').css('background', 'white');
     this.title = 'Selecciona la cobertura de tu negocio';
     this.subtitle = null;
@@ -64,11 +65,13 @@ export class CoverageComponent implements OnInit {
     public assignRole(optionId: number): void {
       if (this.selectedOption === optionId) {
         this.selectedOption = 0;
+        this.store.dispatch(new TurnOnIsLoadingAction());
         setTimeout(() => {
           this.continue();
         }, 100);
       } else {
         this.selectedOption = optionId;
+        this.store.dispatch(new TurnOnIsLoadingAction());
         setTimeout(() => {
           this.continue();
         }, 100);

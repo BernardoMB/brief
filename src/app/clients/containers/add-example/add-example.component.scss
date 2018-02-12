@@ -1,7 +1,13 @@
+@import '../../../../scss/custom-variables';
+
 .panel-custom {
     margin-top: 15px;
-    background-color: #f9b234;
+    background-color: $koomkin-yellow;
     width: inherit;
+}
+
+.panel-custom:active {
+    background-color: #cf942c;
 }
 
 .panel-body-custom {
@@ -21,4 +27,8 @@
     font-weight: 400;
     font-size: 20px;
     text-decoration: underline;
+}
+
+.text-link:active {
+    color: #b9007b;
 }

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction, GetAllProductsAction } from '../../../store/actions';
+import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction, GetAllProductsAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
@@ -80,6 +80,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     // Option 1
     /* // Get information from route params.
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -211,26 +212,29 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   }
 
   public continue(): void {
-    if (this.selectedProduct === undefined) {
-      swal({
-        customClass: 'select-one-option-alert',
-        type: 'warning',
-        title: 'Selecciona un producto o presiona en "Otra actividad"',
-        showCloseButton: false,
-        confirmButtonText: 'Hecho',
-        buttonsStyling: false,
-        confirmButtonClass: 'hecho-button'
-      });
-    } else if (this.selectedProduct) {
-      if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
-        const route = '/activity/product/eactivity/';
-        this.router.navigate([route]);
-      } else {
-        const route = `/activity/product/eactivity/`
-        + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
-        this.router.navigate([route]);
+    this.store.dispatch(new TurnOnIsLoadingAction());
+    setTimeout(() => {
+      if (this.selectedProduct === undefined) {
+        swal({
+          customClass: 'select-one-option-alert',
+          type: 'warning',
+          title: 'Selecciona un producto o presiona en "Otra actividad"',
+          showCloseButton: false,
+          confirmButtonText: 'Hecho',
+          buttonsStyling: false,
+          confirmButtonClass: 'hecho-button'
+        });
+      } else if (this.selectedProduct) {
+        if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
+          const route = '/activity/product/eactivity/';
+          this.router.navigate([route]);
+        } else {
+          const route = `/activity/product/eactivity/`
+          + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
+          this.router.navigate([route]);
+        }
       }
-    }
+    }, 100);
   }
 
   public goToGeneric(): void {

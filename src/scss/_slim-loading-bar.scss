@@ -4,6 +4,7 @@
  * https://github.com/akserg/ng2-slim-loading-bar
  */
 
+$color: #21bcbd;
 
 /* Styling for the Slim Loading Progress Bar container */
 .slim-loading-bar {
@@ -24,8 +25,8 @@
     // #21bcbd
     /* background-color: #1abc9c !important;
     color: #1abc9c !important; */
-    background-color: #21bcbd !important;
-    color: #21bcbd !important;
+    background-color: $color !important;
+    color: $color !important;
     box-shadow: 0 0 10px 0; /* Inherits the font color */
     height: 2px;
     opacity: 0;

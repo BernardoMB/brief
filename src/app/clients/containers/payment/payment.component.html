@@ -34,10 +34,6 @@
     <div style="margin-top: 15px; margin-left: 30px; margin-right: 30px; text-align: center; font-size: 12px;">
       {{smallLetters}}
     </div>
-    <div id="continue-button" class="panel-custom">
-      <div class="panel-body-custom" (click)="continue()">
-        <h4 class="title" align="center">Pagar ahora</h4>
-      </div>
-    </div>
+    <app-next-button [text]="'Pagar ahora'" (onClicked)="continue()"></app-next-button>
   </div>
 </div>

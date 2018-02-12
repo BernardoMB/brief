@@ -4,7 +4,7 @@ import { ModalDirective } from 'ng-bootstrap/modal';
 @Component({
   selector: 'app-plans-modal',
   templateUrl: './plans-modal.component.html',
-  styleUrls: ['./plans-modal.component.css']
+  styleUrls: ['./plans-modal.component.scss']
 })
 export class PlansModalComponent implements OnInit {
   @ViewChild('plansModal') modal: ModalDirective;
@@ -46,9 +46,10 @@ export class PlansModalComponent implements OnInit {
   }
 
   public elect(election): void {
-    console.log(election);
-    this.onElection.emit(election);
-    this.closeModal();
+    setTimeout(() => {
+      this.onElection.emit(election);
+      this.closeModal();
+    }, 100);
   }
 
 }

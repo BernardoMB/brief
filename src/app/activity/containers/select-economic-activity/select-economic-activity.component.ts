@@ -7,7 +7,7 @@ import { IApplicationState } from '../../../store/models/app-state';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import swal from 'sweetalert2';
-import { SetHeaderTitleAction, UserConfirmedAction } from '../../../store/actions';
+import { SetHeaderTitleAction, UserConfirmedAction, TurnOnIsLoadingAction, TurnOffIsLoadingAction } from '../../../store/actions';
 
 @Component({
   selector: 'app-select-economic-activity',
@@ -73,6 +73,7 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
     if (this.userData) {
@@ -123,6 +124,7 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
 
   public setSelectedOption(option): void {
     this.selectedOption = option;
+    this.store.dispatch(new TurnOnIsLoadingAction());
     setTimeout(() => {
       this.continue();
     }, 100);

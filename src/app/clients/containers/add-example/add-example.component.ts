@@ -2,18 +2,22 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddExampleModalComponent } from '../../../shared/components/add-example-modal/add-example-modal.component';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { IApplicationState } from '../../../store/models/app-state';
+import { TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
 
 @Component({
   selector: 'app-add-example',
   templateUrl: './add-example.component.html',
-  styleUrls: ['./add-example.component.css']
+  styleUrls: ['./add-example.component.scss']
 })
 export class AddExampleComponent implements OnInit {
   @ViewChild('addExampleModal') addExampleModal: AddExampleModalComponent;
 
-  constructor(private router: Router, private location: Location) { }
+  constructor(private router: Router, private location: Location, private store: Store<IApplicationState>) { }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
   }
 
   public openModal(): void {
@@ -25,6 +29,9 @@ export class AddExampleComponent implements OnInit {
   }
 
   public continue(): void {
-    this.router.navigate(['/offer/clients/clients']);
+    this.store.dispatch(new TurnOnIsLoadingAction());
+    setTimeout(() => {
+      this.router.navigate(['/offer/clients/clients']);
+    }, 100);
   }
 }

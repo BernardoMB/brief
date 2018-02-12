@@ -1,29 +1,4 @@
-.image {
-    position: absolute;
-    width: 100%;
-    top: 0px;
-    bottom: 0px;
-    /* background: url(/../../../assets/offer/hand-shake-b.jpg); */
-    background: linear-gradient(45deg,#33a4bc 30%, #32b3aa 70%);
-    background-size: 100% 100%;
-}
-
-/* .opacity {
-    position: absolute;
-    width: 100%;
-    top: 0px;
-    bottom: 0px;
-
-    background-image: -webkit-gradient(
-        linear, left bottom, right top, from(rgba(51, 164, 188, 0.5)),
-        to(rgba(50, 179, 170, 0.5))
-    );
-    
-    overflow: scroll;
-} */
-
 .titles {
-    margin-top: 30px;
     margin-bottom: 15px;
     text-align: center;
     color:white;
@@ -88,16 +63,18 @@
 }
 
 .social-media-icons {
-    height: 7%;
     margin: 15px;
     background: url(/../../../assets/offer/social-media-icons-bg.png);
-    background-size: 100% 100%;
+    background-size: 100%;
 }
 
 .panel-custom {
     margin: 15px;
     background-color: #f9b234;
+}
 
+.panel-custom:active {
+    background-color: #f9b234;
 }
 
 .panel-body-custom {

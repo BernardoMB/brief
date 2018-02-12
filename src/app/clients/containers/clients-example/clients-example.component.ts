@@ -2,6 +2,9 @@ import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { PlansModalComponent } from '../../../shared/components/plans-modal/plans-modal.component';
+import { Store } from '@ngrx/store';
+import { IApplicationState } from '../../../store/models/app-state';
+import { TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
 declare var $: any;
 
 @Component({
@@ -14,11 +17,12 @@ export class ClientsExampleComponent implements OnInit {
 
   public companyName: string;
 
-  constructor(private router: Router, private location: Location) {
+  constructor(private router: Router, private location: Location, private store: Store<IApplicationState>) {
     this.companyName = 'Tu empresa';
   }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     $('body').css('background-color', '#e8f0f9');
     $('#myCarousel').carousel({
       interval: false
@@ -47,9 +51,12 @@ export class ClientsExampleComponent implements OnInit {
   }
 
   public continue(election): void {
-    $('body').css('background-color', '#ffffff');
-    // TODO: implement this funciton correctly.
-    this.router.navigate(['/offer/clients/payment']);
+    this.store.dispatch(new TurnOnIsLoadingAction());
+    setTimeout(() => {
+      // TODO: implement this funciton correctly.
+      $('body').css('background-color', '#ffffff');
+      this.router.navigate(['/offer/clients/payment']);
+    }, 100);
   }
 
 }
