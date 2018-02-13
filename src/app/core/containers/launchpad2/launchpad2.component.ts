@@ -1,9 +1,8 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
 import { SetHeaderOpacityAction, SetHeaderTitleAction, SetHeaderImageAction, TurnOnIsLoadingAction } from '../../../store/actions';
 import { Router } from '@angular/router';
-import {RegisterModalComponent} from '../../../shared/components/register-modal/register-modal.component';
 declare var $: any;
 
 @Component({
@@ -11,8 +10,7 @@ declare var $: any;
   templateUrl: './launchpad2.component.html',
   styleUrls: ['./launchpad2.component.scss']
 })
-export class Launchpad2Component implements OnInit, AfterViewInit {
-  @ViewChild('registerModal') registerModal: RegisterModalComponent;
+export class Launchpad2Component implements OnInit {
 
   constructor(private store: Store<IApplicationState>, private router: Router) {
     this.store.dispatch(new SetHeaderTitleAction('¡Bienvenido!'));
@@ -22,10 +20,6 @@ export class Launchpad2Component implements OnInit, AfterViewInit {
 
   ngOnInit() {
     $('body').css('background', '-webkit-gradient(linear, left top, right top, from(#32b3aa), to(#33a4bc)) fixed');
-  }
-
-  ngAfterViewInit() {
-    this.registerModal.showModal();
   }
 
   public goToGeneric(): void {
