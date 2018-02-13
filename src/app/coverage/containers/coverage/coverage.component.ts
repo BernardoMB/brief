@@ -54,36 +54,29 @@ export class CoverageComponent implements OnInit {
     this.selectedOption = 0;
   }
 
-  // TODO: Quitar boton siguinete.
-  //#region Cards
-    public getBoxShadowForCard(roleId: number): String {
-      if (this.selectedOption === roleId) {
-        return '0px 0px 0px 10px #21bcbd inset';
-      }
-      return null;
+  public getBoxShadowForCard(roleId: number): String {
+    if (this.selectedOption === roleId) {
+      return '0px 0px 0px 10px #21bcbd inset';
     }
-    public assignRole(optionId: number): void {
-      if (this.selectedOption === optionId) {
-        this.selectedOption = 0;
-        this.store.dispatch(new TurnOnIsLoadingAction());
-        setTimeout(() => {
-          this.continue();
-        }, 100);
-      } else {
-        this.selectedOption = optionId;
-        this.store.dispatch(new TurnOnIsLoadingAction());
-        setTimeout(() => {
-          this.continue();
-        }, 100);
-      }
-    }
-  //#endregion
+    return null;
+  }
 
-  /**
-   * This function updates the App state and redirects the user to the
-   * next view based on the selectedOption propperty.
-   * @memberof MakerComponent
-   */
+  public assignRole(optionId: number): void {
+    if (this.selectedOption === optionId) {
+      this.selectedOption = 0;
+      this.store.dispatch(new TurnOnIsLoadingAction());
+      setTimeout(() => {
+        this.continue();
+      }, 100);
+    } else {
+      this.selectedOption = optionId;
+      this.store.dispatch(new TurnOnIsLoadingAction());
+      setTimeout(() => {
+        this.continue();
+      }, 100);
+    }
+  }
+
   public continue(): void {
     switch (this.selectedOption) {
       case 0:

@@ -22,8 +22,8 @@ export class ClientsExampleComponent implements OnInit {
   }
 
   ngOnInit() {
+    $('body').css('background', '#e8f0f9');
     this.store.dispatch(new TurnOffIsLoadingAction());
-    $('body').css('background-color', '#e8f0f9');
     $('#myCarousel').carousel({
       interval: false
     });
@@ -46,7 +46,6 @@ export class ClientsExampleComponent implements OnInit {
   }
 
   public goBack(): void {
-    $('body').css('background-color', '#ffffff');
     this.location.back();
   }
 
