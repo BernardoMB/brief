@@ -1,6 +1,8 @@
-<div style="position: relative; top: 0px; bottom: 0px; width: 100%; height: 100%;">
+<div class="main-container">
   <div style="display: flex; justify-content: center;">
-    <div id="dardy" style="width: 100%; height: 400px; margin-top: -50px; background: url(../../../../assets/lauchpad/iphone.png) no-repeat; background-size: contain;"></div>
+    <div class="welcome-image">
+      <img src="./assets/lauchpad/iphone.png" alt="">
+    </div>
   </div>
   <div style="margin-left: 15px; margin-right: 15px; margin-top: -20px;">
     <div style="color: white; text-align: center; font-size: 28px; font-weight: 600;">
@@ -11,8 +13,11 @@
       Descubre el potencial de tu empresa en internet!
     </div>
   </div>
-  <div style="margin-bottom: 15px; margin-top: 15px;">
+  <div class="start-button">
     <app-next-button [text]="'Comienza ahora'" (onClicked)="goToGeneric()"></app-next-button>
   </div>
 </div>
 
+<app-register-modal
+  #registerModal>
+</app-register-modal>

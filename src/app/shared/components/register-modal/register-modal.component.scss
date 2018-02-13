@@ -1,0 +1,107 @@
+@import '../../../../scss/custom-variables';
+
+.modal-content {
+  border-radius: 0 !important;
+}
+
+.koomkin-modal-logo {
+  margin-top: 10px;
+  text-align: center;
+  img {
+    height: 70px;
+    width: 280px;
+  }
+}
+
+.koomkin-modal-body {
+  margin: 10px 0 20px 0;
+  padding: 0 25px;
+  .header {
+    text-align: center;
+    color: $koomkin-green;
+  }
+  .form-body {
+    .button-group {
+      padding: 0 5%;
+      .login-button {
+        background-color: $koomkin-yellow;
+        width: 100%;
+        cursor: pointer;
+        text-align: center;
+        color: $koomkin-grey-dark;
+        h5 {
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+      }
+      .login-button:hover {
+        color: black;
+        background-color: darken($koomkin-yellow, 5%);
+      }
+    }
+    .quit-dialog {
+      text-align: center;
+      font-size: 0.9em;
+      color: #5d5d5e;
+      text-decoration: underline;
+      a {
+        cursor: pointer;
+      }
+      a:hover {
+        color: black;
+      }
+    }
+  }
+}
+
+.social-login-container {
+  display: flex;
+  flex-direction: column;
+  .social-row {
+    display: flex;
+    color: white;
+    text-align: center;
+    height: 45px;
+    cursor: pointer;
+    .social-logo {
+      text-align: center;
+      width: 30%;
+      font-size: 1.5em;
+      padding-top: 7px;
+      margin: -1px;
+    }
+    .social-label {
+      width: 70%;
+      flex-grow: 1;
+      font-size: 1.1em;
+      padding-top: 7px;
+      margin: -1px;
+    }
+    .facebook {
+      background: $facebook;
+    }
+    .google {
+      background: $google-plus;
+    }
+    .facebook-login {
+      background: lighten($facebook, 4%);
+    }
+    .google-login {
+      background: lighten($google-plus, 4%);
+    }
+  }
+  .social-row:hover{
+    .facebook {
+      background: darken($facebook, 10%);
+    }
+    .google {
+      background: darken($google-plus, 10%);
+    }
+    .facebook-login {
+      background: darken($facebook, 5%);
+    }
+    .google-login {
+      background: darken($google-plus, 5%);
+    }
+  }
+}

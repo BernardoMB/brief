@@ -1,29 +1,30 @@
 @import '../../../../scss/custom-variables';
 
 .panel-custom {
-    width: inherit;
-    margin-left: 15px;
-    margin-right: 15px;
-    background-color: $koomkin-yellow;
+  width: inherit;
+  margin-left: 15px;
+  margin-right: 15px;
+  background-color: $koomkin-yellow;
 }
-  
+
 .panel-body-custom {
-    padding-top: 10px;
-    padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .title {
-    margin-top: 0px; 
-    margin-bottom: 0px;
-    text-align: center;
-    color: $koomkin-grey-dark;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: $koomkin-grey-dark;
 }
 
 .cont {
-    width: 100%;
-    background-color: $koomkin-yellow;
+  width: 100%;
+  background-color: $koomkin-yellow;
+  cursor: pointer;
 }
 
 .cont:active {
-    background-color: #cf942c;
+  background-color: #cf942c;
 }
