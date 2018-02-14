@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction } from '../../../store/actions';
+import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
@@ -79,6 +79,7 @@ export class SelectHTypeComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
     if (this.userData) {
@@ -161,7 +162,7 @@ export class SelectHTypeComponent implements OnInit, OnDestroy {
   }
 
   public continue(): void {
-    if (this.selectedType === undefined) {
+    if (this.selectedType === undefined || this.selectedType === '') {
       swal({
         customClass: 'select-one-option-alert',
         type: 'warning',
@@ -172,14 +173,17 @@ export class SelectHTypeComponent implements OnInit, OnDestroy {
         confirmButtonClass: 'hecho-button'
       });
     } else if (this.selectedType) {
-      if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
-        const route = '/activity/hotel/type/';
-        this.router.navigate([route]);
-      } else {
-        const route = `/activity/hotel/type/`
-        + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedType.id}`;
-        this.router.navigate([route]);
-      }
+      this.store.dispatch(new TurnOnIsLoadingAction());
+      setTimeout(() => {
+        if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
+          const route = '/activity/hotel/type/';
+          this.router.navigate([route]);
+        } else {
+          const route = `/activity/hotel/type/`
+          + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedType.id}`;
+          this.router.navigate([route]);
+        }
+      }, 100);
     }
   }
 

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction } from '../../../store/actions';
+import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
@@ -46,6 +46,7 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
     if (this.userData) {
@@ -115,14 +116,17 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
         confirmButtonClass: 'hecho-button'
       });
     } else if (this.rating) {
-      if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
-        const route = '/../address/';
-        this.router.navigate([route]);
-      } else {
-        const route = `/../address/`
-        + `${this.source}/${this.userData}/${this.campaignId}/${this.rating}`;
-        this.router.navigate([route]);
-      }
+      this.store.dispatch(new TurnOnIsLoadingAction());
+      setTimeout(() => {
+        if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
+          const route = '/../address/';
+          this.router.navigate([route]);
+        } else {
+          const route = `/../address/`
+          + `${this.source}/${this.userData}/${this.campaignId}/${this.rating}`;
+          this.router.navigate([route]);
+        }
+      }, 100);
     }
   }
 

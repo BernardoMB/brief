@@ -212,7 +212,8 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   }
 
   public continue(): void {
-    if (this.selectedProduct === undefined) {
+    console.log('Aqui si chido');
+    if (this.selectedProduct === '' || this.selectedProduct === undefined) {
       swal({
         customClass: 'select-one-option-alert',
         type: 'warning',
@@ -223,6 +224,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
         confirmButtonClass: 'hecho-button'
       });
     } else if (this.selectedProduct) {
+      console.log('B');
       this.store.dispatch(new TurnOnIsLoadingAction());
       setTimeout(() => {
         if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
