@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import {ModalDirective} from 'ngx-bootstrap/modal';
+import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register-modal',
@@ -8,12 +10,15 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 })
 export class RegisterModalComponent implements OnInit {
 
+  public isRegister: boolean;
+
   @ViewChild('registerModal') modal: ModalDirective;
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
+    this.isRegister = true;
   }
 
   public showModal(): void {
@@ -25,15 +30,47 @@ export class RegisterModalComponent implements OnInit {
   }
 
   defaultLogin() {
-    alert('default login')
+    if (!this.isRegister) {
+      alert('iniciar sesion')
+    } else {
+      this.isRegister = !this.isRegister;
+    }
+
+  }
+
+  defaultRegister() {
+    if (this.isRegister) {
+      alert('registrar')
+    } else {
+      this.isRegister = !this.isRegister;
+    }
   }
 
   googleLogin() {
-    alert('google login')
+    this.authService.signInWithGoogle()
+      .then((res) => {
+        console.log(res);
+        this.router.navigate(['/']);
+      })
+      .catch((err) => console.log(err));
   }
 
   facebookLogin() {
-    alert('facebook login')
+    this.authService.signInWithFacebook()
+      .then((res) => {
+        console.log(res);
+        this.router.navigate(['/']);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  twitterLogin() {
+    this.authService.signInWithTwitter()
+      .then((res) => {
+        console.log(res);
+        this.router.navigate(['/']);
+      })
+      .catch((err) => console.log(err));
   }
 
 }

@@ -6,6 +6,11 @@ import { NgRxModule } from './store/ngrx.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+import { AuthService } from './shared/services/auth.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,9 +20,12 @@ import { AppComponent } from './app.component';
     CoreModule.forRoot(),
     NgbModule.forRoot(),
     NgRxModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

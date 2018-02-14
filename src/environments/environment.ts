@@ -4,5 +4,14 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyBlI9-LNKgP43NGsOgWUV0t1RbPCxw_u5c',
+    authDomain: 'koomkin-brief.firebaseapp.com',
+    databaseURL: 'https://koomkin-brief.firebaseio.com',
+    projectId: 'koomkin-brief',
+    storageBucket: 'koomkin-brief.appspot.com',
+    messagingSenderId: '36688253160'
+  }
 };
+

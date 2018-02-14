@@ -25,6 +25,6 @@ export const CampaignSchema = new mongoose.Schema({
     client_example_3_phrase: String
 });
 
-const Campaign = mongoose.model<CampaignInterface>('Campaign', CampaignSchema);
+const Campaign = mongoose.model<CampaignInterface>('campaign', CampaignSchema);
 
 export default Campaign;

@@ -1,18 +1,24 @@
-import * as mongoose from 'mongoose';
-import { IProduct } from '../../src/app/shared/models/IProduct';
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-export interface ProductInterface extends IProduct, mongoose.Document {
-    _id: string;
-}
-
-export const ProductSchema = new mongoose.Schema({
-    category_id: String,
-    name: String,
-    keywords: String,
-    description: String,
-    images: Array
+const ProductSchema = new Schema({
+  // name of the product
+  name: {
+    type: String,
+    required: [true, 'Product name required']
+  },
+  // description of the product
+  description: String,
+  // google's keywords
+  keyword: String,
+  // name of the file
+  image_url: String,
+  // dbo.catproducto
+  legacy_id: Number,
+  // creation date
+  created_at: Date
 });
 
-const Product = mongoose.model<ProductInterface>('Product', ProductSchema);
+const Product = mongoose.model('product', ProductSchema);
 
 export default Product;

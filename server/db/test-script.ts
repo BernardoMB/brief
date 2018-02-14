@@ -82,42 +82,6 @@ connectToSqlServerDatabase().then((connection: any) => {
 // Using Tedious promises to connect to data base providing db configuration object.
 tp.setConnectionConfig(dbConfig);
 
-// Bring all rows from TBL_CATALOGOTIPOEMPRESA.
-/* const queryString = 'SELECT * FROM [TBL_CATALOGOTIPOEMPRESA];';
-tp.sql(queryString).execute().then(function(results) {
-    console.log(results);
-}).fail(function(err) {
-    console.log(err);
-}); */
-
-// Migrate all info from CATPRODUCTO to product collection in Mongo.
-/* const queryString2 = 'SELECT * FROM [CATPRODUCTO];';
-tp.sql(queryString2).execute().then(function(results) {
-    console.log(typeof(results));
-    results.forEach(element => {
-        const product = new Product({
-            category_id: element.IDCATEGORIA,
-            name: element.NOMBRE,
-            keywords: element.PALABRASCLAVE,
-            description: element.DESCRIPCION,
-            images: [element.IMAGEN, element.IMAGEN2, element.IMAGEN3, element.IMAGEN4, element.IMAGEN5]
-        });
-        product.save().then((doc) => {
-            console.log(doc);
-        }, (err) => {
-            console.log(err);
-        });
-    });
-}).fail(function(err) {
-    console.log(err);
-}); */
-
-// Mongoose query.
-/* Product.find({}, (err, docs) => {
-    console.log(typeof(docs));
-    console.log(docs[0]);
-}); */
-
 // Initilize Firebase app.
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),

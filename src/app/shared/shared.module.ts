@@ -20,6 +20,7 @@ import {NextButtonComponent} from './components/next-button/next-button.componen
 import {StarRatingComponent} from './components/star-rating/star-rating.component';
 import {StarRatingModule} from 'angular-star-rating';
 import {RegisterModalComponent} from './components/register-modal/register-modal.component';
+import {AuthService} from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -62,7 +63,7 @@ import {RegisterModalComponent} from './components/register-modal/register-modal
     StarRatingComponent,
     RegisterModalComponent
   ],
-  providers: []
+  providers: [AuthService]
 })
 
 export class SharedModule {

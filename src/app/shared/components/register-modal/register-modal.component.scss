@@ -1,7 +1,12 @@
 @import '../../../../scss/custom-variables';
+$twitter: #00aced;
 
 .modal-content {
   border-radius: 0 !important;
+}
+
+.form-group {
+  width: 100% !important;
 }
 
 .koomkin-modal-logo {
@@ -20,37 +25,74 @@
     text-align: center;
     color: $koomkin-green;
   }
-  .form-body {
-    .button-group {
-      padding: 0 5%;
-      .login-button {
-        background-color: $koomkin-yellow;
-        width: 100%;
-        cursor: pointer;
-        text-align: center;
-        color: $koomkin-grey-dark;
-        h5 {
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-      }
-      .login-button:hover {
-        color: black;
-        background-color: darken($koomkin-yellow, 5%);
-      }
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  .button {
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    color: $koomkin-grey-dark;
+    margin: 0 3%;
+    h5 {
+      padding-top: 10px;
+      padding-bottom: 5px;
     }
-    .quit-dialog {
-      text-align: center;
-      font-size: 0.9em;
-      color: #5d5d5e;
-      text-decoration: underline;
-      a {
-        cursor: pointer;
-      }
-      a:hover {
-        color: black;
-      }
-    }
+  }
+  /** login **/
+  .active.login-button {
+    background-color: $koomkin-yellow;
+    color: black;
+  }
+  .active.login-button:hover {
+    background-color: darken($koomkin-yellow, 5%);
+  }
+  .not-active.login-button {
+    background-color: lighten($koomkin-yellow, 25%);
+    color: lighten($koomkin-grey-dark, 20%);
+  }
+  .not-active.login-button:hover {
+    color: black;
+    background-color: $koomkin-yellow,;
+  }
+  /** register **/
+  .active.register-button {
+    background-color: lighten($koomkin-blue-electric, 5%);
+    color: black;
+  }
+  .active.register-button:hover {
+    background-color: darken($koomkin-blue-electric, 2%);
+  }
+  .not-active.register-button {
+    background-color: lighten($koomkin-blue-electric, 25%);
+    color: lighten($koomkin-grey-dark, 20%);
+  }
+  .not-active.register-button:hover {
+    color: black;
+    background-color: lighten($koomkin-blue-electric, 5%);
+  }
+  //.not-active {
+  //  background-color: lighten($koomkin-green, 10%);
+  //  color: white;
+  //}
+  //.not-active:hover {
+  //  background-color: $koomkin-green;
+  //}
+}
+
+.quit-dialog {
+  padding-top: 5px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #5d5d5e;
+  text-decoration: underline;
+  a {
+    cursor: pointer;
+  }
+  a:hover {
+    color: black;
   }
 }
 
@@ -83,25 +125,37 @@
     .google {
       background: $google-plus;
     }
+    .twitter {
+      background: $twitter;
+    }
     .facebook-login {
       background: lighten($facebook, 4%);
     }
     .google-login {
       background: lighten($google-plus, 4%);
     }
+    .twitter-login {
+      background: lighten($twitter, 4%);
+    }
   }
-  .social-row:hover{
+  .social-row:hover {
     .facebook {
       background: darken($facebook, 10%);
     }
     .google {
       background: darken($google-plus, 10%);
     }
+    .twitter {
+      background: darken($twitter, 10%);
+    }
     .facebook-login {
       background: darken($facebook, 5%);
     }
     .google-login {
       background: darken($google-plus, 5%);
+    }
+    .twitter-login {
+      background: darken($twitter, 5%);
     }
   }
 }
