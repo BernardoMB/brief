@@ -2,7 +2,12 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction, GetAllProductsAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
+import { SetProductAction,
+  UserConfirmedAction,
+  SetHeaderTitleAction,
+  GetAllProductsAction,
+  TurnOffIsLoadingAction,
+  TurnOnIsLoadingAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
