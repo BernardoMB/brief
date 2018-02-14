@@ -5,10 +5,9 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // mongoose.connect('mongodb://localhost:27017/brief');
-mongoose.connect(process.env.MONGODB_URI).then(() => {
-    console.log('Ready to use.');
-}, err => {
-    console.log('Connection error');
+mongoose.Promise = global.Promise;
+if (process.env.NODE_ENV !== 'test') {
+  mongoose.connect('mongodb://localhost/koomkin_brief');
 }
-);
+
 module.exports = { mongoose };
