@@ -15,12 +15,14 @@
 
 /* You can add global styles to this file, and also import other style files */
 
-body, html {
+html {
     height: 100%
 }
 
 body {
     position: relative;
+    min-height:100%;
+    margin: 0;
     background-repeat: no-repeat !important;
 }
 
@@ -130,6 +132,10 @@ body {
     border: 0px;
     width: 100%;
     background-color: #f9b234;
+}
+
+.hecho-button:active {
+    background-color: #cf942c;;
 }
 
 .hecho-button:focus {

@@ -82,6 +82,8 @@ connectToSqlServerDatabase().then((connection: any) => {
 // Using Tedious promises to connect to data base providing db configuration object.
 tp.setConnectionConfig(dbConfig);
 
+Product.find({'name': { $regex: 'arroz'}}, 'name').then(docs => console.log(docs));
+
 // Initilize Firebase app.
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),

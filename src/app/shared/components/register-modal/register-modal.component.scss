@@ -59,19 +59,19 @@ $twitter: #00aced;
   }
   /** register **/
   .active.register-button {
-    background-color: lighten($koomkin-blue-electric, 5%);
+    background-color: $koomkin-green;
     color: black;
   }
   .active.register-button:hover {
-    background-color: darken($koomkin-blue-electric, 2%);
+    background-color: darken($koomkin-green, 2%);
   }
   .not-active.register-button {
-    background-color: lighten($koomkin-blue-electric, 25%);
+    background-color: lighten($koomkin-green, 25%);
     color: lighten($koomkin-grey-dark, 20%);
   }
   .not-active.register-button:hover {
     color: black;
-    background-color: lighten($koomkin-blue-electric, 5%);
+    background-color: lighten($koomkin-green, 5%);
   }
   //.not-active {
   //  background-color: lighten($koomkin-green, 10%);
@@ -158,4 +158,17 @@ $twitter: #00aced;
       background: darken($twitter, 5%);
     }
   }
+}
+
+.modal-md {
+  top: 0px !important;
+  margin: 30px;
+}
+
+.register-label {
+  margin-top: 8px;
+}
+
+.login-label {
+  margin-top: 8px;
 }

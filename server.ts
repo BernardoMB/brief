@@ -112,7 +112,9 @@ io.on('connection', (socket) => {
         });
 
         socket.on('clientGetProductsSugestions', (event) => {
+            console.log('Cliente solicitó:', event);
             const q = Product.find({'name': { $regex: `${event}`}}, 'name');
+            /* const q = Product.find({'name': { $regex: 'arroz'}}, 'name'); */
             q.exec(function(err, docs) {
                 if (err) {
                     console.log(err);

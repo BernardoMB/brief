@@ -48,14 +48,14 @@
           </form>
           <div class="button-group">
             <div class="login-button button" (click)="defaultRegister()" [ngClass]="isRegister ? 'active' : 'not-active'">
-              <h5>
+              <h6 class="register-label">
                 Registrarse
-              </h5>
+              </h6>
             </div>
             <div class="register-button button" (click)="defaultLogin()" [ngClass]="!isRegister ? 'active' : 'not-active'">
-              <h5>
+              <h6 class="login-label">
                 Iniciar Sesión
-              </h5>
+              </h6>
             </div>
           </div>
           <div class="quit-dialog">
@@ -70,6 +70,7 @@
           </div>
           <div class="social-label facebook-login">
             <span>Regístrate con <strong>Facebook</strong></span>
+            <!-- <span>Entra con <strong>Facebook</strong></span> -->
           </div>
         </div>
         <div class="social-row" (click)="googleLogin()">
@@ -78,6 +79,7 @@
           </div>
           <div class="social-label google-login">
             <span>Regístrate con <strong>Google+</strong></span>
+            <!-- <span>Entra con <strong>Google+</strong></span> -->
           </div>
         </div>
         <div class="social-row" (click)="twitterLogin()">
@@ -86,6 +88,7 @@
           </div>
           <div class="social-label twitter-login">
             <span>Regístrate con <strong>Twitter</strong></span>
+            <!-- <span>Entra con <strong>Twitter</strong></span> -->
           </div>
         </div>
       </div>
