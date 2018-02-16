@@ -82,7 +82,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public getTop(): any {
     return {
-      //top: $('#non-collapse').height() - 6
+      // top: $('#non-collapse').height() - 6
       top: 0
     };
   }

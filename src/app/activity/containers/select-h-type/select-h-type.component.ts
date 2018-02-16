@@ -2,7 +2,11 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
+import { SetProductAction,
+  UserConfirmedAction,
+  SetHeaderTitleAction,
+  TurnOffIsLoadingAction,
+  TurnOnIsLoadingAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
@@ -99,13 +103,13 @@ export class SelectHTypeComponent implements OnInit, OnDestroy {
     // Initilize modal variables.
     this.question = '¿Tu negocio es un hotel?';
     // this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlModal = './../../../assets/svg/generic/hotel-mau.svg';
 
     // Initilize view variables.
     this.title = 'Escribe el tipo de hotel';
     this.subtitle = null;
     // this.imgUrlFixed = './../../../assets/generic/hotel.jpg';
-    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlFixed = './../../../assets/svg/generic/hotel-mau.svg';
     this.explanation = 'Ayúdanos a determinar el tipo de hotel para lograr resultados increíbles. '
     + 'Busca el tipo de hotel y presiona en "Siguiente". '
     + 'Si tu negocio no es un hotel, entonces presiona en "Otra actividad".';

@@ -2,7 +2,11 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
+import { SetProductAction,
+  UserConfirmedAction,
+  SetHeaderTitleAction,
+  TurnOffIsLoadingAction,
+  TurnOnIsLoadingAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
@@ -66,13 +70,13 @@ export class SelectRStarsComponent implements OnInit, OnDestroy {
     // Initilize modal variables.
     this.question = '¿Tu negocio es de comida x?';
     // this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlModal = './../../../assets/svg/generic/restaurant-mau.svg';
 
     // Initilize view variables.
     this.title = 'Selecciona las estrellas de tu negocio';
     this.subtitle = null;
     // this.imgUrlFixed = './../../../assets/real/SelectProduct.jpg';
-    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlFixed = './../../../assets/svg/generic/restaurant-mau.svg';
     this.explanation = 'Ayúdanos a determinar el nivel de tu restaurante para lograr resultados increíbles. '
     + 'Selecciona la cantidad de estrellas y presiona en "Siguiente". '
     + 'Si tu negocio no es un restaurante, entonces presiona en "Otra actividad".';

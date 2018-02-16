@@ -2,7 +2,11 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
+import { SetProductAction, 
+  UserConfirmedAction, 
+  SetHeaderTitleAction, 
+  TurnOffIsLoadingAction, 
+  TurnOnIsLoadingAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
@@ -104,12 +108,12 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
 
     // Initilize modal variables.
     this.question = '¿Practicas x profesión?';
-    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlModal = './../../../assets/svg/generic/profession-alt-mau.svg';
 
     // Initilize view variables.
     this.title = 'Escribe la especialidad que tienes';
     this.subtitle = null;
-    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlFixed = './../../../assets/svg/generic/profession-alt-mau.svg';
     this.explanation = 'Ayúdanos a determinar la especialidad que tienes para lograr mejores resultados. '
     + 'Busca tu especialidad y presiona en "Siguiente". '
     + 'Si no eres profesionista, entonces presiona en "Otra actividad".';
@@ -154,7 +158,7 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
   }
 
   public onUserConfirmed(event): void {
-    if (event) {
+    if (!event) {
       this.router.navigate(['/activity/generic']);
     }
   }

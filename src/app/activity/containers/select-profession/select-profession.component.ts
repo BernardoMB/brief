@@ -99,12 +99,12 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
 
       // Initilize modal variables.
       this.question = '¿Eres profesionista?';
-      this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+      this.imgUrlModal = './../../../assets/svg/generic/profession-mau.svg';
 
       // Initilize view variables.
       this.title = 'Escribe tu profesión';
       this.subtitle = null;
-      this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+      this.imgUrlFixed = './../../../assets/svg/generic/profession-mau.svg';
       this.explanation = 'Ayúdanos a determinar la profesión que practicas para lograr resultados increíbles. '
       + 'Busca el nombre de tu profesión y presiona en "Siguiente". '
       + 'Si no eres profesionista, entonces presiona en "Otra actividad".';

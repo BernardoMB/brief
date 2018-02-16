@@ -94,8 +94,8 @@ export class SelectServiceComponent implements OnInit, OnDestroy {
       }
       this.campaignId = params['campaignid'];
     });
-
-    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+    
+    this.imgUrlFixed = './../../../assets/svg/generic/service-mau.svg';
 
     // Initilize view variables.
     this.title = '¿Cuál es el servicio que ofreces?';

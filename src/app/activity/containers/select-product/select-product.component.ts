@@ -148,12 +148,12 @@ export class SelectProductComponent implements OnInit, OnDestroy {
 
     // Initilize modal variables.
     this.question = '¿Vendes algún producto?';
-    this.imgUrlModal = './../../../assets/svg/generic/product.svg';
+    this.imgUrlModal = './../../../assets/svg/generic/product-mau.svg';
 
     // Initilize view variables.
     this.title = 'Escribe el nombre del producto';
     this.subtitle = null;
-    this.imgUrlFixed = './../../../assets/svg/generic/product.svg';
+    this.imgUrlFixed = './../../../assets/svg/generic/product-mau.svg';
     this.explanation = 'Ayúdanos a determinar el producto que vendes para lograr resultados increíbles. '
     + 'Busca el nombre de tu producto y presiona en "Siguiente". '
     + 'Si no vendes un producto, entonces presiona en "Otra actividad".';

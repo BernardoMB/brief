@@ -107,12 +107,12 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
 
     // Initilize modal variables.
     this.question = '¿Ofreces un servicio?';
-    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture-mau.svg';
 
     // Initilize view variables.
     this.title = '¿A qué industria pertenece tu servicio?';
     this.subtitle = '';
-    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture-mau.svg';
     this.explanation = 'Ayúdanos a determinar el tipo de servicio que ofreces'
     + ' para lograr resultados increibles. Si no ofreces algún tipo de servicio, entonces'
     + ' presiona en "Otra actividad".';

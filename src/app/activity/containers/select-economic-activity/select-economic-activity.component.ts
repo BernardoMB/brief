@@ -36,27 +36,27 @@ export class SelectEconomicActivityComponent implements OnInit, OnDestroy {
   public options: any[] = [
     {
       optionId: 1,
-      imgUrl: './../../../assets/svg/economic-activity/manufacture.svg',
+      imgUrl: './../../../assets/svg/economic-activity/manufacture-mau.svg',
       cardTitle: 'Fabrica el producto',
       selected: false
     }, {
       optionId: 2,
-      imgUrl: './../../../assets/svg/economic-activity/distribute.svg',
+      imgUrl: './../../../assets/svg/economic-activity/distribute-mau.svg',
       cardTitle: 'Fabrica y distribuye el producto al mayoreo',
       selected: false
     }, {
       optionId: 3,
-      imgUrl: './../../../assets/svg/economic-activity/retail.svg',
+      imgUrl: './../../../assets/svg/economic-activity/retail-mau.svg',
       cardTitle: 'Fabrica y distribuye el producto al menudeo',
       selected: false
     }, {
       optionId: 4,
-      imgUrl: './../../../assets/svg/economic-activity/distribute-minor.svg',
+      imgUrl: './../../../assets/svg/economic-activity/distribute-minor-mau.svg',
       cardTitle: 'Distribuye el producto al mayoreo',
       selected: false
     }, {
       optionId: 5,
-      imgUrl: './../../../assets/svg/economic-activity/shop.svg',
+      imgUrl: './../../../assets/svg/economic-activity/shop-mau.svg',
       cardTitle: 'Distribuye el producto al menudeo',
       selected: false
     }
