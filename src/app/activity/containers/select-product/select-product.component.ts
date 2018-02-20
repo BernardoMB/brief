@@ -13,6 +13,7 @@ import { mapStateToProductsInfo } from '../../../store/mappers/mapStateToProduct
 declare var $: any;
 import * as io from 'socket.io-client';
 import { CompleterData, CompleterService } from 'ng2-completer';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-select-product',
@@ -45,6 +46,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   public explanation: string;
   public autoCompleteInputElement: HTMLElement;
   public imgUrlFixed: String;
+  private suggestions$ = new Subject();
 
   // To know confirmation modal need to be showed when the components get initialized.
   public confirmed: Subscription;
@@ -73,10 +75,14 @@ export class SelectProductComponent implements OnInit, OnDestroy {
         });
       }); */
       this.socket = io();
-      this.dataService = completerService.local([], 'name', 'name');
-      this.socket.on('serverSugestions3', sugestions => {
-        this.dataService = completerService.local(sugestions, 'name', 'name');
+      this.dataService = this.completerService.local([], 'name', 'name');
+      this.socket.on('serverSuggestions', suggestions => {
+        this.dataService = completerService.local(suggestions, 'name', 'name');
       });
+    /*this.socket.on('serverSuggestions', suggestions => {
+      this.suggestions$.next(suggestions);
+      console.log(suggestions);
+    });*/
     }
 
   ngOnInit() {
@@ -195,7 +201,8 @@ export class SelectProductComponent implements OnInit, OnDestroy {
 
   public inputChange3(event): void {
     if (event.length > 2) {
-      this.socket.emit('clientGetProductsSugestions', event);
+      console.log('inputChange', event)
+      this.socket.emit('clientGetProductsSuggestions', event);
     }
   }
 

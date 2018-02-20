@@ -27,10 +27,10 @@
     placeholder="Busca tu producto..."
     textNoResults="Sin resultados"
     textSearching="Buscando"
-    (ngModelChange)="inputChange3($event)" 
-    [(ngModel)]="selectedProduct" 
-    [datasource]="dataService" 
-    [minSearchLength]="0">
+    (ngModelChange)="inputChange3($event)"
+    [(ngModel)]="selectedProduct"
+    [datasource]="dataService"
+    [minSearchLength]="3">
   </ng2-completer>
 </div>
 

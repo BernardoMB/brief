@@ -73,7 +73,7 @@ export class MainComponent implements OnInit, OnDestroy {
     }); */
 
     // Get initial data.
-    // this.store.dispatch(new GetAllProfessionsAction());
+    this.store.dispatch(new GetAllProfessionsAction());
   }
 
   public ngOnDestroy(): void {
