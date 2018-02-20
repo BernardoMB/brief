@@ -1,9 +1,10 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
 import { TurnOffIsLoadingAction } from '../../../store/actions';
+import { PaymentMethodModalComponent } from '../../../shared/components/payment-method-modal/payment-method-modal.component';
 declare var $: any;
 
 @Component({
@@ -11,7 +12,9 @@ declare var $: any;
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit, AfterViewInit {
+  @ViewChild('paymentMethodModal') paymentMethodModal: PaymentMethodModalComponent;
+
   public numberOfLeads: number;
   public price: number;
   public label: string;
@@ -34,7 +37,14 @@ export class PaymentComponent implements OnInit {
     this.subscriptionType = 'PPL';
     this.koomkinSubscriptionCost = this.totalCost * (1 - 0.16);
     this.iva = 0.16;
-    this.smallLetters = `Paga solo $${this.price}.°° (MNX) por cada cliente potencial, el costo de inscripción es de $${this.totalCost}.°° (MNX) y el cargo se cobra hasta el momento en que recibas ${this.numberOfLeads} prospectos, sin importar el tiempo que se necesite para cumplir esa meta.`;
+    this.smallLetters = `Paga solo $${this.price}.°° (MNX) por cada cliente potencial,`
+    + `el costo de inscripción es de $${this.totalCost}.°° (MNX) y el cargo se cobra,`
+    + ` hasta el momento en que recibas ${this.numberOfLeads} prospectos, sin importar`
+    + ` el tiempo que se necesite para cumplir esa meta.`;
+  }
+
+  ngAfterViewInit() {
+    this.paymentMethodModal.showModal();
   }
 
   public goBack(): void {

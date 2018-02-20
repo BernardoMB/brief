@@ -21,6 +21,7 @@ import {StarRatingComponent} from './components/star-rating/star-rating.componen
 import {StarRatingModule} from 'angular-star-rating';
 import {RegisterModalComponent} from './components/register-modal/register-modal.component';
 import {AuthService} from './services/auth.service';
+import { PaymentMethodModalComponent } from './components/payment-method-modal/payment-method-modal.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import {AuthService} from './services/auth.service';
     OptionsListComponent,
     NextButtonComponent,
     StarRatingComponent,
-    RegisterModalComponent],
+    RegisterModalComponent,
+    PaymentMethodModalComponent],
   exports: [
     TooltipModule,
     ToastyModule,
@@ -61,7 +63,8 @@ import {AuthService} from './services/auth.service';
     OptionsListComponent,
     NextButtonComponent,
     StarRatingComponent,
-    RegisterModalComponent
+    RegisterModalComponent,
+    PaymentMethodModalComponent
   ],
   providers: [AuthService]
 })

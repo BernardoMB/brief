@@ -2,7 +2,11 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction } from '../../../store/actions';
+import { SetProductAction,
+  UserConfirmedAction,
+  SetHeaderTitleAction,
+  TurnOffIsLoadingAction,
+  TurnOnIsLoadingAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
@@ -46,6 +50,7 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
     if (this.userData) {
@@ -65,13 +70,13 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
     // Initilize modal variables.
     this.question = '¿Tu negocio es un hotel de paso x?';
     // this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlModal = './../../../assets/svg/generic/hotel-mau.svg';
 
     // Initilize view variables.
     this.title = 'Selecciona las estrellas de tu hotel';
     this.subtitle = null;
     // this.imgUrlFixed = './../../../assets/real/SelectProduct.jpg';
-    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlFixed = './../../../assets/svg/generic/hotel-mau.svg';
     this.explanation = 'Ayúdanos a determinar el nivel de tu hotel para lograr resultados increíbles. '
     + 'Selecciona la cantidad de estrellas y presiona en "Siguiente". '
     + 'Si tu negocio no es un hotel, entonces presiona en "Otra actividad".';
@@ -115,14 +120,17 @@ export class SelectHStartsComponent implements OnInit, OnDestroy {
         confirmButtonClass: 'hecho-button'
       });
     } else if (this.rating) {
-      if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
-        const route = '/../address/';
-        this.router.navigate([route]);
-      } else {
-        const route = `/../address/`
-        + `${this.source}/${this.userData}/${this.campaignId}/${this.rating}`;
-        this.router.navigate([route]);
-      }
+      this.store.dispatch(new TurnOnIsLoadingAction());
+      setTimeout(() => {
+        if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
+          const route = '/../address/';
+          this.router.navigate([route]);
+        } else {
+          const route = `/../address/`
+          + `${this.source}/${this.userData}/${this.campaignId}/${this.rating}`;
+          this.router.navigate([route]);
+        }
+      }, 100);
     }
   }
 

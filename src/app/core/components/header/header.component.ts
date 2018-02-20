@@ -12,13 +12,14 @@ declare var $: any;
 export class HeaderComponent implements OnInit {
   @Input() title: string;
   @Input() imgUrl: string;
-  @Input() opacity: boolean;
+  @Input() opacity: any;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() { }
 
   public setStyle(): any {
+    console.log(this.imgUrl);
     const clase = {
       background: `url('${this.imgUrl}') no-repeat center left`,
       backgroundSize: '100%'
@@ -27,9 +28,12 @@ export class HeaderComponent implements OnInit {
   }
 
   public setOpacity(): any {
+    console.log(this.opacity);
     if (this.opacity) {
+      console.log('Entro');
       const clase = {
-        backgroundColor: 'rgba(#32b3aa, 0.5)'
+        /* background: '#32b3aa', */
+        'background-color': 'rgba(50, 179, 170, 0.314)'
       };
       return clase;
     } else {

@@ -21,17 +21,17 @@ export class CoverageComponent implements OnInit {
   public options: any[] = [
     {
       optionId: 1,
-      imgUrl: './../../../assets/cards/pais2.svg',
+      imgUrl: './../../../assets/coverage/pais2.svg',
       cardTitle: 'En todo el país',
       selected: false
     }, {
       optionId: 2,
-      imgUrl: './../../../assets/cards/estados2.svg',
+      imgUrl: './../../../assets/coverage/estados2.svg',
       cardTitle: 'En otros estados',
       selected: false
     }, {
       optionId: 3,
-      imgUrl: './../../../assets/cards/Local2.svg',
+      imgUrl: './../../../assets/coverage/Local2.svg',
       cardTitle: 'En tu localidad',
       selected: false
     }

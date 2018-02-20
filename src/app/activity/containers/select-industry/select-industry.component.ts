@@ -9,7 +9,9 @@ import { SetLeadDataInfoAction,
   SetActivityAction,
   SetActivityTypeAction,
   SetHeaderTitleAction,
-  UserConfirmedAction } from '../../../store/actions';
+  UserConfirmedAction, 
+  TurnOffIsLoadingAction,
+  TurnOnIsLoadingAction} from '../../../store/actions';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import swal from 'sweetalert2';
 declare var $: any;
@@ -82,6 +84,7 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     // Get information from route params.
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
@@ -104,12 +107,12 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
 
     // Initilize modal variables.
     this.question = '¿Ofreces un servicio?';
-    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture-mau.svg';
 
     // Initilize view variables.
     this.title = '¿A qué industria pertenece tu servicio?';
     this.subtitle = '';
-    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture-mau.svg';
     this.explanation = 'Ayúdanos a determinar el tipo de servicio que ofreces'
     + ' para lograr resultados increibles. Si no ofreces algún tipo de servicio, entonces'
     + ' presiona en "Otra actividad".';
@@ -166,7 +169,7 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
   }
 
   public continue(): void {
-    if (this.selectedIndustry === undefined) {
+    if (this.selectedIndustry === undefined || this.selectedIndustry === '') {
       swal({
         customClass: 'select-one-option-alert',
         type: 'warning',
@@ -177,14 +180,17 @@ export class SelectIndustryComponent implements OnInit, OnDestroy {
         confirmButtonClass: 'hecho-button'
       });
     } else if (this.selectedIndustry) {
-      if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
-        const route = '/activity/service/';
-        this.router.navigate([route]);
-      } else {
-        const route = `/activity/service/`
-        + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedIndustry.id}`;
-        this.router.navigate([route]);
-      }
+      this.store.dispatch(new TurnOnIsLoadingAction);
+      setTimeout(() => {
+        if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
+          const route = '/activity/service/';
+          this.router.navigate([route]);
+        } else {
+          const route = `/activity/service/`
+          + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedIndustry.id}`;
+          this.router.navigate([route]);
+        }
+      }, 100);
     }
   }
 

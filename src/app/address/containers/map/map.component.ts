@@ -68,7 +68,7 @@ export class MapComponent implements OnInit, OnDestroy {
     });
 
     this.question = '¿Ofreces el servicio x?';
-    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlModal = './../../../assets/svg/generic/service-mau.svg';
 
     this.title = '¿Tu negocio está aquí?';
     this.subtitle = 'Indica la ubicación de tu negocio';

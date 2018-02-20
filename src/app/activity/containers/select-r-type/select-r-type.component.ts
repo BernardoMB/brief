@@ -2,7 +2,11 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction } from '../../../store/actions';
+import { SetProductAction,
+  UserConfirmedAction,
+  SetHeaderTitleAction,
+  TurnOffIsLoadingAction,
+  TurnOnIsLoadingAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
@@ -78,6 +82,7 @@ export class SelectRTypeComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
     if (this.userData) {
@@ -97,13 +102,13 @@ export class SelectRTypeComponent implements OnInit, OnDestroy {
     // Initilize modal variables.
     this.question = '¿Tu negocio es un restaurante?';
     // this.imgUrlModal = './../../../assets/real/SelectProductModal.jpg';
-    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlModal = './../../../assets/svg/generic/restaurant-mau.svg';
 
     // Initilize view variables.
     this.title = 'Escribe el tipo de comida';
     this.subtitle = null;
     // this.imgUrlFixed = './../../../assets/generic/restaurant.jpg';
-    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlFixed = './../../../assets/svg/generic/restaurant-mau.svg';
     this.explanation = 'Ayúdanos a determinar el tipo de comida que sirves para lograr resultados increíbles. '
     + 'Busca el tipo de comida y presiona en "Siguiente". '
     + 'Si tu negocio no es un restaurante, entonces presiona en "Otra actividad".';
@@ -148,7 +153,7 @@ export class SelectRTypeComponent implements OnInit, OnDestroy {
   }
 
   public onUserConfirmed(event): void {
-    if (event) {
+    if (!event) {
       this.router.navigate(['/activity/generic']);
     }
   }
@@ -160,7 +165,7 @@ export class SelectRTypeComponent implements OnInit, OnDestroy {
   }
 
   public continue(): void {
-    if (this.selectedType === undefined) {
+    if (this.selectedType === undefined || this.selectedType === '') {
       swal({
         customClass: 'select-one-option-alert',
         type: 'warning',
@@ -171,14 +176,17 @@ export class SelectRTypeComponent implements OnInit, OnDestroy {
         confirmButtonClass: 'hecho-button'
       });
     } else if (this.selectedType) {
-      if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
-        const route = '/activity/restaurant/type/';
-        this.router.navigate([route]);
-      } else {
-        const route = `/activity/restaurant/type/`
-        + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedType.id}`;
-        this.router.navigate([route]);
-      }
+      this.store.dispatch(new TurnOnIsLoadingAction());
+      setTimeout(() => {
+        if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
+          const route = '/activity/restaurant/type/';
+          this.router.navigate([route]);
+        } else {
+          const route = `/activity/restaurant/type/`
+          + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedType.id}`;
+          this.router.navigate([route]);
+        }
+      }, 100);
     }
   }
 

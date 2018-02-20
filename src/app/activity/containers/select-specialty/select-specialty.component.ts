@@ -2,7 +2,11 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction, UserConfirmedAction, SetHeaderTitleAction } from '../../../store/actions';
+import { SetProductAction, 
+  UserConfirmedAction, 
+  SetHeaderTitleAction, 
+  TurnOffIsLoadingAction, 
+  TurnOnIsLoadingAction } from '../../../store/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { ILead } from '../../../../shared/models/ILead';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
@@ -85,6 +89,7 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    this.store.dispatch(new TurnOffIsLoadingAction());
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
     if (this.userData) {
@@ -103,12 +108,12 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
 
     // Initilize modal variables.
     this.question = '¿Practicas x profesión?';
-    this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlModal = './../../../assets/svg/generic/profession-alt-mau.svg';
 
     // Initilize view variables.
     this.title = 'Escribe la especialidad que tienes';
     this.subtitle = null;
-    this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+    this.imgUrlFixed = './../../../assets/svg/generic/profession-alt-mau.svg';
     this.explanation = 'Ayúdanos a determinar la especialidad que tienes para lograr mejores resultados. '
     + 'Busca tu especialidad y presiona en "Siguiente". '
     + 'Si no eres profesionista, entonces presiona en "Otra actividad".';
@@ -153,7 +158,7 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
   }
 
   public onUserConfirmed(event): void {
-    if (event) {
+    if (!event) {
       this.router.navigate(['/activity/generic']);
     }
   }
@@ -165,7 +170,7 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
   }
 
   public continue(): void {
-    if (this.selectedSpecialty === undefined) {
+    if (this.selectedSpecialty === undefined || this.selectedSpecialty === '') {
       swal({
         customClass: 'select-one-option-alert',
         type: 'warning',
@@ -176,14 +181,17 @@ export class SelectSpecialtyComponent implements OnInit, OnDestroy {
         confirmButtonClass: 'hecho-button'
       });
     } else if (this.selectedSpecialty) {
-      if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
-        const route = '/../address/';
-        this.router.navigate([route]);
-      } else {
-        const route = `/../address/`
-        + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedSpecialty.id}`;
-        this.router.navigate([route]);
-      }
+      this.store.dispatch(new TurnOnIsLoadingAction());
+      setTimeout(() => {
+        if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
+          const route = '/../address/';
+          this.router.navigate([route]);
+        } else {
+          const route = `/../address/`
+          + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedSpecialty.id}`;
+          this.router.navigate([route]);
+        }
+      }, 100);
     }
   }
 

@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
-import { SetHeaderTitleAction, UserConfirmedAction } from '../../../store/actions';
+import { SetHeaderTitleAction, UserConfirmedAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions';
 import { ILead } from '../../../../shared/models/ILead';
 declare var $: any;
 
@@ -78,6 +78,7 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+      this.store.dispatch(new TurnOffIsLoadingAction());
       this.source = this.activatedRoute.snapshot.params['source'];
       this.userData = this.activatedRoute.snapshot.params['userdata'];
       this.campaignId = this.activatedRoute.snapshot.params['campaignid'];
@@ -98,12 +99,12 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
 
       // Initilize modal variables.
       this.question = '¿Eres profesionista?';
-      this.imgUrlModal = './../../../assets/svg/economic-activity/manufacture.svg';
+      this.imgUrlModal = './../../../assets/svg/generic/profession-mau.svg';
 
       // Initilize view variables.
       this.title = 'Escribe tu profesión';
       this.subtitle = null;
-      this.imgUrlFixed = './../../../assets/svg/economic-activity/manufacture.svg';
+      this.imgUrlFixed = './../../../assets/svg/generic/profession-mau.svg';
       this.explanation = 'Ayúdanos a determinar la profesión que practicas para lograr resultados increíbles. '
       + 'Busca el nombre de tu profesión y presiona en "Siguiente". '
       + 'Si no eres profesionista, entonces presiona en "Otra actividad".';
@@ -160,7 +161,7 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
     }
 
     public continue(): void {
-      if (this.selectedProfession === undefined) {
+      if (this.selectedProfession === undefined || this.selectedProfession === '') {
         swal({
           customClass: 'select-one-option-alert',
           type: 'warning',
@@ -171,14 +172,17 @@ export class SelectProfessionComponent implements OnInit, OnDestroy {
           confirmButtonClass: 'hecho-button'
         });
       } else if (this.selectedProfession) {
-        if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
-          const route = '/activity/profession/specialty/';
-          this.router.navigate([route]);
-        } else {
-          const route = `/activity/profession/specialty/`
-          + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProfession.id}`;
-          this.router.navigate([route]);
-        }
+        this.store.dispatch(new TurnOnIsLoadingAction());
+        setTimeout(() => {          
+          if (this.source === undefined || this.userData === undefined || this.campaignId === undefined) {
+            const route = '/activity/profession/specialty/';
+            this.router.navigate([route]);
+          } else {
+            const route = `/activity/profession/specialty/`
+            + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProfession.id}`;
+            this.router.navigate([route]);
+          }
+        }, 100);
       }
     }
 

@@ -8,7 +8,9 @@ import { SetActivityAction,
   SetHeaderTitleAction,
   UserConfirmedAction,
   TurnOffIsLoadingAction,
-  TurnOnIsLoadingAction } from '../../../store/actions';
+  TurnOnIsLoadingAction, 
+  SetHeaderImageAction,
+  SetHeaderOpacityAction} from '../../../store/actions';
 import swal from 'sweetalert2';
 declare var $: any;
 
@@ -28,31 +30,31 @@ export class GenericComponent implements OnInit {
   public options: any[] = [
     {
       optionId: 1,
-      imgUrl: './../../../assets/svg/generic/product.svg',
+      imgUrl: './../../../assets/svg/generic/product-mau.svg',
       // imgUrl: '',
       cardTitle: 'Fabrica o vende un producto',
       selected: false
     }, {
       optionId: 2,
-      imgUrl: './../../../assets/svg/generic/service.svg',
+      imgUrl: './../../../assets/svg/generic/service-mau.svg',
       // imgUrl: '',
       cardTitle: 'Ofrece algún servicio',
       selected: false
     }, {
       optionId: 3,
-      imgUrl: './../../../assets/svg/generic/profession.svg',
+      imgUrl: './../../../assets/svg/generic/profession-mau.svg',
       // imgUrl: '',
       cardTitle: 'Profesionista u oficio',
       selected: false
     }, {
       optionId: 4,
-      imgUrl: './../../../assets/svg/generic/hotel.svg',
+      imgUrl: './../../../assets/svg/generic/hotel-mau.svg',
       // imgUrl: '',
       cardTitle: 'Hotel',
       selected: false
     }, {
       optionId: 5,
-      imgUrl: './../../../assets/svg/generic/restaurant.svg',
+      imgUrl: './../../../assets/svg/generic/restaurant-mau.svg',
       // imgUrl: '',
       cardTitle: 'Restaurante',
       selected: false
@@ -62,6 +64,8 @@ export class GenericComponent implements OnInit {
 
   constructor(private router: Router, private store: Store<IApplicationState>) {
     this.store.dispatch(new SetHeaderTitleAction('¿Qué hace tu empresa?'));
+    this.store.dispatch(new SetHeaderOpacityAction(false));
+    this.store.dispatch(new SetHeaderImageAction('/assets/pisos-de-madera-2.jpg'));
   }
 
   ngOnInit() {
