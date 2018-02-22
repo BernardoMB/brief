@@ -1,0 +1,11 @@
+/*Global custom styles*/
+
+/*Webkit autofill for Chrome*/
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: black !important;
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

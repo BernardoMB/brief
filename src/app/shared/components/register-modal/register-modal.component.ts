@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ModalDirective} from 'ngx-bootstrap/modal';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {ModalOptions} from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-register-modal',
@@ -13,12 +14,18 @@ export class RegisterModalComponent implements OnInit {
   public isRegister: boolean;
 
   @ViewChild('registerModal') modal: ModalDirective;
+  @Input() ignoreBackdropClick: boolean;
 
   constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
     this.isRegister = true;
+    this.modal.config = <ModalOptions>{
+      animated: true,
+      backdrop: true,
+      ignoreBackdropClick: this.ignoreBackdropClick
+    };
   }
 
   public showModal(): void {
@@ -29,21 +36,8 @@ export class RegisterModalComponent implements OnInit {
     this.modal.hide();
   }
 
-  defaultLogin() {
-    if (!this.isRegister) {
-      alert('iniciar sesion')
-    } else {
-      this.isRegister = !this.isRegister;
-    }
-
-  }
-
-  defaultRegister() {
-    if (this.isRegister) {
-      alert('registrar')
-    } else {
-      this.isRegister = !this.isRegister;
-    }
+  switchRegister() {
+    this.isRegister = !this.isRegister;
   }
 
   googleLogin() {

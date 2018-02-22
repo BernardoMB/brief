@@ -1,4 +1,4 @@
-<div class="main-container" style="overflow: scroll; background: -webkit-gradient(linear, left top, right top, from(#32b3aa), to(#33a4bc))">
+<div class="main-container" style="overflow: none; background: -webkit-gradient(linear, left top, right top, from(#32b3aa), to(#33a4bc))">
   <div style="display: flex; justify-content: center;">
     <div class="welcome-image">
       <img src="./assets/lauchpad/iphone.png" alt="">
@@ -18,5 +18,6 @@
   </div>
 </div>
 
-<app-register-modal
-  #registerModal>
+<app-register-modal #registerModal [ignoreBackdropClick]="false">
+
+</app-register-modal>

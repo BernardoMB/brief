@@ -1,23 +1,26 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { IApplicationState } from '../../../store/models/app-state';
-import { SetProductAction,
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {IApplicationState} from '../../../store/models/app-state';
+import {
+  SetProductAction,
   UserConfirmedAction,
   SetHeaderTitleAction,
   GetAllProductsAction,
   TurnOffIsLoadingAction,
-  TurnOnIsLoadingAction } from '../../../store/actions';
-import { Subscription } from 'rxjs/Subscription';
-import { ILead } from '../../../../shared/models/ILead';
-import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+  TurnOnIsLoadingAction
+} from '../../../store/actions';
+import {Subscription} from 'rxjs/Subscription';
+import {ILead} from '../../../../shared/models/ILead';
+import {ConfirmationModalComponent} from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import swal from 'sweetalert2';
-import { Observable } from 'rxjs/Observable';
-import { IProduct } from '../../../shared/models/IProduct';
-import { mapStateToProductsInfo } from '../../../store/mappers/mapStateToProductsInfo';
+import {Observable} from 'rxjs/Observable';
+import {IProduct} from '../../../shared/models/IProduct';
+import {mapStateToProductsInfo} from '../../../store/mappers/mapStateToProductsInfo';
+
 declare var $: any;
 import * as io from 'socket.io-client';
-import { CompleterData, CompleterService } from 'ng2-completer';
+import {CompleterData, CompleterService} from 'ng2-completer';
 import {Subject} from 'rxjs/Subject';
 
 @Component({
@@ -59,38 +62,39 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   /* public products$: Observable<Array<IProduct>>;
   public productsub: Subscription;
   public productsArray: Array<any>; */
-  public socket;
+  public socket: SocketIOClient.Socket;
   public dataService: CompleterData;
   public selectedProduct: any;
 
   constructor(private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private store: Store<IApplicationState>,
-    private completerService: CompleterService) {
-      this.store.dispatch(new SetHeaderTitleAction('Selecciona tu producto'));
-      /* this.store.dispatch(new GetAllProductsAction());
-      this.products$ = this.store.select(state => mapStateToProductsInfo(state));
-      this.productsub = this.products$.subscribe(products => {
-        this.productsArray = [];
-        products.forEach((product: any) => {
-          this.productsArray.push({
-            id: product._id,
-            name: product.name
-          });
+              private activatedRoute: ActivatedRoute,
+              private store: Store<IApplicationState>,
+              private completerService: CompleterService) {
+    this.store.dispatch(new SetHeaderTitleAction('Selecciona tu producto'));
+    /* this.store.dispatch(new GetAllProductsAction());
+    this.products$ = this.store.select(state => mapStateToProductsInfo(state));
+    this.productsub = this.products$.subscribe(products => {
+      this.productsArray = [];
+      products.forEach((product: any) => {
+        this.productsArray.push({
+          id: product._id,
+          name: product.name
         });
-      }); */
-      this.socket = io();
-      this.dataService = this.completerService.local([], 'name', 'name');
-      this.socket.on('serverSuggestions', suggestions => {
-        this.dataService = completerService.local(suggestions, 'name', 'name');
       });
+    }); */
+
+    this.dataService = this.completerService.local([], 'name', 'name');
+    this.socket = io.connect();
     /*this.socket.on('serverSuggestions', suggestions => {
       this.suggestions$.next(suggestions);
       console.log(suggestions);
     });*/
-    }
+  }
 
   ngOnInit() {
+    this.socket.on('serverSuggestions', suggestions => {
+      this.dataService = this.completerService.local(suggestions, 'name', 'name');
+    });
     this.store.dispatch(new TurnOffIsLoadingAction());
     // Option 1
     /* // Get information from route params.
@@ -161,16 +165,16 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     this.subtitle = null;
     this.imgUrlFixed = './../../../assets/svg/generic/product-mau.svg';
     this.explanation = 'Ayúdanos a determinar el producto que vendes para lograr resultados increíbles. '
-    + 'Busca el nombre de tu producto y presiona en "Siguiente". '
-    + 'Si no vendes un producto, entonces presiona en "Otra actividad".';
+      + 'Busca el nombre de tu producto y presiona en "Siguiente". '
+      + 'Si no vendes un producto, entonces presiona en "Otra actividad".';
 
     // Disable auto-complete-search text field when selecting an option.
     $('#completer').find('input').attr('id', 'product-input');
     let isUserClick = false;
-    $('#product-input').on('mousedown', function(event) {
+    $('#product-input').on('mousedown', function (event) {
       isUserClick = true;
     });
-    $('#product-input').on('focus', function(event) {
+    $('#product-input').on('focus', function (event) {
       if (!isUserClick) {
         this.blur();
       }
@@ -179,7 +183,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
 
     // Disable auto-complete-search text field when pressing enter key.
     this.autoCompleteInputElement = document.getElementById('product-input');
-    this.autoCompleteInputElement.addEventListener('keyup', function(e) {
+    this.autoCompleteInputElement.addEventListener('keyup', function (e) {
       if (e.which === 13 || e.keyCode === 13) {
         this.blur();
       }
@@ -244,7 +248,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
           this.router.navigate([route]);
         } else {
           const route = `/activity/product/eactivity/`
-          + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
+            + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
           this.router.navigate([route]);
         }
       }, 100);
