@@ -18,7 +18,7 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 io.sockets.on('connection', require('./server/sockets'));
-
+ 
 app.use(bodyParser.json());
 // routes(app);
 
