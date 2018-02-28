@@ -1,4 +1,5 @@
 import './polyfills.ts';
+// RxJS Operators.
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/skip';
@@ -11,43 +12,46 @@ import 'rxjs/add/operator/take';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/zip';
-
-import { AppModule } from './app/app.module';
+// RxJS.
 import { Observable } from 'rxjs/Observable';
+
 import { enableProdMode } from '@angular/core';
-import { environment } from './environments/environment';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-const debuggerOn = !environment.production;
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 
+// Debugging
+const debuggerOn = !environment.production;
 Observable.prototype.debug = function(message: string) {
-    return this.do(
-        nextValue => {
-            if (debuggerOn) {
-                console.log(message, nextValue);
-            }
-        },
-        error => {
-            if (debuggerOn) {
-                console.error(message, error);
-            }
-        },
-        () => {
-            if (debuggerOn) {
-                console.error('Observable completed - ', message);
-            }
-        }
-    );
+  return this.do(
+      nextValue => {
+          if (debuggerOn) {
+              console.log(message, nextValue);
+          }
+      },
+      error => {
+          if (debuggerOn) {
+              console.error(message, error);
+          }
+      },
+      () => {
+          if (debuggerOn) {
+              console.error('Observable completed - ', message);
+          }
+      }
+  );
 };
 
 declare module 'rxjs/Observable' {
-    interface Observable<T> {
-        debug: (...any) => Observable<T>;
-    }
+  interface Observable<T> {
+      debug: (...any) => Observable<T>;
+  }
 }
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.log(err));

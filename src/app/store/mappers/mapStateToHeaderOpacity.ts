@@ -1,6 +1,6 @@
 import {IApplicationState } from '../models/app-state';
 
 export function mapStateToHeaderOpacity(state: IApplicationState): boolean {
-    return state.storeData.headerOpacity;
+    return state.uiState.headerOpacity;
 }
 

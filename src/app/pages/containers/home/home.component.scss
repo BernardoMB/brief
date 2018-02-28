@@ -1,0 +1,30 @@
+.main-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    top: 0px;
+    bottom: 0px;
+    @media screen and (min-width: 1000px){
+        padding: 0 30%;
+    }
+    background: -webkit-gradient(linear, left top, right top, from(#32b3aa), to(#33a4bc));
+}
+
+.welcome-image {
+    width: 100%;
+    margin-top: -50px;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    img {
+        height: 400px;
+    }
+}
+
+.start-button {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    @media screen and (min-width: 1000px){
+        padding: 0 17%;
+    }
+}

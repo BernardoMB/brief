@@ -1,25 +1,39 @@
 import { NgModule } from '@angular/core';
-import { LoadChildren, RouterModule, Routes } from '@angular/router';
-import { MainComponent } from './core/containers/main/main.component';
-import { LaunchpadComponent } from './core/containers/launchpad/launchpad.component';
-import { Launchpad2Component } from './core/containers/launchpad2/launchpad2.component';
-import { OfferComponent } from './core/containers/offer/offer.component';
+import { Routes, RouterModule } from '@angular/router';
+import { DetailsComponent } from './details/details/details.component';
+import { OfferComponent } from './offer/offer/offer.component';
+import { PaymentComponent } from './payment/payment/payment.component';
+import { HomeComponent } from './pages/containers/home/home.component';
+import { NotFoundComponent } from './pages/containers/not-found/not-found.component';
 
-const routes: Routes = [
-  {
-    path: '', component: MainComponent,
+const routes: Routes = [{
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }, {
+    path: 'home',
+    component: HomeComponent
+  }, {
+    path: 'details',
+    component: DetailsComponent, // Header, LoadingBar, RouterOutlet
     children: [
-      // { path: '', component: LaunchpadComponent},
-      { path: '', component: Launchpad2Component},
-      { path: 'activity', loadChildren: 'app/activity/activity.module#ActivityModule' },
-      { path: 'address', loadChildren: 'app/address/address.module#AddressModule' },
-      { path: 'coverage', loadChildren: 'app/coverage/coverage.module#CoverageModule' }
+      { path: '', loadChildren: 'app/details/details.module#DetailsModule' },
     ]
   }, {
-    path: 'offer', component: OfferComponent,
+    path: 'offer',
+    component: OfferComponent, // Router Outlet TODO: LoadingBar
     children: [
-      { path: 'clients', loadChildren: 'app/clients/clients.module#ClientsModule' }
+      { path: '', loadChildren: 'app/offer/offer.module#OfferModule' },
     ]
+  }, {
+    path: 'payment',
+    component: PaymentComponent, // Router Outlet TODO: LoadingBar
+    children: [
+      { path: '', loadChildren: 'app/payment/payment.module#PaymentModule' },
+    ]
+  }, {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

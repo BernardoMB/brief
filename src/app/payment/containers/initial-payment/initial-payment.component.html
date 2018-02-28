@@ -1,0 +1,37 @@
+<div id="header" style="overflow: auto; background: linear-gradient(45deg,#33a4bc 30%, #32b3aa 70%);">
+    <i class="fa fa-chevron-left" aria-hidden="true" style="position: absolute; margin: 15px; color: white;" (click)="goBack()"></i>
+    <div style="margin: 10px; margin-top: 15px; margin-bottom: 20px; text-align: center; font-size: 20px; font-weight: 500; font-family: Roboto Slab; line-height: 1; color: white;">
+      Pago
+    </div>
+    <div style="margin-bottom: 15px; text-align: center; font-size: 26px; font-weight: 700; font-family: Roboto Slab; color: white;">Membresía Jade Imperial</div>
+    <div style="margin-left: 10px; margin-right: 10px; text-align: center; font-size: 16px; font-weight: 500; line-height: 1; font-family: Arial; color: white;">PROMOCIÓN</div>
+    <div style="margin-left: 10px; margin-right: 10px; text-align: center; font-size: 16px; font-weight: 400; line-height: 1; color: white;">Pago por cliente potencial</div>
+    <div style="margin: 10px; margin-top: 5px; text-align: center; color: white; letter-spacing: -4px;">
+      <span style="font-size: 34px; font-weight: 400; font-family: Roboto Slab;">$</span>
+      <span style="font-size: 56px; font-weight: 400; font-family: unset; line-height: 1;">{{price}}.°°</span>
+    </div>
+  </div>
+  
+  <div style="margin: 30px; margin-bottom: 20px; text-align: center; font-size: 24px; font-family: Roboto Slab; font-weight: 700; color: #32b3aa;">{{label}} ${{totalCost}}.°°</div>
+  <div style="margin-left: 30px; margin-right: 30px; margin-bottom: 5px; display: flex; flex-direction: row; justify-content: space-between;">
+    <div>Suscripción Koomkin {{subscriptionType}}</div>
+    <div>${{koomkinSubscriptionCost}}</div>
+  </div>
+  <div style="margin-left: 30px; margin-right: 30px; margin-bottom: 5px; display: flex; flex-direction: row; justify-content: space-between;">
+    <div>IVA</div>
+    <div>${{iva}}</div>
+  </div>
+  <div style="margin-left: 20px; margin-right: 20px; margin-bottom: 5px; height: 1px; background-color: rgb(182, 182, 182);"></div>
+  <div style="margin-left: 30px; margin-right: 30px; margin-bottom: 5px; display: flex; flex-direction: row; justify-content: space-between;">
+    <div>Total</div>
+    <div>${{totalCost}}</div>
+  </div>
+      
+  <div style="margin-top: 30px; margin-left: 30px; margin-right: 30px; text-align: center; font-size: 12px;">
+    {{smallLetters}}
+  </div>
+  <brief-next-button [text]="'Pagar ahora'" (onClicked)="continue()"></brief-next-button>
+  
+  <brief-payment-method-modal
+  #paymentMethodModal>
+  </brief-payment-method-modal>

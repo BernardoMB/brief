@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ModalDirective } from 'ng-bootstrap/modal';
 
 @Component({
-  selector: 'app-payment-method-modal',
+  selector: 'brief-payment-method-modal',
   templateUrl: './payment-method-modal.component.html',
   styleUrls: ['./payment-method-modal.component.scss']
 })

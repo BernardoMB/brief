@@ -1,0 +1,29 @@
+<div id="map-container" [ngStyle]="getMapStyle()">
+
+  <!-- Google Maps search box -->
+  <div id="mamon" style="width: 100%; padding: 15px;">
+    <input id="pac-input" type="text" placeholder="Buscar">
+  </div>
+  
+  <!-- This element style is specified on styles.css -->
+  <div id="map_canvas"></div>
+
+  <!-- Confirm location -->
+  <div style="position: absolute; bottom: 0px; width: 100%; padding: 15px;">
+    <div class="panel-custom">
+      <div class="panel-body-custom" (click)="continue()">
+        <h6 class="title" align="center">Confirmar ubicación</h6>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal -->
+<brief-confirmation-modal
+#confirmationModal
+[name]="name"
+[question]="question"
+[imgUrl]="imgUrlModal"
+(onAnswer)="onUserConfirmed($event)">
+</brief-confirmation-modal>

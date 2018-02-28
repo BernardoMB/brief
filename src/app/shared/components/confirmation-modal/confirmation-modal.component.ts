@@ -2,9 +2,9 @@ import { ModalDirective } from 'ng-bootstrap/modal';
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-confirmation-modal',
+  selector: 'brief-confirmation-modal',
   templateUrl: './confirmation-modal.component.html',
-  styleUrls: ['./confirmation-modal.component.css']
+  styleUrls: ['./confirmation-modal.component.scss']
 })
 export class ConfirmationModalComponent implements OnInit {
   @ViewChild('confirmationModal') modal: ModalDirective;

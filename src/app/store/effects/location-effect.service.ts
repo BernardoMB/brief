@@ -6,7 +6,7 @@ import { Action } from '@ngrx/store';
 import { ToastyService, ToastyConfig, ToastData } from 'ng2-toasty';
 import * as moment from 'moment';
 import * as io from 'socket.io-client';
-import { SET_LOCATION_ACTION, SetLocationAction } from '../actions';
+import { SET_LOCATION_ACTION } from '../actions/storeData.actions';
 
 @Injectable()
 export class LocationEffectService {
@@ -16,15 +16,15 @@ export class LocationEffectService {
     @Effect({dispatch: false})
     onSetLocation$: Observable<Action> = this.action$
         .ofType(SET_LOCATION_ACTION)
-        .debug('Getting all professions')
-        .do((action: SetLocationAction) => {
+        .map(action => {
             this.toastyService.success({
                 title: 'Ubicación fijada.',
                 msg: `${moment().locale('es').calendar()}`,
                 showClose: true,
                 timeout: 2500
             });
-        });
+            return action;
+        })
 
     constructor(
         private action$: Actions,

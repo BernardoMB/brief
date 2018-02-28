@@ -1,0 +1,19 @@
+<brief-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></brief-instruction-card>
+
+<div class="well" style="max-height: 300px; overflow: auto; margin-left: 30px; margin-right: 30px;">
+  <ul class="list-group checked-list-box">
+    <label *ngFor="let state of states; let i = index">
+      <input style="width: 20px; height: 20px;" type="checkbox" [(checklist)]="selectedStates" [checklistValue]="i"/>
+      <span style="color:#344a54; font-size: 24px;">{{state.name}}</span>
+    </label>
+  </ul>
+</div>
+
+<div class="panel-custom" style="margin-top: 10px;">
+  <div id="get-checked-data" class="panel-body-custom" (click)="continue()">
+    <h4 class="title" align="center">Siguiente</h4>
+  </div>
+</div>
+<div class="text-link">
+  <a class="link" (click)="goToGeneric()">Volver a empezar</a>
+</div>

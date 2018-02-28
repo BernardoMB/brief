@@ -1,0 +1,37 @@
+<brief-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></brief-instruction-card>
+
+<!-- Modo eficiente -->
+<!-- visit https://github.com/oferh/ng2-completer -->
+<div class="search-auto-complete-container">
+  <ng2-completer id="completer"
+    inputId="product-input"
+    placeholder="Busca tu producto..."
+    textNoResults="Sin resultados"
+    textSearching="Buscando"
+    (ngModelChange)="inputChange3($event)" 
+    [(ngModel)]="selectedProduct" 
+    [datasource]="dataService" 
+    [minSearchLength]="0">
+  </ng2-completer>
+</div>
+
+<!-- Fixed image -->
+<div style="margin-left: 15px; margin: 15px; margin-top:0px;">
+  <brief-real-img-card [imgUrl]="imgUrlFixed"></brief-real-img-card>
+</div>
+
+<!-- Siguiente -->
+<brief-next-button [text]="'Siguiente'" (onClicked)="continue()"></brief-next-button>
+
+<div class="text-link">
+    <a class="link" (click)="goToGeneric()">Otra actividad</a>
+</div>
+
+<!-- Modal -->
+<brief-confirmation-modal
+#confirmationModal
+[name]="name"
+[question]="question"
+[imgUrl]="imgUrlModal"
+(onAnswer)="onUserConfirmed($event)">
+</brief-confirmation-modal>

@@ -6,7 +6,8 @@ import { Action } from '@ngrx/store';
 import { ToastyService, ToastyConfig, ToastData } from 'ng2-toasty';
 import * as moment from 'moment';
 import * as io from 'socket.io-client';
-import { SET_ACTIVITY_ACTION, SetActivityAction, SET_ACTIVITY_TYPE_ACTION, SetActivityTypeAction } from '../actions';
+import { switchMap } from 'rxjs/operator/switchMap';
+import { SET_ACTIVITY_ACTION, SetActivityAction, SET_ACTIVITY_TYPE_ACTION } from '../actions/storeData.actions';
 
 @Injectable()
 export class ActivityEffectService {
@@ -16,28 +17,28 @@ export class ActivityEffectService {
     @Effect({dispatch: false})
     onSetActivity$: Observable<Action> = this.action$
         .ofType(SET_ACTIVITY_ACTION)
-        .debug('Setting activity')
-        .do((action: SetActivityAction) => {
+        .map((action: SetActivityAction) => {
             this.toastyService.success({
                 title: 'Actividad fijada.',
                 msg: `${moment().locale('es').calendar()}`,
                 showClose: true,
                 timeout: 2500
-            });
+            });           
+            return action;
         });
 
-        @Effect({dispatch: false})
-        onSetActivityType$: Observable<Action> = this.action$
-            .ofType(SET_ACTIVITY_TYPE_ACTION)
-            .debug('Setting activity type')
-            .do((action: SetActivityTypeAction) => {
-                this.toastyService.success({
-                    title: 'Tipo de actividad fijada.',
-                    msg: `${moment().locale('es').calendar()}`,
-                    showClose: true,
-                    timeout: 2500
-                });
+    @Effect({dispatch: false})
+    onSetActivityType$: Observable<Action> = this.action$
+        .ofType(SET_ACTIVITY_TYPE_ACTION)
+        .map(function (action) {
+            this.toastyService.success({
+                title: 'Tipo de actividad fijada.',
+                msg: `${moment().locale('es').calendar()}`,
+                showClose: true,
+                timeout: 2500
             });
+            return action;
+        });
 
     constructor(
         private action$: Actions,

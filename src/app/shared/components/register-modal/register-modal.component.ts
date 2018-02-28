@@ -4,7 +4,7 @@ import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-register-modal',
+  selector: 'brief-register-modal',
   templateUrl: './register-modal.component.html',
   styleUrls: ['./register-modal.component.scss']
 })

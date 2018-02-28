@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-real-img-card',
+  selector: 'brief-real-img-card',
   templateUrl: './real-img-card.component.html',
   styleUrls: ['./real-img-card.component.scss']
 })

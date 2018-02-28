@@ -1,0 +1,11 @@
+<brief-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></brief-instruction-card>
+
+<div class="row" style="margin: 0px;" *ngFor="let option of options; let i = index">
+    <div class="card-custom" [ngStyle]="{'box-shadow': getBoxShadowForCard(option.optionId)}" (click)="assignRole(option.optionId)">
+      <brief-option-img-card [imgUrl]="option.imgUrl" [cardTitle]="option.cardTitle"></brief-option-img-card>
+    </div>
+</div>
+
+<div class="text-link">
+  <a class="link" (click)="goToGeneric()">Volver a empezar</a>
+</div>

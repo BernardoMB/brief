@@ -1,73 +1,58 @@
-import {TagInputModule} from 'ngx-chips';
-import {TooltipModule} from 'ngx-bootstrap/tooltip';
-import {RouterModule} from '@angular/router';
-import {TabsModule} from 'ng-bootstrap/tabs';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NextButtonComponent } from './components/next-button/next-button.component';
+import { RegisterModalComponent } from './components/register-modal/register-modal.component';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {NgModule, Provider} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms'; // In order to use two way binding
-import {ToastyModule} from 'ng2-toasty';
-import {TitleCardComponent} from './components/title-card/title-card.component';
-import {ImgCardComponent} from './components/img-card/img-card.component';
-import {ConfirmationModalComponent} from './components/confirmation-modal/confirmation-modal.component';
-import {InstructionCardComponent} from './components/instruction-card/instruction-card.component';
-import {RealImgCardComponent} from './components/real-img-card/real-img-card.component';
-import {OptionImgCardComponent} from './components/option-img-card/option-img-card.component';
-import {AddExampleModalComponent} from './components/add-example-modal/add-example-modal.component';
-import {PlansModalComponent} from './components/plans-modal/plans-modal.component';
-import {OptionsListComponent} from './components/options-list/options-list.component';
-import {NextButtonComponent} from './components/next-button/next-button.component';
-import {StarRatingComponent} from './components/star-rating/star-rating.component';
-import {StarRatingModule} from 'angular-star-rating';
-import {RegisterModalComponent} from './components/register-modal/register-modal.component';
-import {AuthService} from './services/auth.service';
+import { AuthService } from './services/auth.service';
+import { HeaderComponent } from './components/header/header.component';
+import { InstructionCardComponent } from './components/instruction-card/instruction-card.component';
+import { OptionsListComponent } from './components/options-list/options-list.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { RealImgCardComponent } from './components/real-img-card/real-img-card.component';
+import { OptionImgCardComponent } from './components/option-img-card/option-img-card.component';
+import { FormsModule } from '@angular/forms';
+import { StarRatingModule } from 'angular-star-rating';
+import { AddExampleModalComponent } from './components/add-example-modal/add-example-modal.component';
+import { PlansModalComponent } from './components/plans-modal/plans-modal.component';
 import { PaymentMethodModalComponent } from './components/payment-method-modal/payment-method-modal.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
-    FormsModule, // In order to use two way binding
-    TooltipModule,
-    TagInputModule,
-    ToastyModule,
     ModalModule,
-    StarRatingModule
+    StarRatingModule,
+    FormsModule // To suppot ngModel two way binding
   ],
   declarations: [
-    TitleCardComponent,
-    ImgCardComponent,
-    ConfirmationModalComponent,
+    NextButtonComponent,
+    RegisterModalComponent,
+    HeaderComponent,
     InstructionCardComponent,
+    OptionsListComponent,
+    ConfirmationModalComponent,
+    StarRatingComponent,
     RealImgCardComponent,
     OptionImgCardComponent,
     AddExampleModalComponent,
     PlansModalComponent,
-    OptionsListComponent,
-    NextButtonComponent,
-    StarRatingComponent,
-    RegisterModalComponent,
-    PaymentMethodModalComponent],
+    PaymentMethodModalComponent
+  ],
   exports: [
-    TooltipModule,
-    ToastyModule,
     ModalModule,
-    TitleCardComponent,
-    ImgCardComponent,
-    ConfirmationModalComponent,
+    NextButtonComponent,
+    RegisterModalComponent,
+    HeaderComponent,
     InstructionCardComponent,
+    OptionsListComponent,
+    ConfirmationModalComponent,
+    StarRatingComponent,
     RealImgCardComponent,
     OptionImgCardComponent,
     AddExampleModalComponent,
     PlansModalComponent,
-    OptionsListComponent,
-    NextButtonComponent,
-    StarRatingComponent,
-    RegisterModalComponent,
     PaymentMethodModalComponent
   ],
   providers: [AuthService]
 })
-
-export class SharedModule {
-}
+export class SharedModule { }

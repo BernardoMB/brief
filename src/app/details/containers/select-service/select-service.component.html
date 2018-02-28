@@ -1,0 +1,32 @@
+<brief-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></brief-instruction-card>
+
+<!-- Automcomplete search box -->
+<div class="search-auto-complete-custom">
+  <input id="service-input"
+  ngui-auto-complete
+  class="search-box"
+  [(ngModel)]="selectedService"
+  [source]="servicesArray"
+  placeholder="Busca tu servicio..."
+  no-match-found-text="Sin resultados"
+  (valueChanged)="selectService($event)"
+  [open-on-focus]="false"
+  [accept-user-input]="false"
+  [select-on-blur]="true"
+  value-formatter="name"
+  list-formatter="name"
+  />
+</div>
+<!-- visit https://github.com/ng2-ui/auto-complete -->
+
+<!-- Fixed image -->
+<div style="margin-left: 15px; margin: 15px; margin-top:0px;">
+  <brief-real-img-card [imgUrl]="imgUrlFixed"></brief-real-img-card>
+</div>
+
+<!-- Siguiente -->
+<brief-next-button [text]="'Siguiente'" (onClicked)="continue()"></brief-next-button>
+
+<div class="text-link">
+    <a class="link" (click)="goToGeneric()">Otra actividad</a>
+</div>

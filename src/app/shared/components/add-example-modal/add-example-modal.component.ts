@@ -3,9 +3,9 @@ import { ModalDirective } from 'ng-bootstrap/modal';
 declare var $: any;
 
 @Component({
-  selector: 'app-add-example-modal',
+  selector: 'brief-add-example-modal',
   templateUrl: './add-example-modal.component.html',
-  styleUrls: ['./add-example-modal.component.css']
+  styleUrls: ['./add-example-modal.component.scss']
 })
 export class AddExampleModalComponent implements OnInit {
   @ViewChild('addExampleModal') modal: ModalDirective;
@@ -19,7 +19,7 @@ export class AddExampleModalComponent implements OnInit {
   ngOnInit() {
     this.productName = 'Producto';
     this.companyName = 'Tu empresa';
-    this.imgUrl = './../../../assets/offer/product.jpg';
+    this.imgUrl = './../../../assets/images/offer/product.jpg';
   }
 
   public showModal(): void {

@@ -1,11 +1,5 @@
-html,
-body {
+html, body {
   height: 100%;
-}
-
-body {
-  /* Old design */
-    /* background-color: #d9ecf8; */
 }
 
 .bb,
@@ -22,7 +16,7 @@ body {
   width: 200px;
   height: 200px;
   margin: auto;
-  background: url("./../assets/loadingAnimationLogoSmall.svg") rgba(0, 0, 0, 0.1);
+  background: url("./../assets/images/loadingAnimationLogoSmall.svg") rgba(0, 0, 0, 0.1);
   background-size: cover;
   color: #1abc9c;
   box-shadow: inset 0 0 0 1px rgba(#1abc9c, 0.5);

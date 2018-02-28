@@ -1,0 +1,10 @@
+<div style="height: 50px; background: -webkit-linear-gradient(left, #33a4bc, #32b3aa);">
+  <i class="fa fa-chevron-left" aria-hidden="true" style="position: absolute; margin: 15px; color: white;" (click)="goBack()"></i>
+  <div style="display: flex; justify-content: space-around;">
+    <div style="margin-top: 5px; margin-bottom: 5px; margin-top: 5px; text-align: center; font-family: Roboto Slab; color: white;" [ngStyle]="getHeaderFontSize()">
+      {{title | async}}
+    </div>
+  </div>
+</div>
+<ng2-slim-loading-bar [height]="'6px'" color="blue" style="position: absolute; width: 100%; height: 6px; z-index: 99;"></ng2-slim-loading-bar>
+<router-outlet></router-outlet>

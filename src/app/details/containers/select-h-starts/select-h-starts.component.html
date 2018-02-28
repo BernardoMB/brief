@@ -1,0 +1,25 @@
+<brief-instruction-card [title]="title" [subtitle]="subtitle" [explanation]="explanation"></brief-instruction-card>
+
+<!-- Stars -->
+<brief-star-rating (onStarClicked)="onStarClick($event)"></brief-star-rating>
+
+<!-- Fixed image -->
+<div style="margin-left: 15px; margin: 15px; margin-top:0px;">
+    <brief-real-img-card [imgUrl]="imgUrlFixed"></brief-real-img-card>
+</div>
+
+<!-- Siguiente -->
+<brief-next-button [text]="'Siguiente'" (onClicked)="continue()"></brief-next-button>
+
+<div class="text-link">
+    <a class="link" (click)="goToGeneric()">Otra actividad</a>
+</div>
+
+<!-- Modal -->
+<brief-confirmation-modal
+#confirmationModal
+[name]="name"
+[question]="question"
+[imgUrl]="imgUrlModal"
+(onAnswer)="onUserConfirmed($event)">
+</brief-confirmation-modal>

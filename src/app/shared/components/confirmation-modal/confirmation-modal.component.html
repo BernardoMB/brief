@@ -1,28 +1,7 @@
 <div bsModal #confirmationModal="bs-modal" class="modal fade" role="dialog" [config]="{backdrop: 'static'}">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="margin: 15px;">
       <div class="modal-content modal-content-custom">
-
-        <!-- <div class="modal-header">
-          <span>{{greeting}}</span>
-        </div>
-        <div class="modal-body text-center">
-            <app-img-card [imgUrl]="imgUrl" [cardTitle]="question"></app-img-card>
-        </div>
-        <div class="modal-footer d-flex justify-content-between">
-            <div class="panel-custom">
-              <div class="panel-body-custom" (click)="onResult(true)">
-                <h4 class="title" align="center">Sí</h4>
-              </div>
-            </div>
-            <div class="panel-custom">
-              <div class="panel-body-custom" (click)="onResult(false)">
-                <h4 class="title" align="center">No</h4>
-              </div>
-            </div>
-        </div> -->
-
-        <div>
-          <!-- TODO: Modificar que la imagen sea dinámica. -->
+        <div style="margin-top: 15px;">
           <img class="img" [src]="imgUrl"/>
         </div>
         <div style="padding: 15px;">
@@ -36,6 +15,5 @@
           <button class="btn btn-primary btn-circle" (click)="onResult(false)" style="margin-right: 70px;">No</button>
         </div>
       </div>
-
     </div>
 </div>

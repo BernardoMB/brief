@@ -38,7 +38,7 @@ body {
     width: 200px;
     height: 200px;
     margin: auto;
-    background: url(../assets/loadingAnimationLogo.svg) rgba(0,0,0,.1); 
+    background: url(../assets/images/loadingAnimationLogo.svg) rgba(0,0,0,.1); 
     background-size: cover;
     color: #1abc9c;
     box-shadow: inset 0 0 0 1px rgba(26,188,156,.5)
@@ -152,7 +152,7 @@ body {
 #map_canvas .centerMarker{
     position: absolute;
     /*url of the marker*/
-    background: url(../assets/markerIcon.svg) no-repeat;
+    background: url(../assets/images/markerIcon.svg) no-repeat;
     /*center the marker*/
     top: 50%;
     left: 50%;

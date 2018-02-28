@@ -1,0 +1,3 @@
+<brief-header [title]="title" [imgUrl]="imgUrl$ | async" [opacity]="opacity$ | async" (onRedirect)="redirect($event)"></brief-header>
+<ng2-slim-loading-bar [height]="'6px'" color="blue" style="position: absolute; width: 100%; height: 6px; z-index: 99;"></ng2-slim-loading-bar>
+<router-outlet></router-outlet>
