@@ -39,7 +39,7 @@ http://localhost:4200/activity/product/1/%7B%22fullName%22:%22John%20Doe%22%7D/4
 
 ## Deployment
 
-Configure server to serve static files in dist folder once the proyect is compiled and builded.
+Configure server to serve static files in dist folder once the proyect is compiled and builded. See `server.ts`.
 
 Move the following dev-dependencies to dependencies:
 ``` javascript
@@ -65,7 +65,7 @@ Tell Heroku to compile and build the project in production mode after installing
     "postinstall": "ng build --aot -prod"
 }
 ```
-Change start script to run the server
+Change start script to run the server written in TypeScript.
 ``` javascript
 "scripts": {
     [...]

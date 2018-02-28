@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() { }
 
   public setStyle(): any {
-    console.log(this.imgUrl);
     const clase = {
       background: `url('${this.imgUrl}') no-repeat center left`,
       backgroundSize: '100%'
@@ -28,9 +27,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public setOpacity(): any {
-    console.log(this.opacity);
     if (this.opacity) {
-      console.log('Entro');
       const clase = {
         /* background: '#32b3aa', */
         'background-color': 'rgba(50, 179, 170, 0.314)'
