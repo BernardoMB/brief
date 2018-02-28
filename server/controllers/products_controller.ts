@@ -1,8 +1,8 @@
-const Product = require('../models/product');
+const Producto = require('../models/product');
 
 module.exports = {
   findSuggestions(event) {
-    return Product
+    return Producto
       .find({'name': {$regex: `${event}`}}, 'name')
       .limit(5);
   }
