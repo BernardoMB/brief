@@ -30,7 +30,7 @@ export class HeaderComponent {
       };
     } else {
       return {
-        background: 'linear-gradient(270deg,#33a4bc 20%, #32b3aa 80%)'
+        background: '-webkit-linear-gradient(left, #33a4bc, #32b3aa)'
       };
     }
   }
