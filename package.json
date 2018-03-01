@@ -5,23 +5,18 @@
   "scripts": {
     "ng": "ng",
     "start": "ts-node ./server.ts",
-    "start-ssl": "ng serve --ssl --proxy proxy.conf.json",
-    "start-local": "ng serve --proxy proxy.conf.json",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -n \"Brief Documentation\" -s",
     "db-test-script": "ts-node ./server/db/test-script.ts",
     "serve-devices": "ng serve --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
-    "serve-devices-ssl": "ng serve --ssl --proxy proxy.conf.json --host 0.0.0.0 --disable-host-check",
     "server": "./node_modules/.bin/ts-node ./server.ts",
-    "server-watch": "./node_modules/.bin/nodemon --watch \"./server.ts\" --ext \".ts\" --exec \"npm run server\"",
     "postinstall": "ng build --aot -prod"
   },
   "engines": {
-    "node": "8.9.3",
-    "npm": "5.5.1"
+    "node": "8.9.4",
+    "npm": "5.6.0"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +25,7 @@
     "@angular/cli": "1.6.3",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
-    "@angular/compiler-cli": "^4.0.0",
+    "@angular/compiler-cli": "^5.0.0",
     "@angular/core": "^5.0.0",
     "@angular/forms": "^5.0.0",
     "@angular/http": "^5.0.0",
@@ -84,14 +79,13 @@
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/jquery": "^3.2.15",
-    "@types/lodash": "^4.14.78",
     "@types/moment": "^2.13.0",
     "@types/mssql": "^4.0.6",
     "@types/node": "~6.0.60",
-    "@types/socket.io": "^1.4.31",
-    "@types/socket.io-client": "^1.4.31",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.6.2",
+    "@types/socket.io": "^1.4.31",
+    "@types/socket.io-client": "^1.4.31",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
     "karma-chrome-launcher": "~2.1.1",
@@ -100,7 +94,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
-    "ts-node": "~3.2.4",
+    "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"
   }
