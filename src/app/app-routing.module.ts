@@ -7,7 +7,7 @@ import { HomeComponent } from './pages/containers/home/home.component';
 import { NotFoundComponent } from './pages/containers/not-found/not-found.component';
 
 const routes: Routes = [{
-    path: '',
+    path: '', //
     redirectTo: '/home',
     pathMatch: 'full'
   }, {
@@ -21,7 +21,7 @@ const routes: Routes = [{
     ]
   }, {
     path: 'offer',
-    component: OfferComponent, // Router Outlet TODO: LoadingBar
+    component: OfferComponent, // Router Outlet TODO: LoadingBar 
     children: [
       { path: '', loadChildren: 'app/offer/offer.module#OfferModule' },
     ]
