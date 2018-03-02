@@ -54,6 +54,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
       this.dataService = completerService.local([], 'name', 'name');
       this.socket.on('serverSugestions3', sugestions => {
         this.dataService = completerService.local(sugestions, 'name', 'name');
+        /* console.log('Data service now has the local json object', sugestions); */
       });
     }
 
@@ -130,7 +131,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   }
 
   public inputChange3(event): void {
-    if (event.length > 2) {
+    if (event.length > 1) {
       this.socket.emit('clientGetProductsSugestions', event);
     }
   }

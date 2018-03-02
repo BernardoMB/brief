@@ -16,7 +16,6 @@ import { StarRatingModule } from 'angular-star-rating';
 import { AddExampleModalComponent } from './components/add-example-modal/add-example-modal.component';
 import { PlansModalComponent } from './components/plans-modal/plans-modal.component';
 import { PaymentMethodModalComponent } from './components/payment-method-modal/payment-method-modal.component';
-import { PaymentCardComponent } from './components/payment-card/payment-card.component';
 
 @NgModule({
   imports: [
@@ -37,8 +36,7 @@ import { PaymentCardComponent } from './components/payment-card/payment-card.com
     OptionImgCardComponent,
     AddExampleModalComponent,
     PlansModalComponent,
-    PaymentMethodModalComponent,
-    PaymentCardComponent
+    PaymentMethodModalComponent
   ],
   exports: [
     ModalModule,
@@ -53,8 +51,7 @@ import { PaymentCardComponent } from './components/payment-card/payment-card.com
     OptionImgCardComponent,
     AddExampleModalComponent,
     PlansModalComponent,
-    PaymentMethodModalComponent,
-    PaymentCardComponent
+    PaymentMethodModalComponent
   ],
   providers: [AuthService]
 })
