@@ -97,7 +97,7 @@ io.on('connection', (socket) => {
     //#region Products
         socket.on('clientGetProductsSugestions', (event) => {
             console.log('Cliente solicitó:', event);
-            const q = Product.find({'name': { $regex: `${event}`}}, 'name');
+            const q = Product.find({'name': { $regex: `${event}`}}, 'name').limit(30);
             /* const q = Product.find({'name': { $regex: 'arroz'}}, 'name'); */
             q.exec(function(err, docs) {
                 if (err) {

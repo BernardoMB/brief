@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(private store: Store<IApplicationState>, private router: Router) { }
 
   ngOnInit() {
-    $('body').css('background', '-webkit-gradient(linear, left top, right top, from(#32b3aa), to(#33a4bc)) fixed');
+    $('body').css('background', '-webkit-linear-gradient(left, #33a4bc, #32b3aa)');
   }
 
   ngAfterViewInit() {

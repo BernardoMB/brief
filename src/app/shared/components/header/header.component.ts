@@ -12,6 +12,8 @@ export class HeaderComponent {
   @Input() opacity: boolean;
   @Output() onRedirect = new EventEmitter<number>();
 
+  public showExternalContent: boolean;
+
   constructor() { }
 
   public setBackgroundImage(): any {
@@ -30,9 +32,18 @@ export class HeaderComponent {
       };
     } else {
       return {
-        background: 'linear-gradient(270deg,#33a4bc 20%, #32b3aa 80%)'
+        background: '-webkit-linear-gradient(left, #33a4bc, #32b3aa)'
       };
     }
+  }
+
+  public toggleExternalContent(): void {
+    if (this.showExternalContent) {
+      this.showExternalContent = false;
+    } else {
+      this.showExternalContent = true;
+    }
+    
   }
 
   public redirect(number): void {

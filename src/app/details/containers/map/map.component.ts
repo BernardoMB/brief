@@ -152,21 +152,14 @@ export class MapComponent implements OnInit, OnDestroy {
     this.paramsSubscription.unsubscribe();
   }
 
-  //#region Confirmation Modal event binding
-    /**
-     * This function gets executed when the user confirmed.
-     * @param {any} event
-     * @memberof MakerComponent
-     */
-    public onUserConfirmed(event): void {
-      if (event) {
-        // Execute some code.
-      } else {
-        // Redirect user to generic campaign
-        this.router.navigate(['/details/generic']);
-      }
+  public onUserConfirmed(event): void {
+    if (event) {
+      // Execute some code.
+    } else {
+      // Redirect user to generic campaign
+      this.router.navigate(['/details/generic']);
     }
-  //#endregion
+  }
 
   //#region Map functions
     public initMap(): any {
@@ -249,6 +242,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
+          /* console.log(map.getBounds()); */
           searchBox.setBounds(map.getBounds());
         });
 
@@ -256,6 +250,7 @@ export class MapComponent implements OnInit, OnDestroy {
         // more details for that place.
         searchBox.addListener('places_changed', function() {
           const places = searchBox.getPlaces();
+          console.log('Places changed', places);
 
           if (places.length === 0) {
             return;

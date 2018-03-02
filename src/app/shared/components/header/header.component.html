@@ -4,7 +4,9 @@
     <div id="non-collapse" class="non-collapse">
       <div style="padding-bottom: 15px; z-index: -1;">
         <img class="logo" src="./../../../../assets/images/navbarLogo-white.png" (click)="redirect(1)">
-        <div data-toggle="collapse" data-target="#external-content" class="bars">
+        <div data-target="#external-content" data-toggle="collapse" class="bars">
+        <!-- <div (click)="toggleExternalContent()" class="bars"> -->
+        <!-- <div data-target="#external-content" data-toggle="collapse" class="bars" (click)="toggleExternalContent()"> -->
           <i class="fa fa-bars" aria-hidden="true"></i>
         </div>
       </div>
@@ -14,6 +16,8 @@
     </div>
 
     <div id="external-content" class="collapse">
+    <!-- <div *ngIf="showExternalContent"> -->
+    <!-- <div id="external-content" *ngIf="showExternalContent" class="collapse"> -->
       <div class="collapse-content" style="padding: 15px !important;">
         <h4 (click)="redirect(1)">Inicio</h4>
         <span (click)="redirect(2)">Campaña genérica</span>
