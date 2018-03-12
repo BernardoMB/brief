@@ -2,10 +2,11 @@ import { Store } from '@ngrx/store';
 import { IApplicationState } from '../../../store/models/app-state';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 import { TurnOffIsLoadingAction, UserConfirmedAction, TurnOnIsLoadingAction, SetHeaderTitleAction, SetHeaderOpacityAction, SetHeaderImageAction } from '../../../store/actions/uiState.actions';
+import { RegisterModalComponent } from '../../../shared/components/register-modal/register-modal.component';
 declare var $: any;
 
 // TODO: Quitar boton siguinete.
@@ -14,7 +15,9 @@ declare var $: any;
   templateUrl: './generic.component.html',
   styleUrls: ['./generic.component.scss']
 })
-export class GenericComponent implements OnInit {
+export class GenericComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('registerModal') registerModal: RegisterModalComponent;
 
   // View variables
   public title: String;
@@ -69,6 +72,10 @@ export class GenericComponent implements OnInit {
     this.title = 'Selecciona la mejor opción para tu negocio';
     this.subtitle = null;
     this.explanation = 'Ayúdanos a determinar el giro de tu negocio para lograr resultados increíbles.';
+  }
+
+  ngAfterViewInit() {
+    this.registerModal.showModal();
   }
 
   public setSelectedOption(option): void {

@@ -12,8 +12,6 @@ declare var $: any;
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  
-  @ViewChild('registerModal') registerModal: RegisterModalComponent;
 
   constructor(private store: Store<IApplicationState>, private router: Router) { }
 
@@ -22,7 +20,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.registerModal.showModal();
+
   }
 
   public goToGeneric(): void {

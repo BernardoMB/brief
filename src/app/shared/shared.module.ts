@@ -11,7 +11,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { RealImgCardComponent } from './components/real-img-card/real-img-card.component';
 import { OptionImgCardComponent } from './components/option-img-card/option-img-card.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
 import { AddExampleModalComponent } from './components/add-example-modal/add-example-modal.component';
 import { PlansModalComponent } from './components/plans-modal/plans-modal.component';
@@ -22,7 +22,8 @@ import { PaymentMethodModalComponent } from './components/payment-method-modal/p
     CommonModule,
     ModalModule,
     StarRatingModule,
-    FormsModule // To suppot ngModel two way binding
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     NextButtonComponent,

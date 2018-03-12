@@ -15,6 +15,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { AuthService } from './shared/services/auth.service';
 import { ToastyModule } from 'ng2-toasty';
+import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import { ToastyModule } from 'ng2-toasty';
     // Fire base
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase')
+    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
