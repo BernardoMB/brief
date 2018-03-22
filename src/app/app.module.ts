@@ -16,6 +16,9 @@ import { environment } from '../environments/environment';
 import { AuthService } from './shared/services/auth.service';
 import { ToastyModule } from 'ng2-toasty';
 import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from './material.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,26 +27,22 @@ import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // My modules
     PagesModule.forRoot(),
     DetailsModule.forRoot(),
     OfferModule.forRoot(),
     PaymentModule.forRoot(),
-    // Store
-    // See for more info about the new version of NgRx
-    /* gist.github.com/btroncone/a6e4347326749f938510 */
-    /* toddmotto.com/ngrx-store-understanding-state-selectors */
     NgRxModule,
-    // Nice features
     ToastyModule,
     NgbModule.forRoot(),
     ModalModule.forRoot(),
-    // Fire base
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

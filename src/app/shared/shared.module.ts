@@ -16,6 +16,8 @@ import { StarRatingModule } from 'angular-star-rating';
 import { AddExampleModalComponent } from './components/add-example-modal/add-example-modal.component';
 import { PlansModalComponent } from './components/plans-modal/plans-modal.component';
 import { PaymentMethodModalComponent } from './components/payment-method-modal/payment-method-modal.component';
+import {MaterialModule} from '../material.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { PaymentMethodModalComponent } from './components/payment-method-modal/p
     ModalModule,
     StarRatingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule,
+    RouterModule
   ],
   declarations: [
     NextButtonComponent,

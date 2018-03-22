@@ -12,6 +12,9 @@ export const environment = {
     projectId: 'koomkin-brief',
     storageBucket: 'koomkin-brief.appspot.com',
     messagingSenderId: '36688253160'
+  },
+  googleMaps: {
+    api_key: 'AIzaSyBnXl-DDwNzfujUTk509A_mJG-EDD1iHO8'
   }
 };
 

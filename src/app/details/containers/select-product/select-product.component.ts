@@ -1,17 +1,28 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { IApplicationState } from '../../../store/models/app-state';
-import { Subscription } from 'rxjs/Subscription';
-import { ILead } from '../../../../shared/models/ILead';
-import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {IApplicationState} from '../../../store/models/app-state';
+import {Subscription} from 'rxjs/Subscription';
+import {ILead} from '../../../../shared/models/ILead';
+import {ConfirmationModalComponent} from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import swal from 'sweetalert2';
-import { Observable } from 'rxjs/Observable';
-import { IProduct } from '../../../shared/models/IProduct';
-declare var $: any;
+import {Observable} from 'rxjs/Observable';
+import {IProduct} from '../../../shared/models/IProduct';
 import * as io from 'socket.io-client';
-import { CompleterData, CompleterService } from 'ng2-completer';
-import { SetHeaderTitleAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction, UserConfirmedAction } from '../../../store/actions/uiState.actions';
+import {CompleterData, CompleterService} from 'ng2-completer';
+import {
+  SetHeaderTitleAction,
+  TurnOffIsLoadingAction,
+  TurnOnIsLoadingAction,
+  UserConfirmedAction
+} from '../../../store/actions/uiState.actions';
+import {Subject} from 'rxjs/Subject';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {FormControl} from '@angular/forms';
+import {startWith} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
+
+declare var $: any;
 
 @Component({
   selector: 'brief-select-product',
@@ -35,31 +46,53 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   public title: string;
   public subtitle: string;
   public explanation: string;
-  public autoCompleteInputElement: HTMLElement;
   public imgUrlFixed: String;
 
   // To know confirmation modal need to be showed when the components get initialized.
   public confirmed: Subscription;
 
   public socket;
-  public dataService: CompleterData;
-  public selectedProduct: any;
+
+  // Auto Complete Input variables
+  private selectedProduct: any;
+  private filteredOptions: Observable<any>;
+  private searchData$ = new Subject<any>();
+  public myControl: FormControl = new FormControl();
+  private autoCompleter: Subscription;
+  private counter = 0;
+
 
   constructor(private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private store: Store<IApplicationState>,
-    private completerService: CompleterService) {
-      this.store.dispatch(new SetHeaderTitleAction('Selecciona tu producto'));
-      this.socket = io();
-      this.dataService = completerService.local([], 'name', 'name');
-      this.socket.on('serverSugestions3', sugestions => {
-        this.dataService = completerService.local(sugestions, 'name', 'name');
-        /* console.log('Data service now has the local json object', sugestions); */
-      });
-    }
+              private activatedRoute: ActivatedRoute,
+              private store: Store<IApplicationState>) {
+    this.store.dispatch(new SetHeaderTitleAction('Selecciona tu producto'));
+    this.socket = io();
+
+  }
 
   ngOnInit() {
+
+    this.socket.on('productSuggestions', suggestions => {
+      console.log(suggestions);
+      this.searchData$.next(suggestions);
+    });
+
+    this.autoCompleter = this.myControl.valueChanges
+      .subscribe(event => {
+        if (!event) return;
+        console.log(event);
+        if (event.length >= this.counter) {
+          this.socket.emit('clientGetProductsSuggestions', event);
+          this.counter++;
+        } else {
+          this.counter = event.length;
+        }
+      });
+
+    this.filteredOptions = this.searchData$.asObservable();
+
     this.store.dispatch(new TurnOffIsLoadingAction());
+
     // Get information from route params.
     this.source = this.activatedRoute.snapshot.params['source'];
     this.userData = this.activatedRoute.snapshot.params['userdata'];
@@ -87,29 +120,9 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     this.subtitle = null;
     this.imgUrlFixed = './../../../assets/images/svg/generic/product.svg';
     this.explanation = 'Ayúdanos a determinar el producto que vendes para lograr resultados increíbles. '
-    + 'Busca el nombre de tu producto y presiona en "Siguiente". '
-    + 'Si no vendes un producto, entonces presiona en "Otra actividad".';
+      + 'Busca el nombre de tu producto y presiona en "Siguiente". '
+      + 'Si no vendes un producto, entonces presiona en "Otra actividad".';
 
-    // Disable auto-complete-search text field when selecting an option.
-    $('#completer').find('input').attr('id', 'product-input');
-    let isUserClick = false;
-    $('#product-input').on('mousedown', function(event) {
-      isUserClick = true;
-    });
-    $('#product-input').on('focus', function(event) {
-      if (!isUserClick) {
-        this.blur();
-      }
-      isUserClick = false;
-    });
-
-    // Disable auto-complete-search text field when pressing enter key.
-    this.autoCompleteInputElement = document.getElementById('product-input');
-    this.autoCompleteInputElement.addEventListener('keyup', function(e) {
-      if (e.which === 13 || e.keyCode === 13) {
-        this.blur();
-      }
-    }, false);
 
     // Get confirmed variable from the store to know if I should show the confirmation modal.
     this.confirmed = this.store.select(state => state.uiState.confirmed)
@@ -128,12 +141,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
     this.confirmed.unsubscribe();
-  }
-
-  public inputChange3(event): void {
-    if (event.length > 1) {
-      this.socket.emit('clientGetProductsSugestions', event);
-    }
+    this.autoCompleter.unsubscribe();
   }
 
   public onUserConfirmed(event): void {
@@ -142,10 +150,8 @@ export class SelectProductComponent implements OnInit, OnDestroy {
     }
   }
 
-  public selectProduct(event): void {
-    this.selectedProduct = event;
-    // Blur search box input.
-    document.getElementById('product-input').blur();
+  public displayFn(product): string {
+    return product ? product.name : product;
   }
 
   public continue(): void {
@@ -167,7 +173,7 @@ export class SelectProductComponent implements OnInit, OnDestroy {
           this.router.navigate([route]);
         } else {
           const route = `/details/product/eactivity/`
-          + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
+            + `${this.source}/${this.userData}/${this.campaignId}/${this.selectedProduct.id}`;
           this.router.navigate([route]);
         }
       }, 100);

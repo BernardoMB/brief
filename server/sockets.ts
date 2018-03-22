@@ -22,14 +22,15 @@ module.exports = function (socket) {
     });
   });*/
 
-  socket.on('userGetByEmail', (email) => {
-    user.getUserByEmail(email)
+  socket.on('getUserByEmail', (email) => {
+    user.findUserByEmail(email)
       .then(userFound => {
         if (!user) {
           console.log('No users found');
           socket.emit('userByEmail', false);
         } else {
           console.log('User found');
+          console.log(userFound);
           socket.emit('userByEmail', userFound);
         }
       })
@@ -41,8 +42,8 @@ module.exports = function (socket) {
   socket.on('clientGetProductsSuggestions', (event) => {
     product.findSuggestions(event)
       .then(products => {
-        console.log('mandand ', products);
-        socket.emit('serverSuggestions', products);
+        // console.log('mandando ', products);
+        socket.emit('productSuggestions', products);
       })
       .catch(err => {
         console.error('get products suggestion: ', err);

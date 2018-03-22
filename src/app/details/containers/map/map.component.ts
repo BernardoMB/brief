@@ -1,14 +1,21 @@
-import { ILocation } from '../../../../shared/models/ILocation';
-import { Store } from '@ngrx/store';
-import { IApplicationState } from '../../../store/models/app-state';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
-import { Subscription } from 'rxjs/Subscription';
-import { ILead } from '../../../../shared/models/ILead';
-import { SetHeaderTitleAction, TurnOffIsLoadingAction, TurnOnIsLoadingAction } from '../../../store/actions/uiState.actions';
-import { SetLocationAction } from '../../../store/actions/storeData.actions';
+import {ILocation} from '../../../../shared/models/ILocation';
+import {Store} from '@ngrx/store';
+import {IApplicationState} from '../../../store/models/app-state';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {ConfirmationModalComponent} from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+import {Subscription} from 'rxjs/Subscription';
+import {ILead} from '../../../../shared/models/ILead';
+import {
+  SetHeaderTitleAction,
+  TurnOffIsLoadingAction,
+  TurnOnIsLoadingAction
+} from '../../../store/actions/uiState.actions';
+import {SetLocationAction} from '../../../store/actions/storeData.actions';
+import {environment} from '../../../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+
 declare var google: any;
 declare var jquery: any;
 declare var $: any;
@@ -40,12 +47,19 @@ export class MapComponent implements OnInit, OnDestroy {
   // To know confirmation modal need to be showed when the components get initialized.
   public confirmed: Subscription;
 
+  // Declare Google Map
+  private map;
+
   // User location.
   public location: { lat: number, lng: number };
 
+  private url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
+  private api_key = environment.googleMaps.api_key;
+
   constructor(private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private store: Store<IApplicationState>) {
+              private activatedRoute: ActivatedRoute,
+              private store: Store<IApplicationState>,
+              private http: HttpClient) {
     const headerTitle = '¿Tu negocio está aquí?';
     this.store.dispatch(new SetHeaderTitleAction(headerTitle));
   }
@@ -77,16 +91,13 @@ export class MapComponent implements OnInit, OnDestroy {
 
     // Get confirmed variable from the store to know if I should show the confirmation modal.
     this.confirmed = this.store.select(state => state.uiState.confirmed)
-    .subscribe(value => {
-      if (!value) {
-        setTimeout(() => {
-          this.confirmationModal.showModal();
-        }, 0);
-      }
-    });
-
-    // Declare Google Map
-    let map;
+      .subscribe(value => {
+        if (!value) {
+          setTimeout(() => {
+            this.confirmationModal.showModal();
+          }, 0);
+        }
+      });
 
     // Get browser location
     const options = {
@@ -102,16 +113,16 @@ export class MapComponent implements OnInit, OnDestroy {
         lat: coords.latitude,
         lng: coords.longitude
       };
-      map = this.initMap();
+      this.map = this.initMap();
     }, error => {
       // TODO: hacer que no haya error.
       // alert(error.code);
       console.warn(`ERROR(${error.code}): ${error.message}`);
-      map = this.initMap();
+      this.map = this.initMap();
     }, options);
 
     // Disable center marker when searching an address
-    $('#pac-input').focus(function() {
+    $('#pac-input').focus(function () {
       const results = document.querySelectorAll('.centerMarker');
       for (const result of <any>results) {
         result.classList.add('focused');
@@ -119,7 +130,7 @@ export class MapComponent implements OnInit, OnDestroy {
     });
 
     // Enable center marker when finished searching an address
-    $('#pac-input').blur(function() {
+    $('#pac-input').blur(function () {
       const results = document.querySelectorAll('.centerMarker');
       for (const result of <any>results) {
         result.classList.remove('focused');
@@ -127,14 +138,14 @@ export class MapComponent implements OnInit, OnDestroy {
     });
 
     // Deselect the text field when pressed enter key
-    document.getElementById('pac-input').addEventListener('keyup', function(e) {
+    document.getElementById('pac-input').addEventListener('keyup', function (e) {
       if (e.which === 13 || e.keyCode === 13) {
         this.blur();
       }
     }, false);
 
     const _originalSize = $(window).width() + $(window).height();
-    $(window).resize(function(){
+    $(window).resize(function () {
       if ($(window).width() + $(window).height() !== _originalSize) {
         console.log('keyboard show up');
         // alert('keyboard show up');
@@ -162,162 +173,159 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   //#region Map functions
-    public initMap(): any {
-      const lightStyles = [{
-        stylers: [{
-          hue: '#607D8B'
-        }, {
-          saturation: -20
-        }]
+  public initMap(): any {
+    const that = this;
+    const lightStyles = [{
+      stylers: [{
+        hue: '#607D8B'
       }, {
-        featureType: 'road',
-        elementType: 'geometry',
-        stylers: [{
-          lightness: 80
-        }, {
-          visibility: 'simplified'
-        }]
+        saturation: -20
+      }]
+    }, {
+      featureType: 'road',
+      elementType: 'geometry',
+      stylers: [{
+        lightness: 80
       }, {
-        featureType: 'road',
-        elementType: 'labels',
-        stylers: [{
-          visibility: 'simplified'
-        }]
-      }];
-      const darkStyles = [{
-        featureType: 'all',
-        elementType: 'all',
-        stylers: [{
-          invert_lightness: true
-        }, {
-          saturation: 10
-        }, {
-          lightness: 30
-        }, {
-          gamma: 0.5
-        }, {
-          hue: '#435158'
-        }]
-      }];
-      const styledLight = new google.maps.StyledMapType(lightStyles, {
-        name: 'Koomkin Light'
-      });
-      const styledDark = new google.maps.StyledMapType(darkStyles, {
-        name: 'Koomkin Dark'
-      });
-      let center;
-      let zoom;
-      if (this.location) {
-        center = new google.maps.LatLng(this.location.lat, this.location.lng);
-        zoom = 15;
-      } else {
-        center = new google.maps.LatLng(22.836945241569868, -101.70043984375);
-        zoom = 5;
+        visibility: 'simplified'
+      }]
+    }, {
+      featureType: 'road',
+      elementType: 'labels',
+      stylers: [{
+        visibility: 'simplified'
+      }]
+    }];
+    const darkStyles = [{
+      featureType: 'all',
+      elementType: 'all',
+      stylers: [{
+        invert_lightness: true
+      }, {
+        saturation: 10
+      }, {
+        lightness: 30
+      }, {
+        gamma: 0.5
+      }, {
+        hue: '#435158'
+      }]
+    }];
+    const styledLight = new google.maps.StyledMapType(lightStyles, {
+      name: 'Koomkin Light'
+    });
+    const styledDark = new google.maps.StyledMapType(darkStyles, {
+      name: 'Koomkin Dark'
+    });
+    let center;
+    let zoom;
+    if (this.location) {
+      center = new google.maps.LatLng(this.location.lat, this.location.lng);
+      zoom = 15;
+    } else {
+      center = new google.maps.LatLng(22.836945241569868, -101.70043984375);
+      zoom = 5;
+    }
+    const mapOptions = {
+      center,
+      zoom,
+      streetViewControl: false,
+      fullscreenControl: false,
+      zoomControl: false,
+      mapTypeControl: false,
+      mapTypeControlOptions: {
+        // mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'light_koomkin', 'dark_koomkin']
+        mapTypeIds: ['light_koomkin', 'dark_koomkin'],
+        position: google.maps.ControlPosition.LEFT_BOTTOM
+      },
+      tilt: 45,
+    };
+    const map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    map.mapTypes.set('light_koomkin', styledLight);
+    map.mapTypes.set('dark_koomkin', styledDark);
+    map.setMapTypeId('light_koomkin');
+
+    //#region Search Address box
+    // Create the map search box and link it to the UI element.
+    const input = document.getElementById('pac-input');
+    const searchBox = new google.maps.places.SearchBox(input);
+    const mamon = document.getElementById('mamon');
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(mamon);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function () {
+      /* console.log(map.getBounds()); */
+      searchBox.setBounds(map.getBounds());
+    });
+
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function () {
+      const places = searchBox.getPlaces();
+      console.log('Places changed', places);
+
+      if (places.length === 0) {
+        return;
       }
-      const mapOptions = {
-        center,
-        zoom,
-        streetViewControl: false,
-        fullscreenControl: false,
-        zoomControl: false,
-        mapTypeControl: false,
-        mapTypeControlOptions: {
-          // mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'light_koomkin', 'dark_koomkin']
-          mapTypeIds: ['light_koomkin', 'dark_koomkin'],
-          position: google.maps.ControlPosition.LEFT_BOTTOM
-        },
-        tilt: 45,
-      };
-      const map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-      map.mapTypes.set('light_koomkin', styledLight);
-      map.mapTypes.set('dark_koomkin', styledDark);
-      map.setMapTypeId('light_koomkin');
 
-      //#region Search Address box
-        // Create the map search box and link it to the UI element.
-        const input = document.getElementById('pac-input');
-        const searchBox = new google.maps.places.SearchBox(input);
-        const mamon = document.getElementById('mamon');
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(mamon);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          /* console.log(map.getBounds()); */
-          searchBox.setBounds(map.getBounds());
-        });
-
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-          const places = searchBox.getPlaces();
-          console.log('Places changed', places);
-
-          if (places.length === 0) {
-            return;
-          }
-
-          // For each place, get the icon, name and location.
-          const bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log('Returned place contains no geometry');
-              return;
-            }
-            map.setZoom(14);
-            map.setCenter(place.geometry.location);
-          });
-        });
-      //#endregion
-
-      // Get center after click event
-      google.maps.event.addListener(map, 'click', function(event) {
-        console.log('Center after click event', map.getCenter().toJSON());
-      });
-
-      // Get location on double click event
-      google.maps.event.addListener(map, 'dblclick', function(event) {
-        console.log('Center after double click event', event.latLng.toJSON());
-        /* const marker = new google.maps.Marker({
-          position: event.latLng,
-          map: map
-        }); */
-      });
-
-      //#region Get center after dragg event
-        google.maps.event.addListener(map, 'idle', function() {
-          if (!this.get('dragging') && this.get('oldCenter') && this.get('oldCenter') !== this.getCenter()) {
-            console.log('Center after dragg event', map.getCenter().toJSON());
-            /* const marker = new google.maps.Marker({
-              position: map.getCenter(),
-              map: map
-            }); */
-          }
-          if (!this.get('dragging')) {
-          this.set('oldCenter', this.getCenter());
-          }
-        });
-
-        google.maps.event.addListener(map, 'dragstart', function() {
-          this.set('dragging', true);
-        });
-
-        google.maps.event.addListener(map, 'dragend', function() {
-          this.set('dragging', false);
-          google.maps.event.trigger(this, 'idle', {});
-        });
-      //#endregion
-
-      // Limit zoom level
-      google.maps.event.addListener(map, 'zoom_changed', function () {
-        if (map.getZoom() < 2) {
-          map.setZoom(2);
+      // For each place, get the icon, name and location.
+      const bounds = new google.maps.LatLngBounds();
+      places.forEach(function (place) {
+        if (!place.geometry) {
+          console.log('Returned place contains no geometry');
+          return;
         }
+        map.setZoom(14);
+        map.setCenter(place.geometry.location);
       });
+    });
+    //#endregion
 
-      // centerMarker class is specified on index.html
-      $('<div/>').addClass('centerMarker').appendTo(map.getDiv())
-      // do something when the user clicks the center marker.
-      .click(function() {
+    // Get center after click event
+    google.maps.event.addListener(map, 'click', function (event) {
+      console.log('Center after click event', map.getCenter().toJSON());
+    });
+
+    // Get location on double click event
+    google.maps.event.addListener(map, 'dblclick', function (event) {
+      console.log('Center after double click event', event.latLng.toJSON());
+      /* const marker = new google.maps.Marker({
+        position: event.latLng,
+        map: map
+      }); */
+    });
+
+    //#region Get center after dragg event
+    google.maps.event.addListener(map, 'idle', function () {
+      if (!this.get('dragging') && this.get('oldCenter') && this.get('oldCenter') !== this.getCenter()) {
+        console.log('Center after dragg event', map.getCenter().toJSON());
+        that.setPosition(map.getCenter().toJSON());
+      }
+      if (!this.get('dragging')) {
+        this.set('oldCenter', this.getCenter());
+      }
+    });
+
+    google.maps.event.addListener(map, 'dragstart', function () {
+      this.set('dragging', true);
+    });
+
+    google.maps.event.addListener(map, 'dragend', function () {
+      this.set('dragging', false);
+      google.maps.event.trigger(this, 'idle', {});
+    });
+
+    // Limit zoom level
+    google.maps.event.addListener(map, 'zoom_changed', function () {
+      if (map.getZoom() < 2) {
+        map.setZoom(2);
+      }
+    });
+
+    // centerMarker class is specified on index.html
+    $('<div/>').addClass('centerMarker').appendTo(map.getDiv())
+    // do something when the user clicks the center marker.
+      .click(function () {
         const that = $(this);
         if (!that.data('win')) {
           that.data('win', new google.maps.InfoWindow({
@@ -329,10 +337,42 @@ export class MapComponent implements OnInit, OnDestroy {
         that.data('win').open(map);
       });
 
-      return map;
-    }
-  //#endregion
+    return map;
+  }
 
+  setPosition(location) {
+    console.log('hola');
+    const url = `${this.url}${location.lat},${location.lng}&key=${this.api_key}`;
+    this.http.get(url)
+      .toPromise<any>()
+      .then(res => {
+        if (res.status === 'OK') {
+          /*this.location = res.results[0].geometry.location;
+          this.map.setCenter(this.location);*/
+          $('#pac-input').val(res.results[0].formatted_address);
+        }
+
+      })
+      .catch(err => console.error(err));
+  }
+
+  public getPosition(location) {
+    navigator.geolocation.getCurrentPosition(position => {
+      const coords = position.coords;
+      this.location = {
+        lat: coords.latitude,
+        lng: coords.longitude
+      };
+      console.log(this.location);
+      this.map.setCenter({lat: this.location.lat, lng: this.location.lng});
+    });
+  }
+
+  public clearInput() {
+    $('#pac-input').val('');
+  }
+
+  //#endregion
   public getMapStyle(): any {
     const bodyHeight = $('#app-body').height();
     const headerHeight = $('#non-collapse').height();

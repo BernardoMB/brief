@@ -57,44 +57,86 @@
           </div>
         </div>
         <div *ngIf="isRegister">
-          <form class="register-form" [formGroup]="myForm" (ngSubmit)="onSubmit(f.value)" >
-            <div class="form-item">
-              <input id="name" name="name" type="text" required>
+          <form class="register-form" [formGroup]="myForm" (ngSubmit)="onSubmit(f.value)" #f>
+            <!--<div class="form-item">
+              <input id="name" name="name" formControlName="name" type="text">
               <label for="name">Nombre</label>
-              <small *ngIf="true" id="name" class="text-muted">
-                Aquí puede ir algo shid
+              <small *ngIf="true" class="text-muted">
+                Aquí puede ir algo shido
               </small>
-            </div>
-            <div class="form-item">
-              <input id="l-name" name="phone" type="text" required>
+            </div>-->
+            <!--<div class="form-item">
+              <input id="l-name" name="phone" type="text">
               <label for="l-name">Apellidos</label>
-            </div>
-            <div class="form-item">
-              <input id="email" name="phone" type="tel" required>
+            </div>-->
+            <!--<div class="form-item"
+                 [ngClass]="{'error':myForm.hasError('email', 'email') && myForm.get('email').touched}">
+              <input id="email" name="phone" formControlName="email" type="tel">
               <label for="email">Email</label>
-              <span *ngIf="myForm.hasError('email', 'email') && myForm.get('email').touched">
-                Please enter the correct email, this email not valid.
+              <span class="invalid-error" *ngIf="myForm.hasError('email', 'email') && myForm.get('email').touched">
+                Email no valido
               </span>
-            </div>
-            <div class="form-item">
-              <input id="cellphone" name="phone" type="tel" required>
-              <label for="cellphone">Celular <!--<span>(opcional)</span>--></label>
-            </div>
-            <div class="form-item">
-              <input class="password-field" id="password" name="phone" type="password" required>
+            </div>-->
+            <!--<div class="form-item">
+              <input id="cellphone" name="cellphone" formControlName="cellphone" type="tel">
+              <label for="cellphone">Celular &lt;!&ndash;<span>(opcional)</span>&ndash;&gt;</label>
+            </div>-->
+            <!--<div class="form-item">
+              <input class="password-field" id="password" name="password" formControlName="password" type="password">
               <label for="password">Contraseña</label>
-            </div>
-            <div class="form-item">
-              <input class="password-field" id="password-repeat" name="phone" type="password" required>
+            </div>-->
+            <!--<div class="form-item">
+              <input class="password-field" id="password-repeat" name="password-repeat"
+                     formControlName="password-repeat" type="password" required>
               <label for="password-repeat">Confirmar contraseña</label>
-            </div>
+            </div>-->
+            <mat-form-field class="form-item">
+              <input matInput placeholder="Nombre" formControlName="first_name" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field class="form-item">
+              <input matInput placeholder="Apellido Paterno" formControlName="last_name" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field class="form-item">
+              <input matInput placeholder="Apellido Materno" formControlName="m_last_name" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field class="form-item">
+              <input matInput placeholder="Email" formControlName="email" autocomplete="off">
+              <mat-error *ngIf="myForm.controls['email'].hasError('pattern') && myForm.get('email').touched">
+                Email no válido
+              </mat-error>
+              <mat-error *ngIf="myForm.controls['email'].hasError('reservedEmail') && myForm.get('email').touched">
+                Email ya existente
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-item">
+              <input matInput placeholder="Celular" formControlName="cellphone" autocomplete="off" type="tel">
+              <mat-error *ngIf="myForm.controls['cellphone'].hasError('minlength') && myForm.get('email').touched">
+                Celular no válido
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-item">
+              <input matInput placeholder="Contraseña" formControlName="password" autocomplete="off"
+                     [type]="passwordVisible" class="password-input">
+              <i class="fa password-show" aria-hidden="true" (click)="showPassword()"
+                 [ngClass]="{'fa-eye': passwordShow, 'fa-eye-slash': !passwordShow}"></i>
+              <mat-error *ngIf="myForm.controls['password'].hasError('minlength') && myForm.get('password').touched">
+                Contraseña debe ser mayor a 8
+              </mat-error>
+              <mat-error
+                *ngIf="myForm.controls['password'].hasError('pattern') && !myForm.controls['password'].hasError('minlength')">
+                Debe contener letra mayúscula, número y caracter especial
+              </mat-error>
+              <!--<label class="password-show" (click)="showPassword()">
+                {{passwordText}}
+              </label>-->
+            </mat-form-field>
           </form>
           <div class="button-group">
-            <div class="login-button button" (click)="defaultRegister()">
-              <div class="register-label">
+            <button class="login-button button" (click)="onSubmit()">
+              <label class="register-label">
                 Registrarse
-              </div>
-            </div>
+              </label>
+            </button>
           </div>
           <div class="text-options">
             <div class="quit-dialog">
@@ -108,4 +150,5 @@
       </div>
     </div>
   </div>
+</div>
 

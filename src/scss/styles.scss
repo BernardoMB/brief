@@ -13,6 +13,31 @@
 // Custom variables
 @import "custom-variables";
 
+// Angular Material
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+// Angular Material Custom
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+/*// hue. Available color palettes: https://www.google.com/design/spec/style/color.html
+$koomkin-app-primary: $koomkin-green;
+$koomkin-app-accent:  $koomkin-blue-electric;
+
+// The warn palette is optional (defaults to red).
+$koomkin-app-warn:    $koomkin-yellow;
+
+// Create the theme object (a Sass map containing all of the palettes).
+$koomkin-app-theme: mat-light-theme($koomkin-app-primary, $koomkin-app-accent, $koomkin-app-warn);
+
+@include angular-material-theme($koomkin-app-theme);*/
+
 /* You can add global styles to this file, and also import other style files */
 
 html {
@@ -38,7 +63,7 @@ body {
     width: 200px;
     height: 200px;
     margin: auto;
-    background: url(../assets/images/loadingAnimationLogo.svg) rgba(0,0,0,.1); 
+    background: url(../assets/images/loadingAnimationLogo.svg) rgba(0,0,0,.1);
     background-size: cover;
     color: #1abc9c;
     box-shadow: inset 0 0 0 1px rgba(26,188,156,.5)

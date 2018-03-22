@@ -1,6 +1,6 @@
 import { NgModule, LOCALE_ID, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // In order to use two way binding
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // In order to use two way binding
 import { DetailsComponent } from './details/details.component';
 import { DetailsRoutingModule } from './details-routing.module';
 import { SharedModule } from '../shared/shared.module';
@@ -26,6 +26,7 @@ import { SelectRStarsComponent } from './containers/select-r-stars/select-r-star
 import { MapComponent } from './containers/map/map.component';
 import { CoverageComponent } from './containers/coverage/coverage.component';
 import { SelectStatesComponent } from './containers/select-states/select-states.component';
+import {MaterialModule} from '../material.module';
 
 @NgModule({
   imports: [
@@ -38,7 +39,9 @@ import { SelectStatesComponent } from './containers/select-states/select-states.
     StarRatingModule,
     NguiAutoCompleteModule,
     Ng2CompleterModule,
-    SlimLoadingBarModule.forRoot()
+    SlimLoadingBarModule.forRoot(),
+    MaterialModule,
+    ReactiveFormsModule
   ],
   declarations: [
     DetailsComponent,

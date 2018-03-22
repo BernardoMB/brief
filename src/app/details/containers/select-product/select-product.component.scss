@@ -8,10 +8,16 @@
     margin-bottom: 15px;
 }
 
-.search-auto-complete-container {
+.auto-complete-container {
     margin-bottom: 15px;
     margin-left: 15px;
     margin-right: 15px;
+    display: flex;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: 80vw !important;
 }
 
 .search-box {
